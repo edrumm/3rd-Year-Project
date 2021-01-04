@@ -1,0 +1,29 @@
+{
+  "name": "3rd-year-project",
+  "version": "1.0.0",
+  "description": "3rd year group project",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edrumm/3rd-Year-Project.git"
+  },
+  "keywords": [
+    "picturethat"
+  ],
+  "author": "Ewan Drummond, Jake Barr, Olubi Faleye, Lucas Arena-Terry, Joshua Chan, Alex Johnstone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/edrumm/3rd-Year-Project/issues"
+  },
+  "homepage": "https://github.com/edrumm/3rd-Year-Project#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^17.0.1"
+  }
+}
