@@ -1,7 +1,5 @@
 require('dotenv').config();
-
 const express = require('express');
-// const react = require('react');
 
 const routes = require('./routes');
 
@@ -10,7 +8,7 @@ const port = 3000;
 
 app.use('/routes', routes);
 app.use(express.json({limit: '1mb'}));
-app.listen(port, () => console.log(`Port: {$port}`));
+app.listen(port, () => console.log(`Port: ${port}`));
 
 // Main app code
 // ...
