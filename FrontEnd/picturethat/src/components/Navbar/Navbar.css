@@ -11,12 +11,6 @@
     color: white;
     justify-self: start;
     margin-left: 20px;
-    cursor: pointer;
-}
-
-.fa-react {
-    margin-left: 0.5rem;
-    font-size: 1.6rem;
 }
 
 .nav-menu {
@@ -34,5 +28,41 @@
     color: white;
     text-decoration: none;
     padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.fas.fa-home {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.fas.fa-search {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    font-size: 1.8rem;
+}
+
+.fas.fa-arrow-up {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+    font-size: 1.8rem;
+}
+
+@media screen and (max-width: 960px) {
+    .NavbarItems {
+        position: relative;
+    }
+
+    .nav-menu {
+        display: none;
+    }
 }
 

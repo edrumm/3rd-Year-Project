@@ -1,18 +1,18 @@
 export const MenuItems = [
     {
-        title: 'home',
+        title: '',
         url: '#',
-        cName: 'nav-links'
+        cName: 'fas fa-home'
     },
     {
-        title: 'home',
+        title: '',
         url: '#',
-        cName: 'nav-links'
+        cName: 'fas fa-search'
     },
     {
-        title: 'home',
+        title: '',
         url: '#',
-        cName: 'nav-links'
+        cName: 'fas fa-arrow-up'
     },
     {
         title: '',
