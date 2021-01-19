@@ -29,6 +29,16 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
+/*
+  UNCOMMENT FOR TEST
+
+  db.collection('users').get()
+  .then(res => {
+    res.forEach(doc => console.log(doc.data().username));
+  })
+  .catch(err => console.error(err));
+*/
+
 
 module.exports.login = () => {
 
