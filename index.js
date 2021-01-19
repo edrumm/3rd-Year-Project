@@ -8,6 +8,6 @@ const port = 3000;
 
 app.use('/api', api);
 app.use(express.json({limit: '1mb'}));
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/Public'));
 
 app.listen(port, () => console.log(`Port: ${port}`));
