@@ -21,23 +21,14 @@ Object.keys(credentials).forEach(k => {
   }
 });
 
-
 // Connect to Firebase
 admin.initializeApp({
   credential: admin.credential.cert(credentials),
   storageBucket: process.env.STORAGE_BUCKET
 });
 
-console.log('Connected to firebase');
 const db = admin.firestore();
 
-db.collection('users').get()
-  .then(data => {
-    data.forEach(doc => {
-      console.log(`${doc.id} => ${doc.data().username}`);
-    });
-  })
-  .catch(err => console.error(err));
 
 module.exports.login = () => {
 
