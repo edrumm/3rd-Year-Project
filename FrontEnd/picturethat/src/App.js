@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Route, Switch, Link, Redirect} from 'react-rout
 //Import the pages
 import SignIn from "./Pages/SignIn";
 import SignUp from "./Pages/SignUp";
+import ForgotPassword from "./Pages/ForgotPassword";
 import NotFound from "./Pages/404";
 
 
@@ -20,6 +21,7 @@ function App() {
         <Route exact path="/" component={SignIn} /> {/*route path of the specific page - when used with keyword exact - in the app */}
         <Route exact path="/SignIn" component={SignIn} />
         <Route exact path="/SignUp" component={SignUp} />
+        <Route exact path= "/ForgotPassword" component={ForgotPassword} />
 
         <Route exact path="/404" component={NotFound} />
         <Redirect to="/404"/> {/*Redirect used to redirect users to 404 page if an invalid url is typed in the url searchbar */}
