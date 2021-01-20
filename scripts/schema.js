@@ -1,12 +1,15 @@
 const Joi = require('joi');
 
 const login = Joi.object({
-  username: Joi.string().requred(),
+  username: Joi.string().required(),
   password: Joi.string().required()
 });
 
 const signup = Joi.object({
-  email: Joi.email().required(),
+  email:
+    Joi.string()
+    .email()
+    .required(),
   username:
     Joi.string()
     .min(5)
@@ -18,7 +21,7 @@ const signup = Joi.object({
     .max(30)
     .min(8)
     .required(),
-  confirmPassword: Joi.ref('password').required()
+  confirmPassword: Joi.ref('password')
 });
 
 module.exports.validateLogin = (data) => {
