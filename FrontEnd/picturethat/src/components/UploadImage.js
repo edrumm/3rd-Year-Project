@@ -58,4 +58,6 @@ const UploadImage = () => {
 
 export default UploadImage;
 
+//accessed 19/1/21
 //https://www.youtube.com/watch?v=vUe91uOx7R0
+//https://www.geeksforgeeks.org/file-uploading-in-react-js/
