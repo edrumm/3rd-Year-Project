@@ -49,6 +49,7 @@ const UploadImage = () => {
         <form>
             <input type="file" onChange={changeImage}/>
             <div className="errorOutput">
+                {/*div placeholder to show on the screen the error message and the file typ being loaded from local state*/}
                 {error && <div className="error">{error}</div>}
                 {image && <div>{image.name}</div>}
             </div>
@@ -58,4 +59,6 @@ const UploadImage = () => {
 
 export default UploadImage;
 
+//accessed 19/1/21
 //https://www.youtube.com/watch?v=vUe91uOx7R0
+//https://www.geeksforgeeks.org/file-uploading-in-react-js/
