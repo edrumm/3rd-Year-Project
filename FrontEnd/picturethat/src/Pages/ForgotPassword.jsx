@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const ForgotPassword  = () => {
 
@@ -10,7 +11,7 @@ const ForgotPassword  = () => {
 
                 <p>Email</p>
                 <input type="text" id="emailInput" placeholder="Email Address" />
-                <button id="signInButton" class="signInButton" onclick="submitBtnPress()">Submit</button>
+                <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/SignIn">Submit</Link></button>
             
         </div>
     );

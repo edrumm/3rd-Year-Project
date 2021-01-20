@@ -15,11 +15,11 @@ const SignIn  = () => {
                 <input type="text" id="emailInput" placeholder="Enter Email" />
                 <p>Password</p>
                 <input type="password" id="passwordInput" placeholder="Password" />
-                <button id="signInButton" class="signInButton" onclick="submitBtnPress()">Sign In</button>
+                <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/PictureThat">Sign In</Link></button>
 
                 <div className="whiteSpace"></div>
                 <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/PictureThat">Guest</Link></button>
-                <p>Forgot Password?</p>
+                <Link to="/ForgotPassword">Forgot Password?</Link> <Link to="/SignUp">Sign Up</Link>
 
             </div>
             
