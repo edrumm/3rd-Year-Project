@@ -49,6 +49,7 @@ const UploadImage = () => {
         <form>
             <input type="file" onChange={changeImage}/>
             <div className="errorOutput">
+                {/*div placeholder to show on the screen the error message and the file typ being loaded from local state*/}
                 {error && <div className="error">{error}</div>}
                 {image && <div>{image.name}</div>}
             </div>
