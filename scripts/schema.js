@@ -6,7 +6,19 @@ const login = Joi.object({
 });
 
 const signup = Joi.object({
-  // TODO
+  email: Joi.email().required(),
+  username:
+    Joi.string()
+    .min(5)
+    .max(25)
+    .required(),
+  password:
+    Joi.string()
+    .alphanum()
+    .max(30)
+    .min(8)
+    .required(),
+  confirmPassword: Joi.ref('password').required()
 });
 
 module.exports.validateLogin = (data) => {
