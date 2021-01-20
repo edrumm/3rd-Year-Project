@@ -17,7 +17,9 @@ const SignUp  = () => {
                 <input type="password" id="passwordInput" placeholder="Enter Password" />
                 <input type="password" id="passwordInput" placeholder="Re-enter Password" />
 
-
+                <input type="checkbox" id="termsAndConditions" name="termsAndConditions" value="Accept" />
+                <label for="termsAndConditions"> I agree to the Terms of Services and Privacy Policy</label><br></br>
+                {/*need to add hyperlink text to Terms of Services and Privacy Policy */}
 
                 <button id="signInButton" class="signInButton" onclick="submitBtnPress()">Continue</button>
                 <p>Have an Account?</p> {/*need to add hyperlink text to send to signIn Page */}
