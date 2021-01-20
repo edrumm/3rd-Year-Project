@@ -2,6 +2,7 @@ const express = require('express');
 const Router = express.Router();
 
 const firebase = require('./../scripts/firebase');
+const schema = require('./../scripts/schema');
 
 // TODO: set up routes
 Router.get('/', (req, res) => {

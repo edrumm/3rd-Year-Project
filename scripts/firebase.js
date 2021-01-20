@@ -52,10 +52,15 @@ const db = admin.firestore();
 // DB login function
 module.exports.login = (data, query) => {
 
+  // search db for entry,
+  // if exists login is ok
+
 };
 
 // DB signup function
 module.exports.signup = (data) => {
+
+  // add new entry to db if not exist
 
 };
 
@@ -79,14 +84,22 @@ module.exports.get = (data, collection, query=null) => {
 // DB insert
 module.exports.insert = (data, collection) => {
 
+  // add new entry to database
+  // is signup() needed ??
+
 };
 
 // DB update
-module.exports.update = (data, query) => {
+module.exports.update = (data, collection, query) => {
+
+  // set entry to values in data in the collection
+  // query might be needed
 
 };
 
 // DB delete
-module.exports.delete = (query) => {
+module.exports.delete = (collection, query) => {
+
+  // remove entry
 
 };
