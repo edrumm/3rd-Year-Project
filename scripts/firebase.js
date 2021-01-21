@@ -50,7 +50,7 @@ const db = admin.firestore();
 
 
 // DB login function
-module.exports.login = (data, query) => {
+module.exports.login = (data) => {
 
   // search db for entry,
   // if exists login is ok
@@ -58,26 +58,48 @@ module.exports.login = (data, query) => {
 };
 
 // DB signup function
-module.exports.signup = (data) => {
+module.exports.signup = async (data) => {
 
-  // add new entry to db if not exist
+  /*
+  let user = await db.collection('users').doc(data.username); <- need document reference for this
+
+  if (!user.empty) {
+
+    // account already exists
+    // return an err
+    return;
+
+  }*/
+
+  let res = await db.collection('users').add({
+    email: data.email,
+    followed_channels: [],
+    followers: [],
+    following: [],
+    liked_posts: [],
+    password: data.password,
+    posts: [],
+    score: 0,
+    username: data.username
+  });
+
+  // do something with ID: res.id;
+  // ...
 
 };
 
 // DB fetch
-// https://firebase.google.com/docs/firestore/query-data/queries
-module.exports.get = (data, collection, query=null) => {
-
-  // get collection
+// 'query' should have properties for field, an operator, and values(s) to match
+module.exports.get = async (collection, query=null) => {
 
   if (query) {
 
-    // get result with query
+    let ref = db.collection(collection);
+    return await ref.where(query.field, query.operand, query.value).get();
 
   } else {
 
-    // get everything in collection
-
+    return await db.collection(collection).get(); // .data() ?
   }
 };
 
