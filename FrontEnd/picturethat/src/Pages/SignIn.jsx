@@ -8,18 +8,23 @@ const SignIn  = () => {
         <div className= "signInWelcome">
             <div>
                 <h1>Sign In</h1>
-                <h2>Hi there! Nice to see you again.</h2>
+                <p>Hi there! Nice to see you again.</p>
             </div>
 
+            <div className="whiteSpace"></div>
+
             <div>
-                <p>Email</p>
                 <input type="text" id="emailInput" placeholder="Enter Email" />
-                <p>Password</p>
                 <input type="password" id="passwordInput" placeholder="Password" />
                 <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/PictureThat">Sign In</Link></button>
 
                 <div className="whiteSpace"></div>
-                <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/PictureThat">Guest</Link></button>
+
+                <p className="or"><span>OR</span>
+                    <div className="whiteSpace"></div>
+                    <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/PictureThat">Guest</Link></button>
+                </p>
+
                 <Link to="/ForgotPassword">Forgot Password?</Link> <Link to="/SignUp">Sign Up</Link>
 
             </div>
