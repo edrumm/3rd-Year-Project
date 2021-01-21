@@ -38,5 +38,5 @@ function App() {
 
 export default App;
 
-
+// used this tutorial to set up a navigation bar: https://www.youtube.com/watch?v=fL8cFqhTHwA&t=378s
 //https://www.youtube.com/watch?v=hjR-ZveXBpQ
