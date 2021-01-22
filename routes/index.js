@@ -6,13 +6,19 @@ const storage = require('./../scripts/storage');
 const schema = require('./../scripts/schema');
 
 // TODO: set up routes
-Router.get('/', (req, res) => {
+Router.post('/login', (req, res) => {
 
   // ...
 
 });
 
-Router.post('/', (req, res) => {
+Router.post('/signup', (req, res) => {
+
+  // ...
+
+});
+
+Router.get('/validate' (req, res) => {
 
   // ...
 
