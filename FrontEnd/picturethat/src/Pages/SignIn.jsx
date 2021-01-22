@@ -30,7 +30,7 @@ const SignIn  = () => {
         //using signInWithEmailAndPassword
         firebase
         .auth()
-        .signInWithEmailAndPassword(email, password);
+        .signInWithEmailAndPassword(email, password)
 
         //error handling
         .catch((err) => {
