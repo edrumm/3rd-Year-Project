@@ -24,7 +24,7 @@ const signup = Joi.object({
   confirmPassword: Joi.ref('password')
 });
 
-module.exports.validateLogin = (data) => {
+module.exports.login = (data) => {
   let {error, value} = login.validate(data);
 
   if (error)
@@ -33,7 +33,7 @@ module.exports.validateLogin = (data) => {
   return null;
 };
 
-module.exports.validateSignup = (data) => {
+module.exports.signup = (data) => {
   let {error, value} = signup.validate(data);
 
   if (error)

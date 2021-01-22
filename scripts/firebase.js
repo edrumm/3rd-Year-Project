@@ -50,28 +50,35 @@ const db = admin.firestore();
 
 
 // DB login function
-module.exports.login = (data) => {
+module.exports.login = async (data) => {
 
-  // search db for entry,
-  // if exists login is ok
+  let user = await db.collection(users).doc(data.username);
+
+  if (!user.empty) {
+    // redirect to login
+    return;
+  }
+
+  let doc = await user.get();
+
+  if (doc.id === data.username && doc.data().password === data.password) {
+    // login successful
+  }
+
+  // login unsuccessful
 
 };
 
 // DB signup function
 module.exports.signup = async (data) => {
 
-  /*
-  let user = await db.collection('users').doc(data.username); <- need document reference for this
+  let user = await db.collection(users).doc(data.username);
 
-  if (!user.empty) {
+  if (user.exists) {
+    // redirect to login
+  }
 
-    // account already exists
-    // return an err
-    return;
-
-  }*/
-
-  let res = await db.collection('users').add({
+  await db.collection('users').doc(data.username).set({
     email: data.email,
     followed_channels: [],
     followers: [],
@@ -79,13 +86,8 @@ module.exports.signup = async (data) => {
     liked_posts: [],
     password: data.password,
     posts: [],
-    score: 0,
-    username: data.username
+    score: 0
   });
-
-  // do something with ID: res.id;
-  // ...
-
 };
 
 // DB fetch
@@ -104,15 +106,14 @@ module.exports.get = async (collection, query=null) => {
 };
 
 // DB insert
-module.exports.insert = (data, collection) => {
+module.exports.insert = async (data, collection) => {
 
-  // add new entry to database
-  // is signup() needed ??
+  await db.collection(collection).add(data);
 
 };
 
 // DB update
-module.exports.update = (data, collection, query) => {
+module.exports.update = (data, collection, query=null) => {
 
   // set entry to values in data in the collection
   // query might be needed
@@ -120,8 +121,11 @@ module.exports.update = (data, collection, query) => {
 };
 
 // DB delete
-module.exports.delete = (collection, query) => {
+module.exports.delete = async (collection, id, query) => {
 
-  // remove entry
+  await db.collection(collection).doc(id).delete();
+
+  // this will delete document ONLY, not subcollections
+  // ok for now but will need to update this to include subcollections
 
 };
