@@ -1,14 +1,51 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './Pages.css';
+import logo from './logo.png';
+import {useState, useEffect} from 'react';
 
 const SignUp  = () => {
+
+    //function to handle the signUp
+    const signUp = () => {
+        //use firebase methods to authenticate a user when signing in
+        //using signInWithEmailAndPassword
+        firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+
+        //error handling
+        .catch((err) => {
+            switch (err.code) {
+
+                //error codes for invalid email
+                case "auth/email-already-in-use":
+                case "auth/invalid-email":
+
+                    //if any of these errors arise
+                    //setEmailError state to hold a message
+                    setEmailError(err.message);
+                    break;
+
+                //error codes for invalid password
+                case "auth/weak-password":
+
+                    //if any of these errors arise
+                    //setPasswordError state to hold a message
+                    setPasswordError(err.message);
+                    break;
+
+            };
+        });
+
+    };
+
 
     return (
         <div className= "signup">
             <div>
-                <h1>PictureThat</h1>
-                <p>Sign up to see photos from people tha inspire you</p>
+                <img src={logo} alt="" class="logoimg" />
+                <p class="text" >Sign up to see photos from people tha inspire you</p>
             </div>
 
             <div>

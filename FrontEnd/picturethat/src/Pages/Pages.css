@@ -1,9 +1,9 @@
 .signInWelcome{
 
-    position: fixed;
+    position: absolute;
     left: calc(40vw - 10px);
     width: 350px;
-    height: 380px;
+    height: 500px;
     top: 20%;
   
     padding: 10px 10px;
@@ -23,7 +23,7 @@
     position: fixed;
     left: calc(40vw - 10px);
     width: 350px;
-    height: 500px;
+    height: 550px;
     top: 20%;
   
     padding: 10px 10px;
@@ -67,6 +67,10 @@ button{
    left: 0; 
 }
 
+.text {
+    margin: 3px 40px 3px;
+}
+
 .inputbox{
     width: 260px;
     height: 38px;
@@ -74,8 +78,9 @@ button{
 }
 
 .logoimg {
-    width: 100px;
-    height: 100px;
+    padding: 0rem 0rem;
+    width: 10rem;
+    height: 10rem;
 }
 
 
