@@ -12,11 +12,9 @@ const SignUp  = () => {
             </div>
 
             <div>
-                <p>Email</p>
                 <input type="text" id="emailInput" class="inputbox" placeholder="Email Address" />
                 <input type="text" id="emailInput" class="inputbox" placeholder="Re-enter Email Address" />
 
-                <p>Password</p>
                 <input type="password" id="passwordInput" class="inputbox" placeholder="Enter Password" />
                 <input type="password" id="passwordInput" class="inputbox" placeholder="Re-enter Password" />
 

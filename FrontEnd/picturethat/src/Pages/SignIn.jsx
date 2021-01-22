@@ -16,14 +16,14 @@ const SignIn  = () => {
             <div>
                 <input type="text" id="emailInput" class="inputbox" placeholder="Enter Email" />
                 <input type="password" id="passwordInput" class="inputbox" placeholder="Password" />
-                <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/PictureThat">Sign In</Link></button>
+                <button id="signInButton" class="button" onclick="submitBtnPress()"><Link to="/PictureThat">Sign In</Link></button>
 
                 <div className="whiteSpace"></div>
 
                 <p className="or"><span>OR</span>
                     <div className="whiteSpace"></div>
-                    <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/PictureThat">Guest</Link></button>
                 </p>
+                <button id="signInButton" class="button" onclick="submitBtnPress()"><Link to="/PictureThat">Guest</Link></button>
 
                 <Link to="/ForgotPassword">Forgot Password?</Link> <Link to="/SignUp">Sign Up</Link>
 
