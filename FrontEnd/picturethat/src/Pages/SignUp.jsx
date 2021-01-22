@@ -1,22 +1,24 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import './Pages.css';
 
 const SignUp  = () => {
 
     return (
-        <div className= "signInWelcome">
+        <div className= "signup">
             <div>
-                <h1>Sign Up</h1>
+                <h1>PictureThat</h1>
+                <p>Sign up to see photos from people tha inspire you</p>
             </div>
 
             <div>
                 <p>Email</p>
-                <input type="text" id="emailInput" placeholder="Email Address" />
-                <input type="text" id="emailInput" placeholder="Re-enter Email Address" />
+                <input type="text" id="emailInput" class="inputbox" placeholder="Email Address" />
+                <input type="text" id="emailInput" class="inputbox" placeholder="Re-enter Email Address" />
 
                 <p>Password</p>
-                <input type="password" id="passwordInput" placeholder="Enter Password" />
-                <input type="password" id="passwordInput" placeholder="Re-enter Password" />
+                <input type="password" id="passwordInput" class="inputbox" placeholder="Enter Password" />
+                <input type="password" id="passwordInput" class="inputbox" placeholder="Re-enter Password" />
 
                 <input type="checkbox" id="termsAndConditions" name="termsAndConditions" value="Accept" />
                 <label for="termsAndConditions"> I agree to the Terms of Services and Privacy Policy</label><br></br>

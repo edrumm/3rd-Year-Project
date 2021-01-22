@@ -7,15 +7,15 @@ const SignIn  = () => {
     return (
         <div className= "signInWelcome">
             <div>
-                <h1>Sign In</h1>
+                <h1>PictureThat</h1>
                 <p>Hi there! Nice to see you again.</p>
             </div>
 
             <div className="whiteSpace"></div>
 
             <div>
-                <input type="text" id="emailInput" placeholder="Enter Email" />
-                <input type="password" id="passwordInput" placeholder="Password" />
+                <input type="text" id="emailInput" class="inputbox" placeholder="Enter Email" />
+                <input type="password" id="passwordInput" class="inputbox" placeholder="Password" />
                 <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/PictureThat">Sign In</Link></button>
 
                 <div className="whiteSpace"></div>
