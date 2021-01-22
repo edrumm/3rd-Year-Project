@@ -1,13 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './Pages.css';
+import logo from './logo.png';
 
 const SignIn  = () => {
 
     return (
         <div className= "signInWelcome">
             <div>
-                <h1>PictureThat</h1>
+                <img src={logo} alt="" class="logoimg" />
                 <p>Hi there! Nice to see you again.</p>
             </div>
 
