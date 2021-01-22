@@ -113,19 +113,29 @@ module.exports.insert = async (data, collection) => {
 };
 
 // DB update
-module.exports.update = (data, collection, query=null) => {
+module.exports.update = (data, id, collection) => {
 
-  // set entry to values in data in the collection
-  // query might be needed
+  await db.collection(collection).doc(id).update(data);
 
 };
 
 // DB delete
-module.exports.delete = async (collection, id, query) => {
+// https://stackoverflow.com/questions/52048204/firestore-delete-document-and-all-documents-referencing-it
+module.exports.deleteAccount = async (id) => {
+  let user = await db.collection('users').doc(id).get();
+  let posts = user.data().posts;
+  let comments = await db.collection('comments').where('user', '==', 'id').get();
 
-  await db.collection(collection).doc(id).delete();
+  // work in progress
 
-  // this will delete document ONLY, not subcollections
-  // ok for now but will need to update this to include subcollections
+};
+
+module.exports.deletePost = (id) => {
+
+};
+
+module.exports.deleteComment = async (id) => {
+
+  await db.collection('comments').delete();
 
 };
