@@ -9,7 +9,7 @@ const SignIn  = () => {
         <div className= "signInWelcome">
             <div>
                 <img src={logo} alt="" class="logoimg" />
-                <p>Hi there! Nice to see you again.</p>
+                <p class="text" >Hi there! Nice to see you again.</p>
             </div>
 
             <div className="whiteSpace"></div>

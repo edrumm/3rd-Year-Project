@@ -1,14 +1,15 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './Pages.css';
+import logo from './logo.png';
 
 const SignUp  = () => {
 
     return (
         <div className= "signup">
             <div>
-                <h1>PictureThat</h1>
-                <p>Sign up to see photos from people tha inspire you</p>
+                <img src={logo} alt="" class="logoimg" />
+                <p class="text" >Sign up to see photos from people tha inspire you</p>
             </div>
 
             <div>
