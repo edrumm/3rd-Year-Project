@@ -18,7 +18,7 @@ Router.post('/signup', (req, res) => {
 
 });
 
-Router.get('/validate' (req, res) => {
+Router.get('/validate', (req, res) => {
 
   // ...
 
