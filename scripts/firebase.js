@@ -113,7 +113,7 @@ module.exports.insert = async (data, collection) => {
 };
 
 // DB update
-module.exports.update = (data, id, collection) => {
+module.exports.update = async (data, id, collection) => {
 
   await db.collection(collection).doc(id).update(data);
 
