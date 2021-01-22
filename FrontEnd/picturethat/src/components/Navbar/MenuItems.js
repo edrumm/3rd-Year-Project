@@ -12,7 +12,7 @@ export const MenuItems = [
     {
         title: '',
         url: '#',
-        cName: 'fas fa-arrow-up'
+        cName: 'fas fa-images'
     },
     {
         title: '',

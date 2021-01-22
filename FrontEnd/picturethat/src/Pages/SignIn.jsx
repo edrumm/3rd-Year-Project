@@ -1,24 +1,30 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import './Pages.css';
 
 const SignIn  = () => {
 
     return (
         <div className= "signInWelcome">
             <div>
-                <h1>Sign In</h1>
-                <h2>Hi there! Nice to see you again.</h2>
+                <h1>PictureThat</h1>
+                <p>Hi there! Nice to see you again.</p>
             </div>
 
+            <div className="whiteSpace"></div>
+
             <div>
-                <p>Email</p>
-                <input type="text" id="emailInput" placeholder="Enter Email" />
-                <p>Password</p>
-                <input type="password" id="passwordInput" placeholder="Password" />
-                <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/PictureThat">Sign In</Link></button>
+                <input type="text" id="emailInput" class="inputbox" placeholder="Enter Email" />
+                <input type="password" id="passwordInput" class="inputbox" placeholder="Password" />
+                <button id="signInButton" class="button" onclick="submitBtnPress()"><Link to="/PictureThat">Sign In</Link></button>
 
                 <div className="whiteSpace"></div>
-                <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/PictureThat">Guest</Link></button>
+
+                <p className="or"><span>OR</span>
+                    <div className="whiteSpace"></div>
+                </p>
+                <button id="signInButton" class="button" onclick="submitBtnPress()"><Link to="/PictureThat">Guest</Link></button>
+
                 <Link to="/ForgotPassword">Forgot Password?</Link> <Link to="/SignUp">Sign Up</Link>
 
             </div>

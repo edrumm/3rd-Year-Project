@@ -1,10 +1,31 @@
-.NavbarItems {
+.Navbar {
     background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
-    height: 80px;
+    height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
+}
+
+.Navbarbottom{
+    background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
+    height: 50px;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: none;
+}
+
+.nav-menubottom {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-gap: 10px;
+    list-style: none;
+    text-align: center;
+    justify-content: end;
 }
 
 .navbar-logo {
@@ -27,36 +48,35 @@
 .fas.fa-user-circle {
     color: white;
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
-    font-size: 1.8rem;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.5rem;
+    
 }
 
 .fas.fa-home {
     color: white;
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
-    font-size: 1.8rem;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.5rem;
+    
 }
 
 .fas.fa-search {
     color: white;
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
-    font-size: 1.8rem;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.5rem;
+    
 }
 
-.fas.fa-arrow-up {
+.fas.fa-images {
     color: white;
     text-decoration: none;
-    padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
-    font-size: 1.8rem;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.5rem;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 700px) {
     .NavbarItems {
         position: relative;
     }
@@ -64,5 +84,35 @@
     .nav-menu {
         display: none;
     }
-}
+
+    .Navbarbottom{
+        display: flex;
+    }
+
+    .fas.fa-images {
+        margin-left: 4rem;
+        margin-right: 4rem;
+        font-size: 1.8rem;
+    }
+
+    .fas.fa-home{
+        margin-left: 4rem;
+        margin-right: 4rem;
+        font-size: 1.8rem;
+    }
+
+    .fas.fa-search{
+        margin-left: 4rem;
+        margin-right: 4rem;
+        font-size: 1.8rem;
+    }
+
+    .fas.fa-user-circle{
+        margin-left: 4rem;
+        margin-right: 4rem;
+        font-size: 1.8rem;
+    }
+   
+} 
+
 

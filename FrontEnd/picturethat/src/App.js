@@ -3,7 +3,7 @@ import Navbar from "./components/Navbar/Navbar";
 import './App.css';
 import UploadImage from './components/UploadImage';
 
-import {BrowserRouter as Router, Route, Switch, Link, Redirect} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 //Import the pages
 import SignIn from "./Pages/SignIn";
@@ -38,5 +38,5 @@ function App() {
 
 export default App;
 
-
+// used this tutorial to set up a navigation bar: https://www.youtube.com/watch?v=fL8cFqhTHwA&t=378s
 //https://www.youtube.com/watch?v=hjR-ZveXBpQ
