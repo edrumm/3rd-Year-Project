@@ -5,7 +5,7 @@ import logo from './logo.png';
 import {useState, useEffect} from 'react';
 import fire from '../FireBaseConnection/fire';
 
-const SignUp  = (propsSignUp) => {
+const SignUp  = () => {
 
     //states for the user, email and password
     //set to an empty string
@@ -87,7 +87,7 @@ const SignUp  = (propsSignUp) => {
     useEffect(() => {
         authorizeUser();
     }, []);
-    
+
     return (
         <div className= "signup">
             <div>

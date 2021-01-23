@@ -6,7 +6,7 @@ import {useState, useEffect} from 'react';
 import fire from '../FireBaseConnection/fire';
 
 
-const SignIn  = (propsSignIn) => {
+const SignIn  = () => {
 
     //states for the user, email and password
     //set to an empty string
@@ -110,7 +110,9 @@ const SignIn  = (propsSignIn) => {
                     id="emailInput" 
                     class="inputbox" 
                     placeholder="Enter Email"
-                    autoFocus required value={email} 
+                    autoFocus 
+                    required
+                     value={email} 
                     onChange = {(e) => setEmail(e.target.value)}
                 />
                  
@@ -133,7 +135,7 @@ const SignIn  = (propsSignIn) => {
                 <button 
                     id="signInButton" 
                     class="button" 
-                    onclick={login}>
+                    onClick={login}>
                     <Link to="/PictureThat">Sign In</Link>
                 </button>
 
@@ -145,7 +147,8 @@ const SignIn  = (propsSignIn) => {
 
                 <button 
                     id="signInButton" 
-                    class="button" onclick="submitBtnPress()">
+                    class="button" 
+                    onClick="submitBtnPress()">
                     <Link to="/PictureThat">Guest</Link>
                 </button>
 
