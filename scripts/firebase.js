@@ -52,17 +52,18 @@ const db = admin.firestore();
 // DB login function
 module.exports.login = async (data) => {
 
-  let user = await db.collection(users).doc(data.username);
-
-  if (!user.empty) {
-    // redirect to login
-    return;
-  }
-
+  let user = await db.collection('users').doc(data.username);
   let doc = await user.get();
 
-  if (doc.id === data.username && doc.data().password === data.password) {
+  if (!doc.exists) {
+    // redirect to login
+    return false;
+  }
+
+  if (user.id === data.username && doc.data().password === data.password) {
     // login successful
+
+    return true;
   }
 
   // login unsuccessful
@@ -76,6 +77,7 @@ module.exports.signup = async (data) => {
 
   if (user.exists) {
     // redirect to login
+    return false;
   }
 
   await db.collection('users').doc(data.username).set({
@@ -88,6 +90,8 @@ module.exports.signup = async (data) => {
     posts: [],
     score: 0
   });
+
+  return true;
 };
 
 // DB fetch
