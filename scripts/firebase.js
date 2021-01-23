@@ -1,12 +1,4 @@
-/*
- * NOTE: consider moving connection stuff to router and pass as parameter to DB functions
- * Would allow for separate files for firestore and storage?
- *
- * Connect to firebase in routes/index.js, pass admin.firestore() + data to this file
- * and admin.storage() + data to functions in storage.js
- * ?
- */
-
+// will move authentication to firebase-auth.js
 const admin = require('firebase-admin');
 
 const credentials = {
@@ -37,17 +29,6 @@ admin.initializeApp({
 });
 
 const db = admin.firestore();
-
-/*
-  UNCOMMENT FOR TEST
-
-  db.collection('users').get()
-  .then(res => {
-    res.forEach(doc => console.log(doc.data().username));
-  })
-  .catch(err => console.error(err));
-*/
-
 
 // DB login function
 module.exports.login = async (data) => {
