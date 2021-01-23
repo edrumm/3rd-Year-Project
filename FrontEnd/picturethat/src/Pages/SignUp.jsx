@@ -2,11 +2,10 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './Pages.css';
 import logo from './logo.png';
-import Authorization from '../components/Authorization';
 
-const SignUp  = () => {
+const SignUp  = (propsSignUp) => {
 
-    const {email, password, setEmail, setPassword, login, signUp, accountPresent, emailError, passwordError} = propsSignUp;
+    const {email, password, setEmail, setPassword, signUp, emailError, passwordError} = propsSignUp;
 
     return (
         <div className= "signup">
@@ -29,10 +28,11 @@ const SignUp  = () => {
                     id="emailInput" 
                     class="inputbox" 
                     placeholder="Re-enter Email Address" 
-                    autoFocus required
                     autoFocus required value={email} 
                     onChange = {(e) => setEmail(e.target.value)}
                 />
+
+                <p className= 'errorMessage'>{emailError}</p>
 
                 <input 
                     type="password" 
@@ -41,6 +41,9 @@ const SignUp  = () => {
                     placeholder="Enter Password" 
                     autoFocus required
                 />
+
+                <p className= 'errorMessage'>{passwordError}</p>
+
                 <input 
                     type="password" 
                     id="passwordInput" 

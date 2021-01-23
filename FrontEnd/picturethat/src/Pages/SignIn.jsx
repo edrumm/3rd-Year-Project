@@ -2,11 +2,11 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './Pages.css';
 import logo from './logo.png';
-import Authorization from '../components/Authorization';
 
-const SignIn  = () => {
 
-    const {email, password, setEmail, setPassword, login, signUp, accountPresent, emailError, passwordError} = propsSignIn;
+const SignIn  = (propsSignIn) => {
+
+    const {email, password, setEmail, setPassword, login, emailError, passwordError} = propsSignIn;
 
     return (
         <div className= "signInWelcome">

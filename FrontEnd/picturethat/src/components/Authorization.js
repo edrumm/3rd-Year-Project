@@ -1,9 +1,9 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import firebase from './FireBaseConnection';
+import fire from '../FireBaseConnection/fire';
 
 const Authorization = () => {
-     //states for the user, email and password
+    //states for the user, email and password
     //set to an empty string
     const [user, setUser] = useState('');
     const [email, setEmail] = useState('');
@@ -37,7 +37,7 @@ const Authorization = () => {
 
         //use firebase methods to authenticate a user when login
         //using signInWithEmailAndPassword
-        firebase
+        fire
         .auth()
         .signInWithEmailAndPassword(email, password)
 
@@ -70,7 +70,7 @@ const Authorization = () => {
     //function to authenticate a user and to check if a user with
     //such credentials already exists
     const authorizeUser = () => {
-        firebase.auth().onAuthStateChange(user => {
+        fire.auth().onAuthStateChange(user => {
 
             //if there is a user setUser to that user
              if(user){
@@ -94,7 +94,7 @@ const Authorization = () => {
                 
         //use firebase methods to authenticate a user when signing in
         //using signInWithEmailAndPassword
-        firebase
+        fire
         .auth()
         .createUserWithEmailAndPassword(email, password)
         
@@ -120,15 +120,15 @@ const Authorization = () => {
             break;
             };
     });
+    }
 
     useEffect(() => {
         authorizeUser();
     }, []);
-    }
 
     //logs out a user 
     const logout = () =>{
-        firebase.auth().signOut();
+        fire.auth().signOut();
     }
     
 }

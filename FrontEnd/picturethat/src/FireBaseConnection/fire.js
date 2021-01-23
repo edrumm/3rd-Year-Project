@@ -16,4 +16,4 @@ import firebase from 'firebase';
 
   export default fire;
 
-  https://www.youtube.com/watch?v=cFgoSrOui2M
+//https://www.youtube.com/watch?v=cFgoSrOui2M
