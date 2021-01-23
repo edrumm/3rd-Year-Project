@@ -9,7 +9,8 @@ class Navbar extends Component {
 
     render () {
         return(
-            <nav className="NavbarItems">
+            <>
+            <nav className="Navbar">
                 <h1 className="navbar-logo">PictureThat</h1>
                 
                 <ul className="nav-menu">
@@ -21,7 +22,23 @@ class Navbar extends Component {
 
                     
                 </ul>
+                
             </nav>
+
+            <nav className="Navbarbottom">
+            <ul className="nav-menubottom">
+                {MenuItems.map((item, index) => {
+                    return (
+                        <li key={index}><a className={item.cName} href={item.url}>{item.title}</a></li>    
+                    )
+                })}
+
+                
+            </ul>
+
+            </nav>
+            </>
+            
 
         )
     }
