@@ -17,7 +17,6 @@ const signup = Joi.object({
     .required(),
   password:
     Joi.string()
-    .alphanum()
     .max(30)
     .min(8)
     .required(),
@@ -28,16 +27,16 @@ module.exports.login = (data) => {
   let {error, value} = login.validate(data);
 
   if (error)
-    return error;
+    throw error;
 
-  return null;
+  return 0;
 };
 
 module.exports.signup = (data) => {
   let {error, value} = signup.validate(data);
 
   if (error)
-    return error;
+    throw error;
 
-  return null;
+  return 0;
 };
