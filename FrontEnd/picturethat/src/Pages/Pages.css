@@ -1,6 +1,6 @@
 .signInWelcome{
 
-    position: fixed;
+    position: absolute;
     left: calc(40vw - 10px);
     width: 350px;
     height: 500px;
@@ -62,9 +62,9 @@ button{
 
 .whiteSpace{
     padding: 20px 30px; 
-   position: absolute; 
-   top: 0;
-   left: 0; 
+    position: absolute; 
+    top: 0;
+    left: 0; 
 }
 
 .text {
