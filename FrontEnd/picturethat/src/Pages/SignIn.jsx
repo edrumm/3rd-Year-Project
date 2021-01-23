@@ -6,6 +6,7 @@ import logo from './logo.png';
 const SignIn  = () => {
 
     return (
+        
         <div className= "signInWelcome">
             <div>
                 <img src={logo} alt="" class="logoimg" />
@@ -29,8 +30,11 @@ const SignIn  = () => {
                 <Link to="/ForgotPassword">Forgot Password?</Link> <Link to="/SignUp">Sign Up</Link>
 
             </div>
-            
+
         </div>
+        
+
+        
         
     )
 }
