@@ -1,0 +1,31 @@
+<!-- PAGE FOR TESTING FETCH AND ROUTES ONLY-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+  </head>
+  <body>
+    <h1>Test page</h1>
+    <p>Use console to interact</p>
+    <script type="text/javascript">
+      const data = {
+        username: 'placeholder_user_2',
+        password: 'myPass123$'
+      };
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      };
+
+      fetch('/api/login', options)
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .catch(err => console.error(err));
+    </script>
+  </body>
+</html>
