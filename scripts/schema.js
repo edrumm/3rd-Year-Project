@@ -29,7 +29,7 @@ module.exports.login = (data) => {
   if (error)
     throw error;
 
-  return 0;
+  return true;
 };
 
 module.exports.signup = (data) => {
@@ -38,5 +38,5 @@ module.exports.signup = (data) => {
   if (error)
     throw error;
 
-  return 0;
+  return true;
 };
