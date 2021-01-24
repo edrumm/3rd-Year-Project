@@ -3,7 +3,7 @@ const schema = require('./../scripts/schema');
 
 describe('Login Test', () => {
   it ('Login schema', () => {
-    assert.equal(0, schema.login({username: 'username01', password: 'mypassword1234'}));
+    assert.isTrue(schema.login({username: 'username01', password: 'mypassword1234'}));
   });
 
   it ('Invalid login', () => {
@@ -20,7 +20,7 @@ describe('Signup Test', () => {
       confirmPassword: 'passwOrd1£'
     };
 
-    assert.equal(0, schema.signup(details));
+    assert.isTrue(schema.signup(details));
   });
 
   it ('Invalid signup', () => {

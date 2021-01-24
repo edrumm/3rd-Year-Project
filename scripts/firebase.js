@@ -49,6 +49,7 @@ module.exports.login = async (data) => {
 
   // login unsuccessful
 
+  return false;
 };
 
 // DB signup function
