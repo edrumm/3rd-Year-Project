@@ -30,7 +30,7 @@ const SignUp  = () => {
         const passwordRequirements = new RegExp (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/);
         return passwordRequirements.test(userPasswordInput);
     }
-    const validateForm = () => {
+    const validateForm = (e) => {
 
         //arrays to hold errors set to empty array
         const emailError = {};
@@ -78,28 +78,12 @@ const SignUp  = () => {
         console.log(isValid);
 
         if(isValid === true){
-
-            successfulSignIn();
         }
         
-        if(isValid === false){ 
-
-            unsuccessfulSignIn();
+        if(isValid === false){
         }
 
         return isValid;
-    }
-
-    const successfulSignIn = () => {
-
-        return(
-            <Link to="/PictureThat"></Link>);
-    };
-
-    const unsuccessfulSignIn = () => {
-
-        return(
-            <Link to="/PictureThat" onClick= {e => e.preventDefault()}></Link>)
     }
 
     return (
@@ -165,7 +149,7 @@ const SignUp  = () => {
                             id="signInButton" 
                             className="signInButton"
                             onClick= {validateForm}>
-                                Continue
+                                <Link to="/PictureThat">Continue</Link>
                         </button>
                     
 
