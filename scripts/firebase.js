@@ -55,7 +55,7 @@ module.exports.login = async (data) => {
 // DB signup function
 module.exports.signup = async (data) => {
 
-  let user = await db.collection(users).doc(data.username);
+  let user = await db.collection('users').doc(data.username);
 
   if (user.exists) {
     // redirect to login
@@ -64,7 +64,7 @@ module.exports.signup = async (data) => {
 
   await db.collection('users').doc(data.username).set({
     email: data.email,
-    followed_channels: [],
+    followed_channels: ['channels/feed'],
     followers: [],
     following: [],
     liked_posts: [],
