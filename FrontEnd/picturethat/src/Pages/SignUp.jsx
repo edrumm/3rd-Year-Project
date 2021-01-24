@@ -2,157 +2,164 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './Pages.css';
 import logo from './logo.png';
-import {useState, useEffect} from 'react';
-import fire from '../FireBaseConnection/fire';
+import {useState} from 'react';
 
 const SignUp  = () => {
 
-    //states for the user, email and password
-    //set to an empty string
-    const [user, setUser] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const[email, setEmail] = useState('');
+    const[password, setPassword] = useState('');
+    const[confirmEmail, setConfirmEmail] = useState('');
+    const[confirmPassword, setConfirmPassword] = useState('');
 
-    //states for the error messages for the email and password
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
+    const[emailError, setEmailError] = useState({});
+    const[passwordError, setPasswordError] = useState({});
 
-    //function to clears the inputs of the email and password
-    const clearInputs = () => {
-        setEmail('');
-        setPassword('');
+    //boolean isValid to check if credentials are valid set to true
+    var isValid = false;
+
+    const checkEmail = (userEmailInput) => {
+
+        //link for the regex used
+        //https://sigparser.com/developers/email-parsing/regex-validate-email-address/
+
+        const emailRequirements = new RegExp (/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)
+        return emailRequirements.test(userEmailInput);
     }
 
-    //function to clears the error message of the email and password
-    const clearErrors = () => {
-        setEmailError('');
-        setPasswordError('');
+    const checkPassword = (userPasswordInput) => {
+        const passwordRequirements = new RegExp (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/);
+        return passwordRequirements.test(userPasswordInput);
     }
+    const validateForm = () => {
 
-    //function to handle the signUp
-    const signingUp = () => {
+        //arrays to hold errors set to empty array
+        const emailError = {};
+        const passwordError = {};
+        
+        if (!checkEmail(email)) {
+                emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
+                alert(emailError.InvalidCharacters);
+        }
 
-        //call clearErrors
-        clearErrors();
-                
-        //use firebase methods to authenticate a user when signing in
-        //using signInWithEmailAndPassword
-        fire
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
+        if(!(email === confirmEmail)){
+            emailError.EmailMismatch = "Re-entered email MUST be the same as email";
+            alert(emailError.EmailMismatch);
+        }
         
-        //error handling
-        .catch((err) => {
-            switch (err.code) {
+        if((checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail)){
+            console.log("Valid email address");
+        }
+
+        if(!checkPassword(password)){
+            passwordError.InvalidCharacters = "Password MUST contain at least one number/lowercase/uppercase letter and be at least 6 characaters in length";
+            alert(passwordError.InvalidCharacters);
+        }
+
+        if(!(password === confirmPassword)){
+            passwordError.PasswordMismatch = "Re-entered password MUST be the same as password";
+            alert(passwordError.PasswordMismatch);
+        }
         
-            //error codes for email already in use or an invalid email
-            case "auth/email-already-in-use":
-            case "auth/invalid-email":
+        if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword)){
+            console.log("Valid password");
+        }
+
+        if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword) && (checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail)){
+            isValid = true;
+            console.log(email);
+            console.log(password);
+        }
+        else{
+            isValid = false;
+        }
+
+        setEmailError(emailError);
+        setPasswordError(passwordError);
+        console.log(isValid);
+
+        // if(isValid === true){
+
+        //     console.log("nah bro");
+
+        // }
         
-            //if any of these errors arise
-            //setEmailError state to hold a message
-            setEmailError(err.message);
-            break;
+        // if(isValid === false){ 
+        //     console.log("almost there");
+
         
-            //error codes for weak password
-            case "auth/weak-password":
-        
-                //if any of these errors arise
-                //setPasswordError state to hold a message
-                setPasswordError(err.message);
-                break;
-            };
-    }); 
+
+        return isValid;
     }
-
-    //function to authenticate a user and to check if a user with
-    //such credentials already exists
-    const authorizeUser = () => {
-        fire.auth().onAuthStateChanged(user => {
-
-            //if there is a user setUser to that user
-             if(user){
-                 //clear the inputs
-                 clearInputs();
-                 setUser(user);
-             }
-
-             //if there is no user set user to an empty string
-             if(!user){
-                 setUser('');
-             };
-        });
-    };
-
-    useEffect(() => {
-        authorizeUser();
-    }, []);
 
     return (
         <div className= "signup">
             <div>
                 <img src={logo} alt="" class="logoimg" />
-                <p class="text" >Sign up to see photos from people tha inspire you</p>
+                <p className="text">Sign up to see photos from people tha inspire you</p>
             </div>
 
             <div>
-                <input 
-                    type="text" 
-                    id="emailInput" 
-                    class="inputbox" 
-                    placeholder="Email Address"
-                    autoFocus required 
-                />
+                <form>
+                    <input 
+                        type="text" 
+                        id="emailInput" 
+                        className="inputbox" 
+                        placeholder="Email Address"
+                        autoFocus required
+                        value= {email}
+                        onChange= {(e) => {setEmail(e.target.value)}} 
+                    />
 
-                <input 
-                    type="text" 
-                    id="emailInput" 
-                    class="inputbox" 
-                    placeholder="Re-enter Email Address" 
-                    autoFocus required value={email} 
-                    onChange = {(e) => setEmail(e.target.value)}
-                />
+                    <input 
+                        type="text" 
+                        id="emailInput" 
+                        className="inputbox" 
+                        placeholder="Re-enter Email Address"
+                        value= {confirmEmail}
+                        onChange= {(e) => {setConfirmEmail(e.target.value)}} 
+                    />
 
-                <p className= 'errorMessage'>{emailError}</p>
+                    <input 
+                        type="password" 
+                        id="passwordInput" 
+                        className="inputbox" 
+                        placeholder="Enter Password" 
+                        autoFocus required
+                        value= {password}
+                        onChange= {(e) => {setPassword(e.target.value)}} 
+                    />
 
-                <input 
-                    type="password" 
-                    id="passwordInput" 
-                    class="inputbox" 
-                    placeholder="Enter Password" 
-                    autoFocus required
-                />
+                    <input 
+                        type="password" 
+                        id="passwordInput" 
+                        className="inputbox" 
+                        placeholder="Re-enter Password"
+                        value= {confirmPassword}
+                        onChange= {(e) => {setConfirmPassword(e.target.value)}} 
+                    />
 
-                <p className= 'errorMessage'>{passwordError}</p>
+                    <input 
+                        type="checkbox" 
+                        id="termsAndConditions" 
+                        name="termsAndConditions" 
+                        value="Accept" 
+                    />
 
-                <input 
-                    type="password" 
-                    id="passwordInput" 
-                    class="inputbox" 
-                    placeholder="Re-enter Password"
-                    value = {password}
-                    onChange = {(e) => setPassword(e.target.value)} 
-                />
+                    <label className="termsAndConditions"> I agree to the Terms of Services and Privacy Policy</label><br></br>
 
-                <input 
-                    type="checkbox" 
-                    id="termsAndConditions" 
-                    name="termsAndConditions" 
-                    value="Accept" 
-                />
+                    {/*need to add hyperlink text to Terms of Services and Privacy Policy */}
 
-                <label for="termsAndConditions"> I agree to the Terms of Services and Privacy Policy</label><br></br>
+                    
+                        <button 
+                            id="signInButton" 
+                            className="signInButton"
+                            onClick= {validateForm}>
+                                Continue
+                        </button>
+                    
 
-                {/*need to add hyperlink text to Terms of Services and Privacy Policy */}
-
-                <button 
-                    id="signInButton" 
-                    class="signInButton" 
-                    onclick={signingUp}>
-                    <Link to="/PictureThat">Continue</Link>
-                </button>
-                <p>Have an Account?</p><Link to="/SignIn">Sign In</Link>
-
+                    <p>Have an Account?</p><Link to="/SignIn">Sign In</Link>
+                    </form>
             </div>
             
         </div>

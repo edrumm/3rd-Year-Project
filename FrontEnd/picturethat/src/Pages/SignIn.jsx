@@ -2,142 +2,115 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import './Pages.css';
 import logo from './logo.png';
-import {useState, useEffect} from 'react';
-import fire from '../FireBaseConnection/fire';
-
+import {useState} from 'react';
 
 const SignIn  = () => {
-
-    //states for the user, email and password
-    //set to an empty string
-    const [user, setUser] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    //states for the error messages for the email and password
-    const [emailError, setEmailError] = useState('');
-    const [passwordError, setPasswordError] = useState('');
-
-    //function to clears the inputs of the email and password
-    const clearInputs = () => {
-        setEmail('');
-        setPassword('');
-    }
-
-    //function to clears the error message of the email and password
-    const clearErrors = () => {
-        setEmailError('');
-        setPasswordError('');
-    }
     
-    //function to handle the login
-    const login = () => {
+    const[email, setEmail] = useState('');
+    const[password, setPassword] = useState('');
 
-        //call clearErrors
-        clearErrors();
+    const[emailError, setEmailError] = useState({});
+    const[passwordError, setPasswordError] = useState({});
 
-        //use firebase methods to authenticate a user when login
-        //using signInWithEmailAndPassword
-        fire
-        .auth()
-        .signInWithEmailAndPassword(email, password)
+    const onSubmit = (e) => {
+        e.preventDefault();
+        const isValid = validateForm();
+    }
 
-        //error handling
-        .catch((err) => {
-            switch (err.code) {
+    const checkEmail = (userEmailInput) => {
 
-                //error codes for invalid email
-                case "auth/invalid-email":
-                case "auth/user-disabled":
-                case "auth/user-not-found":
+        //link for the regex used
+        //https://sigparser.com/developers/email-parsing/regex-validate-email-address/
 
-                    //if any of these errors arise
-                    //setEmailError state to hold a message
-                    setEmailError(err.message);
-                    break;
+        const emailRequirements = new RegExp (/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
+        return emailRequirements.test(userEmailInput);
+    }
 
-                //error codes for invalid password
-                case "auth/wrong-password":
+    const checkPassword = (userPasswordInput) => {
+        const passwordRequirements = new RegExp (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/);
+        return passwordRequirements.test(userPasswordInput);
+    }
+    const validateForm = () => {
 
-                    //if any of these errors arise
-                    //setPasswordError state to hold a message
-                    setPasswordError(err.message);
-                    break;
-            };
-        });
+        //arrays to hold errors set to empty array
+        const emailError = {};
+        const passwordError = {};
 
-    };
+        //boolean isValid to check if credentials are valid set to true
+        let isValid = true;
+        
+        
+        if (!checkEmail(email)) {
+                isValid = false;
+                emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
+                alert(emailError.InvalidCharacters);
+        }
+        else{
+            isValid = true;
+            console.log("Valid email address");
+            console.log(email);
+        }
 
-    //function to authenticate a user and to check if a user with
-    //such credentials already exists
-    const authorizeUser = () => {
-        fire.auth().onAuthStateChanged(user => {
+        if(!checkPassword(password)){
+            isValid = false;
+            passwordError.InvalidCharacters = "Password MUST contain at least one number/lowercase/uppercase letter and be at least 6 characaters in length";
+            alert(passwordError.InvalidCharacters);
+        }
+        else{
+            isValid = true;
+            console.log("Valid password");
+            console.log(password);
+        }
 
-            //if there is a user setUser to that user
-             if(user){
-                 //clear the inputs
-                 clearInputs();
-                 setUser(user);
-             }
+        setEmailError(emailError);
+        setPasswordError(passwordError);
+        
+        return isValid;
+    }
 
-             //if there is no user set user to an empty string
-             if(!user){
-                 setUser('');
-             };
-        });
-    };
-
-    useEffect(() => {
-        authorizeUser();
-    }, []);
-
+    const handleLogin = () => {
+        <Link to="/PictureThat">Sign In</Link>
+    }
 
     return (
         
         <div className= "signInWelcome">
             <div>
-                <img src={logo} alt="" class="logoimg" />
-                <p class="text" >Hi there! Nice to see you again.</p>
+                <img src={logo} alt="" className="logoimg" />
+                <p className="text" >Hi there! Nice to see you again.</p>
             </div>
 
             <div className="whiteSpace"></div>
 
             <div>
-
-                {/*the requirements for the input of the email/username */}
-                {/*adding an event to give setEmail a value */}
+                <form onSubmit = {onSubmit}>
                 <input 
                     type="text" 
                     id="emailInput" 
-                    class="inputbox" 
+                    className="inputbox" 
                     placeholder="Enter Email"
                     autoFocus 
                     required
-                     value={email} 
-                    onChange = {(e) => setEmail(e.target.value)}
+                    value= {email}
+                    onChange= {(e) => {setEmail(e.target.value)}}
                 />
                  
-                <p className= 'errorMessage'>{emailError}</p>
-
-                {/*the requirements for the input of the email/username */}
-                {/*adding an event to give setEmail a value */}
                 <input 
                     type="password"
                     required 
                     id="passwordInput" 
-                    class="inputbox" 
+                    className="inputbox" 
                     placeholder="Password"
-                    value = {password}
-                    onChange = {(e) => setPassword(e.target.value)} 
+                    value= {password}
+                    onChange= {(e) => {setPassword(e.target.value)}}
                 />
-
-                <p className= 'errorMessage'>{passwordError}</p>
 
                 <button 
                     id="signInButton" 
-                    class="button" 
-                    onClick={login}>
-                    <Link to="/PictureThat">Sign In</Link>
+                    className="button"
+                    type= "submit"
+                    onClick= {handleLogin}> 
+                    Sign In
                 </button>
 
                 <div className="whiteSpace"></div>
@@ -148,21 +121,15 @@ const SignIn  = () => {
 
                 <button 
                     id="signInButton" 
-                    class="button" 
-                    onClick="submitBtnPress()">
+                    className="button">
                     <Link to="/PictureThat">Guest</Link>
                 </button>
 
                 <Link to="/ForgotPassword">Forgot Password?</Link>
                 <Link to="/SignUp">Sign Up</Link>
-
+                </form>
             </div>
-
         </div>
-        
-
-        
-        
     )
 }
 
