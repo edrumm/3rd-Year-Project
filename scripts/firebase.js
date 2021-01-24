@@ -1,5 +1,5 @@
 // will move authentication to firebase-auth.js
-const admin = require('firebase-admin');
+/*const admin = require('firebase-admin');
 
 const credentials = {
   type: 'service account',
@@ -28,10 +28,10 @@ admin.initializeApp({
   storageBucket: process.env.STORAGE_BUCKET
 });
 
-const db = admin.firestore();
+const db = admin.firestore();*/
 
 // DB login function
-module.exports.login = async (data) => {
+module.exports.login = async (db, data) => {
 
   let user = await db.collection('users').doc(data.username);
   let doc = await user.get();
@@ -53,7 +53,7 @@ module.exports.login = async (data) => {
 };
 
 // DB signup function
-module.exports.signup = async (data) => {
+module.exports.signup = async (db, data) => {
 
   let user = await db.collection('users').doc(data.username);
 
@@ -78,7 +78,7 @@ module.exports.signup = async (data) => {
 
 // DB fetch
 // 'query' should have properties for field, an operator, and values(s) to match
-module.exports.get = async (collection, query=null) => {
+module.exports.get = async (db, collection, query=null) => {
 
   if (query) {
 
@@ -92,14 +92,14 @@ module.exports.get = async (collection, query=null) => {
 };
 
 // DB insert
-module.exports.insert = async (data, collection) => {
+module.exports.insert = async (db, data, collection) => {
 
   await db.collection(collection).add(data);
 
 };
 
 // DB update
-module.exports.update = async (data, id, collection) => {
+module.exports.update = async (daba, data, id, collection) => {
 
   await db.collection(collection).doc(id).update(data);
 
@@ -107,7 +107,7 @@ module.exports.update = async (data, id, collection) => {
 
 // DB delete
 // https://stackoverflow.com/questions/52048204/firestore-delete-document-and-all-documents-referencing-it
-module.exports.deleteAccount = async (id) => {
+module.exports.deleteAccount = async (db, id) => {
   let user = await db.collection('users').doc(id).get();
   let posts = user.data().posts;
   let comments = await db.collection('comments').where('user', '==', 'id').get();
@@ -116,11 +116,11 @@ module.exports.deleteAccount = async (id) => {
 
 };
 
-module.exports.deletePost = (id) => {
+module.exports.deletePost = (db, id) => {
 
 };
 
-module.exports.deleteComment = async (id) => {
+module.exports.deleteComment = async (db, id) => {
 
   await db.collection('comments').delete();
 
