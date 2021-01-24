@@ -93,6 +93,7 @@ const SignIn  = () => {
 
 
     return (
+        
         <div className= "signInWelcome">
             <div>
                 <img src={logo} alt="" class="logoimg" />
@@ -156,8 +157,11 @@ const SignIn  = () => {
                 <Link to="/SignUp">Sign Up</Link>
 
             </div>
-            
+
         </div>
+        
+
+        
         
     )
 }
