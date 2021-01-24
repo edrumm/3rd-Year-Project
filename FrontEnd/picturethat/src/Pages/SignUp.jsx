@@ -77,18 +77,29 @@ const SignUp  = () => {
         setPasswordError(passwordError);
         console.log(isValid);
 
-        // if(isValid === true){
+        if(isValid === true){
 
-        //     console.log("nah bro");
-
-        // }
+            successfulSignIn();
+        }
         
-        // if(isValid === false){ 
-        //     console.log("almost there");
+        if(isValid === false){ 
 
-        
+            unsuccessfulSignIn();
+        }
 
         return isValid;
+    }
+
+    const successfulSignIn = () => {
+
+        return(
+            <Link to="/PictureThat"></Link>);
+    };
+
+    const unsuccessfulSignIn = () => {
+
+        return(
+            <Link to="/PictureThat" onClick= {e => e.preventDefault()}></Link>)
     }
 
     return (
