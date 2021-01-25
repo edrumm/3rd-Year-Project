@@ -1,10 +1,13 @@
 import React from 'react';
+import olubi from '../components/ImageFiles/File_000.jpeg';
+import './ImageFeed.css';
 
 const ImageFeed = () => {
 
     return (
         <div className= "imageFeed">
-            images
+            <img src={olubi} alt="" className="image" />
+            
         </div>
     )
 }

@@ -1,0 +1,14 @@
+.imageFeed{
+    padding-top: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 614px;
+    height: 942px;
+    top: 30%;
+  
+}
+
+.image{
+    height: 614px;
+    width: 614px;
+}
