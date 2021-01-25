@@ -78,6 +78,7 @@ const SignUp  = () => {
         console.log(isValid);
 
         if(isValid === true){
+
         }
         
         if(isValid === false){

@@ -1,7 +1,7 @@
 export const MenuItems = [
     {
         title: '',
-        url: '#',
+        url: '/PictureThat',
         cName: 'fas fa-home'
     },
     {
@@ -16,7 +16,7 @@ export const MenuItems = [
     },
     {
         title: '',
-        url: '',
+        url: '/PictureThat/ProfilePage',
         cName: 'fas fa-user-circle'
     },
     
