@@ -1,13 +1,17 @@
 require('dotenv').config();
 const express = require('express');
-
-const api = require('./routes');
+const cors = require('cors');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3000;
 
+app.use(cors());
+app.use(express.json());
+
+const api = require('./routes');
 app.use('/api', api);
-app.use(express.json({limit: '1mb'}));
-app.use(express.static(__dirname + '/Public'));
+
+app.use(express.static(__dirname + '/test'));
 
 app.listen(port, () => console.log(`Port: ${port}`));
