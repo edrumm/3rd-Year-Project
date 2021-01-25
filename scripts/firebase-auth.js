@@ -28,4 +28,4 @@ admin.initializeApp({
 });
 
 module.exports.db = admin.firestore();
-// module.exports.storage = admin.bucket(); ?
+module.exports.storage = admin.storage().bucket();
