@@ -1,10 +1,13 @@
 import React from 'react';
+import ImageFeed from '../components/ImageFeed';
 import Navbar from '../components/Navbar/Navbar';
 
 const LandingPage  = () => {
     return (
-    
-    <Navbar></Navbar>
+    <>
+    <Navbar />
+    <ImageFeed />
+    </>
     );
 };
 
