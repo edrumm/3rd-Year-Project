@@ -7,6 +7,7 @@ const ImageFeed = () => {
     return (
         <div className= "imageFeed">
             <img src={olubi} alt="" className="image" />
+            
         </div>
     )
 }
