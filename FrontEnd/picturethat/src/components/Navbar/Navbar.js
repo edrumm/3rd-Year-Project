@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { MenuItems } from "./MenuItems"
-import './Navbar.css' 
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import './Navbar.css';
 
 class Navbar extends Component {
     
@@ -12,28 +12,36 @@ class Navbar extends Component {
             <>
             <nav className="Navbar">
                 <h1 className="navbar-logo">PictureThat</h1>
-                
                 <ul className="nav-menu">
-                    {MenuItems.map((item, index) => {
-                        return (
-                            <li key={index}><a className={item.cName} href={item.url}>{item.title}</a></li>    
-                        )
-                    })}
-
-                    
+                    <li>
+                        <Link to='/PictureThat' className='fas fa-home'/>
+                    </li>
+                    <li>
+                        <Link to='/' className='fas fa-search'/>
+                    </li>
+                    <li>
+                        <Link to='/' className='fas fa-images'/>
+                    </li>
+                    <li>
+                        <Link to='/PictureThat/ProfilePage' className='fas fa-user-circle'/>
+                    </li>
                 </ul>
-                
             </nav>
 
             <nav className="Navbarbottom">
             <ul className="nav-menubottom">
-                {MenuItems.map((item, index) => {
-                    return (
-                        <li key={index}><a className={item.cName} href={item.url}>{item.title}</a></li>    
-                    )
-                })}
-
-                
+                    <li>
+                        <Link to='/PictureThat' className='fas fa-home'/>
+                    </li>
+                    <li>
+                        <Link to='/' className='fas fa-search'/>
+                    </li>
+                    <li>
+                        <Link to='/' className='fas fa-images'/>
+                    </li>
+                    <li>
+                        <Link to='/PictureThat/ProfilePage' className='fas fa-user-circle'/>
+                    </li>
             </ul>
 
             </nav>
