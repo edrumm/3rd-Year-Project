@@ -9,13 +9,13 @@ function Dropdown() {
         <div>
                 <ul className="dropdown">
                     <li>
-                        <Link to='/PictureThat/ProfilePage' className='dropown-link'/><a>Profile</a>
+                        <Link to='/PictureThat/ProfilePage'/><a>Profile</a>
                     </li>
                     <li>
-                        <Link to='/' className='dropown-link'/><a>Settings</a>
+                        <Link to='/'/><a>Settings</a>
                     </li>
                     <li>
-                        <Link to='/' className='dropown-link'/><a>Logout</a>
+                        <Link to='/'/><a>Logout</a>
                     </li>
                 </ul>
           </div>      

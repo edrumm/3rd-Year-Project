@@ -1,7 +1,7 @@
 
 .dropdown {
     background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
-    width: 200px;
+    width: 100px;
     position: absolute;
     top: 50px;
     list-style: none;
@@ -9,22 +9,18 @@
   }
   
   .dropdown li {
+    color: white;
+    text-align: center;
+    padding-top: 1px;
+    float: none;
     background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
-    cursor: pointer;
   }
   
-  .dropdown.clicked {
-    display: none;
-  }
   
-  .dropdown-link {
-    display: block;
-    height: 100%;
-    width: 100%;
-    text-decoration: none;
-    color: #fff;
-    padding: 16px;
-  }
+
+  
+  
+  
   
   @media screen and (max-width: 700px) {
 
