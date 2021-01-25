@@ -4,19 +4,15 @@ import './Navbar.css';
 import Dropdown from './Dropdown';
 
     function Navbar() {
-        const [dropdown, setDropdown] = useState(false);
+        const [clicked, setClicked] = useState(false);
 
-        const onClickEnter = () => {
-            if (setDropdown(false)) {
-                setDropdown(true)
-            }
-        };
-
-        const onClickLeave = () => {
-            if (setDropdown(true)) {
-                setDropdown(false)
-            }
-        };
+        const handleClick = () => {
+           if(clicked === false) {
+                setClicked(true);
+           } else {
+               setClicked(false);
+           }
+        } ;
 
         return(
             <>
@@ -32,9 +28,9 @@ import Dropdown from './Dropdown';
                     <li>
                         <Link to='/' className='fas fa-images'/>
                     </li>
-                    <li onClickEnter={onClickEnter} onClickLeave={onClickLeave} >
-                        <i className='fas fa-user-circle'/>
-                        {dropdown && <Dropdown />}
+                    <li onClick={handleClick} >
+                        <i className='fas fa-user-circle top'/>
+                        {clicked && <Dropdown />}
                     </li>
                 </ul>
             </nav>
@@ -50,10 +46,11 @@ import Dropdown from './Dropdown';
                     <li>
                         <Link to='/' className='fas fa-images'/>
                     </li>
-                    <li>
-                        <Link to='/PictureThat/ProfilePage' className='fas fa-user-circle'/>
-                        {dropdown && <dropdown />}
+                     <li onClick={handleClick}>
+                        <i className='fas fa-user-circle'/>
+                        {clicked && <Dropdown />}
                     </li>
+                     
             </ul>
 
             </nav>
