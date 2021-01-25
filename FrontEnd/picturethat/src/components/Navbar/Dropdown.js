@@ -1,25 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import {DropdownItems} from './DropdownItems';
 import './Dropdown.css';
 
 function Dropdown() {
-    const [click, setClick] = useState(false);
-    const handleClick = () => setClick(!click);
-
+    
     return (
         <>
-        <ul onClick={handleClick} className={click ? 'dropdown clicked' : 'dropdown'}>
-            {DropdownItems.map((item, index) => {
-                return (
-                    <li key={index}>
-                    <Link className={item.className} to={item.path} onClick={() => setClick(false)}>
-                        {item.title}
-                    </Link>
+        <div>
+                <ul className="dropdown">
+                    <li>
+                        <Link to='/PictureThat/ProfilePage' className='dropown-link'/><a>Profile</a>
                     </li>
-                );
-            })}
-        </ul>
+                    <li>
+                        <Link to='/' className='dropown-link'/><a>Settings</a>
+                    </li>
+                    <li>
+                        <Link to='/' className='dropown-link'/><a>Logout</a>
+                    </li>
+                </ul>
+          </div>      
         </>
     );
 }
