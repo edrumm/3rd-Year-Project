@@ -3,16 +3,21 @@ import {Link} from 'react-router-dom';
 
 const ForgotPassword  = () => {
 
+    const onSubmitForgot = (e) => {
+        e.preventDefault();
+    }
+
     return (
-        <div>
-            <div className= "signInWelcome">
+        <div className= "signInWelcome">
+            <form onSubmit = {onSubmitForgot}>
+            <div>
                 <h1>Forgot Password</h1>
             </div>
 
                 <p>Email</p>
-                <input type="text" id="emailInput" placeholder="Email Address" />
+                <input type="email" id="emailInput" placeholder="Email Address" />
                 <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/SignIn">Submit</Link></button>
-            
+            </form>
         </div>
     );
 };

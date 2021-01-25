@@ -31,7 +31,6 @@ const UploadImage = () => {
             setImage(null);
             setError('Incorrect file type. Select (PNG, BMP OR JPEG)');
         }
-        
     }
 
     //stores image file in a local piece of state
