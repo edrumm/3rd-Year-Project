@@ -51,4 +51,8 @@ Router.post('/signup', (req, res) => {
 
 });
 
+Router.get('/sesison', (req, res) => {
+
+});
+
 module.exports = Router;
