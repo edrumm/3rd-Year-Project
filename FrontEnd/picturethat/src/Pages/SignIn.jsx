@@ -126,7 +126,7 @@ const SignIn  = () => {
                 </button>
 
                 <Link to="/ForgotPassword">Forgot Password?</Link>
-                <Link to="/SignUp">Sign Up</Link>
+                <Link to="/SignUp"> Sign Up</Link>
                 </form>
             </div>
         </div>
