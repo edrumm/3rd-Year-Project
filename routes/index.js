@@ -1,6 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 
+const session = require('./../scripts/session');
 const firebase = require('./../scripts/firebase');
 const storage = require('./../scripts/storage');
 const schema = require('./../scripts/schema');
@@ -26,7 +27,6 @@ Router.post('/login', (req, res) => {
   } catch (err) {
     res.json({err: err});
   }
-
 });
 
 Router.post('/signup', (req, res) => {
@@ -48,10 +48,30 @@ Router.post('/signup', (req, res) => {
   } catch (err) {
     res.json({err: err});
   }
+});
+
+Router.post('/upload', (req, res) => {
+
+  // ...
+
+});
+
+Router.post('/download', (req, res) => {
+
+  // ...
+
+});
+
+Router.post('/logout', (req, res) => {
+  session.destroy();
+
+  // ...
 
 });
 
 Router.get('/sesison', (req, res) => {
+
+  // ...
 
 });
 
