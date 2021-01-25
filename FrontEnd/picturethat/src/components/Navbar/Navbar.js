@@ -1,13 +1,23 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import Dropdown from './Dropdown';
 
-class Navbar extends Component {
-    
+    function Navbar() {
+        const [dropdown, setDropdown] = useState(false);
 
+        const onClickEnter = () => {
+            if (setDropdown(false)) {
+                setDropdown(true)
+            }
+        };
 
+        const onClickLeave = () => {
+            if (setDropdown(true)) {
+                setDropdown(false)
+            }
+        };
 
-    render () {
         return(
             <>
             <nav className="Navbar">
@@ -22,8 +32,9 @@ class Navbar extends Component {
                     <li>
                         <Link to='/' className='fas fa-images'/>
                     </li>
-                    <li>
-                        <Link to='/PictureThat/ProfilePage' className='fas fa-user-circle'/>
+                    <li onClickEnter={onClickEnter} onClickLeave={onClickLeave} >
+                        <i className='fas fa-user-circle'/>
+                        {dropdown && <Dropdown />}
                     </li>
                 </ul>
             </nav>
@@ -41,6 +52,7 @@ class Navbar extends Component {
                     </li>
                     <li>
                         <Link to='/PictureThat/ProfilePage' className='fas fa-user-circle'/>
+                        {dropdown && <dropdown />}
                     </li>
             </ul>
 
@@ -50,6 +62,6 @@ class Navbar extends Component {
 
         )
     }
-}
 
-export default Navbar
+
+export default Navbar;
