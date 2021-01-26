@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 // import React from 'react';
 // import Navbar from '../components/Navbar/Navbar';
 // import {Link} from 'react-router-dom';
@@ -7,9 +8,21 @@
 // //import { Modal, Button } from 'antd';
 // import { useState } from 'react';
 // import pic1 from '../components/ImageFiles/File_000.jpeg';
+=======
+import React from 'react';
+import Navbar from '../components/Navbar/Navbar';
+import ProfilePicChanger from '../components/ProfilePicChanger';
+import {Link} from 'react-router-dom';
+import 'antd/dist/antd.css';
+import {Avatar} from 'antd';
+import {UserOutlined} from '@ant-design/icons';
+import { useState } from 'react';
+import pic1 from '../components/ImageFiles/File_000.jpeg';
+>>>>>>> Stashed changes
 
 // // const EditProfile  = () => {
 
+<<<<<<< Updated upstream
 //     //state to check if the modal is visible
 //     const [modalVisible, setModalVisible] = useState(false);
       
@@ -27,6 +40,13 @@
 //     const handleCancel = () => {
 //         setModalVisible(false);
 //     };
+=======
+    const [profileImage, setProfileImage] = useState(null);
+
+    const handleProfileImage = () =>{
+        setProfileImage(profileImage);
+    }
+>>>>>>> Stashed changes
 
 //     return (
 //         <div>
@@ -40,6 +60,7 @@
 //                 autoFocus
 //             />
 
+<<<<<<< Updated upstream
 //             <div className="ImageGrid">
 //                 <div className="imageWrap">
 //                 <Avatar size={64} icon={<UserOutlined />} />
@@ -54,6 +75,16 @@
 //                 <p>Some contents...</p>
 //                 <p>Some contents...</p>
 //             </Modal>
+=======
+            <div className="ImageGrid">
+                <div className="imageWrap">
+                <Avatar size={64} icon={<UserOutlined />} src= {profileImage} />
+                </div>
+            </div>
+
+            <ProfilePicChanger handleProfileImage= {handleProfileImage} pic1= {pic1}/>
+            <img src= {pic1}/>
+>>>>>>> Stashed changes
 
 //             <input 
 //                 type="text"
