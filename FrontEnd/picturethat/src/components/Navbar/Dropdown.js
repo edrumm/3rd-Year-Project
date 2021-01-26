@@ -9,13 +9,13 @@ function Dropdown() {
         <div>
                 <ul className="dropdown">
                     <li>
-                        <Link to='/PictureThat/ProfilePage'/><a>Profile</a>
+                        <Link to='/PictureThat/ProfilePage'><a>Profile</a></Link>
                     </li>
                     <li>
-                        <Link to='/'/><a>Settings</a>
+                        <Link to='/' ><a>Settings</a></Link>
                     </li>
                     <li>
-                        <Link to='/'/><a>Logout</a>
+                        <Link to='/' ><a>Logout</a></Link>
                     </li>
                 </ul>
           </div>      
@@ -24,3 +24,5 @@ function Dropdown() {
 }
 
 export default Dropdown;
+
+//https://www.youtube.com/watch?v=T2MhVxJxsL0&ab_channel=BrianDesign

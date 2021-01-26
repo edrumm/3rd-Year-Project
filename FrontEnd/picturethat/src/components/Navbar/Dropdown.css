@@ -1,19 +1,19 @@
 
 .dropdown {
     background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
-    width: 100px;
+    width: 68px;
     position: absolute;
     top: 50px;
     list-style: none;
     text-align: start;
   }
   
-  .dropdown li {
+  .dropdown a {
     color: white;
     text-align: center;
     padding-top: 1px;
     float: none;
-    background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
+    
   }
   
   
@@ -26,7 +26,7 @@
 
     .dropdown {  
         display: block;
-        bottom: 50px;
+        bottom: 100%;
     }
 
 
