@@ -17,13 +17,26 @@
   }
   
   
-  .fas.fa-cog {
+  .fas.fa-cog.b {
     color: white;
     text-decoration: none;
     padding: 0.5rem 0.2rem;
     font-size: 1.2rem;
   }
   
+  .fas.fa-user-circle.b {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.2rem;
+  }
+
+  .fas.fa-sign-out-alt {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.2rem;
+  }
   
   
   
