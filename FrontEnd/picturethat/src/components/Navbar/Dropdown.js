@@ -12,7 +12,7 @@ function Dropdown() {
                         <Link to='/PictureThat/ProfilePage'><a>Profile</a></Link>
                     </li>
                     <li>
-                        <Link to='/' ><a>Settings</a></Link>
+                        <Link to='/' className="fas fa-cog"><a> Settings</a></Link>
                     </li>
                     <li>
                         <Link to='/' ><a>Logout</a></Link>

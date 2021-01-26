@@ -1,7 +1,7 @@
 
 .dropdown {
     background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
-    width: 68px;
+    width: 120px;
     position: absolute;
     top: 50px;
     list-style: none;
@@ -17,7 +17,12 @@
   }
   
   
-
+  .fas.fa-cog {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.2rem;
+  }
   
   
   
