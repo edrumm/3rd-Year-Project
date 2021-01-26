@@ -43,7 +43,7 @@ const ImageUpload = () => {
         <input type="file" onChange={handleChange} />
         <button onClick={handleUpload}>Upload</button>
         <p>{url}</p>
-        <img src={url} alt="firebase-image" />
+        <img src={url} alt="" />
         </div>
         </>
     );
