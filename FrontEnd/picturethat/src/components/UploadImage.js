@@ -7,8 +7,8 @@ const ImageUpload = () => {
     const [image, setImage] = useState(null);
 
     const handleChange = e => {
-        if (e.targe.files[0]){
-            setImage(e.targe.files[0]);
+        if (e.target.files[0]){
+            setImage(e.target.files[0]);
         }
     };
 
@@ -16,7 +16,6 @@ const ImageUpload = () => {
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
         uploadTask.on(
             "state_changed",
-            snapshot => {},
             error => {
                 console.log(error);
             },
