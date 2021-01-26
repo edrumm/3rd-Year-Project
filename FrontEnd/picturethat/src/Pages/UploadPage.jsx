@@ -5,7 +5,7 @@ import UploadImage from '../components/UploadImage';
 const UploadPage  = () => {
     return (
     <>
-    
+    <Navbar />
     <UploadImage />
     </>
     );
