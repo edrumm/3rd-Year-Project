@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import './profilePage.css';
 import logo from './logo.png';
 import ImageGrid from '../components/ImageGrid';
-import 'antd/dist/antd.css';
+//import 'antd/dist/antd.css';
 
 const profilePage  = () => {
     return (
