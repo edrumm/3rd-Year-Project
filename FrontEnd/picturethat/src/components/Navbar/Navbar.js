@@ -26,7 +26,7 @@ import Dropdown from './Dropdown';
                         <Link to='/' className='fas fa-search'/>
                     </li>
                     <li>
-                        <Link to='/' className='fas fa-images'/>
+                        <Link to='/PictureThat/UploadPage' className='fas fa-images'/>
                     </li>
                     <li onClick={handleClick} >
                         <i className='fas fa-user-circle top'/>
@@ -46,11 +46,10 @@ import Dropdown from './Dropdown';
                     <li>
                         <Link to='/' className='fas fa-images'/>
                     </li>
-                     <li onClick={handleClick}>
-                        <i className='fas fa-user-circle'/>
+                    <li onClick={handleClick} >
+                        <i className='fas fa-user-circle top'/>
                         {clicked && <Dropdown />}
-                    </li>
-                     
+                    </li>   
             </ul>
 
             </nav>

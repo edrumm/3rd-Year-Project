@@ -1,3 +1,5 @@
+
+
 .signInWelcome{
 
     position: absolute;
@@ -55,7 +57,7 @@ button{
     border-radius: 4px;
     border-color: lightgrey;
 
-    font-family: 'Bungee';
+    font-family: 'Roboto', sans-serif;
     font-size: 1.2vw;
     display: inline-block;
 }
@@ -159,7 +161,7 @@ input:hover {
 }
 
 /*-----------------------Image Wrap ---------------------------------------*/
-/* .imageWrap{
+.imageWrap{
     overflow: hidden;
     height: 0;
     padding: 10% 0;
@@ -175,10 +177,10 @@ input:hover {
     left: 0;
 } */
 
-/* .imageGrid {
+.imageGrid {
     display: grid;
     grid-template-columns: 1fr;
     margin: 20px auto;
-} */
+}
 
 /*https://stackoverflow.com/questions/15557627/heading-with-horizontal-line-on-either-side*/

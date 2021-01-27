@@ -1,36 +1,51 @@
 
 .dropdown {
-    background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
-    width: 200px;
+    /* background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%); */
+    background-color: #0095f6;
+    background-color: rgba(var(--d69,0,149,246),1);
+    width: 120px;
     position: absolute;
     top: 50px;
     list-style: none;
     text-align: start;
   }
   
-  .dropdown li {
-    background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
-    cursor: pointer;
+  .dropdown a {
+    color: white;
+    text-align: center;
+    padding-top: 1px;
+    float: none;
   }
   
-  .dropdown.clicked {
-    display: none;
-  }
   
-  .dropdown-link {
-    display: block;
-    height: 100%;
-    width: 100%;
+  .fas.fa-cog.b {
+    color: white;
     text-decoration: none;
-    color: #fff;
-    padding: 16px;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.2rem;
   }
+  
+  .fas.fa-user-circle.b {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.2rem;
+  }
+
+  .fas.fa-sign-out-alt {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.2rem;
+  }
+  
+  
   
   @media screen and (max-width: 700px) {
 
     .dropdown {  
         display: block;
-        bottom: 50px;
+        bottom: 100%;
     }
 
 

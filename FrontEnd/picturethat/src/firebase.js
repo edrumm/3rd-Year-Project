@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import "firebase/storage";
  
  // PictureThat Firebase configuration
   var firebaseConfig = {
@@ -11,9 +12,10 @@ import firebase from 'firebase';
     measurementId: "G-JS9RB6QVSJ"
   };
   // Initialize Firebase
-  const fire = firebase.initializeApp(firebaseConfig);
-  firebase.analytics();
+  firebase.initializeApp(firebaseConfig);
+  //firebase.analytics();
+  const storage = firebase.storage();
 
-  export default fire;
+  export { storage, firebase as default };
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
