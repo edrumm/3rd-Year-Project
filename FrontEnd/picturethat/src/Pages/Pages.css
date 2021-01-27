@@ -57,6 +57,7 @@ button{
     font-family: 'Roboto', sans-serif;
     font-size: 1.2vw;
     display: inline-block;
+    text-align: center;
 }
 
 .whiteSpace{
@@ -175,7 +176,7 @@ input:hover {
     position: absolute;
     top: 0;
     left: 0;
-} */ */
+} */ 
 
 .imageGrid {
     display: grid;
