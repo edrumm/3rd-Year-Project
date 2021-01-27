@@ -5,10 +5,10 @@ import {Link} from 'react-router-dom';
 import {Avatar} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 import { useState } from 'react';
-import ProfilePictureUpload from '../components/ProfilePictureUpload';
+import './editProfilePage.css';
+import './Pages.css';
 
 //imports for the dropdown menu
-import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Grow from '@material-ui/core/Grow';
 import Paper from '@material-ui/core/Paper';
@@ -18,8 +18,8 @@ import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 
 //import for the photo camera icon
-import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-import { IconButton } from '@material-ui/core';
+import CameraAltIcon from '@material-ui/icons/CameraAlt';
+import { Button } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -74,32 +74,47 @@ const useStyles = makeStyles((theme) => ({
 
     return (
         <>
-        <div>
-            <Navbar></Navbar>
-
-            <h2>EditProfile</h2>
+        <Navbar></Navbar>
+        <div className="editProfileContainer">
+            <h2>Edit Profile</h2>
             <input 
+                className="inputboxEditProfile" 
                 type="text"
                 id= "inputbox"
                 placeholder="Edit Username"
                 autoFocus
             />
 
-            <div className="ImageGrid">
-                <div className="imageWrap">
-                    <Avatar size={128} icon={<UserOutlined />} />
+            <div>
+                <div>
+                    <Avatar size={158} icon={<UserOutlined />}
+                    
+                        style={{
+
+                            height: 150,
+                            width: 150,
+                            backgroundColor: 'lightgray',
+                            borderRadius: 80,
+                            display: 'inline-block'
+                        }}
+                        />
                         <div>
 
-                        <IconButton
+                        <Button
                             ref={anchorRef}
                             aria-controls={open ? 'menu-list-grow' : undefined}
                             aria-haspopup="true"
                             onClick={handleToggle}
+
+                            style={{
+                                width: 300,
+                                marginTop: 10
+                            }}
                             >
 
                             {/* Display the photo camera icon as the button*/}
-                            <PhotoCameraIcon fontSize= "large"/>
-                        </IconButton>
+                            <CameraAltIcon fontSize= "large"/>
+                        </Button>
 
                         <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
                         {({ TransitionProps, placement }) => (
@@ -146,14 +161,16 @@ const useStyles = makeStyles((theme) => ({
                 </div>
             </div>
 
-            <input 
+            <input
+                className="inputboxEditProfile" 
                 type="text"
                 id= "inputbox"
                 placeholder="Edit Realname"
                 autoFocus
             />
 
-            <input 
+            <input
+                className="inputboxEditProfile" 
                 type="text"
                 id= "inputbox"
                 placeholder="Edit Bio"
@@ -163,7 +180,7 @@ const useStyles = makeStyles((theme) => ({
             <Link to="/PictureThat/profilePage">    
                 <button 
                     id="signInButton" 
-                    className="signInButton">
+                    className="buttonEditProfile">
                         Confirm
                 </button>
             </Link>
