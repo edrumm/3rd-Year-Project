@@ -1,14 +1,23 @@
 .imageFeed{
-    padding-top: 0px;
-    display: flex;
+    display: inline-block;
     flex-direction: column;
-    width: 614px;
-    height: 942px;
-    top: 30%;
+    align-items: center;
+    text-align: center;
+    width: 616px;
+    height: 714px;
+
+    position: absolute;
+    left: calc(40vw - 10px);
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    border: solid 1px #efefef;
   
 }
 
 .image{
-    height: 614px;
+    border-radius: 5px;
+    height: 616px;
     width: 614px;
 }
