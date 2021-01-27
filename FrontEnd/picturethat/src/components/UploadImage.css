@@ -1,7 +1,7 @@
 .container {
     position: absolute;
     left: calc(40vw - 10px);
-    width: 350px;
+    width: 600px;
     height: 500px;
     top: 40%;
     left: 50%;
@@ -19,11 +19,22 @@
     height: 380px;
 }
 
-.inputbox{
+.inputboxT{
     border-radius: 5px;
     border: solid 1px #efefef;
-    width: 260px;
-    height: 38px;
+    width: 555px;
+    height: 42px;
+    margin: 1px;
+    background-color: white;
+    
+    cursor: text;
+}
+
+.inputboxD {
+    border-radius: 5px;
+    border: solid 1px #efefef;
+    width: 555px;
+    height: 78px;
     margin: 1px;
     background-color: white;
     

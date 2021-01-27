@@ -43,7 +43,8 @@ const ImageUpload = () => {
         <div className="container">
         <img src={url || "https://via.placeholder.com/400x380.png?text=Upload+Image"} alt="" className="images" />
         <input type="file" onChange={handleChange} />
-        <input type="text" className="inputbox" placeholder="Title" />
+        <input type="text" className="inputboxT" placeholder="Title" />
+        <input type="text" className="inputboxD" placeholder="Description" />
         <button onClick={handleUpload} className="button">Upload</button>
         
         </div>
