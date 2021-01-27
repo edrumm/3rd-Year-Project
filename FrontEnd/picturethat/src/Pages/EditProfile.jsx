@@ -163,6 +163,3 @@ const useStyles = makeStyles((theme) => ({
 };
 
 export default EditProfile;
-
-// //https://www.youtube.com/watch?v=5AK37Wy5eNs
-// //https://codesandbox.io/s/reb0z?file=/index.js:172-192
