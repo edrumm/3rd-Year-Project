@@ -166,18 +166,18 @@ input:hover {
 .imageWrap{
     overflow: hidden;
     height: 0;
-    padding: 10% 0;
+    padding: 20% 0;
     position: relative;
 }
 
-.imageWrap img{
+/* .imageWrap img{
     min-width: 100%;
     min-height: 100%;
     max-width: 150%;
     position: absolute;
     top: 0;
     left: 0;
-} */
+} */ */
 
 .imageGrid {
     display: grid;
