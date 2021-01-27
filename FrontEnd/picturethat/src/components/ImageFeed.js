@@ -7,6 +7,10 @@ const ImageFeed = () => {
     return (
         <div className= "imageFeed">
             <img src={olubi} alt="" className="image" />
+            <div className="profile">
+            <img src={olubi} alt="" className="profileimage" />
+            <label className="profileName">Profile Name</label>
+            </div>
             
         </div>
     )
