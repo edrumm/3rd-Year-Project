@@ -47,6 +47,7 @@ const ImageUpload = () => {
         <lable className="text" >Details</lable>
         <input type="text" className="inputboxT" placeholder="Title" />
         <input type="text" className="inputboxD" placeholder="Description" />
+        <input type="text" className="inputboxT" placeholder="Channel" />
         <button onClick={handleUpload} className="button">Post</button>
         </div>
         </div>
