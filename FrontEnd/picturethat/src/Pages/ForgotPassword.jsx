@@ -15,7 +15,7 @@ const ForgotPassword  = () => {
             </div>
 
                 <p>Email</p>
-                <input type="email" id="emailInput" placeholder="Email Address" />
+                <input type="email" className="inputbox" id="emailInput" placeholder="Email Address" />
                 <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/SignIn">Submit</Link></button>
             </form>
         </div>
