@@ -8,6 +8,7 @@
     top: 50px;
     list-style: none;
     text-align: start;
+    z-index: 1;
   }
   
   .dropdown a {
