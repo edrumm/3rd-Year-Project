@@ -76,6 +76,9 @@ button{
     width: 260px;
     height: 38px;
     margin: 3px 40px 3px;
+    border-radius: 5px;
+    border: solid 1px #efefef;
+    background-color: white;
 }
 
 .logoimg {
