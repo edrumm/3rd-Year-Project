@@ -15,6 +15,7 @@ import NotFound from "./Pages/404";
 import profilePage from './Pages/profilePage';
 import EditProfile from './Pages/EditProfile';
 import UploadPage from './Pages/UploadPage';
+import AchievementsPage from './Pages/AchievementsPage';
 
 function App() {
   
@@ -31,8 +32,9 @@ function App() {
           <Route exact path= "/ForgotPassword" component={ForgotPassword} />
           <Route exact path= "/PictureThat" component={LandingPage} />
           <Route exact path= "/PictureThat/ProfilePage" component={profilePage} />
-          <Route exact path= "/PictureThat/EditProfile" component={EditProfile} />
+          <Route exact path= "/PictureThat/ProfilePage/EditProfile" component={EditProfile} />
           <Route exact path= "/PictureThat/UploadPage" component={UploadPage} />
+          <Route exact path= "/PictureThat/ProfilePage/Achievements" component={AchievementsPage} />
 
           <Route exact path="/404" component={NotFound} />
           <Redirect to="/404"/> {/*Redirect used to redirect users to 404 page if an invalid url is typed in the url searchbar */}

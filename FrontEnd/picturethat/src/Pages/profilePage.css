@@ -7,7 +7,7 @@
 }
 
 .personalsection{
-    margin: 30px auto;
+    margin: 100px;
     margin-bottom: 0;
     flex-grow: 1;
     max-width: 935px;
@@ -33,11 +33,12 @@
 .imageGrid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    margin-left: 30px;
-    margin-right: 30px;
-    grid-gap: 30px;
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    grid-gap: 40px;
     text-align: center;
-    
 }
 
 #one{
@@ -50,4 +51,21 @@
 
 #three{
     background-color: green;
+}
+
+#four{
+    background-color: red;
+}
+
+#five{
+    background-color: orange;
+}
+
+#six{
+    background-color: purple;
+}
+
+.pageButton1{
+    height: 60px;
+    text-align: center;
 }
