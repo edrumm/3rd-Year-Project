@@ -148,9 +148,9 @@ const SignUp  = () => {
                     
                         <button 
                             id="signInButton" 
-                            className="signInButton"
+                            className="button"
                             onClick= {validateForm}>
-                                <Link to="/PictureThat">Continue</Link>
+                                <Link to="/PictureThat">Sign Up</Link>
                         </button>
                     
 

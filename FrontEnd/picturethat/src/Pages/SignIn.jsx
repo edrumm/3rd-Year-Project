@@ -119,11 +119,11 @@ const SignIn  = () => {
                     <div className="whiteSpace"></div>
                 </p>
 
-                <button 
+                {/* <button 
                     id="signInButton" 
                     className="button">
                     <Link to="/PictureThat">Guest</Link>
-                </button>
+                </button> */}
 
                 <Link to="/ForgotPassword">Forgot Password?</Link>
                 <Link to="/SignUp"> Sign Up</Link>
