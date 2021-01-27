@@ -1,11 +1,11 @@
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
-import 'antd/dist/antd.css';
+//import 'antd/dist/antd.css';
 import {Avatar} from 'antd';
 import {UserOutlined} from '@ant-design/icons';
 import { useState } from 'react';
-import ImageUpload from '../components/UploadImage';
+import ProfilePictureUpload from '../components/ProfilePictureUpload';
 
 //imports for the dropdown menu
 import Button from '@material-ui/core/Button';
@@ -31,6 +31,11 @@ const useStyles = makeStyles((theme) => ({
   }));
 
  const EditProfile  = () => {
+
+    const inputReference = React.useRef();
+
+    const filePopup = () => inputReference.current.click();
+    
      
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -105,18 +110,25 @@ const useStyles = makeStyles((theme) => ({
                             <Paper>
                                 <ClickAwayListener onClickAway={handleClose}>
                                 <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+
+                                    {/*When you press the change photo menu Item input for requested image pops up */}
+                                    <input 
+                                        type="file"
+                                        accept="image*"
+                                        ref={inputReference}
+                                        style={{display:"none"}}
+                                    />
                                     <MenuItem 
                                         onClick= {(event) => {
-                                            setShowUploadImage(true);
+                                            filePopup();
                                             handleClose(event);
                                         }}
                                     >
-                                            Change
+                                            Change Photo
                                     </MenuItem>
 
                                     <MenuItem 
                                         onClick= {(event) => {
-                                            setShowUploadImage(false);
                                             handleClose(event);
                                         }}
                                     >
@@ -133,8 +145,6 @@ const useStyles = makeStyles((theme) => ({
                         </div>
                 </div>
             </div>
-
-            {showUploadImage && <ImageUpload/>}
 
             <input 
                 type="text"
@@ -163,3 +173,7 @@ const useStyles = makeStyles((theme) => ({
 };
 
 export default EditProfile;
+
+// //https://www.youtube.com/watch?v=5AK37Wy5eNs
+// //https://codesandbox.io/s/reb0z?file=/index.js:172-192
+//https://www.youtube.com/watch?v=RmiP1AY5HFM
