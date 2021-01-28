@@ -10,7 +10,7 @@ const ImageFeed = () => {
     return (
         <div>
         { docs && docs.map(doc => (
-        <div className= "imageFeed">
+        <div className= "">
             <img src={doc.url} alt="" className="image" />
             <div className="profile">
             <img src={olubi} alt="" className="profileimage" />
