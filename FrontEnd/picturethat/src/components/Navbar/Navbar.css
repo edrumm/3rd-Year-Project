@@ -10,18 +10,21 @@
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 1;
 }
 
 .Navbarbottom{
-    background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%);
+    background-color: #0095f6;
+    background-color: rgba(var(--d69,0,149,246),1);
     height: 50px;
+    display: none;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;
     position: fixed;
     bottom: 0;
     width: 100%;
-    display: none;
+    z-index: 1;
 }
 
 .nav-menubottom {
@@ -86,37 +89,44 @@
         position: relative;
     }
 
-    .nav-menu {
-        display: none;
-    }
-
     .Navbarbottom{
         display: flex;
     }
 
-    .fas.fa-images {
+    .fas.fa-images.a {
+        display: none;
+    }
+
+    .fas.fa-home.a {
+        display: none;
+    }
+
+    .fas.fa-search.a {
+        display: none;
+    }
+
+    .fas.fa-images.b {
         margin-left: 4rem;
         margin-right: 4rem;
         font-size: 1.8rem;
     }
 
-    .fas.fa-home{
+    .fas.fa-home.b {
         margin-left: 4rem;
         margin-right: 4rem;
         font-size: 1.8rem;
     }
 
-    .fas.fa-search{
+    .fas.fa-search.b {
         margin-left: 4rem;
         margin-right: 4rem;
         font-size: 1.8rem;
     }
 
-    .fas.fa-user-circle{
-        margin-left: 4rem;
-        margin-right: 4rem;
+    .fas.fa-user-circle {
         font-size: 1.8rem;
     }
+    
     
    
 } 

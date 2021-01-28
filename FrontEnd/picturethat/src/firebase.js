@@ -1,5 +1,6 @@
 import firebase from 'firebase';
-import "firebase/storage";
+import 'firebase/storage';
+import 'firebase/firestore';
  
  // PictureThat Firebase configuration
   var firebaseConfig = {
@@ -15,7 +16,10 @@ import "firebase/storage";
   firebase.initializeApp(firebaseConfig);
   //firebase.analytics();
   const storage = firebase.storage();
+  const firedatabase = firebase.firestore();
 
-  export { storage, firebase as default };
+  const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+
+  export { storage, firedatabase, timestamp, firebase as default };
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
