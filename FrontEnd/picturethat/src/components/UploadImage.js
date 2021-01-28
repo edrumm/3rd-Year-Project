@@ -42,8 +42,8 @@ const ImageUpload = () => {
                     .then(url => { 
                         console.log(url);
                         setUrl(url); 
-                        const imguploaded = timestamp();
-                        collection.add({ url: url, imguploaded});
+                        const uploaddate = timestamp();
+                        collection.add({ url: url, uploaddate});
                     });
             }     
             
