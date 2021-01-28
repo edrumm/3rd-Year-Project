@@ -18,6 +18,8 @@ import 'firebase/firestore';
   const storage = firebase.storage();
   const firedatabase = firebase.firestore();
 
-  export { storage, firedatabase, firebase as default };
+  const timestamp = firebase.firestore.FieldValue.serverTimestamp;
+
+  export { storage, firedatabase, timestamp, firebase as default };
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M

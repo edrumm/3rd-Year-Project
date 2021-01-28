@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
-import { storage } from "../firebase";
+import { storage, firedatabase, timestamp } from "../firebase";
 import './UploadImage.css';
 
 const ImageUpload = () => {
@@ -17,6 +17,7 @@ const ImageUpload = () => {
         if (selectedImg && imgTypes.includes(selectedImg.type)){
             setImage(selectedImg);
             setError('');
+
         } else {
             setImage(null);
             setError('Incorrect Image type, please select a PNG or JPEG image');
@@ -26,6 +27,7 @@ const ImageUpload = () => {
 
     const handleUpload = () => {
         const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        const collection = firedatabase.collection('posts');
         uploadTask.on(
             "state_changed",
             snapshot => {},
@@ -40,6 +42,8 @@ const ImageUpload = () => {
                     .then(url => { 
                         console.log(url);
                         setUrl(url); 
+                        const imguploaded = timestamp();
+                        collection.add({ url: url, imguploaded});
                     });
             }     
             
