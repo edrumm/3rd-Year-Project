@@ -5,9 +5,14 @@ const session = require('./../scripts/session');
 const firebase = require('./../scripts/firebase');
 const storage = require('./../scripts/storage');
 const schema = require('./../scripts/schema');
-const { db, storage } = require('./../scripts/firebase-auth');
+const { db, bucket } = require('./../scripts/firebase-auth');
 
 // TODO: set up routes
+Router.post('/test', (req, res) => {
+  res.json({ test: 'Ok!' });
+});
+
+
 Router.post('/login', (req, res) => {
 
   try {
