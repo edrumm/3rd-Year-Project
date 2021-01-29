@@ -67,9 +67,10 @@ const ImageUpload = () => {
         <input type="file" onChange={imgChange} />
         <div>
         <a className="text" >Details</a>
-        <input type="text" className="inputboxT" placeholder="Title" value= {title} onChange= {(e) => {setTitle(e.target.value)}}/>
-        <input type="text" className="inputboxD" placeholder="Description" value= {description} onChange= {(e) => {setDescription(e.target.value)}}/>
+        <input type="text" className="inputboxT" placeholder="Caption" value= {title} onChange= {(e) => {setTitle(e.target.value)}}/>
         <input type="text" className="inputboxT" placeholder="Location" value= {loc} onChange= {(e) => {setLoc(e.target.value)}}/>
+        <input type="text" className="inputboxT" placeholder="Channel" value= {description} onChange= {(e) => {setDescription(e.target.value)}}/>
+       
         <button onClick={handleUpload} className="button">Post</button>
         </div>
         </div>

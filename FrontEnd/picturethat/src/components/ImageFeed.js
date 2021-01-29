@@ -27,6 +27,7 @@ const ImageFeed = () => {
             <label> {doc.title} </label>
             <label> {doc.description} </label>
             <label> {doc.loc} </label>
+            <label className="">Ratings:</label>
             </div>
 
 
