@@ -1,4 +1,4 @@
-/*
+
 const data = {
   username: "placeholder_user_1",
   password: "myPass123$"
@@ -12,7 +12,7 @@ const data = {
     body: JSON.stringify(data)
   };
 
-  fetch('/api/login', options)
+  fetch('/api/test', options)
   .then(response => response.json())
   .then(json => console.log(json))
-  .catch(err => console.error(err));*/
+  .catch(err => console.error(err));

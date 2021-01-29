@@ -6,6 +6,7 @@ import {useState} from 'react';
 
 const SignIn  = () => {
 
+
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
 
@@ -72,8 +73,26 @@ const SignIn  = () => {
         <Link to="/PictureThat">Sign In</Link>
     }
 
+    /*const data = {
+        username: userEmailInput,
+        password: userPasswordInput
+      };
+      
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+      
+        fetch('/api/login', options)
+        .then(response => response.json())
+        .then(json => console.log(json))
+        .catch(err => console.error(err));
+        */
     return (
-
+            
         <div className= "signInWelcome">
             <div>
                 <img src={logo} alt="" className="logoimg" />
@@ -131,6 +150,8 @@ const SignIn  = () => {
             </div>
         </div>
     )
+
+
 }
 
 export default SignIn;
