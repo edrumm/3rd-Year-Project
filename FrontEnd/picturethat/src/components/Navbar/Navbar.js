@@ -25,7 +25,7 @@ import Dropdown from './Dropdown';
                         <Link to='/PictureThat' className='fas fa-home a'/>
                     </li>
                     <li>
-                        <Link to='/' className='fas fa-search a'/>
+                        <Link to='/PictureThat/ChannelsPage' className='fas fa-search a'/>
                     </li>
                     <li>
                         <Link to='/PictureThat/UploadPage' className='fas fa-images a'/>
@@ -43,7 +43,7 @@ import Dropdown from './Dropdown';
                         <Link to='/PictureThat' className='fas fa-home b'/>
                     </li>
                     <li>
-                        <Link to='/' className='fas fa-search b'/>
+                        <Link to='/PictureThat/ChannelsPage' className='fas fa-search b'/>
                     </li>
                     <li>
                         <Link to='/PictureThat/UploadPage' className='fas fa-images b'/>
