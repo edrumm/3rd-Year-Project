@@ -15,6 +15,7 @@
 
 /*-----------------------Image Wrap ---------------------------------------*/
 .imageWrap{
+    border-radius: 5px;
     overflow: hidden;
     height: 0;
     padding: 50% 0;
