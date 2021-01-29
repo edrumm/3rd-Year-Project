@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const Router = express.Router();
 
 const session = require('./../scripts/session');
@@ -6,6 +7,13 @@ const firebase = require('./../scripts/firebase');
 const storage = require('./../scripts/storage');
 const schema = require('./../scripts/schema');
 const { db, bucket } = require('./../scripts/firebase-auth');
+
+// Hash password using bcrypt
+async function hash(pw) {
+
+  // ...
+
+}
 
 // Test route
 Router.post('/test', (req, res) => {
