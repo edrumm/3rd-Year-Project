@@ -7,12 +7,13 @@ const storage = require('./../scripts/storage');
 const schema = require('./../scripts/schema');
 const { db, bucket } = require('./../scripts/firebase-auth');
 
-// TODO: set up routes
+// Test route
 Router.post('/test', (req, res) => {
   res.json({ test: 'Ok!' });
 });
 
 
+// Login route: validate login, send to Firebase
 Router.post('/login', (req, res) => {
 
   try {
@@ -34,6 +35,7 @@ Router.post('/login', (req, res) => {
   }
 });
 
+// Signup route: validate, send to DB
 Router.post('/signup', (req, res) => {
 
   try {
@@ -55,6 +57,7 @@ Router.post('/signup', (req, res) => {
   }
 });
 
+// TODO
 Router.post('/upload', (req, res) => {
 
   // ...
@@ -74,9 +77,10 @@ Router.post('/logout', (req, res) => {
 
 });
 
+// Returns the current session info if any
 Router.get('/sesison', (req, res) => {
 
-  // ...
+  res.json({ session: session.get() });
 
 });
 
