@@ -8,13 +8,16 @@ const ImageFeed = () => {
     console.log(docs);
 
     return (
-        <div>
+        <div className= "imageFeed">
         { docs && docs.map(doc => (
-        <div className= "">
+        <div key={doc.id}>
             <img src={doc.url} alt="" className="image" />
             <div className="profile">
             <img src={olubi} alt="" className="profileimage" />
-            <label className="profileName">Profile Name</label>
+            <label className="profileName">Username</label>
+            <label> {doc.title} </label>
+            <label> {doc.description} </label>
+            <label> {doc.loc} </label>
             </div>
             
         </div>
