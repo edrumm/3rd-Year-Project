@@ -13,25 +13,32 @@ Router.post('/test', (req, res) => {
 });
 
 
-// Login route: validate login, send to Firebase
+/*
+  Login route: validate login, send to Firebase
+
+  Could try and implement ES6 {} notation to get values from firebase.login:
+  const { ok, err } = firebase.login(...)
+
+  Not sure how this would work with .then() though ?
+*/
 Router.post('/login', (req, res) => {
 
   try {
     schema.login(req.body);
 
     firebase.login(db, req.body)
-    .then(ok => {
-      if (ok){
-        res.json({ login: true });
+    .then(response => {
+      if (response.ok){
+        res.json({ ok: true, err: null });
         res.end();
       } else {
-        res.json({ login: false });
+        res.json({ ok: false, err: response.err });
         res.end();
       }
     });
 
   } catch (err) {
-    res.json({err: err});
+    res.json({ ok: false, err: err });
   }
 });
 
@@ -42,18 +49,18 @@ Router.post('/signup', (req, res) => {
     schema.signup(req.body);
 
     firebase.signup(db, req.body)
-    .then(ok => {
-      if (ok) {
-        res.json({ signup: true });
+    .then(response => {
+      if (response.ok) {
+        res.json({ ok: true, err: null });
         res.end();
       } else {
-        res.json({ signup: false });
+        res.json({ ok: false, err: response.err });
         res.end();
       }
     });
 
   } catch (err) {
-    res.json({err: err});
+    res.json({ ok: false, err: err });
   }
 });
 
@@ -70,7 +77,7 @@ Router.post('/download', (req, res) => {
 
 });
 
-Router.post('/logout', (req, res) => {
+Router.get('/logout', (req, res) => {
   session.destroy();
 
   // ...
