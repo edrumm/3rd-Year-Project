@@ -11,15 +11,17 @@ const ImageUpload = () => {
     const[title, setTitle] = useState('');
     const[description, setDescription] = useState('');
     const[loc, setLoc] = useState('');
+    const[localimg, setLocalimg] = useState(null);
 
     const imgTypes = ['image/png', 'image/jpeg'];
 
     const imgChange = (e) => {
         let selectedImg = e.target.files[0];
-        let path = e.target.files[0].path;
+        let path = URL.createObjectURL(e.target.files[0]);
         // checks to see if file has been selected and if its the correct type
         if (selectedImg && imgTypes.includes(selectedImg.type)){
             setImage(selectedImg);
+            setLocalimg(path);
             setError('');
 
         } else {
@@ -59,7 +61,7 @@ const ImageUpload = () => {
     return (
         <>
         <div className="container">
-        <img src={url || "https://via.placeholder.com/400x380.png?text=Upload+Image"} alt="" className="images" />
+        <img src={localimg || "https://via.placeholder.com/400x380.png?text=Upload+Image"} alt="" className="images" />
         { error && <div className="error">{error}</div>}
         <input type="file" onChange={imgChange} />
         <div>
