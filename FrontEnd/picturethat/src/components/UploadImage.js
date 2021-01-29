@@ -17,15 +17,16 @@ const ImageUpload = () => {
 
     const imgChange = (e) => {
         let selectedImg = e.target.files[0];
-        let path = URL.createObjectURL(e.target.files[0]);
         // checks to see if file has been selected and if its the correct type
         if (selectedImg && imgTypes.includes(selectedImg.type)){
+            let path = URL.createObjectURL(e.target.files[0]);
             setImage(selectedImg);
             setLocalimg(path);
             setError('');
 
         } else {
             setImage(null);
+            setLocalimg(null);
             setError('Incorrect Image type, please select a PNG or JPEG image');
         }
         
