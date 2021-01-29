@@ -1,4 +1,5 @@
 const express = require('express');
+const bcrypt = require('bcrypt');
 const Router = express.Router();
 
 const session = require('./../scripts/session');
@@ -7,31 +8,45 @@ const storage = require('./../scripts/storage');
 const schema = require('./../scripts/schema');
 const { db, bucket } = require('./../scripts/firebase-auth');
 
+// Hash password using bcrypt
+async function hash(pw) {
+
+  // ...
+
+}
+
 // Test route
 Router.post('/test', (req, res) => {
   res.json({ test: 'Ok!' });
 });
 
 
-// Login route: validate login, send to Firebase
+/*
+  Login route: validate login, send to Firebase
+
+  Could try and implement ES6 {} notation to get values from firebase.login:
+  const { ok, err } = firebase.login(...)
+
+  Not sure how this would work with .then() though ?
+*/
 Router.post('/login', (req, res) => {
 
   try {
     schema.login(req.body);
 
     firebase.login(db, req.body)
-    .then(ok => {
-      if (ok){
-        res.json({ login: true });
+    .then(response => {
+      if (response.ok){
+        res.json({ ok: true, err: null });
         res.end();
       } else {
-        res.json({ login: false });
+        res.json({ ok: false, err: response.err });
         res.end();
       }
     });
 
   } catch (err) {
-    res.json({err: err});
+    res.json({ ok: false, err: err });
   }
 });
 
@@ -42,18 +57,18 @@ Router.post('/signup', (req, res) => {
     schema.signup(req.body);
 
     firebase.signup(db, req.body)
-    .then(ok => {
-      if (ok) {
-        res.json({ signup: true });
+    .then(response => {
+      if (response.ok) {
+        res.json({ ok: true, err: null });
         res.end();
       } else {
-        res.json({ signup: false });
+        res.json({ ok: false, err: response.err });
         res.end();
       }
     });
 
   } catch (err) {
-    res.json({err: err});
+    res.json({ ok: false, err: err });
   }
 });
 
@@ -70,7 +85,7 @@ Router.post('/download', (req, res) => {
 
 });
 
-Router.post('/logout', (req, res) => {
+Router.get('/logout', (req, res) => {
   session.destroy();
 
   // ...
