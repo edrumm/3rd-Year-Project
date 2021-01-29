@@ -1,10 +1,10 @@
 .imageFeed{
-    display: inline-block;
+    display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 616px;
-    height: 714px;
+    max-width: 1016px;
+    height: 685px;
     
 
     position: absolute;
@@ -18,17 +18,25 @@
   
 }
 
-.image{
+.post {
     border-radius: 5px;
-    height: 616px;
-    width: 614px;
+    display: flex;
+    flex-direction: row;
 }
 
-.profile {
-    width: 616px;
-    height: 50px;
+.image{
+    border-radius: 5px;
+    height: 685px;
+    width: 508px;
+}
+
+.info {
+    border-radius: 5px;
+    width: 508px;
+    height: 685px;
     border: solid 1px #efefef;
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
 }
 
 .profileimage {
@@ -41,4 +49,10 @@
 .profileName {
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
+}
+
+.user {
+    width: 428px;
+    height: 48px;
+    
 }
