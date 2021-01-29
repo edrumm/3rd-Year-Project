@@ -10,14 +10,26 @@ const ImageFeed = () => {
     return (
         <div className= "imageFeed">
         { docs && docs.map(doc => (
-        <div key={doc.id}>
+        <div class="post" key={doc.id}>
+            <div>
             <img src={doc.url} alt="" className="image" />
-            <div className="profile">
+            </div>
+            
+            <div className="info">
+
+            <div className="user">
             <img src={olubi} alt="" className="profileimage" />
             <label className="profileName">Username</label>
+            </div>
+
+
+            <div className="postDetails">
             <label> {doc.title} </label>
             <label> {doc.description} </label>
             <label> {doc.loc} </label>
+            </div>
+
+
             </div>
             
         </div>
