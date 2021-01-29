@@ -21,13 +21,15 @@
 .post {
     padding-top: 2%;
     border-radius: 15px;
-    /* box-shadow: 0px 0px 5px 5px lightgray; */
     display: flex;
     flex-direction: row;
     
 }
 
 .image{
+    box-shadow: 0px -10px 10px 2px lightgray; 
+    box-shadow: 0px 10px 10px 2px lightgray; 
+    box-shadow: -7px 0px 10px 2px lightgray;
     border-bottom-left-radius: 15px;
     border-top-left-radius: 15px;
     max-height: 685px;
@@ -35,6 +37,9 @@
 }
 
 .info {
+    box-shadow: 0px -10px 10px 2px lightgray; 
+    box-shadow: 0px 10px 10px 2px lightgray; 
+    box-shadow: 7px 0px 10px 2px lightgray;
     border-bottom-right-radius: 15px;
     border-top-right-radius: 15px;
     max-width: 508px;
