@@ -74,7 +74,7 @@ Router.post('/logout', (req, res) => {
 
 });
 
-Router.get('/sesison', (req, res) => {
+Router.get('/session', (req, res) => {
 
   // ...
 

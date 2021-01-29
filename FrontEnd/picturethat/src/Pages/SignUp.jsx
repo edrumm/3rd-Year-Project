@@ -83,6 +83,29 @@ const SignUp  = () => {
         
         if(isValid === false){
         }
+        
+        //fetch block that will take a valid (meets criteria) email & password and then create
+        //an entry in the database with those details.
+        const data = {
+            email: email,
+            password: password
+          };
+          
+            //needed for fetch to work, always keep!
+            const options = {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(data)
+            };
+          
+            fetch('/api/signup', options)
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.error(err));
+
+
 
         return isValid;
     }
