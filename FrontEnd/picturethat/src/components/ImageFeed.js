@@ -23,11 +23,11 @@ const ImageFeed = () => {
             </div>
 
 
-
+            <div className="postDetails">
             <label> {doc.title} </label>
             <label> {doc.description} </label>
             <label> {doc.loc} </label>
-
+            </div>
 
 
             </div>
