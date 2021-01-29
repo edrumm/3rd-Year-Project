@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 
+// .env file required
 const credentials = {
   type: 'service account',
   project_id: process.env.PROJECT_ID,

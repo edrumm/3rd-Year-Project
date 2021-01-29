@@ -14,6 +14,7 @@ app.use(express.json());
 const api = require('./routes');
 app.use('/api', api);
 
+// Remove for demo:
 app.use(express.static(__dirname + '/test'));
 
 app.listen(port, () => console.log(`Port: ${port}`));
