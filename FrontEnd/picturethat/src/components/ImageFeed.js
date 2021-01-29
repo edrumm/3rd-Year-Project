@@ -14,9 +14,10 @@ const ImageFeed = () => {
             <img src={doc.url} alt="" className="image" />
             <div className="profile">
             <img src={olubi} alt="" className="profileimage" />
-            <label className="profileName">{doc.name}</label>
-            <label> {doc.Comment} </label>
-            
+            <label className="profileName">Username</label>
+            <label> {doc.title} </label>
+            <label> {doc.description} </label>
+            <label> {doc.loc} </label>
             </div>
             
         </div>
