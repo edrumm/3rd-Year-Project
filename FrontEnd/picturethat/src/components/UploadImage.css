@@ -17,8 +17,9 @@
 
 .images {
     border-radius: 5px;
-    width: 400px;
-    height: 380px;
+    max-height: 685px;
+    max-width: 508px;
+    
     
 }
 

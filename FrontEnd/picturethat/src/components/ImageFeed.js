@@ -25,8 +25,9 @@ const ImageFeed = () => {
 
             <div className="postDetails">
             <label> {doc.title} </label>
-            <label> {doc.description} </label>
-            <label> {doc.loc} </label>
+            <label>Location: {doc.loc} </label>
+            <label>Channel: {doc.description} </label>
+            <label className="">Ratings:</label>
             </div>
 
 
