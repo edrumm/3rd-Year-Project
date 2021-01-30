@@ -11,6 +11,15 @@ import olubi from '../components/ImageFiles/File_000.jpeg';
             <>
             <nav className="Channel">
             <img src={olubi} alt="" className="Channelimg"/>
+
+            <label className="">Channel Name: </label>
+            <br/>
+            <label className="">No of Followers: </label>
+            <br/>
+            <label className="">No of Pictures: </label>
+            <br/>
+            <button className="button">See Channel</button>
+
             </nav>
             </>
             
