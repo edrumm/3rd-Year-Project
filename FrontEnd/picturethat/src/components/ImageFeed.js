@@ -25,7 +25,7 @@ const ImageFeed = () => {
                         </div>
 
                     <div className=" column postDetails">
-                        <label> {doc.title} </label>
+                        <label>Caption: {doc.title} </label>
                         <br></br>
                         <label>Location: {doc.loc} </label>
                         <br></br>
