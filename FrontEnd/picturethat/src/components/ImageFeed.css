@@ -4,8 +4,9 @@
     align-items: center;
     text-align: center;
     min-width: 1000px;
-    max-height: 685px;
+    max-height: 700px;
 
+    margin-top: 50px;
     position: absolute;
     left: calc(40vw - 10px);
     top: 46%;
