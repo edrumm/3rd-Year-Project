@@ -9,9 +9,10 @@ import olubi from '../components/ImageFiles/File_000.jpeg';
        
         return(
             <>
-            <nav className="Channel">
+            <div className="Channel">
+            <div>
             <img src={olubi} alt="" className="Channelimg"/>
-
+            </div>
             <label className="">Channel Name: </label>
             <br/>
             <label className="">No of Followers: </label>
@@ -20,7 +21,7 @@ import olubi from '../components/ImageFiles/File_000.jpeg';
             <br/>
             <button className="button">See Channel</button>
 
-            </nav>
+            </div>
             </>
             
 
