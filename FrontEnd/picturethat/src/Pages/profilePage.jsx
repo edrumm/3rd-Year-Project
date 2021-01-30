@@ -17,8 +17,6 @@ import pic6 from '../components/ImageFiles/picture6.jpg';
 
 //import 'antd/dist/antd.css';
 
-
-
 const profilePage  = () => {
     return (
         <>

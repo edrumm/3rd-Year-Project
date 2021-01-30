@@ -9,34 +9,35 @@ const ImageFeed = () => {
 
     return (
         <div className= "imageFeed">
-        { docs && docs.map(doc => (
-        <div class="post" key={doc.id}>
-            <div>
-                <img src={doc.url} alt="" className="image" />
-            </div>
+            { docs && docs.map(doc => (
+                <div class="post" key={doc.id}>
+                    <div>
+                        <img src={doc.url} alt="" className="image"/>
+                    </div>
             
-            <div className="info">
+                    <div className="info">
 
-            <div className="postDetailsContainer">
-                <div className=" column user">
-                    <img src={olubi} alt="" className="profileimage" />
-                    <label className="profileName">Username</label>
+                    <div className="postDetailsContainer">
+                        <div className=" column user">
+                            <img src={olubi} alt="" className="profileimage"/>
+                            <br></br>
+                            <label className="profileName">Username</label>
+                        </div>
+
+                    <div className=" column postDetails">
+                        <label> {doc.title} </label>
+                        <br></br>
+                        <label>Location: {doc.loc} </label>
+                        <br></br>
+                        <label>Channel: {doc.description} </label>
+                        <br></br>
+                        <label className="">Ratings:</label>
+                    </div>
                 </div>
-
-
-                <div className=" column postDetails">
-                    <label> {doc.title} </label>
-                    <label>Location: {doc.loc} </label>
-                    <label>Channel: {doc.description} </label>
-                    <label className="">Ratings:</label>
-                </div>
-
             </div>
-        </div>
-            
         </div>
         ))}
-        </ div>
+    </div>
     )
 }
 
@@ -44,5 +45,4 @@ export default ImageFeed;
 
 //the source bellow was used to help set up how to send and get data from database
 //https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia 
-
 //https://www.youtube.com/watch?v=vUe91uOx7R0
