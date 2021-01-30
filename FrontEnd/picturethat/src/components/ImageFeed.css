@@ -3,57 +3,50 @@
     flex-direction: column;
     align-items: center;
     text-align: center;
-    min-width: 1000px;
-    max-height: 685px;
-   
-    
+    min-width: 43.75rem;
+    max-height: 43.75rem;
 
+    margin-top: 50px;
     position: absolute;
     left: calc(40vw - 10px);
     top: 46%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 15px;
-    /* border: solid 1px #efefef; */
 }
 
-
 .post {
-    padding-top: 2%;
+    padding-top: 5%;
     border-radius: 15px;
-    display: flex;
-    flex-direction: row;
-    
 }
 
 .image{
-    box-shadow: 0px -10px 10px 2px lightgray; 
-    box-shadow: 0px 10px 10px 2px lightgray; 
-    box-shadow: -7px 0px 10px 2px lightgray;
-    border-bottom-left-radius: 15px;
+    max-height: 43.75rem;
+    max-width: 100%;
+    margin-bottom: -4px;
     border-top-left-radius: 15px;
-    max-height: 685px;
-    max-width: 508px;
+    border-top-right-radius: 15px;
+    box-shadow: 0px -2px 7px 3px lightgray;
 }
 
 .info {
-    box-shadow: 0px -10px 10px 2px lightgray; 
-    box-shadow: 0px 10px 10px 2px lightgray; 
-    box-shadow: 7px 0px 10px 2px lightgray;
-    border-bottom-right-radius: 15px;
-    border-top-right-radius: 15px;
-    max-width: 508px;
+    max-width: 100%;
     max-height: 685px;
     border: solid 1px #efefef;
+    border-top: none;
     display: flex;
     flex-direction: column;
+    padding: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 0px 2px 7px 3px lightgray;
 }
 
 .profileimage {
-    border-radius: 40px;
-    height: 45px;
-    width: 45px;
-    align-content: left;
+    border-radius: 44px;
+    height: 44px;
+    width: 44px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .profileName {
@@ -61,20 +54,17 @@
     padding-top: 0.5rem;
 }
 
-
 .column{
-    float: bottom;
+    float: left;
 }
 
 .user {
-    margin: 80px auto;
-    text-align: left;
-    width: 25%;
-    
+    text-align: bottom;
+    width: 30%;
 }
 
 .postDetails {
+    margin-top: 10px;
     text-align: left;
-    width: 75%;
-    
+    width: 70%;
 }

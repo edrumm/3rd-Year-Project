@@ -64,7 +64,10 @@ const ImageUpload = () => {
         <div className="container">
         <img src={localimg || "https://via.placeholder.com/400x380.png?text=Upload+Image"} alt="" className="images" />
         { error && <div className="error">{error}</div>}
+        <div className="button-wrapper">
+        <button className="button width">Add Photo</button>
         <input type="file" onChange={imgChange} />
+        </div>
         <div>
         <a className="text" >Details</a>
         <input type="text" className="inputboxT" placeholder="Caption" value= {title} onChange= {(e) => {setTitle(e.target.value)}}/>

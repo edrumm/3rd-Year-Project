@@ -15,6 +15,21 @@
     
 }
 
+.button-wrapper {
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.button-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+
 .images {
     border-radius: 5px;
     max-height: 685px;
@@ -75,3 +90,8 @@
     display: inline-block;
 }
 
+.width {
+    width: 150px;
+}
+
+/* input button css: https://blog.benestudio.co/custom-file-upload-button-with-pure-css-5aacf39aa0a */
