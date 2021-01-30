@@ -1,3 +1,5 @@
+const hash = require('./hash');
+
 // DB login function
 module.exports.login = async (db, data) => {
 
@@ -8,6 +10,8 @@ module.exports.login = async (db, data) => {
     // redirect to login
     return { ok: false, err: 'Couldn\'t find an existing account' };
   }
+
+  // let pw = await hash.match(data.password, doc.data().password) - todo
 
   if (user.id === data.username && doc.data().password === data.password) {
     return { ok: true, err: null };
