@@ -3,8 +3,18 @@ import Navbar from '../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
 import './profilePage.css';
 import './Pages.css';
-import logo from './logo.png';
 import ImageGrid from '../components/ImageGrid';
+
+/* import for image files DEMO */
+import logo from './logo.png';
+import olubi from '../components/ImageFiles/File_000.jpeg';
+import pic1 from '../components/ImageFiles/picture1.jpg';
+import pic2 from '../components/ImageFiles/picture2.jpg';
+import pic3 from '../components/ImageFiles/picture3.jpg';
+import pic4 from '../components/ImageFiles/picture4.jpg';
+import pic5 from '../components/ImageFiles/picture5.jpg';
+import pic6 from '../components/ImageFiles/picture6.jpg';
+
 //import 'antd/dist/antd.css';
 
 
@@ -15,49 +25,53 @@ const profilePage  = () => {
         
         <Navbar></Navbar>
 
-        <div class="personalsection">
+        <div className="personalsection">
+
+        <div className="column personalsectionLeft">
             <p>Username</p>
-            <img src={logo} alt="" className="logoimg" />
+            <img src={olubi} alt="" className="profileimageProfile" />
+            <p>Realname</p>
+            <p>bio</p>
+        </div>
+
+        <div class="column personalsectionRight">
             
-            <div className="personalInfo">
-                <p>Realname</p>
-                <p>bio</p>
+            <div className="column1 leftPersonalSide">
+                <div className="content">Followers</div>
+                <div className="content">No. of Posts</div>
             </div>
 
-            <div className="followersBox">
-                <p>Following</p>
-                <p>Followers</p>
+            <div className="column1 rightPersonalSide">
+                <div className="content">Following</div>
+                <div className="content">Total Score</div>
             </div>
 
-            <div className="scoresBox">
-                <p>No.of Posts</p>
-                <p>Total Score</p>
-            </div>
-
-            <div className="pageButton1">
                 <Link to="/PictureThat/ProfilePage/EditProfile">    
                     <button>
                             Edit Profile
-                </button>
+                    </button>
                 </Link>
 
                 <Link to="/PictureThat/ProfilePage/Achievements">    
-                    <button id="achievementsButton">
+                    <button>
                             Achievements
-                </button>
+                    </button>
                 </Link>
             </div>
+
         </div>
+
+        <p className="spanLine"><span></span></p>
 
         <div className= "imageGrid">
 
-            <div className="imageWrap" id='one'>Picture1</div>
-            <div className="imageWrap" id='two'>Picture2</div>
-            <div className="imageWrap" id='three'>Picture3</div>
+            <div className="imageWrap"><img src={pic1} alt=""/></div>
+            <div className="imageWrap"><img src={pic2} alt=""/></div>
+            <div className="imageWrap"><img src={pic3} alt=""/></div>
 
-            <div className="imageWrap" id="four">Picture4</div>
-            <div className="imageWrap" id="five">Picture5</div>
-            <div className="imageWrap" id="six">Picture6</div>
+            <div className="imageWrap"><img src={pic4} alt=""/></div>
+            <div className="imageWrap"><img src={pic5} alt=""/></div>
+            <div className="imageWrap"><img src={pic6} alt=""/></div>
         </div>
     </>
     );
