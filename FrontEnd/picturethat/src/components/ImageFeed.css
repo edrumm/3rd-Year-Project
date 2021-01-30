@@ -68,3 +68,29 @@
     text-align: left;
     width: 70%;
 }
+
+@media screen and (max-width: 700px) {
+
+    .imageFeed{
+        min-width: 37.5rem;
+    }
+
+}
+
+@media screen and (max-width: 610px) {
+    .imageFeed{
+        min-width: 570px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .imageFeed{
+        min-width: 400px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .imageFeed{
+        min-width: 350px;
+    }
+}
