@@ -9,13 +9,14 @@
     margin-top: 50px;
     position: absolute;
     left: calc(40vw - 10px);
-    top: 35%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .post {
-    padding-top: 5%;
+    
+    padding-bottom: 4%;
     border-radius: 15px;
 }
 

@@ -1,0 +1,21 @@
+.Channel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 43.75rem;
+    max-height: 43.75rem;
+
+    margin-top: 50px;
+    position: absolute;
+    left: calc(40vw - 10px);
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Channelimg {
+    max-height: 43.75rem;
+    max-width: 100%;
+
+}
