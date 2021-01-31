@@ -1,10 +1,12 @@
 const Joi = require('joi');
 
+//Jake Edit: Changed all mentions of username in login to email to match revised database
 const login = Joi.object({
-  username: Joi.string().required(),
+  email: Joi.string().required(),
   password: Joi.string().required()
 });
 
+/* TO DO: Revise signup to match the new database structure (might be able to remove .min/max() as front end validates*/
 const signup = Joi.object({
   email:
     Joi.string()

@@ -8,6 +8,7 @@ const ImageFeed = () => {
     console.log(docs);
 
     return (
+        
         <div className= "imageFeed">
             { docs && docs.map(doc => (
                 <div class="post" key={doc.id}>

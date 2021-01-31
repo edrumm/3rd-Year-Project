@@ -65,19 +65,18 @@ const SignIn  = () => {
 
         setEmailError(emailError);
         setPasswordError(passwordError);
+        
 
-        return isValid;
-    }
+        //fetch block that will take a username and password and return a value for
+        //if there is a user in the database that matches those credentials.
 
-    const handleLogin = () => {
-        <Link to="/PictureThat">Sign In</Link>
-    }
-
-    /*const data = {
-        username: userEmailInput,
-        password: userPasswordInput
+        /* TO DO : Add functionality for this to take user to the landing page if all clear*/ 
+        const data = {
+        email: email,
+        password: password
       };
       
+        //needed for fetch to work, always keep!
         const options = {
           method: 'POST',
           headers: {
@@ -90,7 +89,14 @@ const SignIn  = () => {
         .then(response => response.json())
         .then(json => console.log(json))
         .catch(err => console.error(err));
-        */
+        return isValid;
+    }
+
+    const handleLogin = () => {
+        <Link to="/PictureThat">Sign In</Link>
+    }
+
+
     return (
             
         <div className= "signInWelcome">
