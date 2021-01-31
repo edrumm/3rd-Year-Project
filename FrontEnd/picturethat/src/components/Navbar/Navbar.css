@@ -127,6 +127,9 @@
         font-size: 1.8rem;
     }
     
+    .nav-menubottom {
+        grid-gap: 1px;
+    }
     
    
 } 

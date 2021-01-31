@@ -1,15 +1,15 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
-import Channel from '../components/Channel';
 
-
-const AchievementsPage  = () => {
+const Settings = () => {
 
     return (
         <>
         <Navbar></Navbar>
-        <Channel></Channel>
+       
         </>
     );
 };
-export default AchievementsPage
+
+export default Settings;

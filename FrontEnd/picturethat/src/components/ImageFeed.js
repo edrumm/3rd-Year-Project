@@ -1,10 +1,10 @@
 import React from 'react';
 import olubi from '../components/ImageFiles/File_000.jpeg';
 import './ImageFeed.css';
-import getData from '../getData';
+import getImg from '../getImg';
 
 const ImageFeed = () => {
-    const { docs } = getData('posts');
+    const { docs } = getImg('posts');
     console.log(docs);
 
     return (
@@ -31,7 +31,7 @@ const ImageFeed = () => {
                         <br></br>
                         <label>Channel: {doc.description} </label>
                         <br></br>
-                        <label className="">Ratings:</label>
+                        <label className="">Score:</label>
                     </div>
                 </div>
             </div>

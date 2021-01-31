@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
+import { Link } from "react-router-dom";
 import { storage, firedatabase, timestamp } from "../firebase";
 import './UploadImage.css';
+import { Button } from '@material-ui/core';
 
 const ImageUpload = () => {
 
@@ -55,6 +57,7 @@ const ImageUpload = () => {
             }     
             
         );
+
     };
 
     console.log("image: ", image);
@@ -74,14 +77,14 @@ const ImageUpload = () => {
         <input type="text" className="inputboxT" placeholder="Location" value= {loc} onChange= {(e) => {setLoc(e.target.value)}}/>
         <input type="text" className="inputboxT" placeholder="Channel" value= {description} onChange= {(e) => {setDescription(e.target.value)}}/>
        
-        <button onClick={handleUpload} className="button">Post</button>
+        <Link to="/PictureThat" onClick={handleUpload}><button className="button">Post</button></Link>
         </div>
         </div>
         </>
     );
 };
 
-render(<ImageUpload />, document.querySelector("#root"));
+//render(<ImageUpload />, document.querySelector("#root"));
 
 export default ImageUpload;
 

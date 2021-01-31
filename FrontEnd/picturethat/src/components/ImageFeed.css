@@ -9,13 +9,14 @@
     margin-top: 50px;
     position: absolute;
     left: calc(40vw - 10px);
-    top: 46%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .post {
-    padding-top: 5%;
+    
+    padding-bottom: 4%;
     border-radius: 15px;
 }
 
@@ -67,4 +68,30 @@
     margin-top: 10px;
     text-align: left;
     width: 70%;
+}
+
+@media screen and (max-width: 700px) {
+
+    .imageFeed{
+        min-width: 37.5rem;
+    }
+
+}
+
+@media screen and (max-width: 610px) {
+    .imageFeed{
+        min-width: 570px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .imageFeed{
+        min-width: 400px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .imageFeed{
+        min-width: 350px;
+    }
 }
