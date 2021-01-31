@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import ChangePassword from '../components/ChangePassword';
 import Navbar from '../components/Navbar/Navbar';
 
 const Settings = () => {
@@ -7,7 +7,7 @@ const Settings = () => {
     return (
         <>
         <Navbar></Navbar>
-       
+        <ChangePassword></ChangePassword>
         </>
     );
 };

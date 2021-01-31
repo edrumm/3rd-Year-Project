@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { render } from "react-dom";
 import { Link } from "react-router-dom";
 import { storage, firedatabase, timestamp } from "../firebase";
 import './UploadImage.css';
-import { Button } from '@material-ui/core';
+
 
 const ImageUpload = () => {
 
