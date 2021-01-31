@@ -5,6 +5,7 @@
     text-align: center;
     min-width: 43.75rem;
     min-height: 43.75rem;
+    border-radius: 15px;
 
     margin-top: 50px;
     position: absolute;
@@ -15,8 +16,9 @@
 }
 
 .Channelimg {
-    max-height: 33.75rem;
+    max-height: 30.75rem;
     max-width: 100%;
+    border-radius: 15px;
 
 }
 
