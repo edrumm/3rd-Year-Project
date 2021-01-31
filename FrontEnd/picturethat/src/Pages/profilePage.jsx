@@ -5,7 +5,7 @@ import './profilePage.css';
 import './Pages.css';
 
 /* import for image files DEMO */
-import olubi from '../components/ImageFiles/File_000.jpeg';
+import dog from '../components/ImageFiles/jamie-street-uNNCs5kL70Q-unsplash.jpg';
 import pic1 from '../components/ImageFiles/picture1.jpg';
 import pic2 from '../components/ImageFiles/picture2.jpg';
 import pic3 from '../components/ImageFiles/picture3.jpg';
@@ -25,7 +25,7 @@ const profilePage  = () => {
 
         <div className="column personalsectionLeft">
             <p>Username</p>
-            <img src={olubi} alt="" className="profileimageProfile" />
+            <img src={dog} alt="" className="profileimageProfile" />
             <p>Realname</p>
             <p>bio</p>
         </div>

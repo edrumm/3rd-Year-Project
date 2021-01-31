@@ -37,7 +37,7 @@
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-left: none;
-    box-shadow: 3px 0px 4px 3px lightgray;
+    box-shadow: 2px 0px 4px 3px lightgray;
 }
 
 .label{
@@ -50,7 +50,7 @@
     max-width: 100%;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-    box-shadow: -3px 0px 4px 3px lightgray;
+    box-shadow: -2px 0px 4px 3px lightgray;
     border-right: none;
 }
 
