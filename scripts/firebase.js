@@ -35,8 +35,9 @@ module.exports.signup = async (db, data) => {
 
   // let user = await db.collection('users').doc(data.email);
   let user = await db.collection('users').doc(data.username);
+  let doc = await user.get();
 
-  if (user.exists) {
+  if (doc.exists) {
     // redirect to login
     return { ok: false, err: 'Account already exists. Log in instead?' };
   }
@@ -95,15 +96,18 @@ module.exports.deleteAccount = async (db, id) => {
   let comments = await db.collection('comments').where('user', '==', 'id').get();
 
   // work in progress
-
+  return false;
 };
 
 module.exports.deletePost = (db, id) => {
+
+  // work in progress
+  return false;
 
 };
 
 module.exports.deleteComment = async (db, id) => {
 
-  await db.collection('comments').delete();
+  await db.collection('comments').doc(id).delete();
 
 };
