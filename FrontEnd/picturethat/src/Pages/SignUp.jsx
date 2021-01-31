@@ -91,7 +91,7 @@ const SignUp  = () => {
         <div className= "signup">
             <div>
                 <img src={logo} alt="" class="logoimg" />
-                <p className="text">Sign up to see photos from people tha inspire you</p>
+                <p className="text">Sign up to see photos that are tailored to you!</p>
             </div>
 
             <div>
