@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
+import { BrowserRouter, Link } from "react-router-dom";
 import { storage, firedatabase, timestamp } from "../firebase";
 import './UploadImage.css';
 
@@ -74,14 +75,18 @@ const ImageUpload = () => {
         <input type="text" className="inputboxT" placeholder="Location" value= {loc} onChange= {(e) => {setLoc(e.target.value)}}/>
         <input type="text" className="inputboxT" placeholder="Channel" value= {description} onChange= {(e) => {setDescription(e.target.value)}}/>
        
-        <button onClick={handleUpload} className="button">Post</button>
+       <BrowserRouter>
+        <Link to="/PictureThat">
+            <button onClick={handleUpload} className="button">Post</button>
+        </Link>
+        </BrowserRouter>
         </div>
         </div>
         </>
     );
 };
 
-render(<ImageUpload />, document.querySelector("#root"));
+//render(<ImageUpload />, document.querySelector("#root"));
 
 export default ImageUpload;
 

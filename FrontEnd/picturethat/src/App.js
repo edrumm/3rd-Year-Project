@@ -17,6 +17,7 @@ import EditProfile from './Pages/EditProfile';
 import UploadPage from './Pages/UploadPage';
 import AchievementsPage from './Pages/AchievementsPage';
 import ChannelsPage from './Pages/ChannelsPage';
+import Settings from './Pages/Settings';
 
 function App() {
   
@@ -37,16 +38,13 @@ function App() {
           <Route exact path= "/PictureThat/UploadPage" component={UploadPage} />
           <Route exact path= "/PictureThat/ProfilePage/Achievements" component={AchievementsPage} />
           <Route exact path= "/PictureThat/ChannelsPage" component={ChannelsPage} />
+          <Route exact path= "/PictureThat/Settings" component={Settings} />
 
           <Route exact path="/404" component={NotFound} />
           <Redirect to="/404"/> {/*Redirect used to redirect users to 404 page if an invalid url is typed in the url searchbar */}
 
-          <Navbar />
-          <UploadImage />
         </Switch>
       </Router>
-
-
     </>
   )
 }
