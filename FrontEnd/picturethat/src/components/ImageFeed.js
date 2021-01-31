@@ -1,5 +1,5 @@
 import React from 'react';
-import olubi from '../components/ImageFiles/File_000.jpeg';
+import dog from '../components/ImageFiles/jamie-street-uNNCs5kL70Q-unsplash.jpg';
 import './ImageFeed.css';
 import getImg from '../getImg';
 
@@ -19,7 +19,7 @@ const ImageFeed = () => {
 
                     <div className="postDetailsContainer">
                         <div className=" column user">
-                            <img src={olubi} alt="" className="profileimage"/>
+                            <img src={dog} alt="" className="profileimage"/>
                             <br></br>
                             <label className="profileName">Username</label>
                         </div>
