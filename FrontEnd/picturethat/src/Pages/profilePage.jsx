@@ -3,10 +3,8 @@ import Navbar from '../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
 import './profilePage.css';
 import './Pages.css';
-import ImageGrid from '../components/ImageGrid';
 
 /* import for image files DEMO */
-import logo from './logo.png';
 import olubi from '../components/ImageFiles/File_000.jpeg';
 import pic1 from '../components/ImageFiles/picture1.jpg';
 import pic2 from '../components/ImageFiles/picture2.jpg';

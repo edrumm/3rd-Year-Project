@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar/Navbar';
 import Channel from '../components/Channel';
 
 
-const AchievementsPage  = () => {
+const ChannelsPage  = () => {
 
     return (
         <>
@@ -12,4 +12,4 @@ const AchievementsPage  = () => {
         </>
     );
 };
-export default AchievementsPage
+export default ChannelsPage
