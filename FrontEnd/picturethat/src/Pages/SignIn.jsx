@@ -5,7 +5,8 @@ import logo from './logo.png';
 import {useState} from 'react';
 
 const SignIn  = () => {
-    
+
+
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
 
@@ -38,8 +39,8 @@ const SignIn  = () => {
 
         //boolean isValid to check if credentials are valid set to true
         let isValid = true;
-        
-        
+
+
         if (!checkEmail(email)) {
                 isValid = false;
                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
@@ -64,7 +65,7 @@ const SignIn  = () => {
 
         setEmailError(emailError);
         setPasswordError(passwordError);
-        
+
         return isValid;
     }
 
@@ -72,8 +73,26 @@ const SignIn  = () => {
         <Link to="/PictureThat">Sign In</Link>
     }
 
+    /*const data = {
+        username: userEmailInput,
+        password: userPasswordInput
+      };
+      
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+      
+        fetch('/api/login', options)
+        .then(response => response.json())
+        .then(json => console.log(json))
+        .catch(err => console.error(err));
+        */
     return (
-        
+            
         <div className= "signInWelcome">
             <div>
                 <img src={logo} alt="" className="logoimg" />
@@ -84,32 +103,32 @@ const SignIn  = () => {
 
             <div>
                 <form onSubmit = {onSubmit}>
-                <input 
-                    type="text" 
-                    id="emailInput" 
-                    className="inputbox" 
+                <input
+                    type="text"
+                    id="emailInput"
+                    className="inputbox"
                     placeholder="Enter Email"
-                    autoFocus 
+                    autoFocus
                     required
                     value= {email}
                     onChange= {(e) => {setEmail(e.target.value)}}
                 />
-                 
-                <input 
+
+                <input
                     type="password"
-                    required 
-                    id="passwordInput" 
-                    className="inputbox" 
+                    required
+                    id="passwordInput"
+                    className="inputbox"
                     placeholder="Password"
                     value= {password}
                     onChange= {(e) => {setPassword(e.target.value)}}
                 />
 
-                <button 
-                    id="signInButton" 
+                <button
+                    id="signInButton"
                     className="button"
                     type= "submit"
-                    onClick= {handleLogin}> 
+                    onClick= {handleLogin}>
                     Sign In
                 </button>
 
@@ -119,8 +138,8 @@ const SignIn  = () => {
                     <div className="whiteSpace"></div>
                 </p>
 
-                {/* <button 
-                    id="signInButton" 
+                {/* <button
+                    id="signInButton"
                     className="button">
                     <Link to="/PictureThat">Guest</Link>
                 </button> */}
@@ -131,6 +150,8 @@ const SignIn  = () => {
             </div>
         </div>
     )
+
+
 }
 
 export default SignIn;
