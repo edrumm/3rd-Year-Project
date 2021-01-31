@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Channel.css';
-import olubi from '../components/ImageFiles/File_000.jpeg';
+import dog from '../components/ImageFiles/jamie-street-uNNCs5kL70Q-unsplash.jpg';
 
 
 
@@ -11,15 +11,15 @@ import olubi from '../components/ImageFiles/File_000.jpeg';
             <div className="Channel">
 
                 <div className="column channelPhoto">
-                    <img src={olubi} alt="" className="Channelimg"/>
+                    <img src={dog} alt="" className="Channelimg"/>
                 </div>
                 
                 <div className="column channelInfo">
-                    <label className="label">Channel Name: </label>
+                    <label className="label">Channel Name: Dogs</label>
                     <br/>
-                    <label className="label">No of Followers: </label>
+                    <label className="label">No of Followers: 100 </label>
                     <br/>
-                    <label className="label">No of Pictures: </label>
+                    <label className="label">No of Pictures: 1</label>
                     <br/>
                     <button className="button">See Channel</button>
                 </div>
