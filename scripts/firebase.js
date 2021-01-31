@@ -1,3 +1,5 @@
+const hash = require('./hash');
+
 // DB login function
 
 //Jake Edit: Changed all mentions of username in in/up to email to match revised database
@@ -8,18 +10,18 @@ module.exports.login = async (db, data) => {
 
   if (!doc.exists) {
     // redirect to login
-    return false;
+    return { ok: false, err: 'Couldn\'t find an existing account' };
   }
 
-  if (user.id === data.email && doc.data().password === data.password) {
-    // login successful
+  // let pw = await hash.match(data.password, doc.data().password) - todo
 
-    return true;
+  if (user.id === data.username && doc.data().password === data.password) {
+    return { ok: true, err: null };
   }
 
   // login unsuccessful
 
-  return false;
+  return { ok: false, err: 'Incorrect password' };
 };
 
 // DB signup function
@@ -29,7 +31,7 @@ module.exports.signup = async (db, data) => {
 
   if (user.exists) {
     // redirect to login
-    return false;
+    return { ok: false, err: 'Account already exists. Log in instead?' };
   }
 
   await db.collection('users').doc(data.email).set({
@@ -43,8 +45,10 @@ module.exports.signup = async (db, data) => {
     score: 0
   });
 
-  return true;
+  return { ok: true, err: null };
 };
+
+// TODO: Refactor return values to match something similar to login / signup ?
 
 // DB fetch
 // 'query' should have properties for field, an operator, and values(s) to match
