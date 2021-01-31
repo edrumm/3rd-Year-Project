@@ -12,7 +12,7 @@ module.exports.destroy = () => {
 };
 
 module.exports.get = () => {
-  if (session === {})
+  if (Object.keys(session).length === 0)
     return null;
 
   return session;
