@@ -4,7 +4,9 @@
 let session = {};
 
 module.exports.create = (info) => {
-  session = info;
+  if (this.get() === null) {
+    session = info;
+  }
 };
 
 module.exports.destroy = () => {

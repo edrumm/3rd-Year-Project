@@ -32,6 +32,7 @@ Router.post('/login', (req, res) => {
     .then(response => {
 
       if (response.ok){
+        session.create({ username: req.body.username });
         res.json({ ok: true, err: null });
         res.end();
 
@@ -91,7 +92,7 @@ Router.get('/logout', (req, res) => {
 });
 
 // Returns the current session info if any
-Router.get('/sesison', (req, res) => {
+Router.get('/session', (req, res) => {
 
   res.json({ session: session.get() });
 
