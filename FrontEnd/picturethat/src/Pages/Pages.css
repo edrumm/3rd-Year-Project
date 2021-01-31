@@ -7,11 +7,12 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    box-shadow: 0px 0px 5px 5px lightgray;
+    border: solid 1px #efefef;
     
     background-image: white;
     border-radius: 5px;
-    border-style: solid;
-    border-color: lightgray;
+    
   
     display: inline-block;
     flex-direction: column;
@@ -30,8 +31,8 @@
   
     background-image: white;
     border-radius: 5px;
-    border-style: solid;
-    border-color: lightgray;
+    box-shadow: 0px 0px 5px 5px lightgray;
+    border: solid 1px #efefef;
   
     display: flex;
     flex-direction: column;
@@ -57,7 +58,9 @@ button{
     font-family: 'Roboto', sans-serif;
     font-size: 1.2vw;
     display: inline-block;
+    text-align: center;
 }
+
 
 .whiteSpace{
     padding: 20px 30px; 
@@ -85,12 +88,8 @@ button{
     height: 10rem;
 }
 
-
-
-
 /* -----------------------line between OR to create division between login and guest --------------*/
 
-/* --------------------------------------------------------------------------------------------------*/
 .or{
     margin: 10px 40px 18px;
     flex-direction: row;
@@ -158,29 +157,6 @@ input {
 
 input:hover {
     outline: none;
-}
-
-/*-----------------------Image Wrap ---------------------------------------*/
-.imageWrap{
-    overflow: hidden;
-    height: 0;
-    padding: 20% 0;
-    position: relative;
-}
-
-/* .imageWrap img{
-    min-width: 100%;
-    min-height: 100%;
-    max-width: 150%;
-    position: absolute;
-    top: 0;
-    left: 0;
-} */ */
-
-.imageGrid {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin: 20px auto;
 }
 
 /*https://stackoverflow.com/questions/15557627/heading-with-horizontal-line-on-either-side*/

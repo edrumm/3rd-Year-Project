@@ -1,28 +1,35 @@
 .imageFeed{
-    display: inline-block;
+    display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 616px;
-    height: 714px;
+    min-width: 43.75rem;
+    max-height: 43.75rem;
 
+    margin-top: 50px;
     position: absolute;
     left: calc(40vw - 10px);
-    top: 55%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 5px;
-    border: solid 1px #efefef;
-  
+}
+
+.post {
+    
+    padding-bottom: 4%;
+    border-radius: 15px;
 }
 
 .image{
-    border-radius: 5px;
-    height: 616px;
-    width: 614px;
+    max-height: 43.75rem;
+    max-width: 100%;
+    margin-bottom: -4px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0px -2px 7px 3px lightgray;
 }
 
-/* for testing Feed Classname*/
+/* Commented to resolve merge conflict
 .image2{
     border-radius: 5px;
     height: 616px;
@@ -31,19 +38,71 @@
 
 .profile {
     width: 616px;
-    height: 50px;
+    height: 50px; */
+
+.info {
+    max-width: 100%;
+    max-height: 685px;
     border: solid 1px #efefef;
-    flex-direction: row;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    box-shadow: 0px 2px 7px 3px lightgray;
 }
 
 .profileimage {
-    border-radius: 40px;
-    height: 45px;
-    width: 45px;
-    align-content: left;
+    border-radius: 44px;
+    height: 44px;
+    width: 44px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .profileName {
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
+}
+
+.column{
+    float: left;
+}
+
+.user {
+    text-align: bottom;
+    width: 30%;
+}
+
+.postDetails {
+    margin-top: 10px;
+    text-align: left;
+    width: 70%;
+}
+
+@media screen and (max-width: 700px) {
+
+    .imageFeed{
+        min-width: 37.5rem;
+    }
+
+}
+
+@media screen and (max-width: 610px) {
+    .imageFeed{
+        min-width: 570px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .imageFeed{
+        min-width: 400px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .imageFeed{
+        min-width: 350px;
+    }
 }

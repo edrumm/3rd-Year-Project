@@ -169,7 +169,7 @@ const SignUp  = () => {
                     {/*need to add hyperlink text to Terms of Services and Privacy Policy */}
 
                     
-                        <button 
+                        <button
                             id="signInButton" 
                             className="button"
                             onClick= {validateForm}>

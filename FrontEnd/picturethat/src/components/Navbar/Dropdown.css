@@ -8,6 +8,7 @@
     top: 50px;
     list-style: none;
     text-align: start;
+    z-index: 1;
   }
   
   .dropdown a {
@@ -39,14 +40,6 @@
     font-size: 1.2rem;
   }
   
+
+
   
-  
-  @media screen and (max-width: 700px) {
-
-    .dropdown {  
-        display: block;
-        bottom: 100%;
-    }
-
-
-  }

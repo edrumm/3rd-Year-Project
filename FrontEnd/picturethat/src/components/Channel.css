@@ -1,0 +1,74 @@
+.Channel {
+    align-items: center;
+    text-align: center;
+    min-width: 43.75rem;
+    min-height: 30rem;
+
+    margin-top: 40px;
+    position: absolute;
+    left: calc(40vw - 10px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Channel::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.column{
+    float: left;
+}
+
+.channelPhoto{
+    width: 60%;
+    
+}
+
+.channelInfo{
+    padding-top: 25%;
+    width: 40%;
+    height: 33rem;
+    text-align: left;
+    border: solid 2px #efefef;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-left: none;
+    box-shadow: 0px -2px 7px 3px lightgray;
+}
+
+.label{
+    padding-left: 45px;
+    
+}
+
+.Channelimg {
+    max-height: 33rem;
+    max-width: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    box-shadow: 0px -2px 7px 3px lightgray;
+    border-right: none;
+}
+
+.button{
+    padding: 1% 3%;
+    width: 200px;
+    height: 35px;
+    margin-top: 8px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 8px;
+
+    border: 1px solid transparent;
+    color: white;
+    background-color: #0095f6;
+    background-color: rgba(var(--d69,0,149,246),1);
+    border-radius: 5px;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2vw;
+    display: inline-block;
+}

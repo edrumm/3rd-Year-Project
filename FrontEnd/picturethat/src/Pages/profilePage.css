@@ -6,10 +6,117 @@
     }
 }
 
+/* --------------------------- profile picture ------------------------ */
+
+.profileimageProfile {
+    border-radius: 75px;
+    height: 150px;
+    width: 150px;
+    align-content: left;
+}
+
+/* ------------------------ Personal Info Header ----------------------- */
 .personalsection{
-    
+    margin: 100px auto;
     margin-bottom: 0;
     flex-grow: 1;
-    margin: 0 auto 30px;
     max-width: 935px;
+    left: 50%;
+    height: 230px;
+}
+.column{
+    float: left;
+}
+
+.personalsection::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.personalsectionLeft{
+    text-align: center;
+    height: 230px;
+    width: 25%;
+}
+
+.personalsectionRight{
+    text-align: center;
+    height: 230px;
+    width: 75%;
+}
+
+/* ------------------- div divider for personal section ---------------*/
+
+.leftPersonalSide{
+    height: 130px;
+    width: 50%;
+}
+
+.rightPersonalSide{
+    height: 130px;
+    width: 50%;
+}
+
+.column1{
+    float: left;
+}
+
+.pageButtons{
+    height: 150px;
+}
+
+.content{
+    height: 70px;
+    text-align: center;
+}
+
+/* ----------------------- span Line -------------------------------- */
+
+.spanLine{
+    margin-left: 95px;
+    margin-right: 95px;
+    flex-direction: row;
+    overflow: hidden;
+}
+.spanLine> span{
+   position: relative;
+   display: inline-block;
+}
+.spanLine > span:before, .spanLine > span:after{
+   content: '';
+   position: absolute;
+   top: 50%;
+   border-bottom: 2px solid;
+   width: 100vw;
+}
+
+/*-----------------------Image Wrap ---------------------------------------*/
+.imageWrap{
+    border-radius: 5px;
+    overflow: hidden;
+    height: 0;
+    padding: 50% 0;
+    position: relative;
+    opacity: 0.8;
+}
+
+.imageWrap img{
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.imageGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    margin-bottom: 100px;
+    grid-gap: 40px;
+    text-align: center;
 }
