@@ -1,8 +1,8 @@
 .Channel {
     align-items: center;
     text-align: center;
-    width: 43.75rem;
-    height: 30rem;
+    min-width: 43.75rem;
+    max-height: 30rem;
     flex-direction: column;
 
     margin-top: 40px;
@@ -28,10 +28,11 @@
     
 }
 
+
 .channelInfo{
     padding-top: 25%;
-    width: 40%;
-    height: 19.5rem;
+    max-width: 40%;
+    max-height: 19.5rem;
     text-align: left;
     border: solid 2px #efefef;
     border-top-right-radius: 15px;
