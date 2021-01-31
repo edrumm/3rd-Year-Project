@@ -18,7 +18,7 @@ const AchievementsPage = () => {
             
             <div className= "achievementBlock">
                 <label> {doc.achievement} </label>
-                <label className="fas fa-check"/>
+                <label className={doc.class}/>
                 <div className="divider"></div>
             </div>
 

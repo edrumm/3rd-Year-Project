@@ -2,12 +2,13 @@
     align-items: center;
     text-align: center;
     min-width: 43.75rem;
-    min-height: 30rem;
+    max-height: 30rem;
+    flex-direction: column;
 
     margin-top: 40px;
     position: absolute;
     left: calc(40vw - 10px);
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
@@ -27,16 +28,17 @@
     
 }
 
+
 .channelInfo{
     padding-top: 25%;
-    width: 40%;
-    height: 33rem;
+    max-width: 40%;
+    max-height: 19.5rem;
     text-align: left;
     border: solid 2px #efefef;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
     border-left: none;
-    box-shadow: 0px -2px 7px 3px lightgray;
+    box-shadow: 2px 0px 4px 3px lightgray;
 }
 
 .label{
@@ -49,7 +51,7 @@
     max-width: 100%;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
-    box-shadow: 0px -2px 7px 3px lightgray;
+    box-shadow: -2px 0px 4px 3px lightgray;
     border-right: none;
 }
 
