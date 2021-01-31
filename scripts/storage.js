@@ -1,4 +1,4 @@
-// Might use this file for separating storage and db
+// https://cloudinary.com/
 // https://stackoverflow.com/questions/60922198/firebase-storage-upload-image-file-from-node-js
 
 /*
@@ -9,10 +9,10 @@
     - ?
 */
 
-module.exports.upload = () => {
+module.exports.upload = (bucket, img) => {
 
 };
 
-module.exports.download = () => {
+module.exports.download = (bucket, url) => {
 
 };
