@@ -1,12 +1,10 @@
 .Channel {
-    display: flex;
-    flex-direction: column;
     align-items: center;
     text-align: center;
     min-width: 43.75rem;
-    min-height: 43.75rem;
+    min-height: 30rem;
 
-    margin-top: 50px;
+    margin-top: 40px;
     position: absolute;
     left: calc(40vw - 10px);
     top: 50%;
@@ -14,10 +12,35 @@
     transform: translate(-50%, -50%);
 }
 
-.Channelimg {
-    max-height: 33.75rem;
-    max-width: 100%;
+.Channel::after{
+    content: "";
+    display: table;
+    clear: both;
+}
 
+.column{
+    float: left;
+}
+
+.channelPhoto{
+    width: 60%;
+}
+
+.channelInfo{
+    padding-top: 25%;
+    width: 40%;
+    height: 33rem;
+    text-align: left;
+}
+
+.label{
+    padding-left: 45px;
+    
+}
+
+.Channelimg {
+    max-height: 33rem;
+    max-width: 100%;
 }
 
 .button{

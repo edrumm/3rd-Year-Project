@@ -10,18 +10,23 @@ import olubi from '../components/ImageFiles/File_000.jpeg';
         return(
             <>
             <div className="Channel">
-            <div>
-            <img src={olubi} alt="" className="Channelimg"/>
-            </div>
-            <label className="">Channel Name: </label>
-            <br/>
-            <label className="">No of Followers: </label>
-            <br/>
-            <label className="">No of Pictures: </label>
-            <br/>
-            <button className="button">See Channel</button>
+
+                <div className="column channelPhoto">
+                    <img src={olubi} alt="" className="Channelimg"/>
+                </div>
+                
+                <div className="column channelInfo">
+                    <label className="label">Channel Name: </label>
+                    <br/>
+                    <label className="label">No of Followers: </label>
+                    <br/>
+                    <label className="label">No of Pictures: </label>
+                    <br/>
+                    <button className="button">See Channel</button>
+                </div>
 
             </div>
+            
             </>
             
 
