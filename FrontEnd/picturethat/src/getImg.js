@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { firedatabase } from './firebase';
 
-const GetData = (collection) => {
+const GetImg = (collection) => {
     const [docs, setDocs] = useState([]);
 
     useEffect(() => {
         const unsub = firedatabase.collection(collection)
+            .orderBy('uploaddate', 'desc')
             .onSnapshot((snap) => {
                 let documents = [];
                 snap.forEach(doc => {
@@ -20,4 +21,4 @@ const GetData = (collection) => {
     return { docs };
 }
 
-export default GetData;
+export default GetImg;

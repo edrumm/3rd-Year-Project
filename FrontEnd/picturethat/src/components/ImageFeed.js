@@ -1,10 +1,10 @@
 import React from 'react';
 import olubi from '../components/ImageFiles/File_000.jpeg';
 import './ImageFeed.css';
-import getData from '../getData';
+import getImg from '../getImg';
 
 const ImageFeed = () => {
-    const { docs } = getData('posts');
+    const { docs } = getImg('posts');
     console.log(docs);
 
     return (

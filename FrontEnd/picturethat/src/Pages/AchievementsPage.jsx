@@ -6,17 +6,19 @@ import getData from '../getData';
 
 const AchievementsPage  = () => {
 
-    const { docs } = getData('achivements');
+    const { docs } = getData('achievements');
     console.log(docs);
 
     return (
         <>
         <Navbar></Navbar>
         <div className="AchivementsPage">
+        { docs && docs.map(doc => (
         <div>
-        <label>Received 10 total score </label>
+        <label> {doc.achievement} </label>
         <lable className="fas fa-check"/>
         </div>
+        ))}
         </div>
 
         </>
