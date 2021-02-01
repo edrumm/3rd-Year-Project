@@ -27,7 +27,8 @@ module.exports.login = async (db, data) => {
 // DB signup function
 module.exports.signup = async (db, data) => {
 
-  let user = await db.collection('users').doc(data.email);
+  let user = await db.collection('users').doc(data.email)
+  let doc = user.get();
 
   if (doc.exists) {
     // redirect to login
