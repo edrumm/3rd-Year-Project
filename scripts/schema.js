@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const login = Joi.object({
-  username: Joi.string().required(),
+  email: Joi.string().required(),
   password: Joi.string().required()
 });
 
@@ -9,11 +9,6 @@ const signup = Joi.object({
   email:
     Joi.string()
     .email()
-    .required(),
-  username:
-    Joi.string()
-    .min(5)
-    .max(25)
     .required(),
   password:
     Joi.string()

@@ -63,6 +63,23 @@ const SignIn  = () => {
             console.log(password);
         }
 
+        const data = {
+            email: email,
+            password: password
+          };
+        const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+        
+          fetch('/api/login', options)
+          .then(response => response.json())
+          .then(json => console.log(json))
+          .catch(err => console.error(err));
+
         setEmailError(emailError);
         setPasswordError(passwordError);
 
@@ -72,59 +89,6 @@ const SignIn  = () => {
     const handleLogin = () => {
         <Link to="/PictureThat">Sign In</Link>
     }
-
-    /*const data = {
-        username: userEmailInput,
-        password: userPasswordInput
-      };
-<<<<<<< Updated upstream
-      
-        const options = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        };
-      
-        fetch('/api/login', options)
-        .then(response => response.json())
-        .then(json => console.log(json))
-        .catch(err => console.error(err));
-        */
-=======
-      if(isValid === true){
-        //fetch block that will take a valid (meets criteria) email & password and check if
-        //there is an entry in the database with those details.
-        const data = {
-            email: email,
-            password: password
-          };
-          
-            //needed for fetch to work, always keep!
-            const options = {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-            };
-          
-            fetch('/api/login', options)
-            .then(response => response.json())
-            .then(json => console.log(json))
-            .catch(err => console.error(err));
-
-        }
-        return isValid;
-    }
-
-    const handleLogin = () => {
-        <Link to="/PictureThat">Sign In</Link>
-    }
-
-
->>>>>>> Stashed changes
     return (
             
         <div className= "signInWelcome">

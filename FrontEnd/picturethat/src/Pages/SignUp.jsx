@@ -92,7 +92,7 @@ const SignUp  = () => {
                   body: JSON.stringify(data)
                 };
               
-                fetch('/api/login', options)
+                fetch('/api/signup', options)
                 .then(response => response.json())
                 .then(json => isValid = json.body)
                 .catch(err => console.error(err));
