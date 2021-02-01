@@ -10,7 +10,6 @@ const login = Joi.object({
 const signup = Joi.object({
   email:
     Joi.string()
-    .email()
     .required(),
   password:
     Joi.string()
