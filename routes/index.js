@@ -1,12 +1,14 @@
 const express = require('express');
 const Router = express.Router();
 
-const session = require('./../scripts/session');
+const { Session } = require('./../scripts/session');
 const firebase = require('./../scripts/firebase');
 const storage = require('./../scripts/storage');
 const schema = require('./../scripts/schema');
 const { db, bucket } = require('./../scripts/firebase-auth');
 
+// Session object
+let session = new Session();
 
 // ROUTES
 // Test route
@@ -32,7 +34,7 @@ Router.post('/login', (req, res) => {
     .then(response => {
 
       if (response.ok){
-        session.create({ username: req.body.username });
+        session.user = req.body.username;
         res.json({ ok: true, err: null });
         res.end();
 
@@ -94,7 +96,7 @@ Router.get('/logout', (req, res) => {
 // Returns the current session info if any
 Router.get('/session', (req, res) => {
 
-  res.json({ session: session.get() });
+  res.json({ session: session.user });
 
 });
 
