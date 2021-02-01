@@ -1,23 +1,23 @@
 // const session = require('express-session');
 
 // store who is logged in etc
-let session = {};
+module.exports.Session = class Session {
 
-module.exports.create = (info) => {
-  if (this.get() === null) {
-    session = info;
+  constructor() {
+    this.user = null;
   }
-};
 
-module.exports.destroy = () => {
-  session = {};
-};
+  get user() {
+    return this._user;
+  }
 
-module.exports.get = () => {
-  if (Object.keys(session).length === 0)
-    return null;
+  set user(u) {
+    this._user = u;
+  }
 
-  return session;
+  destroy() {
+    this._user = null;
+  }
 };
 
 // Come back to this later
