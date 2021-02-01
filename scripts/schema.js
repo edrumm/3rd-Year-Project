@@ -2,8 +2,7 @@ const Joi = require('joi');
 
 //Jake Edit: Changed all mentions of username in login to email to match revised database
 const login = Joi.object({
-  // email: Joi.string().required(),
-  username: Joi.string().required(),
+  email: Joi.string().required(),
   password: Joi.string().required()
 });
 
@@ -13,15 +12,10 @@ const signup = Joi.object({
     Joi.string()
     .email()
     .required(),
-  username:
-    Joi.string()
-    .min(5)
-    .max(25)
-    .required(),
   password:
     Joi.string()
     .max(30)
-    .min(8)
+    .min(6)
     .required(),
   confirmPassword: Joi.ref('password')
 });

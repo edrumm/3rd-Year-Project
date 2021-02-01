@@ -5,8 +5,7 @@ const hash = require('./hash');
 //Jake Edit: Changed all mentions of username in in/up to email to match revised database
 module.exports.login = async (db, data) => {
 
-  // let user = await db.collection('users').doc(data.email);
-  let user = await db.collection('users').doc(data.username);
+  let user = await db.collection('users').doc(data.email);
   let doc = await user.get();
 
   if (!doc.exists) {
@@ -16,8 +15,8 @@ module.exports.login = async (db, data) => {
 
   // let pw = await hash.match(data.password, doc.data().password) - todo
 
-  if (user.id === data.username && doc.data().password === data.password) {
-    return { ok: true, user: data.username, err: null };
+  if (user.id === data.email && doc.data().password === data.password) {
+    return { ok: true, err: null };
   }
 
   // login unsuccessful
@@ -28,17 +27,14 @@ module.exports.login = async (db, data) => {
 // DB signup function
 module.exports.signup = async (db, data) => {
 
-  // let user = await db.collection('users').doc(data.email);
-  let user = await db.collection('users').doc(data.username);
-  let doc = await user.get();
+  let user = await db.collection('users').doc(data.email);
 
   if (doc.exists) {
     // redirect to login
     return { ok: false, err: 'Account already exists. Log in instead?' };
   }
 
-  // await db.collection('users').doc(data.email).set({
-  await db.collection('users').doc(data.username).set({
+  await db.collection('users').doc(data.email).set({
     email: data.email,
     followed_channels: ['channels/feed'],
     followers: [],
