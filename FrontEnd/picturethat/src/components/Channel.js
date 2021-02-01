@@ -8,7 +8,9 @@ import bird from '../components/ImageFiles/bechir-kaddech-6RgFFPEHbLY-unsplash.j
 
 
     function Channel() {
-       
+        // const { docs } = getImg('channels');
+        // console.log(docs);
+
         return(
             <>
             <div className="Channel">
