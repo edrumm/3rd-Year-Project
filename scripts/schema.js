@@ -13,7 +13,7 @@ const signup = Joi.object({
   password:
     Joi.string()
     .max(30)
-    .min(8)
+    .min(6)
     .required(),
   confirmPassword: Joi.ref('password')
 });
