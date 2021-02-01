@@ -78,12 +78,6 @@ const SignUp  = () => {
         console.log(isValid);
 
         if(isValid === true){
-
-        }
-        
-        if(isValid === false){
-        }
-        
         //fetch block that will take a valid (meets criteria) email & password and then create
         //an entry in the database with those details.
         const data = {
@@ -105,8 +99,7 @@ const SignUp  = () => {
             .then(json => console.log(json))
             .catch(err => console.error(err));
 
-
-
+        }
         return isValid;
     }
 
