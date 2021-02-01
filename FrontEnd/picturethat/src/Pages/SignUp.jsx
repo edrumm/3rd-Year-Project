@@ -78,7 +78,24 @@ const SignUp  = () => {
         console.log(isValid);
 
         if(isValid === true){
-
+            const data = {
+                email: email,
+                password: password
+              };
+              
+                //needed for fetch to work, always keep!
+                const options = {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+                };
+              
+                fetch('/api/login', options)
+                .then(response => response.json())
+                .then(json => isValid = json.body)
+                .catch(err => console.error(err));
         }
         
         if(isValid === false){
