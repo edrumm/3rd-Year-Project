@@ -130,13 +130,13 @@ const SignIn  = () => {
                     onChange= {(e) => {setPassword(e.target.value)}}
                 />
 
-                <button
+<Link to="/PictureThat"><button
                     id="signInButton"
                     className="button"
                     type= "submit"
                     onClick= {handleLogin}>
                     Sign In
-                </button>
+                </button></Link>
 
                 <div className="whiteSpace"></div>
 
