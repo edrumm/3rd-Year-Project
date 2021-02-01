@@ -1,4 +1,4 @@
-
+/*
 const data = {
   username: "placeholder_user_1",
   password: "myPass123$"
@@ -16,3 +16,4 @@ const data = {
   .then(response => response.json())
   .then(json => console.log(json))
   .catch(err => console.error(err));
+*/

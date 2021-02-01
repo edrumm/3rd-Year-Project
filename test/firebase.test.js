@@ -41,11 +41,11 @@ describe('Get Test', () => {
 describe('Login', () => {
   it('DB login', () => {
     return firebase.login(db, {username: 'placeholder_user_1', password: 'myPass123$'})
-    .then(result => assert.isTrue(result));
+    .then(result => assert.isTrue(result.ok));
   });
 
   it('Nonexistant DB login', () => {
     return firebase.login(db, {username: 'placeholder_user_2', password: 'xyz123'})
-    .then(result => assert.isFalse(result));
+    .then(result => assert.isFalse(result.ok));
   });
 });

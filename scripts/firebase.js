@@ -17,12 +17,7 @@ module.exports.login = async (db, data) => {
   // let pw = await hash.match(data.password, doc.data().password) - todo
 
   if (user.id === data.username && doc.data().password === data.password) {
-    const info = {
-      username: data.username
-      // add other fields for posts etc...
-    };
-
-    return { ok: true, info: info, err: null };
+    return { ok: true, user: data.username, err: null };
   }
 
   // login unsuccessful
