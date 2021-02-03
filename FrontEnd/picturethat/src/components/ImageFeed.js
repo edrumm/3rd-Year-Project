@@ -1,5 +1,5 @@
 import React from 'react';
-import dog from '../components/ImageFiles/jamie-street-uNNCs5kL70Q-unsplash.jpg';
+import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './ImageFeed.css';
 import getImg from '../getImg';
 
