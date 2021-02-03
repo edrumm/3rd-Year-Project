@@ -5,6 +5,8 @@ html, body{
     font-family: Arial, Helvetica, sans-serif;
     color: #222;
 }  
+
+
 .bot-mar{
     margin-bottom: 0px;
 }
@@ -22,7 +24,7 @@ html, body{
     height: auto;
 }
 .parallax{
-    background: url("img/img3.jpg"); 
+    background: url("img/code.jpg"); 
     height: 70%;
     background-attachment: fixed;
     background-position: center;
