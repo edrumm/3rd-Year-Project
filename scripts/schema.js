@@ -1,6 +1,5 @@
 const Joi = require('joi');
 
-//Jake Edit: Changed all mentions of username in login to email to match revised database
 const login = Joi.object({
   // email: Joi.string().required(),
   username: Joi.string().required(),

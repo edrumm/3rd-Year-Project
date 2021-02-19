@@ -1,8 +1,6 @@
 const hash = require('./hash');
 
 // DB login function
-
-//Jake Edit: Changed all mentions of username in in/up to email to match revised database
 module.exports.login = async (db, data) => {
 
   // let user = await db.collection('users').doc(data.email);
@@ -83,8 +81,20 @@ module.exports.update = async (db, data, id, collection) => {
 
 };
 
-// DB delete
-// https://stackoverflow.com/questions/52048204/firestore-delete-document-and-all-documents-referencing-it
+/* DB delete
+  https://stackoverflow.com/questions/52048204/firestore-delete-document-and-all-documents-referencing-it
+
+  Ewan note:
+  This will be REALLY complicated. Will have to implement recursive delete.
+  - Store user to be deleted
+  - Delete all comments and child comments of parent comments from the user
+  - Iterate all users' posts, deleting all comments followed by the post itself
+  - All accounts / channels this user follows will have to be automatically unfollowed 
+    (wipe followed_accounts etc...)
+  - Likewise, for users that follow this account, all followers of this account
+    will have to automatically unfollow it
+  - Finally, remove the entry of this user from firebase
+*/
 module.exports.deleteAccount = async (db, id) => {
   let user = await db.collection('users').doc(id).get();
   let posts = user.data().posts;

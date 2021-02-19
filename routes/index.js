@@ -11,7 +11,7 @@ const { db, bucket } = require('./../scripts/firebase-auth');
 let session = new Session();
 
 // ROUTES
-// Test route
+// Test ONLY, ping this route to test setup, should return 'Ok!'
 Router.post('/test', (req, res) => {
   res.json({ test: 'Ok!' });
 });
@@ -73,22 +73,52 @@ Router.post('/signup', (req, res) => {
   }
 });
 
-// TODO
+/*
+  Ewan edit:
+  Started thinking about thjese, shouldn't be too much of an issue
+  Commented the code out just now as it will cause an error if called -
+  as they don't have any async code yet
+  General idea though: storage.upload returns a Promise with an error or
+  success message
+ */
 Router.post('/upload', (req, res) => {
 
-  // ...
+  /*
+
+  storage.upload(db, bucket, req.img)
+  .then(response => {
+    if (response.ok) {
+      res.json({ ok: true, err: null });
+      res.end();
+
+    } else {
+      res.json({ ok: false, err: response.err });
+      res.end();
+    }
+  })
+  .catch(err => res.json(ok: false, err: err));
+
+  */
 
 });
 
 Router.post('/download', (req, res) => {
 
-  // ...
+  /*
+
+  storage.download(bucket, req.url)
+  .then()
+  .catch(err => res.json(ok: false, err: err));
+
+  */
 
 });
 
 Router.get('/logout', (req, res) => {
+
   session.destroy();
 
+  // Anything else?
   // ...
 
 });
