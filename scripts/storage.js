@@ -9,10 +9,19 @@
     - ?
 */
 
-module.exports.upload = (bucket, img) => {
+const firebase = require('./firebase');
+
+/*
+  Ewan edit / notes:
+  
+  Should this function accept a path and then proceed to read the image file using
+  fs for example, OR, should it be read client (React) side and just take an image
+  as the img parameter??
+*/
+module.exports.upload = /* async */ (db, bucket, img) => {
 
 };
 
-module.exports.download = (bucket, url) => {
+module.exports.download = /* async */ (db, bucket, url) => {
 
 };
