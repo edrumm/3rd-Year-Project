@@ -16,15 +16,6 @@ Router.post('/test', (req, res) => {
   res.json({ test: 'Ok!' });
 });
 
-
-/*
-  Login route: validate login, send to Firebase
-
-  Could try and implement ES6 {} notation to get values from firebase.login:
-  const { ok, err } = firebase.login(...)
-
-  Not sure how this would work with .then() though ?
-*/
 Router.post('/login', (req, res) => {
 
   try {
