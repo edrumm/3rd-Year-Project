@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './Pages.css';
+import logo from './logo.png';
 
 const ForgotPassword  = () => {
 
@@ -11,6 +12,7 @@ const ForgotPassword  = () => {
     return (
         <div className= "signInWelcome">
             <form onSubmit = {onSubmitForgot}>
+            <img src={logo} alt="" className="logoimg" />
             <div>
                 <h1>Forgot Password</h1>
             </div>
