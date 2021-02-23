@@ -10,7 +10,7 @@ const ImageUpload = () => {
     const [url, setUrl] = useState("");
     const [error, setError] = useState(null);
     const[title, setTitle] = useState('');
-    const[description, setDescription] = useState('');
+    const[channel, setChannel] = useState('');
     const[loc, setLoc] = useState('');
     const[localimg, setLocalimg] = useState(null);
 
@@ -51,7 +51,7 @@ const ImageUpload = () => {
                         console.log(url);
                         setUrl(url); 
                         const uploaddate = timestamp();
-                        collection.add({ url: url, uploaddate, title, loc, description});
+                        collection.add({ url: url, uploaddate, title, loc, channel});
                     });
             }     
             
@@ -74,7 +74,7 @@ const ImageUpload = () => {
         <a className="text" >Details</a>
         <input type="text" className="inputboxT" placeholder="Caption" value= {title} onChange= {(e) => {setTitle(e.target.value)}}/>
         <input type="text" className="inputboxT" placeholder="Location" value= {loc} onChange= {(e) => {setLoc(e.target.value)}}/>
-        <input type="text" className="inputboxT" placeholder="Channel" value= {description} onChange= {(e) => {setDescription(e.target.value)}}/>
+        <input type="text" className="inputboxT" placeholder="channel" value= {channel} onChange= {(e) => {setChannel(e.target.value)}}/>
        
         <Link to="/PictureThat" onClick={handleUpload}><button className="button">Post</button></Link>
         </div>

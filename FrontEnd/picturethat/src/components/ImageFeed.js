@@ -29,7 +29,7 @@ const ImageFeed = () => {
                         <br></br>
                         <label>Location: {doc.loc} </label>
                         <br></br>
-                        <label>Channel: {doc.description} </label>
+                        <label>Channel: {doc.channel} </label>
                         <br></br>
                         <label className="">Score:</label>
                     </div>
