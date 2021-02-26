@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import './Pages.css';
 import logo from './logo.png';
 import {useState} from 'react';
+import Footer from '../components/footer';
 
 const SignIn  = () => {
 
@@ -98,7 +99,7 @@ const SignIn  = () => {
 
 
     return (
-            
+        <>
         <div className= "signInWelcome">
             <div>
                 <img src={logo} alt="" className="logoimg" />
@@ -155,6 +156,8 @@ const SignIn  = () => {
                 </form>
             </div>
         </div>
+        <Footer />
+        </>
     )
 
 
