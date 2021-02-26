@@ -30,6 +30,7 @@
     max-height: 4rem;
     max-width: 100%;
     border: solid 1px lightgray;
+    border-bottom: none;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     display: flex;
@@ -44,7 +45,7 @@
     border: solid 1px lightgray;
     border-top: none;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     padding: 10px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
@@ -67,6 +68,14 @@
 
 .column{
     float: left;
+}
+
+.comments{
+    border-top: solid 1px lightgray;
+}
+
+.inputbox{
+    width: 70px%;
 }
 
 .user {

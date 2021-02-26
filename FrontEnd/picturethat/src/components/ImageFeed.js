@@ -34,17 +34,17 @@ const ImageFeed = () => {
                     <div className="postDetailsContainer">
 
                     <div className="">
+                        <label className="">Score:</label>
+                        <br></br>
                         <label>Caption: {doc.title} </label>
                         <br></br>
                         <label>Channel: {doc.channel} </label>
-                        <br></br>
-                        <label className="">Score:</label>
                         <br></br>
                         <label>Date</label>
                     </div>
                 </div>
                 <div className="comments">
-                <input type="text" className="inputboxT" placeholder="Add a comment"></input>
+                <input type="text" className="inputbox" placeholder="Add a comment"></input>
                 </div>
             </div>
         </div>
