@@ -1,6 +1,7 @@
 import React from 'react';
 import ChangePassword from '../components/ChangePassword';
 import Navbar from '../components/Navbar/Navbar';
+import Footer from '../components/footer';
 
 const Settings = () => {
 
@@ -8,6 +9,7 @@ const Settings = () => {
         <>
         <Navbar></Navbar>
         <ChangePassword></ChangePassword>
+        <Footer />
         </>
     );
 };

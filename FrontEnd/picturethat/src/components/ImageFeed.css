@@ -15,7 +15,7 @@
 }
 
 .post {
-    
+
     padding-bottom: 4%;
     border-radius: 15px;
 }
@@ -24,22 +24,31 @@
     max-height: 43.75rem;
     max-width: 100%;
     margin-bottom: -4px;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    box-shadow: 0px -2px 7px 3px lightgray;
 }
 
-.info {
-    max-height: 43.75rem;
+.topinfo{
+    max-height: 4rem;
     max-width: 100%;
-    border: solid 1px #efefef;
+    border: solid 1px lightgray;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    /* box-shadow: 0px -2px 7px 3px lightgray; */
+    
+}
+
+.bottominfo {
+    max-height: 9rem;
+    max-width: 100%;
+    border: solid 1px lightgray;
     border-top: none;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 10px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    box-shadow: 0px 2px 7px 3px lightgray;
+   /* box-shadow: 0px 2px 7px 3px lightgray; */
 }
 
 .profileimage {
@@ -47,6 +56,7 @@
     height: 44px;
     width: 44px;
     margin-top: 10px;
+    margin-left: 10px;
     margin-bottom: 10px;
 }
 
@@ -62,6 +72,8 @@
 .user {
     text-align: bottom;
     width: 30%;
+    display: flex;
+    flex-direction: row;
 }
 
 .postDetails {
@@ -69,6 +81,50 @@
     text-align: left;
     width: 70%;
 }
+
+@media screen and (max-height: 900px) {
+    .imageFeed{
+        margin-top: 100px;
+        
+    }
+}
+
+@media screen and (max-height: 790px) {
+    .imageFeed{
+        margin-top: 110px;
+        
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .imageFeed{
+        margin-top: 130px;
+        
+    }
+}
+
+@media screen and (max-height: 690px) {
+    .imageFeed{
+        margin-top: 150px;
+        
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .imageFeed{
+        margin-top: 170px;
+        
+    }
+}
+
+@media screen and (max-height: 590px) {
+    .imageFeed{
+        margin-top: 200px;
+        
+    }
+}
+
+
 
 @media screen and (max-width: 700px) {
 

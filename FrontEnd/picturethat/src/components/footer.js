@@ -14,6 +14,7 @@ import './footer.css';
                     <a href="https://lucasarenaterry.github.io/CompanyWebsite/"><div>About</div></a>
                     <a href=""><div>Terms and conditions</div></a>
                     <a><div>Contact</div></a>
+                    <a href=""><div>Help</div></a>
                 </div>
                 <div>© 2021 PictureThat from Pronto All Rights Reserved.</div>
             </footer>

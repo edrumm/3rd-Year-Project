@@ -73,3 +73,45 @@
     font-size: 1.2vw;
     display: inline-block;
 }
+
+@media screen and (max-height: 900px) {
+    .Channel{
+        margin-top: 100px;
+        
+    }
+}
+
+@media screen and (max-height: 790px) {
+    .Channel{
+        margin-top: 110px;
+        
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .Channel{
+        margin-top: 130px;
+        
+    }
+}
+
+@media screen and (max-height: 690px) {
+    .Channel{
+        margin-top: 150px;
+        
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .Channel{
+        margin-top: 170px;
+        
+    }
+}
+
+@media screen and (max-height: 590px) {
+    .Channel{
+        margin-top: 200px;
+        
+    }
+}

@@ -11,28 +11,40 @@ const ImageFeed = () => {
         <div className= "imageFeed">
             { docs && docs.map(doc => (
                 <div class="post" key={doc.id}>
-                    <div>
-                        <img src={doc.url} alt="" className="image"/>
-                    </div>
-            
-                    <div className="info">
-
                     <div className="postDetailsContainer">
-                        <div className=" column user">
+                    <div className="topinfo">
+                    <div className="user">
                             <img src={dog} alt="" className="profileimage"/>
                             <br></br>
                             <label className="profileName">Username</label>
-                        </div>
+                            </div>
+                            <br></br>
+                            <label>Location: {doc.loc} </label>
+                            <br></br>
+                            <div>Report</div>
 
-                    <div className=" column postDetails">
+                    </div>
+                    </div>
+
+                    <div>
+                        <img src={doc.url} alt="" className="image"/>
+                    </div>
+                    
+                    <div className="bottominfo">
+                    <div className="postDetailsContainer">
+
+                    <div className="">
                         <label>Caption: {doc.title} </label>
-                        <br></br>
-                        <label>Location: {doc.loc} </label>
                         <br></br>
                         <label>Channel: {doc.channel} </label>
                         <br></br>
                         <label className="">Score:</label>
+                        <br></br>
+                        <label>Date</label>
                     </div>
+                </div>
+                <div className="comments">
+                <input type="text" className="inputboxT" placeholder="Add a comment"></input>
                 </div>
             </div>
         </div>
