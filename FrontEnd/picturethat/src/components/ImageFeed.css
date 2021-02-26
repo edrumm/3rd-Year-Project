@@ -15,7 +15,7 @@
 }
 
 .post {
-    
+
     padding-bottom: 4%;
     border-radius: 15px;
 }
@@ -24,33 +24,32 @@
     max-height: 43.75rem;
     max-width: 100%;
     margin-bottom: -4px;
+}
+
+.topinfo{
+    max-height: 4rem;
+    max-width: 100%;
+    border: solid 1px lightgray;
+    border-bottom: none;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    box-shadow: 0px -2px 7px 3px lightgray;
+    display: flex;
+    flex-direction: row;
+    /* box-shadow: 0px -2px 7px 3px lightgray; */
+    
 }
 
-/* Commented to resolve merge conflict
-.image2{
-    border-radius: 5px;
-    height: 616px;
-    width: 614px;
-}
-
-.profile {
-    width: 616px;
-    height: 50px; */
-
-.info {
-    max-height: 43.75rem;
+.bottominfo {
+    max-height: 9rem;
     max-width: 100%;
-    border: solid 1px #efefef;
+    border: solid 1px lightgray;
     border-top: none;
     display: flex;
     flex-direction: column;
     padding: 10px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
-    box-shadow: 0px 2px 7px 3px lightgray;
+   /* box-shadow: 0px 2px 7px 3px lightgray; */
 }
 
 .profileimage {
@@ -58,6 +57,7 @@
     height: 44px;
     width: 44px;
     margin-top: 10px;
+    margin-left: 10px;
     margin-bottom: 10px;
 }
 
@@ -70,9 +70,19 @@
     float: left;
 }
 
+.comments{
+    border-top: solid 1px lightgray;
+}
+
+.inputbox{
+    width: 70px%;
+}
+
 .user {
     text-align: bottom;
     width: 30%;
+    display: flex;
+    flex-direction: row;
 }
 
 .postDetails {
@@ -80,6 +90,50 @@
     text-align: left;
     width: 70%;
 }
+
+@media screen and (max-height: 900px) {
+    .imageFeed{
+        margin-top: 100px;
+        
+    }
+}
+
+@media screen and (max-height: 790px) {
+    .imageFeed{
+        margin-top: 110px;
+        
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .imageFeed{
+        margin-top: 130px;
+        
+    }
+}
+
+@media screen and (max-height: 690px) {
+    .imageFeed{
+        margin-top: 150px;
+        
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .imageFeed{
+        margin-top: 170px;
+        
+    }
+}
+
+@media screen and (max-height: 590px) {
+    .imageFeed{
+        margin-top: 200px;
+        
+    }
+}
+
+
 
 @media screen and (max-width: 700px) {
 
