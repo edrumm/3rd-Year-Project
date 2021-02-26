@@ -45,7 +45,7 @@ const ImageFeed = () => {
                     </div>
                 </div>
                 <div className="comments">
-                <input type="text" className="inputbox" placeholder="Add a comment"></input>
+                <input type="text" className="commentinput" placeholder="Add a comment"></input>
                 </div>
             </div>
         </div>
