@@ -9,8 +9,6 @@
     - ?
 */
 
-const firebase = require('./firebase');
-
 /*
   Ewan edit / notes:
 
@@ -26,9 +24,9 @@ const firebase = require('./firebase');
     ewan:
     changed function to be async
 */
-module.exports.upload = async (data, bucket, img) => {
-  const uploadTask = await firebase.ref(`images/${img.name}`).put(img);
-  const collection = await firebase.collection('posts');
+module.exports.upload = async (db, data, bucket, img) => {
+  const uploadTask = await db.ref(`images/${img.name}`).put(img);
+  const collection = await db.collection('posts');
   uploadTask.on(
       "state_changed",
       snapshot => {},
