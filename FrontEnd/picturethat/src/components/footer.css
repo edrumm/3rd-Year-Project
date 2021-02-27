@@ -10,6 +10,14 @@
 }
 
 .links{
+    margin-bottom: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.link{
+    padding-left: 10px;
+    padding-right: 10px;
     
-  
 }

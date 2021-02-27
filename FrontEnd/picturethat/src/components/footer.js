@@ -11,12 +11,15 @@ import './footer.css';
             <>
             <footer className="footer">
                 <div className="links">
-                    <a href="https://lucasarenaterry.github.io/CompanyWebsite/"><div>About</div></a>
-                    <a href=""><div>Terms and conditions</div></a>
-                    <a><div>Contact</div></a>
-                    <a href=""><div>Help</div></a>
+                    <a className="link" href="https://lucasarenaterry.github.io/CompanyWebsite/"><div>About</div></a>
+                    <br />
+                    <a className="link" href=""><div>Terms and conditions</div></a>
+                    <br />
+                    <a className="link"><div>Contact</div></a>
+                    <br />
+                    <a className="link" href=""><div>Help</div></a>
                 </div>
-                <div>© 2021 PictureThat from Pronto All Rights Reserved.</div>
+                <div>© 2021 PictureThat by Pronto. All Rights Reserved.</div>
             </footer>
             </>
             

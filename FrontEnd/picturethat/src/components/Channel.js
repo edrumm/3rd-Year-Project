@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Channel.css';
 import cat from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
+import {Link} from 'react-router-dom';
 
 
 
@@ -26,7 +27,7 @@ import cat from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
                     <br/>
                     <label className="label">No of Pictures: 1</label>
                     <br/>
-                    <button className="button">See Channel</button>
+                    <Link to="/PictureThat/channelphotospage" ><button className="button">See Channel</button></Link>
                 </div>
                 </div>
 
