@@ -16,6 +16,7 @@ import AchievementsPage from './Pages/AchievementsPage';
 import ChannelsPage from './Pages/ChannelsPage';
 import Settings from './Pages/Settings';
 import ChannelPhotos from './Pages/channelphotospage';
+import TermsAndConditions from './Pages/TermsAndConditions';
 
 function App() {
   
@@ -38,6 +39,7 @@ function App() {
           <Route exact path= "/PictureThat/ChannelsPage" component={ChannelsPage} />
           <Route exact path= "/PictureThat/Settings" component={Settings} />
           <Route exact path= "/PictureThat/channelphotospage" component={ChannelPhotos} />
+          <Route exact path= "/PictureThat/TermsAndConditions" component={TermsAndConditions}/>
 
           <Route exact path="/404" component={NotFound} />
           <Redirect to="/404"/> {/*Redirect used to redirect users to 404 page if an invalid url is typed in the url searchbar */}

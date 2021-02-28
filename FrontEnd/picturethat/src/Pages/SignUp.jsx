@@ -160,10 +160,7 @@ const SignUp  = () => {
                         value="Accept" 
                     />
 
-                    <label className="termsAndConditions"> I agree to the Terms of Services and Privacy Policy</label><br></br>
-
-                    {/*need to add hyperlink text to Terms of Services and Privacy Policy */}
-
+                    <label className="termsAndConditions"> I agree to the <Link to="/PictureThat/TermsAndConditions">Terms of Services and Privacy Policy</Link></label><br></br>
                     
                         <button
                             id="signInButton" 
