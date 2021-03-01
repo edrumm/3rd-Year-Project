@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 
+import './ChangePassword.css';
+
 
 const ChangePassword = () => {
 
@@ -45,8 +47,11 @@ const ChangePassword = () => {
 
     return (
         <>
-        <div>
+        <div className="changePassword">
             <form>
+
+                <label>Change Password</label>
+
                 <input 
                         type="password" 
                         id="passwordInput" 
@@ -70,10 +75,10 @@ const ChangePassword = () => {
                         id="signInButton" 
                         className="button"
                         onClick= {validatePassword}>
-                            Submit Changes
+                            Submit
                     </button>
                     
-                    <Link to="/ForgotPassword">Forgot Password</Link>
+                    <Link to="/ForgotPassword">Forgot Password?</Link>
                 </form>
             </div>
         </>
