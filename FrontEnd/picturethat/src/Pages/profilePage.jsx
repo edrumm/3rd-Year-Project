@@ -12,6 +12,7 @@ import pic3 from '../components/ImageFiles/picture3.jpg';
 import pic4 from '../components/ImageFiles/picture4.jpg';
 import pic5 from '../components/ImageFiles/picture5.jpg';
 import pic6 from '../components/ImageFiles/picture6.jpg';
+import Footer from '../components/footer';
 
 //import 'antd/dist/antd.css';
 
@@ -69,6 +70,8 @@ const profilePage  = () => {
             <div className="imageWrap"><img src={pic5} alt=""/></div>
             <div className="imageWrap"><img src={pic6} alt=""/></div>
         </div>
+
+        <Footer/>
     </>
     );
 };

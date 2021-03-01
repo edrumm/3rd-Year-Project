@@ -7,7 +7,6 @@ import Footer from '../components/footer';
 
 const SignIn  = () => {
 
-
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
 
@@ -64,22 +63,32 @@ const SignIn  = () => {
             console.log(password);
         }
 
-        const data = {
-            email: email,
-            password: password
-          };
-        const options = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-          };
-        
-          fetch('/api/login', options)
-          .then(response => response.json())
-          .then(json => console.log(json))
-          .catch(err => console.error(err));
+
+        if(isValid == true){
+            const data = {
+                email: email,
+                password: password
+            };
+            const options = {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+            
+            fetch('/api/login', options)
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.error(err));
+
+        handleLogin();  
+
+        }
+
+        if(isValid == false){
+
+        }
 
         setEmailError(emailError);
         setPasswordError(passwordError);
@@ -87,9 +96,10 @@ const SignIn  = () => {
         return isValid;
     }
 
-    const handleLogin = () => {
-        <Link to="/PictureThat">Sign In</Link>
-    }
+     const handleLogin = () => {
+         <Link to="/PictureThat">Sign In</Link>
+     }
+     
     return (
         <>
         <div className= "signInWelcome">
@@ -123,13 +133,13 @@ const SignIn  = () => {
                     onChange= {(e) => {setPassword(e.target.value)}}
                 />
 
-<Link to="/PictureThat"><button
+                <button
                     id="signInButton"
                     className="button"
                     type= "submit"
-                    onClick= {handleLogin}>
+                    onClick= {() => {validateForm(); }}>
                     Sign In
-                </button></Link>
+                </button>
 
                 <div className="whiteSpace"></div>
 

@@ -97,6 +97,7 @@ const SignUp  = () => {
                 .then(response => response.json())
                 .then(json => isValid = json.body)
                 .catch(err => console.error(err));
+
         }
         
         if(isValid === false){
@@ -160,19 +161,14 @@ const SignUp  = () => {
                         value="Accept" 
                     />
 
-                    <label className="termsAndConditions"> I agree to the Terms of Services and Privacy Policy</label><br></br>
-
-                    {/*need to add hyperlink text to Terms of Services and Privacy Policy */}
-
+                    <label className="termsAndConditions"> I agree to the <Link to="/PictureThat/TermsAndConditions">Terms of Services and Privacy Policy</Link></label><br></br>
                     
                         <button
-                            id="signInButton" 
-                            className="button"
-                            onClick= {validateForm}>
-                                <Link to="/PictureThat">Sign Up</Link>
+                            id="signInButton"
+                            onClick= {validateForm} 
+                            className="button">Sign Up
                         </button>
-                    
-
+                
                     <p>Have an Account?</p><Link to="/SignIn">Sign In</Link>
                     </form>
             </div>
