@@ -17,6 +17,11 @@
     
 }
 
+.headpart{
+    display: flex;
+    flex-direction: row;
+}
+
 .card {
     display: flex;
     flex-direction: row;
@@ -39,6 +44,9 @@
 }
 
 .imagestyle {
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: -2px 0px 4px 3px lightgray;
     max-height: 31.75rem;
     max-width: 47.625rem;
 }
@@ -48,8 +56,9 @@
     max-height: 31.75rem;
     max-width: 47.625rem;
     border: solid 1px lightgray;
-
-
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 2px 0px 4px 3px lightgray;
     padding: 10px;
    
    /* box-shadow: 0px 2px 7px 3px lightgray; */
