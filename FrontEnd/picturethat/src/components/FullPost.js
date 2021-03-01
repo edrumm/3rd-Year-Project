@@ -28,14 +28,18 @@ const FullPost = () => {
                             
                         <label>Location: </label>
                         <br></br>
-                        <label className="">Score:</label>
-                        <br></br>
                         <label>Caption: </label>
                         <br></br>
                         <label>Channel: </label>
-                        <br></br>
-                        <label>Date</label>
-                        <br></br>
+                        
+                        <div className="likesection">
+                            <div className="like">
+                                <button className="postbutton">Like</button>
+                                <label className="">Score:</label>
+                            </div>
+                                <label>Date</label>
+                        </div>
+
                         <div className="addcomment">
                         <input type="text" className="inputText" placeholder="Add a comment"></input>
                         <button className="postbutton">Post</button>
