@@ -17,18 +17,17 @@ const FullPost = () => {
                     <div className="fullpostinfo">
                     
 
-                    <div className="">
+                    <div className="headpart">
                     
                             <img src={dog} alt="" className="profileimg"/>
                             <br></br>
                             <label className="profileN">Username</label>
-                    </div>
-                            <br></br>
-                            <label>Location: </label>
                             <br></br>
                             <div>Report</div>
-
-        
+                    </div>
+                            
+                        <label>Location: </label>
+                        <br></br>
                         <label className="">Score:</label>
                         <br></br>
                         <label>Caption: </label>
