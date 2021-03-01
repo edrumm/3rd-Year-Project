@@ -37,8 +37,10 @@ const FullPost = () => {
                         <br></br>
                         <label>Date</label>
                         <br></br>
+                        <div className="addcomment">
                         <input type="text" className="inputText" placeholder="Add a comment"></input>
-                
+                        <button className="postbutton">Post</button>
+                        </div>
             </div>
         </div>
         
