@@ -39,6 +39,7 @@
     
     margin-top: 7px;
     border-radius: 20px;
+    border-left: none;
     border: solid 1px lightgray;
     background-color: white;
 }
@@ -51,6 +52,16 @@
     max-width: 47.625rem;
 }
 
+.likesection{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.like{
+    display: flex;
+    flex-direction: row;
+}
 
 .fullpostinfo {
     max-height: 31.75rem;
