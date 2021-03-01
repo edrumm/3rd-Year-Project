@@ -2,9 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 
-import './ChangePassword.css';
-
-
 const ChangePassword = () => {
 
     const[changePassword, setChangePassword] = useState('');
@@ -57,7 +54,7 @@ const ChangePassword = () => {
                         id="passwordInput" 
                         className="inputbox" 
                         placeholder="Enter Password" 
-                        autoFocus required
+                        required
                         value= {changePassword}
                         onChange= {(e) => {setChangePassword(e.target.value)}} 
                 />

@@ -75,10 +75,12 @@ const Settings = () => {
         <>
         <Navbar></Navbar>
 
-        <div className="SearchBar">
+        <div className="searchBarContainer">
             <input 
                 type="text"
                 placeholder="Search..."
+                autoFocus
+                className="SearchBar"
                 onChange= {filterSearchBar}/>
         </div>
 
@@ -88,18 +90,18 @@ const Settings = () => {
                 <h3>{option.header.name}</h3>
 
                 <div>
-                    {option.values.map((value) => <div key={value.name}>
+                    {option.values.map((value) => <div className="settingContents" key={value.name}>
                         <ul>
                             <li>
                                 <h6>{value.name}</h6>
                                 <p>{value.description}</p>
-                                <div>{value.tags}</div>
+                                <div className="inputFields">{value.tags}</div>
                             </li>
                         </ul>
-                        </div>
+                    </div>
                     )}
                 </div>
-                </div>
+            </div>
             )}
         </div>
 

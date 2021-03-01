@@ -99,6 +99,7 @@ const SignIn  = () => {
      const handleLogin = () => {
          <Link to="/PictureThat">Sign In</Link>
      }
+     
     return (
         <>
         <div className= "signInWelcome">

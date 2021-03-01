@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 
-import './ChangePassword.css';
 
 const ChangeEmail = () => {
 
@@ -58,7 +57,7 @@ const ChangeEmail = () => {
                         id="passwordInput" 
                         className="inputbox" 
                         placeholder="Enter Email" 
-                        autoFocus required
+                        required
                         value= {changeEmail}
                         onChange= {(e) => {setChangeEmail(e.target.value)}} 
                 />
