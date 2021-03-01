@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './ImageFeed.css';
 import getImg from '../getImg';
+import {Link} from 'react-router-dom';
+//import PopUp from '../components/PostPopUp';
 
 const ImageFeed = () => {
     const { docs } = getImg('posts');
     console.log(docs);
 
+    const [showPopUp, setShowPopUp] = useState(false);
+
+    const openPopUp = () => {
+        setShowPopUp(prev => !prev)
+    };
+      
     return (
         
         <div className= "imageFeed">
@@ -44,8 +52,10 @@ const ImageFeed = () => {
                         <label>Date</label>
                     </div>
                 </div>
-                <div className="comments">
-                <input type="text" className="commentinput" placeholder="Add a comment"></input>
+                <div >
+                <div>
+                    <Link to="/PictureThat/FullPostPage"><button>Add Comment</button></Link>
+                </div>
                 </div>
             </div>
         </div>
@@ -59,3 +69,7 @@ export default ImageFeed;
 //the source bellow was used to help set up how to send and get data from database
 //https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia 
 //https://www.youtube.com/watch?v=vUe91uOx7R0
+
+//<input type="text" className="commentinput" placeholder="Add a comment"></input>
+//<button onClick={openPopUp}>Show Modal</button>
+//<PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp} />

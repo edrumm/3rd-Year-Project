@@ -1,10 +1,8 @@
-.imageFeed{
-    display: flex;
-    flex-direction: column;
+.FullPost{
     align-items: center;
     text-align: center;
-    min-width: 43.75rem;
-    max-height: 43.75rem;
+    max-width: 63.5rem;
+    max-height: 31.75rem;
 
     margin-top: 50px;
     position: absolute;
@@ -14,45 +12,50 @@
     transform: translate(-50%, -50%);
 }
 
-.post {
-
-    padding-bottom: 4%;
-    border-radius: 15px;
-}
-
-.image{
-    max-height: 43.75rem;
-    max-width: 100%;
-    margin-bottom: -4px;
-}
-
-.topinfo{
-    max-height: 4rem;
-    max-width: 100%;
-    border: solid 1px lightgray;
-    border-bottom: none;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    display: flex;
-    flex-direction: row;
-    /* box-shadow: 0px -2px 7px 3px lightgray; */
+.postbutton{
+    width: 3.5rem;
     
 }
 
-.bottominfo {
-    max-height: 9rem;
-    max-width: 100%;
-    border: solid 1px lightgray;
-    border-top: none;
+.card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    border-radius: 15px;
+}
+
+.addcomment{
+    display: flex;
+    flex-direction: row;
+}
+
+.inputText{
+    width: 20rem;
+    height: 38px;
+    
+    margin-top: 7px;
+    border-radius: 20px;
+    border: solid 1px lightgray;
+    background-color: white;
+}
+
+.imagestyle {
+    max-height: 31.75rem;
+    max-width: 47.625rem;
+}
+
+
+.fullpostinfo {
+    max-height: 31.75rem;
+    max-width: 47.625rem;
+    border: solid 1px lightgray;
+
+
     padding: 10px;
-    border-bottom-left-radius: 15px;
-    border-bottom-right-radius: 15px;
+   
    /* box-shadow: 0px 2px 7px 3px lightgray; */
 }
 
-.profileimage {
+.profileimg {
     border-radius: 44px;
     height: 44px;
     width: 44px;
@@ -61,17 +64,21 @@
     margin-bottom: 10px;
 }
 
-.profileName {
+.profileN {
     padding-bottom: 0.5rem;
     padding-top: 0.5rem;
 }
 
-.column{
-    float: left;
+
+.commentinput{
+    width: 50%;
+    height: 38px;
+    margin: 3px 40px 3px;
+    margin-top: 7px;
+    border-radius: 5px;
+    border: solid 1px lightgray;
+    background-color: white;
 }
-
-
-
 
 .user {
     text-align: bottom;

@@ -15,7 +15,7 @@ import {Link} from 'react-router-dom';
             <div className="Channel">
 
 
-                <div className="card">
+                <div >
                 <div className="column channelPhoto">
                     <img src={cat} alt="" className="Channelimg"/>
                 </div>

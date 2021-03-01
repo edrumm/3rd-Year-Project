@@ -2,7 +2,6 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 
-
 const ChangePassword = () => {
 
     const[changePassword, setChangePassword] = useState('');
@@ -45,14 +44,17 @@ const ChangePassword = () => {
 
     return (
         <>
-        <div>
+        <div className="changePassword">
             <form>
+
+                <label>Change Password</label>
+
                 <input 
                         type="password" 
                         id="passwordInput" 
                         className="inputbox" 
                         placeholder="Enter Password" 
-                        autoFocus required
+                        required
                         value= {changePassword}
                         onChange= {(e) => {setChangePassword(e.target.value)}} 
                 />
@@ -70,10 +72,10 @@ const ChangePassword = () => {
                         id="signInButton" 
                         className="button"
                         onClick= {validatePassword}>
-                            Submit Changes
+                            Submit
                     </button>
                     
-                    <Link to="/ForgotPassword">Forgot Password</Link>
+                    <Link to="/ForgotPassword">Forgot Password?</Link>
                 </form>
             </div>
         </>

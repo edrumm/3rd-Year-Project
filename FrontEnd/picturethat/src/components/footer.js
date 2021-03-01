@@ -13,7 +13,7 @@ import './footer.css';
                 <div className="links">
                     <a className="link" href="https://lucasarenaterry.github.io/CompanyWebsite/"><div>About</div></a>
                     <br />
-                    <a className="link" href=""><div>Terms and conditions</div></a>
+                    <a className="link" href="http://localhost:3000/PictureThat/TermsAndConditions"><div>Terms and conditions</div></a>
                     <br />
                     <a className="link"><div>Contact</div></a>
                     <br />

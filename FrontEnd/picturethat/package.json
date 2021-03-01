@@ -9,11 +9,15 @@
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.6.0",
     "antd": "^4.11.1",
+    "bcrypt": "^5.0.0",
     "firebase": "^8.2.4",
+    "firebase-admin": "^9.4.2",
+    "joi": "^17.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
