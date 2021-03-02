@@ -71,6 +71,13 @@ module.exports.insert = async (db, data, collection) => {
 
 };
 
+
+module.exports.postUpload = async (db, data, url) => {
+
+  // TODO: 
+
+};
+
 // DB update
 module.exports.update = async (db, data, id, collection) => {
 
@@ -79,11 +86,6 @@ module.exports.update = async (db, data, id, collection) => {
 };
 
 /* DB delete
-  https://stackoverflow.com/questions/52048204/firestore-delete-document-and-all-documents-referencing-it
-
-  Ewan note:
-  Done ?
-
   Needs tested
 */
 module.exports.deleteAccount = async (db, id) => {

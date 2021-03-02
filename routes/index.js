@@ -64,6 +64,21 @@ Router.post('/signup', (req, res) => {
   }
 });
 
+
+// Fetch / post
+Router.get('/get', (req, res) => {
+
+
+
+});
+
+
+Router.post('/post', (req, res) => {
+
+
+
+});
+
 /*
   Ewan edit:
   Started thinking about thjese, shouldn't be too much of an issue
