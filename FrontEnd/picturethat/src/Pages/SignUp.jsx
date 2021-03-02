@@ -4,6 +4,7 @@ import './Pages.css';
 import logo from './logo.png';
 import {useState} from 'react';
 import Footer from '../components/footer';
+import {useHistory} from 'react-router-dom';
 
 const SignUp  = () => {
 
@@ -17,6 +18,8 @@ const SignUp  = () => {
 
     //boolean isValid to check if credentials are valid set to true
     var isValid = false;
+
+    const history = useHistory();
 
     const checkEmail = (userEmailInput) => {
 
@@ -97,6 +100,8 @@ const SignUp  = () => {
                 .then(response => response.json())
                 .then(json => isValid = json.body)
                 .catch(err => console.error(err));
+
+            history.push("/PictureThat");
 
         }
         
