@@ -85,7 +85,7 @@ const SignIn  = () => {
             .then(json => console.log(json))
             .catch(err => console.error(err));
 
-            history.push('/http://localhost:3000/PictureThat');
+            history.push("/PictureThat");
 
         }
 
