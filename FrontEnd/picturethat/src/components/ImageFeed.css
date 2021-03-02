@@ -26,6 +26,24 @@
     margin-bottom: -4px;
 }
 
+.buttonfield{
+    border-top: solid 1px lightgray;
+}
+
+.far.fa-comment {
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 2rem;
+}
+
+.far.fa-heart {
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 2rem;
+}
+
 .topinfo{
     max-height: 4rem;
     max-width: 100%;

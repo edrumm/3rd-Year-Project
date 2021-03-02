@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './FullPost.css';
 
@@ -7,6 +8,10 @@ import './FullPost.css';
 const FullPost = () => {
    
     return (
+        <>
+        <div className="backbutton">
+        <Link to="/PictureThat" className="fas fa-arrow-left" />
+        </div>
         <div className= "FullPost">
                 <div class="card">
                     
@@ -25,7 +30,6 @@ const FullPost = () => {
                             <br></br>
                             <div>Report</div>
                     </div>
-                            
                         <label>Location: </label>
                         <br></br>
                         <label>Caption: </label>
@@ -34,13 +38,14 @@ const FullPost = () => {
                         
                         <div className="likesection">
                             <div className="like">
-                                <button className="postbutton">Like</button>
+                                <a className="far fa-heart" />
                                 <label className="">Score:</label>
                             </div>
                                 <label>Date</label>
                         </div>
 
                         <div className="addcomment">
+                       
                         <input type="text" className="inputText" placeholder="Add a comment"></input>
                         <button className="postbutton">Post</button>
                         </div>
@@ -48,6 +53,7 @@ const FullPost = () => {
         </div>
         
     </div>
+    </>
     )
 }
 
