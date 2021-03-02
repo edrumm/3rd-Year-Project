@@ -101,7 +101,7 @@ const SignUp  = () => {
                 .then(json => isValid = json.body)
                 .catch(err => console.error(err));
 
-            history.push('/http://localhost:3000/PictureThat');
+            history.push("/PictureThat");
 
         }
         
