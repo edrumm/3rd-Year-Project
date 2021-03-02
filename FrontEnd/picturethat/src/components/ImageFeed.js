@@ -52,8 +52,9 @@ const ImageFeed = () => {
                     </div>
                 </div>
                 <div >
-                <div>
-                    <Link to="/PictureThat/FullPostPage"><button>Add Comment</button></Link>
+                <div className="buttonfield">
+                    <a className="far fa-heart" />
+                    <Link to="/PictureThat/FullPostPage" className="far fa-comment" />
                 </div>
                 </div>
             </div>
