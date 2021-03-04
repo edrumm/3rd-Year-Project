@@ -71,13 +71,6 @@ module.exports.insert = async (db, data, collection) => {
 
 };
 
-
-module.exports.postUpload = async (db, data, url) => {
-
-  // TODO: 
-
-};
-
 // DB update
 module.exports.update = async (db, data, id, collection) => {
 
