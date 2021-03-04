@@ -61,6 +61,9 @@
 .commentfield{
     border-top: solid 1px lightgray;
     border-bottom: solid 1px lightgray;
+    scroll-behavior: smooth;
+    overflow : scroll;
+    height: 15rem;
 }
 
 .backbutton{
@@ -105,9 +108,16 @@
 
 .profileN {
     padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
+    padding-top: 1.3rem;
+    padding-left: 0.5rem;
+    
 }
 
+.report{
+    padding-bottom: 0.5rem;
+    padding-top: 1.3rem;
+    padding-left: 15rem;
+}
 
 .commentinput{
     width: 50%;

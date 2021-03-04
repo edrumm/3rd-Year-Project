@@ -28,7 +28,7 @@ const FullPost = () => {
                             <br></br>
                             <label className="profileN">Username</label>
                             <br></br>
-                            <div>Report</div>
+                            <lable className="report">Report</lable>
                     </div>
                         <label>Location: </label>
                         <br></br>
@@ -37,7 +37,21 @@ const FullPost = () => {
                         <label>Channel: </label>
                         
                         <div className="commentfield">
-                            
+                            <div>Username</div>
+                            <div>Date</div>
+                            <div>Comment</div>
+                            <div>Username</div>
+                            <div>Date</div>
+                            <div>Comment</div>
+                            <div>Username</div>
+                            <div>Date</div>
+                            <div>Comment</div>
+                            <div>Username</div>
+                            <div>Date</div>
+                            <div>Comment</div>
+                            <div>Username</div>
+                            <div>Date</div>
+                            <div>Comment</div>
                         </div>
 
                         <div className="likesection">
