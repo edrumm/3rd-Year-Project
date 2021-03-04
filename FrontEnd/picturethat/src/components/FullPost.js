@@ -36,6 +36,10 @@ const FullPost = () => {
                         <br></br>
                         <label>Channel: </label>
                         
+                        <div className="commentfield">
+                            
+                        </div>
+
                         <div className="likesection">
                             <div className="like">
                                 <a className="far fa-heart" />
@@ -45,7 +49,6 @@ const FullPost = () => {
                         </div>
 
                         <div className="addcomment">
-                       
                         <input type="text" className="inputText" placeholder="Add a comment"></input>
                         <button className="postbutton">Post</button>
                         </div>

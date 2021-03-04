@@ -58,6 +58,11 @@
     
 }
 
+.commentfield{
+    border-top: solid 1px lightgray;
+    border-bottom: solid 1px lightgray;
+}
+
 .backbutton{
   position: absolute;
   left: 1.5rem;
