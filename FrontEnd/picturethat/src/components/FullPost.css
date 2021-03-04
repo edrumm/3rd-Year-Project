@@ -26,6 +26,17 @@
     flex-direction: row;
 }
 
+.imginfo{
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.date{
+    display: flex;
+    padding-left: 1rem;
+}
+
 .card {
     display: flex;
     flex-direction: row;
@@ -60,6 +71,14 @@
     display: flex;
     flex-direction: column;
     
+}
+
+.channel{
+    padding-left: 15rem;
+}
+
+.caption{
+    padding-left: 1rem;
 }
 
 .singlecomment{
@@ -119,7 +138,6 @@
 }
 
 .profileN {
-    padding-bottom: 0.5rem;
     padding-top: 1.3rem;
     padding-left: 0.5rem;
     
@@ -129,6 +147,14 @@
     padding-bottom: 0.5rem;
     padding-top: 1.3rem;
     padding-left: 15rem;
+}
+
+.profilecard{
+    padding-top: 1.3rem;
+}
+
+.location{
+    font-size: 0.8rem;
 }
 
 .commentinput{

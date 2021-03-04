@@ -26,18 +26,23 @@ const FullPost = () => {
                     
                             <img src={dog} alt="" className="profileimg"/>
                             <br></br>
+                            <div className="profilecard">
                             <label className="profileN">Username</label>
+                            <br></br>
+                            <label className="location">Location: </label>
+                            </div>
                             <br></br>
                             <lable className="report">Report</lable>
                     </div>
-                        <label>Location: </label>
+                    <div>
+                        <div className="imginfo">
+                        <label className="caption">Caption: </label>
                         <br></br>
-                        <label>Caption: </label>
-                        <br></br>
-                        <label>Channel: </label>
-                        <br></br>
-                        <label>Date</label>
+                        <label className="channel">Channel: </label>
+                        </div>
                         
+                        <label className="date">Date</label>
+                    </div>  
                         <div className="commentfield">
                             <div className="singlecomment">
                             <div>Username</div>
