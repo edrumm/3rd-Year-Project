@@ -15,9 +15,13 @@
 }
 
 .post {
-
     padding-bottom: 4%;
     border-radius: 15px;
+}
+
+.location{
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 .image{
@@ -95,7 +99,7 @@
     padding-bottom: 0.5rem;
     padding-top: 1.3rem;
     cursor: pointer;
-    margin-left: 16rem;
+    margin-left: 6rem;
 }
 
 
