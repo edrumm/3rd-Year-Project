@@ -1,3 +1,5 @@
+// ALL TESTS OK AS OF 04/03/21
+
 const assert = require('chai').assert;
 const schema = require('./../scripts/schema');
 
