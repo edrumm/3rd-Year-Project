@@ -14,12 +14,26 @@
 
 .postbutton{
     width: 3.5rem;
-    
+}
+
+.score{
+    padding-top: 0.7rem;
 }
 
 .headpart{
     display: flex;
     flex-direction: row;
+}
+
+.imginfo{
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.date{
+    display: flex;
+    padding-left: 1rem;
 }
 
 .card {
@@ -31,6 +45,7 @@
 .addcomment{
     display: flex;
     flex-direction: row;
+   padding-left: 1rem;
 }
 
 .inputText{
@@ -55,7 +70,32 @@
 .likesection{
     display: flex;
     flex-direction: column;
+    padding-left: 1rem;
     
+}
+
+.channel{
+    padding-left: 15rem;
+}
+
+.caption{
+    padding-left: 1rem;
+}
+
+.singlecomment{
+    width: 20rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    border: solid 1.5px lightgray;
+    border-radius: 20px;
+}
+
+.commentfield{
+    border-top: solid 1.5px lightgray;
+    border-bottom: solid 1.5px lightgray;
+    scroll-behavior: smooth;
+    overflow : scroll;
+    height: 15rem;
 }
 
 .backbutton{
@@ -99,10 +139,24 @@
 }
 
 .profileN {
-    padding-bottom: 0.5rem;
-    padding-top: 0.5rem;
+    padding-top: 1.3rem;
+    padding-left: 0.5rem;
+    
 }
 
+.report{
+    padding-bottom: 0.5rem;
+    padding-top: 1.3rem;
+    padding-left: 16rem;
+}
+
+.profilecard{
+    padding-top: 1rem;
+}
+
+.location{
+    font-size: 0.8rem;
+}
 
 .commentinput{
     width: 50%;

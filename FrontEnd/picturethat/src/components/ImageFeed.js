@@ -25,12 +25,14 @@ const ImageFeed = () => {
                     <div className="user">
                             <img src={dog} alt="" className="profileimage"/>
                             <br></br>
-                            <label className="profileName">Username</label>
+                            <div className="profilecard">
+                            <label className="profileN">Username</label>
+                            <br></br>
+                            <label className="location">{doc.loc} </label>
+                            </div>
                             </div>
                             <br></br>
-                            <label>Location: {doc.loc} </label>
-                            <br></br>
-                            <div>Report</div>
+                            <lable className="report">Report</lable>
 
                     </div>
                     </div>
@@ -41,10 +43,12 @@ const ImageFeed = () => {
                     
                     <div className="bottominfo">
                     <div className="postDetailsContainer">
-
+                    <div className="buttonfield">
+                    <a className="far fa-heart" />
+                    <label className="">Score:</label>
+                    <Link to="/PictureThat/FullPostPage" className="far fa-comment" />
+                    </div>
                     <div className="">
-                        <label className="">Score:</label>
-                        <br></br>
                         <label>Caption: {doc.title} </label>
                         <br></br>
                         <label>Channel: {doc.channel} </label>
@@ -52,12 +56,7 @@ const ImageFeed = () => {
                         <label>Date</label>
                     </div>
                 </div>
-                <div >
-                <div className="buttonfield">
-                    <a className="far fa-heart" />
-                    <Link to="/PictureThat/FullPostPage" className="far fa-comment" />
-                </div>
-                </div>
+                
             </div>
         </div>
         ))}

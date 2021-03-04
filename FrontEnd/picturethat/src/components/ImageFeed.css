@@ -27,21 +27,21 @@
 }
 
 .buttonfield{
-    border-top: solid 1px lightgray;
+    border-bottom: solid 1px lightgray;
 }
 
 .far.fa-comment {
     color: black;
     text-decoration: none;
     padding: 0.5rem 0.2rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .far.fa-heart {
     color: black;
     text-decoration: none;
     padding: 0.5rem 0.2rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .topinfo{
