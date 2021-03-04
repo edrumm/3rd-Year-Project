@@ -13,9 +13,9 @@ import {Link} from 'react-router-dom';
         return(
             <>
             <div className="Channel">
+            <div class="card">
 
-
-                <div >
+                
                 <div className="column channelPhoto">
                     <img src={cat} alt="" className="Channelimg"/>
                 </div>
@@ -29,10 +29,10 @@ import {Link} from 'react-router-dom';
                     <br/>
                     <Link to="/PictureThat/channelphotospage" ><button className="button">See Channel</button></Link>
                 </div>
-                </div>
-
                 
 
+                
+            </div>
             </div>
             
             </>

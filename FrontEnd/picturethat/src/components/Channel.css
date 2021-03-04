@@ -1,11 +1,10 @@
 .Channel {
     align-items: center;
     text-align: center;
-    min-width: 43.75rem;
-    max-height: 30rem;
-    flex-direction: column;
+    max-width: 63.5rem;
+    max-height: 31.75rem;
 
-    margin-top: 40px;
+    
     position: absolute;
     left: calc(40vw - 10px);
     top: 30%;
@@ -23,14 +22,21 @@
     float: left;
 }
 
+.card {
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+}
+
 .channelPhoto{
     width: 60%;
     
 }
 
 .channelInfo{
+    
     padding-top: 25%;
-    max-width: 40%;
+    max-width: 47.625rem;
     height: 33rem;
     text-align: left;
     border: solid 2px #efefef;
@@ -38,6 +44,8 @@
     border-bottom-right-radius: 15px;
     border-left: none;
     box-shadow: 2px 0px 4px 3px lightgray;
+
+    
 }
 
 .label{

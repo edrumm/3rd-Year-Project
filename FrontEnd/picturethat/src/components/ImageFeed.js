@@ -32,7 +32,7 @@ const ImageFeed = () => {
                             </div>
                             </div>
                             <br></br>
-                            <lable className="report">Report</lable>
+                            <lable className="reportb">Report</lable>
 
                     </div>
                     </div>
@@ -45,10 +45,11 @@ const ImageFeed = () => {
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
                     <a className="far fa-heart" />
-                    <label className="">Score:</label>
                     <Link to="/PictureThat/FullPostPage" className="far fa-comment" />
                     </div>
                     <div className="">
+                        <label className="">Score:</label>
+                        <br></br>
                         <label>Caption: {doc.title} </label>
                         <br></br>
                         <label>Channel: {doc.channel} </label>
