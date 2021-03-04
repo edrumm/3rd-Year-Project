@@ -24,12 +24,14 @@ const ImageFeed = () => {
                     <div className="user">
                             <img src={dog} alt="" className="profileimage"/>
                             <br></br>
-                            <label className="profileName">Username</label>
+                            <div className="profilecard">
+                            <label className="profileN">Username</label>
+                            <br></br>
+                            <label className="location">{doc.loc} </label>
+                            </div>
                             </div>
                             <br></br>
-                            <label>Location: {doc.loc} </label>
-                            <br></br>
-                            <div>Report</div>
+                            <lable className="report">Report</lable>
 
                     </div>
                     </div>
