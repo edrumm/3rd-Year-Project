@@ -14,7 +14,6 @@
 
 .postbutton{
     width: 3.5rem;
-    
 }
 
 .score{
@@ -46,6 +45,7 @@
 .addcomment{
     display: flex;
     flex-direction: row;
+   padding-left: 1rem;
 }
 
 .inputText{
@@ -70,6 +70,7 @@
 .likesection{
     display: flex;
     flex-direction: column;
+    padding-left: 1rem;
     
 }
 
@@ -146,7 +147,7 @@
 .report{
     padding-bottom: 0.5rem;
     padding-top: 1.3rem;
-    padding-left: 15rem;
+    padding-left: 16rem;
 }
 
 .profilecard{
