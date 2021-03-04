@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { storage, firedatabase, timestamp } from "../firebase";
 import './UploadImage.css';
 import { Button } from '@material-ui/core';
+import upload from "../storage";
 
 const ImageUpload = () => {
 
@@ -35,28 +36,29 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
-        const uploadTask = storage.ref(`images/${image.name}`).put(image);
-        const collection = firedatabase.collection('posts');
-        uploadTask.on(
-            "state_changed",
-            snapshot => {},
-            error => {
-                console.log(error);
-            },
-            () => {
-                storage
-                    .ref("images")
-                    .child(image.name)
-                    .getDownloadURL()
-                    .then(url => { 
-                        console.log(url);
-                        setUrl(url); 
-                        const uploaddate = timestamp();
-                        collection.add({ url: url, uploaddate, title, loc, description});
-                    });
-            }     
+        // const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        // const collection = firedatabase.collection('posts');
+        // uploadTask.on(
+        //     "state_changed",
+        //     snapshot => {},
+        //     error => {
+        //         console.log(error);
+        //     },
+        //     () => {
+        //         storage
+        //             .ref("images")
+        //             .child(image.name)
+        //             .getDownloadURL()
+        //             .then(url => { 
+        //                 console.log(url);
+        //                 setUrl(url); 
+        //                 const uploaddate = timestamp();
+        //                 collection.add({ url: url, uploaddate, title, loc, description});
+        //             });
+        //     }     
             
-        );
+        // );
+        const {uploadimg} = upload(image, url, title, loc, description)
 
     };
 

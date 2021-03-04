@@ -26,28 +26,29 @@ const firebase = require('./firebase');
     ewan:
     changed function to be async
 */
-module.exports.upload = async (data, bucket, img) => {
-  const uploadTask = await firebase.ref(`images/${img.name}`).put(img);
+module.exports.upload = async (data) => {
+  const uploadTask = await firebase.ref(`images/${data.name}`).put(data.image);
   const collection = await firebase.collection('posts');
-  uploadTask.on(
-      "state_changed",
-      snapshot => {},
-      error => {
-          console.log(error);
-      },
-      () => {
+  const userpost = await firebase.collection('users');
+  const title = data.title;
+  const loc = data.loc;
+  const description = data.description;
+  error => {
+    console.log(error);
+  },
+  () => {
           storage
               .ref("images")
-              .child(img.name)
+              .child(data.name)
               .getDownloadURL()
               .then(url => {
                   console.log(url);
                   //return the url as part of data returned
                   const uploaddate = timestamp();
-                  collection.add({ url: url, uploaddate, data.title, data.loc, data.description});
+                  collection.add({ url: url, uploaddate, title, loc, description});
               });
       }
-
+  return{ok: true, err: "file not uploaded"};
 };
 
 module.exports.download = /* async */ (db, bucket, url) => {
