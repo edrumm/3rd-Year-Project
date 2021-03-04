@@ -4,6 +4,7 @@ import './Pages.css';
 import logo from './logo.png';
 import {useState} from 'react';
 import Footer from '../components/footer';
+import {useHistory} from 'react-router-dom';
 
 const SignIn  = () => {
 
@@ -17,6 +18,8 @@ const SignIn  = () => {
         e.preventDefault();
         const isValid = validateForm();
     }
+
+    const history = useHistory();
 
     const checkEmail = (userEmailInput) => {
 
@@ -82,7 +85,7 @@ const SignIn  = () => {
             .then(json => console.log(json))
             .catch(err => console.error(err));
 
-        handleLogin();  
+            history.push("/PictureThat");
 
         }
 
@@ -96,9 +99,6 @@ const SignIn  = () => {
         return isValid;
     }
 
-     const handleLogin = () => {
-         <Link to="/PictureThat">Sign In</Link>
-     }
      
     return (
         <>
