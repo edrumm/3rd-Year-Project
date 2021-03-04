@@ -1,3 +1,5 @@
+// ALL TESTS OK AS OF 04/03/21
+
 require('dotenv').config();
 const assert = require('chai').assert;
 const { db } = require('./../scripts/firebase-auth');

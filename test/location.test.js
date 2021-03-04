@@ -1,3 +1,5 @@
+// TESTS NOT RUNNING
+
 /*require(navigator.geolocation);
 import React, { Component } from "react";
 import { render } from "react-dom";

@@ -97,10 +97,10 @@ module.exports.deleteAccount = async (db, id) => {
 
 
   // foreach user post, delete all comments and post itself
-  posts.forEach(post => {
+  posts.forEach(async post => {
       let postComments = await db.collection('comments').where('post', '==', post.id);
 
-      postComments.forEach((comm => {
+      postComments.forEach(async comm => {
         module.exports.deleteComment(db, comm.id);
         module.exports.deletePost(db, post.id);
       });
