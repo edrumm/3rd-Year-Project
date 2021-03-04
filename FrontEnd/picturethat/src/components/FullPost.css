@@ -1,0 +1,253 @@
+.FullPost{
+    align-items: center;
+    text-align: center;
+    max-width: 63.5rem;
+    max-height: 31.75rem;
+
+    margin-top: 50px;
+    position: absolute;
+    left: calc(40vw - 10px);
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.postbutton{
+    width: 3.5rem;
+}
+
+.score{
+    padding-top: 0.7rem;
+}
+
+.headpart{
+    display: flex;
+    flex-direction: row;
+}
+
+.imginfo{
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: row;
+}
+
+.date{
+    display: flex;
+    padding-left: 1rem;
+}
+
+.card {
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+}
+
+.addcomment{
+    display: flex;
+    flex-direction: row;
+   padding-left: 1rem;
+}
+
+.inputText{
+    width: 20rem;
+    height: 38px;
+    
+    margin-top: 7px;
+    border-radius: 20px;
+    border-left: none;
+    border: solid 1px lightgray;
+    background-color: white;
+}
+
+.imagestyle {
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    box-shadow: -2px 0px 4px 3px lightgray;
+    max-height: 31.75rem;
+    max-width: 47.625rem;
+}
+
+.likesection{
+    display: flex;
+    flex-direction: column;
+    padding-left: 1rem;
+    
+}
+
+.channel{
+    padding-left: 15rem;
+}
+
+.caption{
+    padding-left: 1rem;
+}
+
+.singlecomment{
+    width: 20rem;
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
+    border: solid 1.5px lightgray;
+    border-radius: 20px;
+}
+
+.commentfield{
+    border-top: solid 1.5px lightgray;
+    border-bottom: solid 1.5px lightgray;
+    scroll-behavior: smooth;
+    overflow : scroll;
+    height: 15rem;
+}
+
+.backbutton{
+  position: absolute;
+  left: 1.5rem;
+  top: 5rem;
+
+}
+
+.fas.fa-arrow-left{
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.7rem;
+}
+
+.like{
+    display: flex;
+    flex-direction: row;
+}
+
+.fullpostinfo {
+    max-height: 31.75rem;
+    max-width: 47.625rem;
+    border: solid 1px lightgray;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 2px 0px 4px 3px lightgray;
+    padding: 10px;
+   
+   /* box-shadow: 0px 2px 7px 3px lightgray; */
+}
+
+.profileimg {
+    border-radius: 44px;
+    height: 44px;
+    width: 44px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.profileN {
+    padding-top: 1.3rem;
+    padding-left: 0.5rem;
+    
+}
+
+.report{
+    padding-bottom: 0.5rem;
+    padding-top: 1.3rem;
+    padding-left: 16rem;
+    cursor: pointer;
+}
+
+.profilecard{
+    padding-top: 1rem;
+}
+
+.location{
+    font-size: 0.8rem;
+}
+
+.commentinput{
+    width: 50%;
+    height: 38px;
+    margin: 3px 40px 3px;
+    margin-top: 7px;
+    border-radius: 5px;
+    border: solid 1px lightgray;
+    background-color: white;
+}
+
+.user {
+    text-align: bottom;
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+}
+
+.postDetails {
+    margin-top: 10px;
+    text-align: left;
+    width: 70%;
+}
+
+@media screen and (max-height: 900px) {
+    .imageFeed{
+        margin-top: 100px;
+        
+    }
+}
+
+@media screen and (max-height: 790px) {
+    .imageFeed{
+        margin-top: 110px;
+        
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .imageFeed{
+        margin-top: 130px;
+        
+    }
+}
+
+@media screen and (max-height: 690px) {
+    .imageFeed{
+        margin-top: 150px;
+        
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .imageFeed{
+        margin-top: 170px;
+        
+    }
+}
+
+@media screen and (max-height: 590px) {
+    .imageFeed{
+        margin-top: 200px;
+        
+    }
+}
+
+
+
+@media screen and (max-width: 700px) {
+
+    .imageFeed{
+        min-width: 37.5rem;
+    }
+
+}
+
+@media screen and (max-width: 610px) {
+    .imageFeed{
+        min-width: 570px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .imageFeed{
+        min-width: 400px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .imageFeed{
+        min-width: 350px;
+    }
+}

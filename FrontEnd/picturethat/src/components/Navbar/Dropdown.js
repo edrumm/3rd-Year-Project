@@ -14,7 +14,7 @@ function Dropdown() {
                     <li>
                         <Link to='/PictureThat/Settings' className="fas fa-cog b" href=""><a href="#/">Settings</a></Link>
                     </li>
-                    <li>
+                    <li onClick= {fetch('/api/logout').catch(err => console.error(err))}>
                         <Link to='/' class="fas fa-sign-out-alt" href="" ><a href="#/"> Logout</a></Link>
                     </li>
                 </ul>

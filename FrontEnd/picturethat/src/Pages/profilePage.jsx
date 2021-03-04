@@ -3,17 +3,16 @@ import Navbar from '../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
 import './profilePage.css';
 import './Pages.css';
-import ImageGrid from '../components/ImageGrid';
 
 /* import for image files DEMO */
-import logo from './logo.png';
-import olubi from '../components/ImageFiles/File_000.jpeg';
+import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import pic1 from '../components/ImageFiles/picture1.jpg';
 import pic2 from '../components/ImageFiles/picture2.jpg';
 import pic3 from '../components/ImageFiles/picture3.jpg';
 import pic4 from '../components/ImageFiles/picture4.jpg';
 import pic5 from '../components/ImageFiles/picture5.jpg';
 import pic6 from '../components/ImageFiles/picture6.jpg';
+import Footer from '../components/footer';
 
 //import 'antd/dist/antd.css';
 
@@ -27,7 +26,7 @@ const profilePage  = () => {
 
         <div className="column personalsectionLeft">
             <p>Username</p>
-            <img src={olubi} alt="" className="profileimageProfile" />
+            <img src={dog} alt="" className="profileimageProfile" />
             <p>Realname</p>
             <p>bio</p>
         </div>
@@ -71,6 +70,8 @@ const profilePage  = () => {
             <div className="imageWrap"><img src={pic5} alt=""/></div>
             <div className="imageWrap"><img src={pic6} alt=""/></div>
         </div>
+
+        <Footer/>
     </>
     );
 };

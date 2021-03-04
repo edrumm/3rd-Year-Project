@@ -1,0 +1,25 @@
+.Account{
+    padding-top: 50px;
+    padding-left: 30px;
+}
+
+.inputFields{
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-bottom: 20px;
+}
+
+.SearchBar{
+    width: 50%;
+    text-align: center;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.searchBarContainer{
+    padding-top: 80px;
+    padding-left: 30px;
+    text-align: center;
+}

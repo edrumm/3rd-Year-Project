@@ -3,9 +3,10 @@ import {Link} from 'react-router-dom';
 import './Pages.css';
 import logo from './logo.png';
 import {useState} from 'react';
+import Footer from '../components/footer';
+import {useHistory} from 'react-router-dom';
 
 const SignIn  = () => {
-
 
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
@@ -17,6 +18,8 @@ const SignIn  = () => {
         e.preventDefault();
         const isValid = validateForm();
     }
+
+    const history = useHistory();
 
     const checkEmail = (userEmailInput) => {
 
@@ -63,6 +66,33 @@ const SignIn  = () => {
             console.log(password);
         }
 
+
+        if(isValid == true){
+            const data = {
+                email: email,
+                password: password
+            };
+            const options = {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+            
+            fetch('/api/login', options)
+            .then(response => response.json())
+            .then(json => console.log(json))
+            .catch(err => console.error(err));
+
+            history.push("/PictureThat");
+
+        }
+
+        if(isValid == false){
+
+        }
+
         setEmailError(emailError);
         setPasswordError(passwordError);
         
@@ -92,13 +122,9 @@ const SignIn  = () => {
         return isValid;
     }
 
-    const handleLogin = () => {
-        <Link to="/PictureThat">Sign In</Link>
-    }
-
-
+     
     return (
-            
+        <>
         <div className= "signInWelcome">
             <div>
                 <img src={logo} alt="" className="logoimg" />
@@ -134,7 +160,7 @@ const SignIn  = () => {
                     id="signInButton"
                     className="button"
                     type= "submit"
-                    onClick= {handleLogin}>
+                    onClick= {() => {validateForm(); }}>
                     Sign In
                 </button>
 
@@ -155,6 +181,8 @@ const SignIn  = () => {
                 </form>
             </div>
         </div>
+        <Footer />
+        </>
     )
 
 

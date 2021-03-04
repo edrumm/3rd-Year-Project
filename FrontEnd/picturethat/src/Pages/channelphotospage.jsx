@@ -1,15 +1,15 @@
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
-import Channel from '../components/Channel';
+import ImageFeed from '../components/ImageFeed';
 
-
-const ChannelsPage  = () => {
+const ChannelPhotos = () => {
 
     return (
         <>
         <Navbar></Navbar>
-        <Channel></Channel>
+        <ImageFeed />
         </>
     );
 };
-export default ChannelsPage
+
+export default ChannelPhotos;

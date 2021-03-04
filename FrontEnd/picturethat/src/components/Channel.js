@@ -1,30 +1,38 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import './Channel.css';
-import olubi from '../components/ImageFiles/File_000.jpeg';
+import cat from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
+import {Link} from 'react-router-dom';
+
 
 
 
     function Channel() {
-       
+        // const { docs } = getImg('channels');
+        // console.log(docs);
+
         return(
             <>
             <div className="Channel">
+            <div class="card">
 
+                
                 <div className="column channelPhoto">
-                    <img src={olubi} alt="" className="Channelimg"/>
+                    <img src={cat} alt="" className="Channelimg"/>
                 </div>
                 
                 <div className="column channelInfo">
-                    <label className="label">Channel Name: </label>
+                    <label className="label">Channel Name: Cats</label>
                     <br/>
-                    <label className="label">No of Followers: </label>
+                    <label className="label">No of Followers: 100 </label>
                     <br/>
-                    <label className="label">No of Pictures: </label>
+                    <label className="label">No of Pictures: 1</label>
                     <br/>
-                    <button className="button">See Channel</button>
+                    <Link to="/PictureThat/channelphotospage" ><button className="button">See Channel</button></Link>
                 </div>
+                
 
+                
+            </div>
             </div>
             
             </>
