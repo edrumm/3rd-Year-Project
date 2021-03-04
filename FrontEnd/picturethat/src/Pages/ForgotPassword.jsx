@@ -1,6 +1,8 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import './Pages.css';
+import logo from './logo.png';
+import Footer from '../components/footer';
 
 const ForgotPassword  = () => {
 
@@ -9,8 +11,10 @@ const ForgotPassword  = () => {
     }
 
     return (
+        <>
         <div className= "signInWelcome">
             <form onSubmit = {onSubmitForgot}>
+            <img src={logo} alt="" className="logoimg" />
             <div>
                 <h1>Forgot Password</h1>
             </div>
@@ -26,6 +30,8 @@ const ForgotPassword  = () => {
                 </Link>
             </form>
         </div>
+        <Footer />
+        </>
     );
 };
 

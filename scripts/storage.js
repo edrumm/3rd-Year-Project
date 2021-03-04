@@ -36,18 +36,18 @@ module.exports.upload = async (data) => {
   error => {
     console.log(error);
   },
-  () => {
-          storage
-              .ref("images")
-              .child(data.name)
-              .getDownloadURL()
-              .then(url => {
-                  console.log(url);
-                  //return the url as part of data returned
-                  const uploaddate = timestamp();
-                  collection.add({ url: url, uploaddate, title, loc, description});
-              });
-      }
+  function () {
+      storage
+        .ref("images")
+        .child(data.name)
+        .getDownloadURL()
+        .then(url => {
+          console.log(url);
+          //return the url as part of data returned
+          const uploaddate = timestamp();
+          collection.add({ url: url, uploaddate, title, loc, description });
+        });
+    }
   return{ok: true, err: "file not uploaded"};
 };
 

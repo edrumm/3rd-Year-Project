@@ -3,8 +3,7 @@ const hash = require('./hash');
 // DB login function
 module.exports.login = async (db, data) => {
 
-  // let user = await db.collection('users').doc(data.email);
-  let user = await db.collection('users').doc(data.username);
+  let user = await db.collection('users').doc(data.email);
   let doc = await user.get();
 
   if (!doc.exists) {
@@ -14,8 +13,8 @@ module.exports.login = async (db, data) => {
 
   // let pw = await hash.match(data.password, doc.data().password) - todo
 
-  if (user.id === data.username && doc.data().password === data.password) {
-    return { ok: true, user: data.username, err: null };
+  if (user.id === data.email && doc.data().password === data.password) {
+    return { ok: true, err: null };
   }
 
   // login unsuccessful
@@ -26,17 +25,15 @@ module.exports.login = async (db, data) => {
 // DB signup function
 module.exports.signup = async (db, data) => {
 
-  // let user = await db.collection('users').doc(data.email);
-  let user = await db.collection('users').doc(data.username);
-  let doc = await user.get();
+  let user = await db.collection('users').doc(data.email)
+  let doc = user.get();
 
   if (doc.exists) {
     // redirect to login
     return { ok: false, err: 'Account already exists. Log in instead?' };
   }
 
-  // await db.collection('users').doc(data.email).set({
-  await db.collection('users').doc(data.username).set({
+  await db.collection('users').doc(data.email).set({
     email: data.email,
     followed_channels: ['channels/feed'],
     followers: [],
@@ -82,26 +79,37 @@ module.exports.update = async (db, data, id, collection) => {
 };
 
 /* DB delete
-  https://stackoverflow.com/questions/52048204/firestore-delete-document-and-all-documents-referencing-it
-
-  Ewan note:
-  This will be REALLY complicated. Will have to implement recursive delete.
-  - Store user to be deleted
-  - Delete all comments and child comments of parent comments from the user
-  - Iterate all users' posts, deleting all comments followed by the post itself
-  - All accounts / channels this user follows will have to be automatically unfollowed 
-    (wipe followed_accounts etc...)
-  - Likewise, for users that follow this account, all followers of this account
-    will have to automatically unfollow it
-  - Finally, remove the entry of this user from firebase
+  Needs tested
 */
 module.exports.deleteAccount = async (db, id) => {
-  let user = await db.collection('users').doc(id).get();
-  let posts = user.data().posts;
-  let comments = await db.collection('comments').where('user', '==', 'id').get();
+  // reference to user
+  let ref = await db.collection('users').doc(id);
 
-  // work in progress
-  return false;
+  // other data
+  let user = await ref.get();
+  let posts = user.data().posts;
+  let comments = await db.collection('comments').where('user', '==', id).get();
+
+  // delete this users' comments
+  comments.forEach(comm => {
+    module.exports.deleteComment(db, comm.id);
+  });
+
+
+  // foreach user post, delete all comments and post itself
+  posts.forEach(async post => {
+      let postComments = await db.collection('comments').where('post', '==', post.id);
+
+      postComments.forEach(async comm => {
+        module.exports.deleteComment(db, comm.id);
+        module.exports.deletePost(db, post.id);
+      });
+  });
+
+  // finally, delete account
+  await ref.delete();
+
+  return true;
 };
 
 module.exports.deletePost = (db, id) => {

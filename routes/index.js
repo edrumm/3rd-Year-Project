@@ -1,21 +1,34 @@
+// Libs
 const express = require('express');
 const Router = express.Router();
 
-const { Session } = require('./../scripts/session');
+// Scripts
 const firebase = require('./../scripts/firebase');
 const storage = require('./../scripts/storage');
 const schema = require('./../scripts/schema');
+const feed = require('./../scripts/feed');
+const { Session } = require('./../scripts/session');
 const { db, bucket } = require('./../scripts/firebase-auth');
 
 // Session object
 let session = new Session();
 
-// ROUTES
-// Test ONLY, ping this route to test setup, should return 'Ok!'
+
+/**
+  Test route,
+
+  use fetch('/api/test') to check setup
+*/
 Router.post('/test', (req, res) => {
   res.json({ test: 'Ok!' });
 });
 
+
+/**
+  Login Route
+
+  TESTED // WORKING
+*/
 Router.post('/login', (req, res) => {
 
   try {
@@ -40,7 +53,11 @@ Router.post('/login', (req, res) => {
   }
 });
 
-// Signup route: validate, send to DB
+/**
+  Signup Route
+
+  TESTED // WORKING
+*/
 Router.post('/signup', (req, res) => {
 
   try {
@@ -64,57 +81,96 @@ Router.post('/signup', (req, res) => {
   }
 });
 
-/*
-  Ewan edit:
-  Started thinking about thjese, shouldn't be too much of an issue
-  Commented the code out just now as it will cause an error if called -
-  as they don't have any async code yet
-  General idea though: storage.upload returns a Promise with an error or
-  success message
- */
+
+/**
+  Fetch / Post
+
+  NOT IMPLEMENTED
+*/
+Router.get('/get', (req, res) => {
+
+
+
+});
+
+Router.post('/post', (req, res) => {
+
+
+
+});
+
+
+/**
+  Upload post
+
+  UNTESTED // NEEDS FINISHING
+*/
 Router.post('/upload', (req, res) => {
 
-  /*
+  storage.upload(bucket, req.img)
+  .then(url => {
+    let data = req.body;
+    data.url = url;
 
-  storage.upload(db, bucket, req.img)
-  .then(response => {
-    if (response.ok) {
-      res.json({ ok: true, err: null });
+    firebase.insert(db, data, 'posts')
+    .catch(err => {
+      res.json(ok: false, err: err);
       res.end();
+    });
 
-    } else {
-      res.json({ ok: false, err: response.err });
+    res.json(ok: true, err: null);
+    res.end();
+  })
+  .catch(err => res.json(ok: false, err: err));
+});
+
+/**
+  Download post
+
+  UNTESTED // NEEDS FINISHING
+*/
+Router.post('/download', (req, res) => {
+
+  storage.download(storage, req.url)
+  .then(img => {
+    const query = {
+      field: 'url',
+      operand: '==',
+      value: req.url
+    };
+
+    firebase.get(db, 'posts', query)
+    .then(data => {
+      res.json(post: data);
       res.end();
-    }
+    })
+    .catch(err => {
+      res.json(ok: false, err: err);
+      res.end();
+    });
   })
   .catch(err => res.json(ok: false, err: err));
 
-  */
-
 });
 
-Router.post('/download', (req, res) => {
 
-  /*
+/**
+  Logout
 
-  storage.download(bucket, req.url)
-  .then()
-  .catch(err => res.json(ok: false, err: err));
-
-  */
-
-});
-
+  TESTED // Working
+*/
 Router.get('/logout', (req, res) => {
 
   session.destroy();
 
-  // Anything else?
-  // ...
-
 });
 
-// Returns the current session info if any
+
+/**
+  Session
+
+  TESTED // Working
+*/
 Router.get('/session', (req, res) => {
 
   res.json({ session: session.user });

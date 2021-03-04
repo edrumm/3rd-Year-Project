@@ -1,0 +1,23 @@
+
+.footer{
+    margin-top: 1rem;
+    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.links{
+    margin-bottom: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.link{
+    padding-left: 10px;
+    padding-right: 10px;
+    
+}

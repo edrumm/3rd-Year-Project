@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { storage, firedatabase, timestamp } from "../firebase";
 import './UploadImage.css';
 import { Button } from '@material-ui/core';
-import upload from "../storage";
+//import upload from "../storage";
 
 const ImageUpload = () => {
 
@@ -58,8 +58,28 @@ const ImageUpload = () => {
         //     }     
             
         // );
-        const {uploadimg} = upload(image, url, title, loc, description)
+        //const {uploadimg} = upload(image, url, title, loc, description)
+        const data = {
+            image: image,
+            name: image.name,
+            title: title,
+            loc: loc,
+            description: description
+          };
 
+          const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: data
+          };
+
+          fetch('/api/upload', options)
+          .then(response => response.json())
+          .then(json => console.log(json))
+          .catch(err => console.error(err));
+        
     };
 
     console.log("image: ", image);

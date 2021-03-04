@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import './Pages.css';
 import logo from './logo.png';
 import {useState} from 'react';
+import Footer from '../components/footer';
+import {useHistory} from 'react-router-dom';
 
 const SignUp  = () => {
 
@@ -16,6 +18,8 @@ const SignUp  = () => {
 
     //boolean isValid to check if credentials are valid set to true
     var isValid = false;
+
+    const history = useHistory();
 
     const checkEmail = (userEmailInput) => {
 
@@ -78,36 +82,43 @@ const SignUp  = () => {
         console.log(isValid);
 
         if(isValid === true){
-        //fetch block that will take a valid (meets criteria) email & password and then create
-        //an entry in the database with those details.
-        const data = {
-            email: email,
-            password: password
-          };
-          
-            //needed for fetch to work, always keep!
-            const options = {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(data)
-            };
-          
-            fetch('/api/signup', options)
-            .then(response => response.json())
-            .then(json => console.log(json))
-            .catch(err => console.error(err));
+            const data = {
+                email: email,
+                password: password
+              };
+              
+                //needed for fetch to work, always keep!
+                const options = {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify(data)
+                };
+              
+                fetch('/api/signup', options)
+                .then(response => response.json())
+                .then(json => isValid = json.body)
+                .catch(err => console.error(err));
+
+            history.push("/PictureThat");
 
         }
-        return isValid;
+        
+        if(isValid === false){
+            return isValid;
+        }
+
+        
+        
     }
 
     return (
+        <>
         <div className= "signup">
             <div>
                 <img src={logo} alt="" class="logoimg" />
-                <p className="text">Sign up to see photos from people tha inspire you</p>
+                <p className="text">Sign up to see photos that are tailored to you!</p>
             </div>
 
             <div>
@@ -157,25 +168,21 @@ const SignUp  = () => {
                         value="Accept" 
                     />
 
-                    <label className="termsAndConditions"> I agree to the Terms of Services and Privacy Policy</label><br></br>
-
-                    {/*need to add hyperlink text to Terms of Services and Privacy Policy */}
-
+                    <label className="termsAndConditions"> I agree to the <Link to="/PictureThat/TermsAndConditions">Terms of Services and Privacy Policy</Link></label><br></br>
                     
                         <button
-                            id="signInButton" 
-                            className="button"
-                            onClick= {validateForm}>
-                                <Link to="/PictureThat">Sign Up</Link>
+                            id="signInButton"
+                            onClick= {validateForm} 
+                            className="button">Sign Up
                         </button>
-                    
-
+                
                     <p>Have an Account?</p><Link to="/SignIn">Sign In</Link>
                     </form>
             </div>
             
         </div>
-        
+        <Footer />
+        </>
     )
 }
 

@@ -4,6 +4,7 @@
     width: 600px;
     height: 500px;
     top: 40%;
+    padding-top: 30px;
     left: 50%;
     transform: translate(-50%, -50%);
     
