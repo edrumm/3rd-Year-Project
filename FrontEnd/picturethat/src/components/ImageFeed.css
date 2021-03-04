@@ -28,6 +28,9 @@
 
 .buttonfield{
     border-bottom: solid 1px lightgray;
+    display: flex;
+    flex-direction: row;
+    padding-left: 1rem;
 }
 
 .far.fa-comment {
@@ -88,7 +91,12 @@
     float: left;
 }
 
-
+.reportb{
+    padding-bottom: 0.5rem;
+    padding-top: 1.3rem;
+    cursor: pointer;
+    margin-left: 16rem;
+}
 
 
 .user {
@@ -103,6 +111,8 @@
     text-align: left;
     width: 70%;
 }
+
+
 
 @media screen and (max-height: 900px) {
     .imageFeed{
