@@ -89,43 +89,50 @@ Router.post('/post', (req, res) => {
  */
 Router.post('/upload', (req, res) => {
 
-  /*
+  storage.upload(bucket, req.img)
+  .then(url => {
+    let data = req.body;
+    data.url = url;
 
-  storage.upload(db, bucket, req.img)
-  .then(response => {
-    if (response.ok) {
-      res.json({ ok: true, err: null });
+    firebase.insert(db, data, 'posts')
+    .catch(err => {
+      res.json(ok: false, err: err);
       res.end();
+    });
 
-    } else {
-      res.json({ ok: false, err: response.err });
-      res.end();
-    }
+    res.json(ok: true, err: null);
+    res.end();
   })
   .catch(err => res.json(ok: false, err: err));
-
-  */
-
 });
 
 Router.post('/download', (req, res) => {
 
-  /*
+  storage.download(storage, req.url)
+  .then(img => {
+    const query = {
+      field: 'url',
+      operand: '==',
+      value: req.url
+    };
 
-  storage.download(bucket, req.url)
-  .then()
+    firebase.get(db, 'posts', query)
+    .then(data => {
+      res.json(post: data);
+      res.end();
+    })
+    .catch(err => {
+      res.json(ok: false, err: err);
+      res.end();
+    });
+  })
   .catch(err => res.json(ok: false, err: err));
-
-  */
 
 });
 
 Router.get('/logout', (req, res) => {
 
   session.destroy();
-
-  // Anything else?
-  // ...
 
 });
 
