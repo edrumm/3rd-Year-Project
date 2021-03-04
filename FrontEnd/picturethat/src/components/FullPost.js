@@ -35,31 +35,22 @@ const FullPost = () => {
                         <label>Caption: </label>
                         <br></br>
                         <label>Channel: </label>
+                        <br></br>
+                        <label>Date</label>
                         
                         <div className="commentfield">
+                            <div className="singlecomment">
                             <div>Username</div>
                             <div>Date</div>
                             <div>Comment</div>
-                            <div>Username</div>
-                            <div>Date</div>
-                            <div>Comment</div>
-                            <div>Username</div>
-                            <div>Date</div>
-                            <div>Comment</div>
-                            <div>Username</div>
-                            <div>Date</div>
-                            <div>Comment</div>
-                            <div>Username</div>
-                            <div>Date</div>
-                            <div>Comment</div>
+                            </div>
                         </div>
 
                         <div className="likesection">
                             <div className="like">
                                 <a className="far fa-heart" />
-                                <label className="">Score:</label>
+                                <label className="score">Score:</label>
                             </div>
-                                <label>Date</label>
                         </div>
 
                         <div className="addcomment">
