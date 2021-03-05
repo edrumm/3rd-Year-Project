@@ -107,21 +107,22 @@ Router.post('/post', (req, res) => {
 */
 Router.post('/upload', (req, res) => {
 
-  storage.upload(bucket, req.img)
-  .then(url => {
-    let data = req.body;
-    data.url = url;
+  storage.upload(req.body, db)
+  .then(uploadOK => {
+    if(uploadOK){res.json({ok: true, err: null});
+    res.end();}
+    else{res.json({ok: false, err: err});
+      res.end();}})
+  //   firebase.insert(db, data, 'posts')
+  //   .catch(err => {
+  //     res.json({ok: false, err: err});
+  //     res.end();
+  //   });
 
-    firebase.insert(db, data, 'posts')
-    .catch(err => {
-      res.json(ok: false, err: err);
-      res.end();
-    });
-
-    res.json(ok: true, err: null);
-    res.end();
-  })
-  .catch(err => res.json(ok: false, err: err));
+  //   res.json({ok: true, err: null});
+  //   res.end();
+  // })
+  .catch(err => res.json({ok: false, err: err}));
 });
 
 /**
@@ -141,15 +142,15 @@ Router.post('/download', (req, res) => {
 
     firebase.get(db, 'posts', query)
     .then(data => {
-      res.json(post: data);
+      res.json({post: data});
       res.end();
     })
     .catch(err => {
-      res.json(ok: false, err: err);
+      res.json({ok: false, err: err});
       res.end();
     });
   })
-  .catch(err => res.json(ok: false, err: err));
+  .catch(err => res.json({ok: false, err: err}));
 
 });
 

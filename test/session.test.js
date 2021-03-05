@@ -10,7 +10,7 @@ let session = new Session();
 
 describe('Empty session', () => {
 
-  if('Empty session should be null', () => {
+  it('Empty session should be null', () => {
     assert.isNull(session.user);
   });
 

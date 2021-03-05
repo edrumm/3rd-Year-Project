@@ -10,6 +10,7 @@
 */
 
 const firebase = require('./firebase');
+const { db } = require('./firebase-auth');
 
 /*
   Ewan edit / notes:
@@ -26,29 +27,37 @@ const firebase = require('./firebase');
     ewan:
     changed function to be async
 */
-module.exports.upload = async (data) => {
-  const uploadTask = await firebase.ref(`images/${data.name}`).put(data.image);
-  const collection = await firebase.collection('posts');
-  const userpost = await firebase.collection('users');
-  const title = data.title;
+module.exports.upload = async (data, db) => {
+  // const collection = await db.collection('posts');
+  // const user = await db.collection('users').doc(data.user).get();
+  // const channeldb = await db.collection('channels').doc(data.channel).get();
+  //const storage = db.storage();
+  const caption = data.caption;
   const loc = data.loc;
-  const description = data.description;
-  error => {
-    console.log(error);
-  },
-  function () {
-      storage
-        .ref("images")
-        .child(data.name)
-        .getDownloadURL()
-        .then(url => {
-          console.log(url);
+  const channel = data.channel;
+  const uploaddate = timestamp();
+  // const newdata = {
+  //     channel: channel,
+  //     caption: caption,
+  //     loc: loc,
+  //     uploaddate: uploaddate
+  // }
+  //const url = data.nowurl;
+         // console.log(url);
           //return the url as part of data returned
-          const uploaddate = timestamp();
-          collection.add({ url: url, uploaddate, title, loc, description });
-        });
-    }
-  return{ok: true, err: "file not uploaded"};
+          //const uploaddate = timestamp();
+          //collection.add({ /*url: url,*/ uploaddate, caption, loc, channel });
+          // user.update({
+          // posts: firebase.firestore.FieldValue.arrayUnion(db.collection('posts').where("url", "==", url))
+          // });
+          await db.collection('posts').doc("Big Test").set({
+            caption : caption,
+            loc: loc,
+            uploaddate: uploaddate,
+            channel: channel
+          })
+          .catch(error => {console.error(error)})
+  return true;
 };
 
 module.exports.download = /* async */ (db, bucket, url) => {

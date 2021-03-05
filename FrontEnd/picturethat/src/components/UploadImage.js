@@ -11,8 +11,8 @@ const ImageUpload = () => {
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
     const [error, setError] = useState(null);
-    const[title, setTitle] = useState('');
-    const[description, setDescription] = useState('');
+    const[caption, setTitle] = useState('');
+    const[channel, setDescription] = useState('');
     const[loc, setLoc] = useState('');
     const[localimg, setLocalimg] = useState(null);
 
@@ -36,49 +36,56 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
-        // const uploadTask = storage.ref(`images/${image.name}`).put(image);
-        // const collection = firedatabase.collection('posts');
-        // uploadTask.on(
-        //     "state_changed",
-        //     snapshot => {},
-        //     error => {
-        //         console.log(error);
-        //     },
-        //     () => {
-        //         storage
-        //             .ref("images")
-        //             .child(image.name)
-        //             .getDownloadURL()
-        //             .then(url => { 
-        //                 console.log(url);
-        //                 setUrl(url); 
-        //                 const uploaddate = timestamp();
-        //                 collection.add({ url: url, uploaddate, title, loc, description});
-        //             });
-        //     }     
-            
-        // );
-        //const {uploadimg} = upload(image, url, title, loc, description)
-        const data = {
-            image: image,
-            name: image.name,
-            title: title,
-            loc: loc,
-            description: description
-          };
-
-          const options = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
+        const uploadTask = storage.ref(`images/${image.name}`).put(image);
+        // const urlstor = storage.ref(`images/`).child(image.name).getDownloadURL().then(url => {setUrl(url)});
+        const collection = firedatabase.collection('posts');
+        fetch('/api/session')
+        .then(response => response.json())
+        .then(json => console.log(json.session))
+        .catch(err => console.error(err));
+        
+        uploadTask.on(
+            "state_changed",
+            snapshot => {},
+            error => {
+                console.log(error);
             },
-            body: data
-          };
+            () => {
+                storage
+                    .ref("images")
+                    .child(image.name)
+                    .getDownloadURL()
+                    .then(url => { 
+                        console.log(url);
+                        setUrl(url); 
+                        const uploaddate = timestamp();
+                        collection.add({ url: url, uploaddate, caption, loc, channel});
+                    });
+            }     
+            
+        );
+        // const data = {
+        //     //name: image.name,
+        //     //title: title,
+        //     caption: caption,
+        //     loc: loc,
+        //     channel: channel,
+        //     //nowurl: nowurl
+        //     //user: user
+        //   };
 
-          fetch('/api/upload', options)
-          .then(response => response.json())
-          .then(json => console.log(json))
-          .catch(err => console.error(err));
+        //   const options = {
+        //     method: 'POST',
+        //     headers: {
+        //       'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(data)
+        //   };
+
+        //   fetch('/api/upload', options)
+        //   .then(response => response.json())
+        //   .then(json => console.log(json))
+        //   .catch(err => console.error(err));
         
     };
 
@@ -95,9 +102,9 @@ const ImageUpload = () => {
         </div>
         <div>
         <a className="text" >Details</a>
-        <input type="text" className="inputboxT" placeholder="Caption" value= {title} onChange= {(e) => {setTitle(e.target.value)}}/>
+        <input type="text" className="inputboxT" placeholder="Caption" value= {caption} onChange= {(e) => {setTitle(e.target.value)}}/>
         <input type="text" className="inputboxT" placeholder="Location" value= {loc} onChange= {(e) => {setLoc(e.target.value)}}/>
-        <input type="text" className="inputboxT" placeholder="Channel" value= {description} onChange= {(e) => {setDescription(e.target.value)}}/>
+        <input type="text" className="inputboxT" placeholder="Channel" value= {channel} onChange= {(e) => {setDescription(e.target.value)}}/>
        
         <Link to="/PictureThat" onClick={handleUpload}><button className="button">Post</button></Link>
         </div>
