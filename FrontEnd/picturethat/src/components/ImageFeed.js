@@ -6,6 +6,20 @@ import {Link} from 'react-router-dom';
 //import PopUp from '../components/PostPopUp';
 
 const ImageFeed = () => {
+
+    const [liked, setLiked] = useState(false);
+    const [button, setButton] = useState("far fa-heart");
+
+    const likepost = () => {
+       if(liked === false) {
+            setLiked(true);
+            setButton("fas fa-heart")
+       } else {
+           setLiked(false);
+           setButton("far fa-heart")
+       }
+    } ;
+
     const { docs } = getImg('posts');
     console.log(docs);
 
@@ -43,7 +57,7 @@ const ImageFeed = () => {
                     <div className="bottominfo">
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
-                    <a className="far fa-heart" />
+                    <a onClick={likepost} className={button} />
                     <Link to="/PictureThat/FullPostPage" className="far fa-comment" />
                     </div>
                     <div className="">

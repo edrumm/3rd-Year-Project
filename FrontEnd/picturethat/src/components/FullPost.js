@@ -7,6 +7,19 @@ import './FullPost.css';
 
 const FullPost = () => {
    
+    const [liked, setLiked] = useState(false);
+    const [button, setButton] = useState("far fa-heart");
+
+    const likepost = () => {
+       if(liked === false) {
+            setLiked(true);
+            setButton("fas fa-heart")
+       } else {
+           setLiked(false);
+           setButton("far fa-heart")
+       }
+    } ;
+
     return (
         <>
         <div className="backbutton">
@@ -53,7 +66,7 @@ const FullPost = () => {
 
                         <div className="likesection">
                             <div className="like">
-                                <a className="far fa-heart" />
+                                <a onClick={likepost} className={button} />
                                 <label className="score">Score:</label>
                             </div>
                         </div>
