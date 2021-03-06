@@ -14,6 +14,7 @@ const SignIn  = () => {
     const[emailError, setEmailError] = useState({});
     const[passwordError, setPasswordError] = useState({});
 
+
     const onSubmit = (e) => {
         e.preventDefault();
         const isValid = validateForm();
@@ -84,7 +85,7 @@ const SignIn  = () => {
             .then(response => response.json())
             .then(json => console.log(json))
             .catch(err => console.error(err));
-
+            
             history.push("/PictureThat");
 
         }
@@ -161,8 +162,6 @@ const SignIn  = () => {
         <Footer />
         </>
     )
-
-
 }
 
 export default SignIn;

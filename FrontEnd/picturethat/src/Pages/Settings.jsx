@@ -4,9 +4,10 @@ import ChangeEmail from '../components/ChangeEmail';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/footer';
 import './Settings.css';
+import { Redirect, Route } from 'react-router';
 
 
-const Settings = () => {
+const Settings = ({isAuth: isAuth, component: Component, ...rest}) => {
 
     const options = [
 
@@ -72,41 +73,54 @@ const Settings = () => {
     };
 
     return (
-        <>
-        <Navbar></Navbar>
 
-        <div className="searchBarContainer">
-            <input 
-                type="text"
-                placeholder="Search..."
-                autoFocus
-                className="SearchBar"
-                onChange= {filterSearchBar}/>
-        </div>
+        <Route {...rest} render={(props) => {
+            if(isAuth){
+                return(
+                    <>
+                    <Navbar></Navbar>
 
-        <div className="Account">
-            {visibleOptions.map((option) => <div key={option.header.name}>
-
-                <h3>{option.header.name}</h3>
-
-                <div>
-                    {option.values.map((value) => <div className="settingContents" key={value.name}>
-                        <ul>
-                            <li>
-                                <h6>{value.name}</h6>
-                                <p>{value.description}</p>
-                                <div className="inputFields">{value.tags}</div>
-                            </li>
-                        </ul>
+                    <div className="searchBarContainer">
+                        <input 
+                            type="text"
+                            placeholder="Search..."
+                            autoFocus
+                            className="SearchBar"
+                            onChange= {filterSearchBar}/>
                     </div>
-                    )}
-                </div>
-            </div>
-            )}
-        </div>
 
-        <Footer />
-        </>
+                    <div className="Account">
+                        {visibleOptions.map((option) => <div key={option.header.name}>
+
+                            <h3>{option.header.name}</h3>
+
+                            <div>
+                                {option.values.map((value) => <div className="settingContents" key={value.name}>
+                                    <ul>
+                                        <li>
+                                            <h6>{value.name}</h6>
+                                            <p>{value.description}</p>
+                                            <div className="inputFields">{value.tags}</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                )}
+                            </div>
+                        </div>
+                        )}
+                    </div>
+
+                    <Footer />
+                    </>
+                );
+            }
+            else{
+                return(
+                    <Redirect to={{pathname:"/", state: {from: props.location}}}/>
+                );
+            };
+        }}
+        />
     );
 };
 

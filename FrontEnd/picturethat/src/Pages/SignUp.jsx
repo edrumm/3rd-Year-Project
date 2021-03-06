@@ -106,6 +106,8 @@ const SignUp  = () => {
         }
         
         if(isValid === false){
+
+            history.push("/");
         }
 
         return isValid;
