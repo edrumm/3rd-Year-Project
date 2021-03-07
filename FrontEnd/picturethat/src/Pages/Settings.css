@@ -21,6 +21,10 @@
     margin: 0 auto;
     padding: 10px;
     position: relative;
+
+    border-radius: 5px;
+    border: solid 1px #efefef;
+    background-color: white;
 }
 
 .searchBarContainer{
@@ -48,5 +52,9 @@
     border: solid 1px #efefef;
     background-image: white;
     border-radius: 5px;
-    width: 60%;
+    width: 58%;
+}
+
+.h4, p{
+    text-align: center;
 }
