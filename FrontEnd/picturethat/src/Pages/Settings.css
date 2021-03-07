@@ -1,16 +1,21 @@
 .Account{
-    padding-top: 50px;
-    padding-left: 30px;
+    text-align: center;
+    overflow-y: scroll;
+    height: 550px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+
 }
 
 .inputFields{
     padding-top: 20px;
-    padding-left: 30px;
+    margin-left: 30%;
     padding-bottom: 20px;
+    text-align: center;
 }
 
 .SearchBar{
-    width: 50%;
+    width: 70%;
     text-align: center;
     height: auto;
     margin: 0 auto;
@@ -19,7 +24,29 @@
 }
 
 .searchBarContainer{
-    padding-top: 80px;
+    padding-top: 70px;
     padding-left: 30px;
     text-align: center;
+}
+
+.settingsDivision{
+    text-align: center;
+    padding-top: 20px;
+}
+
+.inputbox{
+    width: 300px;
+    height: 38px;
+    margin: 3px 40px 3px;
+    border-radius: 5px;
+    border: solid 1px #efefef;
+    background-color: white;
+}
+
+.changePassword{
+    text-align: center;
+    border: solid 1px #efefef;
+    background-image: white;
+    border-radius: 5px;
+    width: 60%;
 }

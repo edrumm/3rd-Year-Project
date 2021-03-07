@@ -1,30 +1,16 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router';
 import ImageFeed from '../components/ImageFeed';
 import Navbar from '../components/Navbar/Navbar';
-import { withRouter } from 'react-router';
 
-const LandingPage  = ({isAuth: isAuth, component: Component, ...rest}) => {
+const LandingPage  = () => {
     return (
-    <Route {...rest} render={(props) => {
-        if(isAuth){
-            return(
-                <>
-                <ImageFeed />
-                <Navbar/>
-                </>
-            );
-        }
-        else{
-            return(
-                <Redirect to={{pathname:"/", state: {from: props.location}}}/>
-            );
-        };
-    }}
-    />
+    <>
+    <Navbar />
+    <ImageFeed />
+    </>
     );
 };
 
-export default withRouter(LandingPage);
+export default LandingPage;
 
 //https://www.youtube.com/watch?v=hjR-ZveXBpQ

@@ -18,11 +18,8 @@ import Settings from './Pages/Settings';
 import ChannelPhotos from './Pages/channelphotospage';
 import FullPostPage from './Pages/FullPostPage';
 import TermsAndConditions from './Pages/TermsAndConditions';
-import { useState } from 'react';
 
 function App() {
-
-  const[isAuth, setIsAuth]= useState(false);
   
   return (
     <>
@@ -32,15 +29,16 @@ function App() {
         <Switch> {/*Switch is used to switch between the different routes established in the app */}
 
           <Route exact path= "/" component={SignIn} /> {/*route path of the specific page - when used with keyword exact - in the app */}
+          <Route exact path= "/SignIn" component={SignIn} />
           <Route exact path= "/SignUp" component={SignUp} />
           <Route exact path= "/ForgotPassword" component={ForgotPassword} />
-          <LandingPage exact path= "/PictureThat" component={LandingPage} isAuth={isAuth}/>
+          <Route exact path= "/PictureThat" component={LandingPage} />
           <Route exact path= "/PictureThat/ProfilePage" component={profilePage} />
           <Route exact path= "/PictureThat/ProfilePage/EditProfile" component={EditProfile} />
           <Route exact path= "/PictureThat/UploadPage" component={UploadPage} />
           <Route exact path= "/PictureThat/ProfilePage/Achievements" component={AchievementsPage} />
           <Route exact path= "/PictureThat/ChannelsPage" component={ChannelsPage} />
-          <Settings exact path= "/PictureThat/Settings" component={Settings} isAuth={isAuth} />
+          <Route exact path= "/PictureThat/Settings" component={Settings} />
           <Route exact path= "/PictureThat/channelphotospage" component={ChannelPhotos} />
           <Route exact path= "/PictureThat/FullPostPage" component={FullPostPage} />
           <Route exact path= "/PictureThat/TermsAndConditions" component={TermsAndConditions}/>
