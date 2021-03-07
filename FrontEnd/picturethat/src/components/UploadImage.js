@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { storage, firedatabase, timestamp } from "../firebase";
+import firebase from "../firebase.js";
 import './UploadImage.css';
 
 
@@ -34,32 +34,8 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
-        const uploadTask = storage.ref(`images/${image.name}`).put(image);
-        const collection = firedatabase.collection('posts');
-        uploadTask.on(
-            "state_changed",
-            snapshot => {},
-            error => {
-                console.log(error);
-            },
-            () => {
-                storage
-                    .ref("images")
-                    .child(image.name)
-                    .getDownloadURL()
-                    .then(url => { 
-                        console.log(url);
-                        setUrl(url); 
-                        const uploaddate = timestamp();
-                        collection.add({ url: url, uploaddate, title, loc, channel});
-                    });
-            }     
-            
-        );
-
+       firebase.uploadpost(title, loc, channel, image);
     };
-
-    console.log("image: ", image);
 
     return (
         <>
