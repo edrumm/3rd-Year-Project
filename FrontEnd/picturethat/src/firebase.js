@@ -34,7 +34,9 @@ const UploadPost = async (title, loc, channel, image) => {
     caption: title,
     location: loc,
     channel: refchannel,
-    url: url
+    url: url,
+    comments: [],
+    likes: 0
   }
 
 
@@ -77,6 +79,18 @@ const UploadPost = async (title, loc, channel, image) => {
   }
 }
 
+
+const AddComment = async (username, text, post) =>{
+  
+  const refcom = firedatabase.collection('comments').doc();
+  let query = firedatabase.collection('posts').doc(post);
+  const Data = {
+    username: username,
+    text: text,
+    post: query
+  }
+  await refcom.set(Data);
+}
 const GetData = (collection) => {
   const [docs, setDocs] = useState([]);
 
