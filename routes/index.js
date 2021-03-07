@@ -107,21 +107,20 @@ Router.post('/post', (req, res) => {
 */
 Router.post('/upload', (req, res) => {
 
-  storage.upload(req.body, db)
-  .then(uploadOK => {
-    if(uploadOK){res.json({ok: true, err: null});
-    res.end();}
-    else{res.json({ok: false, err: err});
-      res.end();}})
-  //   firebase.insert(db, data, 'posts')
-  //   .catch(err => {
-  //     res.json({ok: false, err: err});
-  //     res.end();
-  //   });
+  storage.upload(bucket, req.img)
+  .then(url => {
+    let data = req.body;
+    data.url = url;
 
-  //   res.json({ok: true, err: null});
-  //   res.end();
-  // })
+    firebase.insert(db, data, 'posts')
+    .catch(err => {
+      res.json({ok: false, err: err});
+      res.end();
+    });
+
+    res.json({ok: true, err: null});
+    res.end();
+  })
   .catch(err => res.json({ok: false, err: err}));
 });
 

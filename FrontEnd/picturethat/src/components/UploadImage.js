@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { render } from "react-dom";
+//import { render } from "react-dom";
 import { Link } from "react-router-dom";
-import { storage, firedatabase, timestamp } from "../firebase";
+import firebase from "../firebase.js";
 import './UploadImage.css';
-import { Button } from '@material-ui/core';
+//import { Button } from '@material-ui/core';
 //import upload from "../storage";
 
 const ImageUpload = () => {
@@ -11,7 +11,7 @@ const ImageUpload = () => {
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
     const [error, setError] = useState(null);
-    const[caption, setTitle] = useState('');
+    const[title, setTitle] = useState('');
     const[channel, setDescription] = useState('');
     const[loc, setLoc] = useState('');
     const[localimg, setLocalimg] = useState(null);
@@ -36,56 +36,7 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
-        const uploadTask = storage.ref(`images/${image.name}`).put(image);
-        // const urlstor = storage.ref(`images/`).child(image.name).getDownloadURL().then(url => {setUrl(url)});
-        const collection = firedatabase.collection('posts');
-        fetch('/api/session')
-        .then(response => response.json())
-        .then(json => console.log(json.session))
-        .catch(err => console.error(err));
-        
-        uploadTask.on(
-            "state_changed",
-            snapshot => {},
-            error => {
-                console.log(error);
-            },
-            () => {
-                storage
-                    .ref("images")
-                    .child(image.name)
-                    .getDownloadURL()
-                    .then(url => { 
-                        console.log(url);
-                        setUrl(url); 
-                        const uploaddate = timestamp();
-                        collection.add({ url: url, uploaddate, caption, loc, channel});
-                    });
-            }     
-            
-        );
-        // const data = {
-        //     //name: image.name,
-        //     //title: title,
-        //     caption: caption,
-        //     loc: loc,
-        //     channel: channel,
-        //     //nowurl: nowurl
-        //     //user: user
-        //   };
-
-        //   const options = {
-        //     method: 'POST',
-        //     headers: {
-        //       'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(data)
-        //   };
-
-        //   fetch('/api/upload', options)
-        //   .then(response => response.json())
-        //   .then(json => console.log(json))
-        //   .catch(err => console.error(err));
+        firebase.UploadPost(title, loc, channel, image);
         
     };
 
