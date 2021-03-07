@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './ImageFeed.css';
-import getImg from '../getImg';
+//import getImg from '../getImg';
 import {Link} from 'react-router-dom';
+import firebase from "../firebase.js";
 //import PopUp from '../components/PostPopUp';
 
 const ImageFeed = () => {
-    const { docs } = getImg('posts');
+    const { docs } = firebase.GetImg('posts');
     console.log(docs);
 
     const [showPopUp, setShowPopUp] = useState(false);

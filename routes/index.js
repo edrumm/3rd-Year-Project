@@ -114,14 +114,14 @@ Router.post('/upload', (req, res) => {
 
     firebase.insert(db, data, 'posts')
     .catch(err => {
-      res.json(ok: false, err: err);
+      res.json({ok: false, err: err});
       res.end();
     });
 
-    res.json(ok: true, err: null);
+    res.json({ok: true, err: null});
     res.end();
   })
-  .catch(err => res.json(ok: false, err: err));
+  .catch(err => res.json({ok: false, err: err}));
 });
 
 /**
@@ -141,15 +141,15 @@ Router.post('/download', (req, res) => {
 
     firebase.get(db, 'posts', query)
     .then(data => {
-      res.json(post: data);
+      res.json({post: data});
       res.end();
     })
     .catch(err => {
-      res.json(ok: false, err: err);
+      res.json({ok: false, err: err});
       res.end();
     });
   })
-  .catch(err => res.json(ok: false, err: err));
+  .catch(err => res.json({ok: false, err: err}));
 
 });
 
