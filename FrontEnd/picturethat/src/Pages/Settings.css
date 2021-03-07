@@ -4,7 +4,6 @@
     height: 550px;
     padding-top: 20px;
     padding-bottom: 10px;
-
 }
 
 .inputFields{
@@ -31,11 +30,11 @@
     padding-top: 70px;
     padding-left: 30px;
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .settingsDivision{
     text-align: center;
-    padding-top: 20px;
 }
 
 .inputbox{
