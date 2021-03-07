@@ -22,16 +22,19 @@ const storage = firebase.storage();
 const firedatabase = firebase.firestore();
 
 
-const UploadPost = async (title, loc, channel, image) => {
+const UploadPost = async (caption, loc, channel, image) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
   })
+ 
   const increment = firebase.firestore.FieldValue.increment(1);
   const refnewpost = firedatabase.collection('posts').doc();
   const refchannel = firedatabase.collection('channels').doc(channel);
-  
+  //const timestamp = firebase.firestore.FieldValue.timestamp();
+
   const Data = {
-    caption: title,
+    //uploaddate: timestamp,
+    caption: caption,
     location: loc,
     channel: refchannel,
     url: url

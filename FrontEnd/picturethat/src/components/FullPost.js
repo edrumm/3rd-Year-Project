@@ -2,10 +2,17 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './FullPost.css';
+import firebase from "../firebase.js";
 
 
 
 const FullPost = () => {
+
+    const handleUpload = () => {
+        firebase.UploadPost(caption, loc, channel, image);
+        
+    };
+
    
     return (
         <>
@@ -60,7 +67,7 @@ const FullPost = () => {
 
                         <div className="addcomment">
                         <input type="text" className="inputText" placeholder="Add a comment"></input>
-                        <button className="postbutton">Post</button>
+                        <button onClick={handleUpload} className="postbutton">Post</button>
                         </div>
             </div>
         </div>

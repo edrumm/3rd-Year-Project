@@ -11,7 +11,7 @@ const ImageUpload = () => {
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
     const [error, setError] = useState(null);
-    const[title, setTitle] = useState('');
+    const[caption, setTitle] = useState('');
     const[channel, setDescription] = useState('');
     const[loc, setLoc] = useState('');
     const[localimg, setLocalimg] = useState(null);
@@ -36,7 +36,7 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
-        firebase.UploadPost(title, loc, channel, image);
+        firebase.UploadPost(caption, loc, channel, image);
         
     };
 
@@ -53,7 +53,7 @@ const ImageUpload = () => {
         </div>
         <div>
         <a className="text" >Details</a>
-        <input type="text" className="inputboxT" placeholder="Title" value= {title} onChange= {(e) => {setTitle(e.target.value)}}/>
+        <input type="text" className="inputboxT" placeholder="Title" value= {caption} onChange= {(e) => {setTitle(e.target.value)}}/>
         <input type="text" className="inputboxT" placeholder="Location" value= {loc} onChange= {(e) => {setLoc(e.target.value)}}/>
         <input type="text" className="inputboxT" placeholder="Channel" value= {channel} onChange= {(e) => {setDescription(e.target.value)}}/>
        
