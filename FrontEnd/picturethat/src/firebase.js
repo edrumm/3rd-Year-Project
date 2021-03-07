@@ -2,6 +2,7 @@ import firebase from 'firebase';
 import 'firebase/storage';
 import 'firebase/firestore';
 import { useState, useEffect } from 'react';
+import { number } from 'joi';
 //import { ref } from 'joi';
 
 // PictureThat Firebase configuration
@@ -25,13 +26,10 @@ const UploadPost = async (title, loc, channel, image) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
   })
-  
+  const increment = firebase.firestore.FieldValue.increment(1);
   const refnewpost = firedatabase.collection('posts').doc();
-  const refchannel = firedatabase.doc('channel/'+channel);
-  if((await refchannel.get()).exists){
-
-  }
-
+  const refchannel = firedatabase.collection('channels').doc(channel);
+  
   const Data = {
     caption: title,
     location: loc,
@@ -42,6 +40,41 @@ const UploadPost = async (title, loc, channel, image) => {
 
   await refnewpost.set(Data);
   console.log(Data);
+
+  //if/else statement that either adds a post to a channel or creates a new channel and adds that post to it
+  if((await refchannel.get()).exists){
+    
+    //creates a query object of single item array. Goes through each item and updates specific channel field
+    //by using reference to document obtained by the 
+    let query = firedatabase.collection('posts').where('url', '==', url);
+    let newpostref;
+    query.get().then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        newpostref = documentSnapshot.ref;
+        refchannel.update({
+        //updates the posts array inside the channel document with the post with the matching url
+        posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
+        //increments the number of posts a given channel has by 1
+        number_of_posts: increment
+        });
+      });
+    });
+  }
+  else{
+    let query = firedatabase.collection('posts').where('url', '==', url);
+    let newpostref;
+    query.get().then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        newpostref = documentSnapshot.ref;
+        refchannel.set({
+        //updates the posts array inside the channel document with the post with the matching url
+        posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
+        //increments the number of posts a given channel has by 1
+        number_of_posts: 1
+        });
+      });
+    });
+  }
 }
 
 const GetData = (collection) => {
