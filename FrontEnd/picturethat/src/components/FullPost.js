@@ -8,9 +8,10 @@ import firebase from "../firebase.js";
 
 const FullPost = () => {
 
+    const[comment, setComment] = useState('');
+
     const handleUpload = () => {
-        firebase.UploadPost(caption, loc, channel, image);
-        
+        firebase.AddComment(comment);
     };
 
    
@@ -66,7 +67,7 @@ const FullPost = () => {
                         </div>
 
                         <div className="addcomment">
-                        <input type="text" className="inputText" placeholder="Add a comment"></input>
+                        <input type="text" className="inputText" placeholder="Add a comment" value= {comment} onChange= {(e) => {setComment(e.target.value)}} />
                         <button onClick={handleUpload} className="postbutton">Post</button>
                         </div>
             </div>

@@ -133,7 +133,7 @@ const GetImg = (collection) => {
   return { docs };
 }
 
-export default  {UploadPost, GetData, GetImg };
+export default  { UploadPost, GetData, GetImg, AddComment };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
