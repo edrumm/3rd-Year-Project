@@ -16,10 +16,18 @@ const SignUp  = () => {
     const[emailError, setEmailError] = useState({});
     const[passwordError, setPasswordError] = useState({});
 
+    const[username, setUsername] = useState('');
+    const[usernameError, setUsernameError] = useState('');
+
     //boolean isValid to check if credentials are valid set to true
     var isValid = false;
 
     const history = useHistory();
+
+    const checkUsername = (userNameInput) => {
+        const usernameRequirements = new RegExp (/^[a-z\d]{5,12}$/i);
+        return usernameRequirements.test(userNameInput);
+    }
 
     const checkEmail = (userEmailInput) => {
 
@@ -39,6 +47,11 @@ const SignUp  = () => {
         //arrays to hold errors set to empty array
         const emailError = {};
         const passwordError = {};
+
+        if(!checkUsername(username)){
+            usernameError.InvalidCharacters = "Your Username is incorrect. Username must be alphanumeric and contain 5-12 characters";
+            alert(usernameError.InvalidCharacters);
+        }
         
         if (!checkEmail(email)) {
                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
@@ -68,7 +81,7 @@ const SignUp  = () => {
             console.log("Valid password");
         }
 
-        if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword) && (checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail)){
+        if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword) && (checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail) && checkUsername(username)){
             isValid = true;
             console.log(email);
             console.log(password);
@@ -102,7 +115,6 @@ const SignUp  = () => {
                 .catch(err => console.error(err));
 
             history.push("/PictureThat");
-
         }
         
         if(isValid === false){
@@ -123,6 +135,17 @@ const SignUp  = () => {
 
             <div>
                 <form>
+
+                    <input 
+                        type="text" 
+                        id="emailInput" 
+                        className="inputbox" 
+                        placeholder="Username"
+                        autoFocus required
+                        value= {username}
+                        onChange= {(e) => {setUsername(e.target.value)}} 
+                    />
+
                     <input 
                         type="text" 
                         id="emailInput" 
@@ -168,7 +191,7 @@ const SignUp  = () => {
                         value="Accept" 
                     />
 
-                    <label className="termsAndConditions"> I agree to the <Link to="/PictureThat/TermsAndConditions">Terms of Services and Privacy Policy</Link></label><br></br>
+                    <label className="termsAndConditions"> I agree to the <Link to="/PictureThat/TermsAndConditions">Terms of Services <br></br> and Privacy Policy</Link></label><br></br>
                     
                         <button
                             id="signInButton"
@@ -176,7 +199,7 @@ const SignUp  = () => {
                             className="button">Sign Up
                         </button>
                 
-                    <p>Have an Account?</p><Link to="/SignIn">Sign In</Link>
+                    <p>Have an Account? <Link to="/SignIn"> Sign In</Link></p>
                     </form>
             </div>
             
