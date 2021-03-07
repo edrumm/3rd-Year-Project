@@ -1,11 +1,11 @@
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import './Achivements.css';
-import getData from '../getData';
+import firebase from "../firebase.js";
 
 const AchievementsPage = () => {
 
-    const { docs } = getData('achievements');
+    const { docs } = firebase.GetData('achievements');
     console.log(docs);
 
     return (
