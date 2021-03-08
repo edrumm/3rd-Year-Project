@@ -6,7 +6,7 @@ import { number } from 'joi';
 //import { ref } from 'joi';
 
 // PictureThat Firebase configuration
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyCBVN9q8Dyb-jkn-tTBE6roFpImLrf3wyo",
   authDomain: "picture-that-y3.firebaseapp.com",
   projectId: "picture-that-y3",
@@ -19,7 +19,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 //firebase.analytics();
 const storage = firebase.storage();
-const firedatabase = firebase.firestore();
+const firestore = firebase.firestore();
 
 const UploadPost = async (caption, loc, channel, image) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
@@ -27,8 +27,8 @@ const UploadPost = async (caption, loc, channel, image) => {
   });
 
   const increment = firebase.firestore.FieldValue.increment(1);
-  const refnewpost = firedatabase.collection('posts').doc();
-  const refchannel = firedatabase.collection('channels').doc(channel);
+  const refnewpost = firestore.collection('posts').doc();
+  const refchannel = firestore.collection('channels').doc(channel);
   //const timestamp = firebase.firestore.FieldValue.timestamp();
 
   const Data = {
@@ -50,8 +50,8 @@ const UploadPost = async (caption, loc, channel, image) => {
   if ((await refchannel.get()).exists) {
 
     //creates a query object of single item array. Goes through each item and updates specific channel field
-    //by using reference to document obtained by the 
-    let query = firedatabase.collection('posts').where('url', '==', url);
+    //by using reference to document obtained by the
+    let query = firestore.collection('posts').where('url', '==', url);
     let newpostref;
     query.get().then(querySnapshot => {
       querySnapshot.forEach(documentSnapshot => {
@@ -66,7 +66,7 @@ const UploadPost = async (caption, loc, channel, image) => {
     });
   }
   else {
-    let query = firedatabase.collection('posts').where('url', '==', url);
+    let query = firestore.collection('posts').where('url', '==', url);
     let newpostref;
     query.get().then(querySnapshot => {
       querySnapshot.forEach(documentSnapshot => {
@@ -85,8 +85,8 @@ const UploadPost = async (caption, loc, channel, image) => {
 
 const AddComment = async (username, text, post) => {
 
-  const refcom = firedatabase.collection('comments').doc();
-  let query = firedatabase.collection('posts').doc(post);
+  const refcom = firestore.collection('comments').doc();
+  let query = firestore.collection('posts').doc(post);
   const Data = {
     username: username,
     text: text,
@@ -98,7 +98,7 @@ const GetData = (collection) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-    const unsub = firedatabase.collection(collection)
+    const unsub = firestore.collection(collection)
       .onSnapshot((snap) => {
         let documents = [];
         snap.forEach(doc => {
@@ -116,7 +116,7 @@ const GetData = (collection) => {
 const GetImg = (collection) => {
   let docs = [];
 
-  firedatabase
+  firestore
     .collection(collection)
     .orderBy('uploaddate', 'desc')
     .get()
@@ -135,7 +135,7 @@ const GetImg = (collection) => {
   // const [docs, setDocs] = useState([]);
 
   // useEffect(() => {
-  //     const unsub = firedatabase.collection(collection)
+  //     const unsub = firestore.collection(collection)
   //         .orderBy('uploaddate', 'desc')
   //         .onSnapshot((snap) => {
   //             let documents = [];
