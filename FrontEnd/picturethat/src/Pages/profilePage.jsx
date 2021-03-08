@@ -63,7 +63,6 @@ const ProfilePage  = () => {
             ))}
             
             <img src={dog} alt="" className="profileimageProfile" />
-            <p>Realname</p>
 
             {isEdit ? renderEdit() : renderDefault()}
         </div>
