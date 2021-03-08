@@ -33,7 +33,7 @@ const UploadPost = async (caption, loc, channel, image) => {
   //const timestamp = firebase.firestore.FieldValue.timestamp();
 
   const Data = {
-    //uploaddate: timestamp,
+    uploaddate: firebase.firestore.Timestamp.now(),
     caption: caption,
     location: loc,
     channel: refchannel,
