@@ -20,10 +20,10 @@ import FullPostPage from './Pages/FullPostPage';
 import TermsAndConditions from './Pages/TermsAndConditions';
 
 function App() {
-  
+
   return (
     <>
-        
+
       <Router> {/*Router is used to create the different routes - connections between the pages of the app*/}
 
         <Switch> {/*Switch is used to switch between the different routes established in the app */}

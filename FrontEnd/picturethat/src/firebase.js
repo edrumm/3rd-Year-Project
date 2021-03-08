@@ -17,9 +17,39 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-//firebase.analytics();
+
 const storage = firebase.storage();
 const firestore = firebase.firestore();
+const auth = firebase.auth();
+
+const login = (email, password) => {
+
+  auth.signInWithEmailAndPassword(email, password)
+  .then(user => {
+
+  })
+  .catch(err => {
+    console.error(err);
+  });
+
+};
+
+const logout = () => {
+
+  auth.signOut();
+
+};
+
+// Detects change in login state
+auth.onAuthStateChanged(user => {
+
+  if (user) {
+    console.log('Signed in');
+  } else {
+    console.log('Signed out');
+  }
+
+});
 
 
 const UploadPost = async (caption, loc, channel, image) => {
@@ -152,7 +182,7 @@ const GetImg = (collection) => {
   // return { docs };
 }
 
-export default { UploadPost, GetData, GetImg, AddComment };
+export default { UploadPost, GetData, GetImg, AddComment, login, logout };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
