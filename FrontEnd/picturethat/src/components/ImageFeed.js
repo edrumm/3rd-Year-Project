@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './ImageFeed.css';
 import getImg from '../getImg';
+import getData from '../getData';
 import {Link} from 'react-router-dom';
 //import PopUp from '../components/PostPopUp';
 
@@ -23,6 +24,9 @@ const ImageFeed = () => {
     const { docs } = getImg('posts');
     console.log(docs);
 
+    const { dataDocs } = getData('users');
+    console.log(dataDocs);
+
     const [showPopUp, setShowPopUp] = useState(false);
 
     const openPopUp = () => {
@@ -39,7 +43,11 @@ const ImageFeed = () => {
                             <img src={dog} alt="" className="profileimage"/>
                             <br></br>
                             <div className="profilecard">
-                            <label className="profileN">Username</label>
+
+                            {dataDocs && dataDocs.map(dataDocs => (
+                                <label className="profileN">{dataDocs.username}</label>
+                            ))}
+                                
                             <br></br>
                             <label className="location">{doc.loc} </label>
                             </div>

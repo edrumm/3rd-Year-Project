@@ -25,7 +25,7 @@ const SignUp  = () => {
     const history = useHistory();
 
     const checkUsername = (userNameInput) => {
-        const usernameRequirements = new RegExp (/^[a-z\d]{5,12}$/i);
+        const usernameRequirements = new RegExp (/^[a-z\d]{5,20}$/i);
         return usernameRequirements.test(userNameInput);
     }
 
@@ -92,10 +92,12 @@ const SignUp  = () => {
 
         setEmailError(emailError);
         setPasswordError(passwordError);
+        setUsernameError(usernameError);
         console.log(isValid);
 
         if(isValid === true){
             const data = {
+                username : username,
                 email: email,
                 password: password
               };
@@ -189,6 +191,7 @@ const SignUp  = () => {
                         id="termsAndConditions" 
                         name="termsAndConditions" 
                         value="Accept" 
+                        required
                     />
 
                     <label className="termsAndConditions"> I agree to the <Link to="/PictureThat/TermsAndConditions">Terms of Services <br></br> and Privacy Policy</Link></label><br></br>

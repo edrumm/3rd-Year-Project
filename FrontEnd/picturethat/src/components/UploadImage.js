@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import firebase from "../firebase.js";
 import './UploadImage.css';
 
-
 const ImageUpload = () => {
 
     const [image, setImage] = useState(null);
