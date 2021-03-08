@@ -19,13 +19,12 @@ const ImageFeed = () => {
            setLiked(false);
            setButton("far fa-heart")
        }
-    } ;
+    };
 
     const docs = firebase.GetImg('posts');
     console.log(docs);
 
-
-    const { dataDocs } = getData('users');
+    const { dataDocs } = firebase.GetData('users');
     console.log(dataDocs);
 
     // const [showPopUp, setShowPopUp] = useState(false);
