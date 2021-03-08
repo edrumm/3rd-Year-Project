@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
+import "../Pages/Settings.css";
 
 const ChangePassword = () => {
 
@@ -47,7 +48,8 @@ const ChangePassword = () => {
         <div className="changePassword">
             <form>
 
-                <label>Change Password</label>
+                <label>Change Password: </label>
+                <br></br>
 
                 <input 
                         type="password" 
@@ -67,14 +69,14 @@ const ChangePassword = () => {
                         value= {confirmChangePassword}
                         onChange= {(e) => {setConfirmChangePassword(e.target.value)}} 
                 />
-                    
+                <br></br>
                     <button
                         id="signInButton" 
                         className="button"
                         onClick= {validatePassword}>
                             Submit
                     </button>
-                    
+                    <br></br>
                     <Link to="/ForgotPassword">Forgot Password?</Link>
                 </form>
             </div>

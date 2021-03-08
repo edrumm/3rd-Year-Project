@@ -37,10 +37,7 @@ const ImageUpload = () => {
 
     const handleUpload = () => {
         firebase.UploadPost(caption, loc, channel, image);
-        
     };
-
-    console.log("image: ", image);
 
     return (
         <>

@@ -24,7 +24,12 @@ const ImageFeed = () => {
     const docs = firebase.GetImg('posts');
     console.log(docs);
 
+
+    const { dataDocs } = getData('users');
+    console.log(dataDocs);
+
     // const [showPopUp, setShowPopUp] = useState(false);
+
 
     // const openPopUp = () => {
     //     setShowPopUp(prev => !prev)
@@ -41,7 +46,11 @@ const ImageFeed = () => {
                             <img src={dog} alt="" className="profileimage"/>
                             <br></br>
                             <div className="profilecard">
-                            <label className="profileN">Username</label>
+
+                            {dataDocs && dataDocs.map(dataDocs => (
+                                <label className="profileN">{dataDocs.username}</label>
+                            ))}
+                                
                             <br></br>
                             <label className="location">{doc.location} </label>
                             </div>

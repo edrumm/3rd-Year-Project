@@ -21,11 +21,10 @@ firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 const firedatabase = firebase.firestore();
 
-
 const UploadPost = async (caption, loc, channel, image) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
-  })
+  });
 
   const increment = firebase.firestore.FieldValue.increment(1);
   const refnewpost = firedatabase.collection('posts').doc();
@@ -41,7 +40,7 @@ const UploadPost = async (caption, loc, channel, image) => {
     url: url,
     //comments: [],
     likes: 0
-  }
+  };
 
 
   await refnewpost.set(Data);
