@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './ImageFeed.css';
-import getImg from '../getImg';
-import getData from '../getData';
+//import getImg from '../getImg';
 import {Link} from 'react-router-dom';
+import firebase from "../firebase.js";
 //import PopUp from '../components/PostPopUp';
 
 const ImageFeed = () => {
@@ -21,19 +21,22 @@ const ImageFeed = () => {
        }
     } ;
 
-    const { docs } = getImg('posts');
+    const docs = firebase.GetImg('posts');
     console.log(docs);
+
 
     const { dataDocs } = getData('users');
     console.log(dataDocs);
 
-    const [showPopUp, setShowPopUp] = useState(false);
+    // const [showPopUp, setShowPopUp] = useState(false);
 
-    const openPopUp = () => {
-        setShowPopUp(prev => !prev)
-    };
+
+    // const openPopUp = () => {
+    //     setShowPopUp(prev => !prev)
+    // };
       
     return (
+      
         <div className= "imageFeed">
             { docs && docs.map(doc => (
                 <div class="post" key={doc.id}>
@@ -49,7 +52,7 @@ const ImageFeed = () => {
                             ))}
                                 
                             <br></br>
-                            <label className="location">{doc.loc} </label>
+                            <label className="location">{doc.location} </label>
                             </div>
                             </div>
                             <br></br>
@@ -71,11 +74,11 @@ const ImageFeed = () => {
                     <div className="">
                         <label className="">Score:</label>
                         <br></br>
-                        <label>Caption: {doc.title} </label>
+                        <label>Caption: {doc.caption} </label>
                         <br></br>
-                        <label>Channel: {doc.channel} </label>
+                        <label>Channel: {doc.channelName} </label>
                         <br></br>
-                        <label>Date</label>
+                        <label>Date: {doc.uploaddate} </label>
                     </div>
                 </div>
                 

@@ -1,7 +1,9 @@
 import firebase from 'firebase';
 import 'firebase/storage';
 import 'firebase/firestore';
-import { ref } from 'joi';
+import { useState, useEffect } from 'react';
+import { number } from 'joi';
+//import { ref } from 'joi';
 
 // PictureThat Firebase configuration
 var firebaseConfig = {
@@ -19,25 +21,137 @@ firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 const firedatabase = firebase.firestore();
 
+const UploadPost = async (caption, loc, channel, image) => {
+  const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
+    return snapshot.ref.getDownloadURL();
+  });
 
-const uploadPost = async (title, loc, channel, image) => {
-  const uploadTask = storage.ref(`images/${image.name}`).put(image);
-  const url = await uploadTask.getDownloadURL();
+  const increment = firebase.firestore.FieldValue.increment(1);
   const refnewpost = firedatabase.collection('posts').doc();
+  const refchannel = firedatabase.collection('channels').doc(channel);
+  //const timestamp = firebase.firestore.FieldValue.timestamp();
 
   const Data = {
-    caption: title,
+    uploaddate: firebase.firestore.Timestamp.now(),
+    caption: caption,
     location: loc,
-    channel: channel,
-    url: url
-  }
+    channel: refchannel,
+    channelName: channel,
+    url: url,
+    //comments: [],
+    likes: 0
+  };
 
 
   await refnewpost.set(Data);
   console.log(Data);
+
+  //if/else statement that either adds a post to a channel or creates a new channel and adds that post to it
+  if ((await refchannel.get()).exists) {
+
+    //creates a query object of single item array. Goes through each item and updates specific channel field
+    //by using reference to document obtained by the 
+    let query = firedatabase.collection('posts').where('url', '==', url);
+    let newpostref;
+    query.get().then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        newpostref = documentSnapshot.ref;
+        refchannel.update({
+          //updates the posts array inside the channel document with the post with the matching url
+          posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
+          //increments the number of posts a given channel has by 1
+          number_of_posts: increment
+        });
+      });
+    });
+  }
+  else {
+    let query = firedatabase.collection('posts').where('url', '==', url);
+    let newpostref;
+    query.get().then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        newpostref = documentSnapshot.ref;
+        refchannel.set({
+          //updates the posts array inside the channel document with the post with the matching url
+          posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
+          //increments the number of posts a given channel has by 1
+          number_of_posts: 1
+        });
+      });
+    });
+  }
 }
 
-export { storage, firedatabase, uploadPost, firebase as default };
+
+const AddComment = async (username, text, post) => {
+
+  const refcom = firedatabase.collection('comments').doc();
+  let query = firedatabase.collection('posts').doc(post);
+  const Data = {
+    username: username,
+    text: text,
+    post: query
+  }
+  await refcom.set(Data);
+}
+const GetData = (collection) => {
+  const [docs, setDocs] = useState([]);
+
+  useEffect(() => {
+    const unsub = firedatabase.collection(collection)
+      .onSnapshot((snap) => {
+        let documents = [];
+        snap.forEach(doc => {
+          documents.push({ ...doc.data(), id: doc.id })
+        });
+        setDocs(documents);
+      })
+
+    return () => unsub();
+  }, [collection])
+
+  return { docs };
+}
+
+const GetImg = (collection) => {
+  let docs = [];
+
+  firedatabase
+    .collection(collection)
+    .orderBy('uploaddate', 'desc')
+    .get()
+    .then( (querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        //for (let doc of querySnapshot.docs) {
+          docs.push({...doc.data(), id: doc.id})
+        });
+    })
+    .catch((error) => {
+        console.log(error)
+        throw Error('unexpected error when getting all posts')
+    })
+    //console.log(docs);
+    return docs;
+  // const [docs, setDocs] = useState([]);
+
+  // useEffect(() => {
+  //     const unsub = firedatabase.collection(collection)
+  //         .orderBy('uploaddate', 'desc')
+  //         .onSnapshot((snap) => {
+  //             let documents = [];
+  //             snap.forEach(doc => {
+  //                 documents.push({...doc.data(), id: doc.id})
+  //         });
+  //         setDocs(documents);
+  //     })
+
+  //     return () => unsub();
+  // }, [collection])
+
+  // return { docs };
+}
+
+export default { UploadPost, GetData, GetImg, AddComment };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M

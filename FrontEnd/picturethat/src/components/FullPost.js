@@ -2,10 +2,18 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './FullPost.css';
+import firebase from "../firebase.js";
 
 
 
 const FullPost = () => {
+
+    const[comment, setComment] = useState('');
+
+    const handleUpload = () => {
+        firebase.AddComment(comment);
+    };
+
    
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
@@ -72,8 +80,8 @@ const FullPost = () => {
                         </div>
 
                         <div className="addcomment">
-                        <input type="text" className="inputText" placeholder="Add a comment"></input>
-                        <button className="postbutton">Post</button>
+                        <input type="text" className="inputText" placeholder="Add a comment" value= {comment} onChange= {(e) => {setComment(e.target.value)}} />
+                        <button onClick={handleUpload} className="postbutton">Post</button>
                         </div>
             </div>
         </div>

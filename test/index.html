@@ -10,8 +10,9 @@
     <p>Use console to interact</p>
     <script type="text/javascript">
       const data = {
-        username: 'placeholder_user_1',
-        password: 'myPass123$'
+        email: 'testuser@mail.com',
+        password: 'Password012',
+        confirmPassword: 'Password012'
       };
 
       const options = {
@@ -22,10 +23,30 @@
         body: JSON.stringify(data)
       };
 
-      fetch('/api/login', options)
+      fetch('/api/signup', options)
       .then(res => res.json())
       .then(json => console.log(json))
       .catch(err => console.error(err));
+      /*
+      const options_2 = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      };
+
+      fetch('/api/session', options_2)
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .catch(err => console.error(err));
+
+      fetch('/api/logout', options_2)
+      .catch(err => console.error(err));
+
+      fetch('/api/session', options_2)
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .catch(err => console.error(err));*/
     </script>
   </body>
 </html>

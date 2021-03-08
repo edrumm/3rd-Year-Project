@@ -7,7 +7,9 @@ import {Link} from 'react-router-dom';
 
 
     function Channel() {
-       
+        // const { docs } = getImg('channels');
+        // console.log(docs);
+
         return(
             <>
             <div className="Channel">

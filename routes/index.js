@@ -1,27 +1,33 @@
+// Libs
 const express = require('express');
 const Router = express.Router();
 
-const session = require('./../scripts/session');
+// Scripts
 const firebase = require('./../scripts/firebase');
 const storage = require('./../scripts/storage');
 const schema = require('./../scripts/schema');
+const feed = require('./../scripts/feed');
+const { Session } = require('./../scripts/session');
 const { db, bucket } = require('./../scripts/firebase-auth');
 
+// Session object
+let session = new Session();
 
-// ROUTES
-// Test route
+
+/**
+  Test route,
+
+  use fetch('/api/test') to check setup
+*/
 Router.post('/test', (req, res) => {
   res.json({ test: 'Ok!' });
 });
 
 
-/*
-  Login route: validate login, send to Firebase
+/**
+  Login Route
 
-  Could try and implement ES6 {} notation to get values from firebase.login:
-  const { ok, err } = firebase.login(...)
-
-  Not sure how this would work with .then() though ?
+  TESTED // WORKING
 */
 Router.post('/login', (req, res) => {
 
@@ -32,6 +38,7 @@ Router.post('/login', (req, res) => {
     .then(response => {
 
       if (response.ok){
+        session.user = req.body.username;
         res.json({ ok: true, err: null });
         res.end();
 
@@ -46,7 +53,11 @@ Router.post('/login', (req, res) => {
   }
 });
 
-// Signup route: validate, send to DB
+/**
+  Signup Route
+
+  TESTED // WORKING
+*/
 Router.post('/signup', (req, res) => {
 
   try {
@@ -70,30 +81,99 @@ Router.post('/signup', (req, res) => {
   }
 });
 
-// TODO
+
+/**
+  Fetch / Post
+
+  NOT IMPLEMENTED
+*/
+Router.get('/get', (req, res) => {
+
+
+
+});
+
+Router.post('/post', (req, res) => {
+
+
+
+});
+
+
+/**
+  Upload post
+
+  UNTESTED // NEEDS FINISHING
+*/
 Router.post('/upload', (req, res) => {
 
-  // ...
+  storage.upload(bucket, req.img)
+  .then(url => {
+    let data = req.body;
+    data.url = url;
 
+    firebase.insert(db, data, 'posts')
+    .catch(err => {
+      res.json({ok: false, err: err});
+      res.end();
+    });
+
+    res.json({ok: true, err: null});
+    res.end();
+  })
+  .catch(err => res.json({ok: false, err: err}));
 });
 
+/**
+  Download post
+
+  UNTESTED // NEEDS FINISHING
+*/
 Router.post('/download', (req, res) => {
 
-  // ...
+  storage.download(storage, req.url)
+  .then(img => {
+    const query = {
+      field: 'url',
+      operand: '==',
+      value: req.url
+    };
+
+    firebase.get(db, 'posts', query)
+    .then(data => {
+      res.json({post: data});
+      res.end();
+    })
+    .catch(err => {
+      res.json({ok: false, err: err});
+      res.end();
+    });
+  })
+  .catch(err => res.json({ok: false, err: err}));
 
 });
 
+
+/**
+  Logout
+
+  TESTED // Working
+*/
 Router.get('/logout', (req, res) => {
+
   session.destroy();
 
-  // ...
-
 });
 
-// Returns the current session info if any
-Router.get('/sesison', (req, res) => {
 
-  res.json({ session: session.get() });
+/**
+  Session
+
+  TESTED // Working
+*/
+Router.get('/session', (req, res) => {
+
+  res.json({ session: session.user });
 
 });
 

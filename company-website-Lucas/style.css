@@ -30,6 +30,7 @@ html, body{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
 .vcenter{
@@ -42,13 +43,7 @@ html, body{
 .roundcorners {
     border-radius: 1rem;
   }
-.nav-bar-fix{
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-}
+
 @media (max-width:765){
     .parallax{
         height: 70%;
@@ -57,4 +52,10 @@ html, body{
 .img {
     height: 80%;
     width: 100%;
+}
+hr{
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }

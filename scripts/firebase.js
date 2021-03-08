@@ -25,9 +25,10 @@ module.exports.login = async (db, data) => {
 // DB signup function
 module.exports.signup = async (db, data) => {
 
-  let user = await db.collection('users').doc(data.email);
+  let user = await db.collection('users').doc(data.email)
+  let doc = user.get();
 
-  if (user.exists) {
+  if (doc.exists) {
     // redirect to login
     return { ok: false, err: 'Account already exists. Log in instead?' };
   }
@@ -77,23 +78,59 @@ module.exports.update = async (db, data, id, collection) => {
 
 };
 
-// DB delete
-// https://stackoverflow.com/questions/52048204/firestore-delete-document-and-all-documents-referencing-it
+/* DB delete
+  Needs tested
+*/
 module.exports.deleteAccount = async (db, id) => {
-  let user = await db.collection('users').doc(id).get();
+  // reference to user
+  let ref = await db.collection('users').doc(id);
+
+  // other data
+  let user = await ref.get();
   let posts = user.data().posts;
-  let comments = await db.collection('comments').where('user', '==', 'id').get();
+  let comments = await db.collection('comments').where('user', '==', id).get();
 
-  // work in progress
+  // delete this users' comments
+  comments.forEach(comm => {
+    module.exports.deleteComment(db, comm.id);
+  });
 
+
+  // foreach user post, delete all comments and post itself
+  posts.forEach(async post => {
+      let postComments = await db.collection('comments').where('post', '==', post.id);
+
+      postComments.forEach(async comm => {
+        module.exports.deleteComment(db, comm.id);
+        module.exports.deletePost(db, post.id);
+      });
+  });
+
+  // finally, delete account
+  await ref.delete();
+
+  return true;
 };
 
 module.exports.deletePost = (db, id) => {
+
+  // work in progress
+  return false;
+
+};
+
+module.exports.createComment = async (db, data) => {
+
+  //await db.collection('comments').add({data.text, data.test, data.test2, 0, 0});
+  //let user = await db.collection('users').doc(data.user).get();
+  //user.update({
+    //comments: firebase.firestore.FieldValue.arrayUnion(db.collection('comments').doc(user).where("....."))
+//});
 
 };
 
 module.exports.deleteComment = async (db, id) => {
 
-  await db.collection('comments').delete();
+  await db.collection('comments').doc(id).delete();
 
 };

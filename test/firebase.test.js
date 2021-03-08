@@ -1,25 +1,28 @@
+// ALL TESTS OK AS OF 04/03/21
+
 require('dotenv').config();
 const assert = require('chai').assert;
+const { db } = require('./../scripts/firebase-auth');
 const firebase = require('./../scripts/firebase');
 
 describe('Get Test', () => {
   it('Users', () => {
-    return firebase.get('users')
+    return firebase.get(db, 'users')
     .then(res => assert.isNotEmpty(res));
   });
 
   it('Posts', () => {
-    return firebase.get('posts')
+    return firebase.get(db, 'posts')
     .then(res => assert.isNotEmpty(res));
   });
 
   it('Comments', () => {
-    return firebase.get('comments')
+    return firebase.get(db, 'comments')
     .then(res => assert.isNotEmpty(res));
   });
 
   it('Channels', () => {
-    return firebase.get('channels')
+    return firebase.get(db, 'channels')
     .then(res => assert.isNotEmpty(res));
   });
 
@@ -31,7 +34,7 @@ describe('Get Test', () => {
         value: 'mail@gmail.com'
     };
 
-    return firebase.get('username', query)
+    return firebase.get(db, 'username', query)
     .then(res => );
   });
   */
@@ -39,12 +42,12 @@ describe('Get Test', () => {
 
 describe('Login', () => {
   it('DB login', () => {
-    return firebase.login({username: 'placeholder_user_1', password: 'myPass123$'})
-    .then(result => assert.isTrue(result));
+    return firebase.login(db, {email: 'placeholder_user_1', password: 'myPass123$'})
+    .then(result => assert.isTrue(result.ok));
   });
 
   it('Nonexistant DB login', () => {
-    return firebase.login({username: 'placeholder_user_2', password: 'xyz123'})
-    .then(result => assert.isFalse(result));
+    return firebase.login(db, {email: 'placeholder_user_2', password: 'xyz123'})
+    .then(result => assert.isFalse(result.ok));
   });
 });
