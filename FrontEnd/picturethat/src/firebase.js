@@ -39,7 +39,7 @@ const UploadPost = async (caption, loc, channel, image) => {
     channel: refchannel,
     channelName: channel,
     url: url,
-    comments: [],
+    //comments: [],
     likes: 0
   }
 

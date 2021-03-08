@@ -7,7 +7,7 @@ import firebase from "../firebase.js";
 //import PopUp from '../components/PostPopUp';
 
 const ImageFeed = () => {
-    const docs  = firebase.GetImg('posts');
+    const docs = firebase.GetImg('posts');
     console.log(docs);
 
     // const [showPopUp, setShowPopUp] = useState(false);
@@ -17,7 +17,7 @@ const ImageFeed = () => {
     // };
       
     return (
-        
+      
         <div className= "imageFeed">
             { docs && docs.map(doc => (
                 <div class="post" key={doc.id}>
