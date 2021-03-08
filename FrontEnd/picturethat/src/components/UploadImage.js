@@ -1,16 +1,18 @@
 import React, { useState } from "react";
+//import { render } from "react-dom";
 import { Link } from "react-router-dom";
-import { storage, firedatabase, timestamp } from "../firebase";
+import firebase from "../firebase.js";
 import './UploadImage.css';
-
+//import { Button } from '@material-ui/core';
+//import upload from "../storage";
 
 const ImageUpload = () => {
 
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
     const [error, setError] = useState(null);
-    const[title, setTitle] = useState('');
-    const[channel, setChannel] = useState('');
+    const[caption, setTitle] = useState('');
+    const[channel, setDescription] = useState('');
     const[loc, setLoc] = useState('');
     const[localimg, setLocalimg] = useState(null);
 
@@ -34,29 +36,8 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
-        const uploadTask = storage.ref(`images/${image.name}`).put(image);
-        const collection = firedatabase.collection('posts');
-        uploadTask.on(
-            "state_changed",
-            snapshot => {},
-            error => {
-                console.log(error);
-            },
-            () => {
-                storage
-                    .ref("images")
-                    .child(image.name)
-                    .getDownloadURL()
-                    .then(url => { 
-                        console.log(url);
-                        setUrl(url); 
-                        const uploaddate = timestamp();
-                        collection.add({ url: url, uploaddate, title, loc, channel});
-                    });
-            }     
-            
-        );
-
+        firebase.UploadPost(caption, loc, channel, image);
+        
     };
 
     console.log("image: ", image);
@@ -72,9 +53,9 @@ const ImageUpload = () => {
         </div>
         <div>
         <a className="text" >Details</a>
-        <input type="text" className="inputboxT" placeholder="Caption" value= {title} onChange= {(e) => {setTitle(e.target.value)}}/>
+        <input type="text" className="inputboxT" placeholder="Title" value= {caption} onChange= {(e) => {setTitle(e.target.value)}}/>
         <input type="text" className="inputboxT" placeholder="Location" value= {loc} onChange= {(e) => {setLoc(e.target.value)}}/>
-        <input type="text" className="inputboxT" placeholder="channel" value= {channel} onChange= {(e) => {setChannel(e.target.value)}}/>
+        <input type="text" className="inputboxT" placeholder="Channel" value= {channel} onChange= {(e) => {setDescription(e.target.value)}}/>
        
         <Link to="/PictureThat" onClick={handleUpload}><button className="button">Post</button></Link>
         </div>

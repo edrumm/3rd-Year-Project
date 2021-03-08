@@ -119,6 +119,16 @@ module.exports.deletePost = (db, id) => {
 
 };
 
+module.exports.createComment = async (db, data) => {
+
+  //await db.collection('comments').add({data.text, data.test, data.test2, 0, 0});
+  //let user = await db.collection('users').doc(data.user).get();
+  //user.update({
+    //comments: firebase.firestore.FieldValue.arrayUnion(db.collection('comments').doc(user).where("....."))
+//});
+
+};
+
 module.exports.deleteComment = async (db, id) => {
 
   await db.collection('comments').doc(id).delete();
