@@ -98,7 +98,7 @@ const ProfilePage  = () => {
 
         <div className= "imageGrid">
 
-            <div className="imageWrap"><img src={pic1} alt=""/></div>
+            <div className="imageWrap"><Link to="/PictureThat/FullPostPage"><img src={pic1} alt="" /></Link></div>
             <div className="imageWrap"><img src={pic2} alt=""/></div>
             <div className="imageWrap"><img src={pic3} alt=""/></div>
 
