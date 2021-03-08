@@ -7,14 +7,14 @@ import firebase from "../firebase.js";
 //import PopUp from '../components/PostPopUp';
 
 const ImageFeed = () => {
-    const { docs } = firebase.GetImg('posts');
+    const docs  = firebase.GetImg('posts');
     console.log(docs);
 
-    const [showPopUp, setShowPopUp] = useState(false);
+    // const [showPopUp, setShowPopUp] = useState(false);
 
-    const openPopUp = () => {
-        setShowPopUp(prev => !prev)
-    };
+    // const openPopUp = () => {
+    //     setShowPopUp(prev => !prev)
+    // };
       
     return (
         
@@ -29,7 +29,7 @@ const ImageFeed = () => {
                             <div className="profilecard">
                             <label className="profileN">Username</label>
                             <br></br>
-                            <label className="location">{doc.loc} </label>
+                            <label className="location">{doc.location} </label>
                             </div>
                             </div>
                             <br></br>
@@ -51,11 +51,11 @@ const ImageFeed = () => {
                     <div className="">
                         <label className="">Score:</label>
                         <br></br>
-                        <label>Caption: {doc.title} </label>
+                        <label>Caption: {doc.caption} </label>
                         <br></br>
-                        <label>Channel: {doc.channel} </label>
+                        <label>Channel: {doc.channelName} </label>
                         <br></br>
-                        <label>Date</label>
+                        <label>Date: {doc.uploaddate} </label>
                     </div>
                 </div>
                 
