@@ -1,30 +1,21 @@
-/*
-Add into firebase.js later
+// Seperate file to export the firebase credentials, will import into firebase.js later
 
-import dotenv from 'dotenv';
 import firebase from 'firebase';
 
 const firebaseConfig = {
-  apiKey: process.env.API_KEY,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID,
-  measurementId: process.env.MEASUREMENT_ID
+  apiKey: "AIzaSyCBVN9q8Dyb-jkn-tTBE6roFpImLrf3wyo",
+  authDomain: "picture-that-y3.firebaseapp.com",
+  projectId: "picture-that-y3",
+  storageBucket: "picture-that-y3.appspot.com",
+  messagingSenderId: "971709327177",
+  appId: "1:971709327177:web:555305dfeed34241829c98",
+  measurementId: "G-JS9RB6QVSJ"
 };
-
-Object.keys(firebaseConfig).forEach(k => {
-  if (firebaseConfig[k] === undefined) {
-    console.error(".env file is missing");
-    process.exit(1);
-  }
-});
 
 firebase.initializeApp(firebaseConfig);
 
 const firestore = firebase.firestore();
 const storage = firebase.storage();
+const auth = firebase.auth();
 
-export default { firestore, storage };
-*/
+export default { firestore, storage, auth };
