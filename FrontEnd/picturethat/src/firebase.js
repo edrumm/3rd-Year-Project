@@ -26,13 +26,35 @@ const login = (email, password) => {
 
   auth.signInWithEmailAndPassword(email, password)
   .then(user => {
+    // ...
 
+    console.log('Signed in');
+
+    // ...
   })
   .catch(err => {
     console.error(err);
   });
 
 };
+
+const signup = (email, password) => {
+  // joi validate
+
+  auth.createUserWithEmailAndPassword(email, password)
+  .then(user => {
+    // ...
+
+    console.log('Account created');
+
+    // ...
+  })
+  .catch(err => {
+    console.error(err);
+  });
+
+  // add account to db
+}
 
 const logout = () => {
 
@@ -194,7 +216,7 @@ const GetImg = (collection) => {
   // return blogs;
 }
 
-export default { UploadPost, GetData, GetImg, AddComment, login, logout };
+export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
