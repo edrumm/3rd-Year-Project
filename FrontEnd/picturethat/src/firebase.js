@@ -22,9 +22,11 @@ const storage = firebase.storage();
 const firestore = firebase.firestore();
 const auth = firebase.auth();
 
-const login = (email, password) => {
+let user = null;
 
-  auth.signInWithEmailAndPassword(email, password)
+const login = async (email, password) => {
+
+  /*auth.signInWithEmailAndPassword(email, password)
   .then(user => {
     // ...
 
@@ -34,7 +36,13 @@ const login = (email, password) => {
   })
   .catch(err => {
     console.error(err);
-  });
+
+
+  });*/
+
+  let user = await auth.signInWithEmailAndPassword(email, password);
+
+  return true;
 
 };
 
