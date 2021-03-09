@@ -3,12 +3,19 @@ import { Link } from 'react-router-dom';
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './FullPost.css';
 import firebase from "../firebase.js";
+import ImageFeed from "./ImageFeed";
+import {setSelectedImgId} from "./ImageFeed";
+
 
 
 
 const FullPost = () => {
 
+    let currentPost = setSelectedImgId;    
     const[comment, setComment] = useState('');
+    // const Imgid = require("./ImageFeed");
+    console.log(currentPost);
+
 
     const handleUpload = () => {
         firebase.AddComment(comment);

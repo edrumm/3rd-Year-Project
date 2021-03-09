@@ -6,9 +6,22 @@ import {Link} from 'react-router-dom';
 import firebase from "../firebase.js";
 //import PopUp from '../components/PostPopUp';
 
+let setSelectedImgId;
+
+
 const ImageFeed = () => {
     const { docs } = firebase.GetImg('posts');
     console.log(docs);
+
+    
+    
+    // const setSelectedImgId = (id) => {
+    //     imgId = id;
+    //     console.log(imgId);
+    // }
+    
+    
+    //return selectedImgId;
 
     // const [showPopUp, setShowPopUp] = useState(false);
 
@@ -46,7 +59,7 @@ const ImageFeed = () => {
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
                     <a className="far fa-heart" />
-                    <Link to="/PictureThat/FullPostPage" className="far fa-comment" />
+                    <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">
                         <label className="">Score:</label>
@@ -64,9 +77,13 @@ const ImageFeed = () => {
         ))}
     </div>
     )
+    
 }
 
-export default ImageFeed;
+export default ImageFeed ;
+export {setSelectedImgId};
+
+
 
 //the source bellow was used to help set up how to send and get data from database
 //https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia 
