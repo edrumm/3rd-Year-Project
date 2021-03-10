@@ -225,7 +225,50 @@ const GetImg = (collection) => {
   // return blogs;
 }
 
-export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup };
+const GetSinglePost = (id) => {
+
+  
+  // var docRef = firestore.collection("posts").doc(id);
+  // const [singlePost, setSinglePost] = useState('');
+
+  // docRef.get().then((doc) => {
+  //     if (doc.exists) {
+  //         setSinglePost(doc.data());
+  //     } else {
+  //         // doc.data() will be undefined in this case
+  //         console.log("No such document!");
+  //     }
+  // }).catch((error) => {
+  //     console.log("Error getting document:", error);
+  // });
+ 
+  // return singlePost;
+
+  const [docs, setDocs] = useState([]);
+  let isMounted = true;
+  useEffect(() => {
+  firestore
+    .collection('posts').doc(id)
+    .get()
+    .then( (doc) => {
+       if (isMounted){
+        //for (let doc of querySnapshot.docs) {
+          setDocs({...doc.data(), id: doc.id})
+        }
+        });
+        return () => { isMounted = false};
+      }, [])
+        
+  
+    
+    //console.log(docs);
+    return docs;
+
+    
+}
+
+export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
+//https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component

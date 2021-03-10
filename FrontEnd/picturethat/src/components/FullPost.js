@@ -11,6 +11,9 @@ import {setSelectedImgId} from "./ImageFeed";
 
 const FullPost = () => {
 
+    const singlePost = firebase.GetSinglePost(setSelectedImgId);
+    console.log(singlePost);
+
     let currentPost = setSelectedImgId;    
     const[comment, setComment] = useState('');
     // const Imgid = require("./ImageFeed");
@@ -31,7 +34,7 @@ const FullPost = () => {
                 <div class="card">
                     
                     <div>
-                        <img src={dog} alt="" className="imagestyle"/>
+                        <img src={singlePost.url} alt="" className="imagestyle"/>
                     </div>
                     
                     <div className="fullpostinfo">
@@ -44,16 +47,16 @@ const FullPost = () => {
                             <div className="profilecard">
                             <label className="profileN">Username</label>
                             <br></br>
-                            <label className="location">Location: </label>
+                            <label className="location">{singlePost.location}</label>
                             </div>
                             <br></br>
                             <lable className="report">Report</lable>
                     </div>
                     <div>
                         <div className="imginfo">
-                        <label className="caption">Caption: </label>
+                        <label className="caption">{singlePost.caption}</label>
                         <br></br>
-                        <label className="channel">Channel: </label>
+                        <label className="channel">{singlePost.channelName}</label>
                         </div>
                         
                         <label className="date">Date</label>
@@ -69,7 +72,7 @@ const FullPost = () => {
                         <div className="likesection">
                             <div className="like">
                                 <a className="far fa-heart" />
-                                <label className="score">Score:</label>
+                                <label className="score">Score: {singlePost.Likes}</label>
                             </div>
                         </div>
 
