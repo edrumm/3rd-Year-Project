@@ -15,7 +15,7 @@ import pic5 from '../components/ImageFiles/picture5.jpg';
 import pic6 from '../components/ImageFiles/picture6.jpg';
 import Footer from '../components/footer';
 
-import getData from '../firebase';
+import firebase from '../firebase';
 
 
 const ProfilePage  = () => {
@@ -46,8 +46,8 @@ const ProfilePage  = () => {
         );
     }
 
-     const { dataDocs } = getData('users');
-     console.log(dataDocs);
+    const { dataDocs } = firebase.GetData('users');
+    console.log(dataDocs);
 
     return (
         <>
