@@ -28,8 +28,6 @@ const ImageFeed = () => {
     console.log(dataDocs);
 
     // const [showPopUp, setShowPopUp] = useState(false);
-
-
     // const openPopUp = () => {
     //     setShowPopUp(prev => !prev)
     // };
