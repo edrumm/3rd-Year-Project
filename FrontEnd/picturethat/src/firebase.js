@@ -270,6 +270,15 @@ const GetPostofChannels = (id) => {
 
   // let query = firestore.collection('channels').doc(id);
 
+  //let allPosts = firestore.collection('posts');
+
+  // FOR ALL IN query.postArray {
+
+    //allposts.doc(query.postArray).data()
+    //allposts.doc(query.postArray).id Or equivalentm, to match get img
+    //push these to an array, then do the same from there as in get img
+
+  //}
   // let newpostref;
   // query.get().then(querySnapshot => {
   //   querySnapshot.forEach(documentSnapshot => {
