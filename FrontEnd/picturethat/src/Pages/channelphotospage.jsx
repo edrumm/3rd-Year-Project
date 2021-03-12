@@ -1,13 +1,13 @@
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
-import ImageFeed from '../components/ImageFeed';
+import ChannelPhoto from '../components/ChannelPhotos';
 
 const ChannelPhotos = () => {
 
     return (
         <>
         <Navbar></Navbar>
-        <ImageFeed />
+        <ChannelPhoto />
         </>
     );
 };
