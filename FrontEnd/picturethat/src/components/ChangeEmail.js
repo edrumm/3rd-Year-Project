@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
+import "../Pages/Settings.css";
 
 
 const ChangeEmail = () => {
@@ -50,7 +51,8 @@ const ChangeEmail = () => {
         <div className="changePassword">
             <form>
 
-                <label>Change Email Address</label>
+                <label>Change Email Address: </label>
+                <br></br>
 
                 <input 
                         type="email" 
@@ -70,7 +72,7 @@ const ChangeEmail = () => {
                         value= {confirmChangeEmail}
                         onChange= {(e) => {setConfirmChangeEmail(e.target.value)}} 
                 />
-                    
+                 <br></br>   
                     <button
                         id="signInButton" 
                         className="button"
