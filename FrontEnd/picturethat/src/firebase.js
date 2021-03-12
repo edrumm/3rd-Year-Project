@@ -6,7 +6,7 @@ import { number } from 'joi';
 //import { ref } from 'joi';
 
 // PictureThat Firebase configuration
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyCBVN9q8Dyb-jkn-tTBE6roFpImLrf3wyo",
   authDomain: "picture-that-y3.firebaseapp.com",
   projectId: "picture-that-y3",
@@ -17,9 +17,69 @@ var firebaseConfig = {
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-//firebase.analytics();
+
 const storage = firebase.storage();
-const firedatabase = firebase.firestore();
+const firestore = firebase.firestore();
+const auth = firebase.auth();
+
+let user = null;
+
+const login = async (email, password) => {
+
+  /*auth.signInWithEmailAndPassword(email, password)
+  .then(user => {
+    // ...
+
+    console.log('Signed in');
+
+    // ...
+  })
+  .catch(err => {
+    console.error(err);
+
+
+  });*/
+
+  let user = await auth.signInWithEmailAndPassword(email, password);
+
+  return true;
+
+};
+
+const signup = (email, password) => {
+  // joi validate
+
+  auth.createUserWithEmailAndPassword(email, password)
+  .then(user => {
+    // ...
+
+    console.log('Account created');
+
+    // ...
+  })
+  .catch(err => {
+    console.error(err);
+  });
+
+  // add account to db
+}
+
+const logout = () => {
+
+  auth.signOut();
+
+};
+
+// Detects change in login state
+auth.onAuthStateChanged(user => {
+
+  if (user) {
+    console.log('Signed in');
+  } else {
+    console.log('Signed out');
+  }
+
+});
 
 const UploadPost = async (caption, loc, channel, image) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
@@ -27,8 +87,8 @@ const UploadPost = async (caption, loc, channel, image) => {
   });
 
   const increment = firebase.firestore.FieldValue.increment(1);
-  const refnewpost = firedatabase.collection('posts').doc();
-  const refchannel = firedatabase.collection('channels').doc(channel);
+  const refnewpost = firestore.collection('posts').doc();
+  const refchannel = firestore.collection('channels').doc(channel);
   //const timestamp = firebase.firestore.FieldValue.timestamp();
 
   const Data = {
@@ -50,8 +110,8 @@ const UploadPost = async (caption, loc, channel, image) => {
   if ((await refchannel.get()).exists) {
 
     //creates a query object of single item array. Goes through each item and updates specific channel field
-    //by using reference to document obtained by the 
-    let query = firedatabase.collection('posts').where('url', '==', url);
+    //by using reference to document obtained by the
+    let query = firestore.collection('posts').where('url', '==', url);
     let newpostref;
     query.get().then(querySnapshot => {
       querySnapshot.forEach(documentSnapshot => {
@@ -66,7 +126,7 @@ const UploadPost = async (caption, loc, channel, image) => {
     });
   }
   else {
-    let query = firedatabase.collection('posts').where('url', '==', url);
+    let query = firestore.collection('posts').where('url', '==', url);
     let newpostref;
     query.get().then(querySnapshot => {
       querySnapshot.forEach(documentSnapshot => {
@@ -85,8 +145,8 @@ const UploadPost = async (caption, loc, channel, image) => {
 
 const AddComment = async (username, text, post) => {
 
-  const refcom = firedatabase.collection('comments').doc();
-  let query = firedatabase.collection('posts').doc(post);
+  const refcom = firestore.collection('comments').doc();
+  let query = firestore.collection('posts').doc(post);
   const Data = {
     username: username,
     text: text,
@@ -98,7 +158,7 @@ const GetData = (collection) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-    const unsub = firedatabase.collection(collection)
+    const unsub = firestore.collection(collection)
       .onSnapshot((snap) => {
         let documents = [];
         snap.forEach(doc => {
@@ -114,44 +174,100 @@ const GetData = (collection) => {
 }
 
 const GetImg = (collection) => {
-  let docs = [];
+  // let docs = [];
 
-  firedatabase
-    .collection(collection)
-    .orderBy('uploaddate', 'desc')
-    .get()
-    .then( (querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        //for (let doc of querySnapshot.docs) {
-          docs.push({...doc.data(), id: doc.id})
-        });
-    })
-    .catch((error) => {
-        console.log(error)
-        throw Error('unexpected error when getting all posts')
-    })
-    //console.log(docs);
-    return docs;
-  // const [docs, setDocs] = useState([]);
+  // firestore
+  //   .collection(collection)
+  //   .orderBy('uploaddate', 'desc')
+  //   .get()
+  //   .then( (querySnapshot) => {
+  //     querySnapshot.forEach((doc) => {
+  //       //for (let doc of querySnapshot.docs) {
+  //         docs.push({...doc.data(), id: doc.id})
+  //       });
+  //   })
+  //   .catch((error) => {
+  //       console.log(error)
+  //       throw Error('unexpected error when getting all posts')
+  //   })
+  //   //console.log(docs);
+  //   return docs;
+  const [docs, setDocs] = useState([]);
 
+  useEffect(() => {
+      const unsub = firestore.collection(collection)
+          //.orderBy('uploaddate', 'desc')
+          .onSnapshot((snap) => {
+              let documents = [];
+              snap.forEach(doc => {
+                  documents.push({...doc.data(), id: doc.id})
+          });
+          setDocs(documents);
+      })
+
+      return () => unsub();
+  }, [collection])
+
+  return { docs };
+  // const [blogs,setBlogs]=useState([])
+  // const fetchBlogs=async()=>{
+  //   const response= firestore.collection(collection);
+  //   const data=await response.get();
+  //   data.docs.forEach(item=>{
+  //    setBlogs([...blogs,item.data()])
+  //   })
+  // }
   // useEffect(() => {
-  //     const unsub = firedatabase.collection(collection)
-  //         .orderBy('uploaddate', 'desc')
-  //         .onSnapshot((snap) => {
-  //             let documents = [];
-  //             snap.forEach(doc => {
-  //                 documents.push({...doc.data(), id: doc.id})
-  //         });
-  //         setDocs(documents);
-  //     })
+  //   fetchBlogs();
+  // }, [])
 
-  //     return () => unsub();
-  // }, [collection])
-
-  // return { docs };
+  // return blogs;
 }
 
-export default { UploadPost, GetData, GetImg, AddComment };
+const GetSinglePost = (id) => {
+
+  
+  // var docRef = firestore.collection("posts").doc(id);
+  // const [singlePost, setSinglePost] = useState('');
+
+  // docRef.get().then((doc) => {
+  //     if (doc.exists) {
+  //         setSinglePost(doc.data());
+  //     } else {
+  //         // doc.data() will be undefined in this case
+  //         console.log("No such document!");
+  //     }
+  // }).catch((error) => {
+  //     console.log("Error getting document:", error);
+  // });
+ 
+  // return singlePost;
+
+  const [docs, setDocs] = useState([]);
+  let isMounted = true;
+  useEffect(() => {
+  firestore
+    .collection('posts').doc(id)
+    .get()
+    .then( (doc) => {
+       if (isMounted){
+        //for (let doc of querySnapshot.docs) {
+          setDocs({...doc.data(), id: doc.id})
+        }
+        });
+        return () => { isMounted = false};
+      }, [])
+        
+  
+    
+    //console.log(docs);
+    return docs;
+
+    
+}
+
+export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
+//https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component

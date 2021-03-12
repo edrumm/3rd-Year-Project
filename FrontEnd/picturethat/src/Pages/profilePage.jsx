@@ -16,7 +16,7 @@ import pic5 from '../components/ImageFiles/picture5.jpg';
 import pic6 from '../components/ImageFiles/picture6.jpg';
 import Footer from '../components/footer';
 
-import firebase from "../firebase.js";
+import firebase from '../firebase';
 
 const ProfilePage  = () => {
 
