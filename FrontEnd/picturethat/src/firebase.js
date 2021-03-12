@@ -266,7 +266,29 @@ const GetSinglePost = (id) => {
     
 }
 
-export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost };
+const GetPostofChannels = (id) => {
+
+  // let query = firestore.collection('channels').doc(id);
+
+  // let newpostref;
+  // query.get().then(querySnapshot => {
+  //   querySnapshot.forEach(documentSnapshot => {
+  //     newpostref = documentSnapshot.ref;
+  //     refchannel.set({
+  //       //updates the posts array inside the channel document with the post with the matching url
+  //       posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
+  //       //increments the number of posts a given channel has by 1
+  //       number_of_posts: 1
+  //     });
+  //   });
+  // });
+
+}
+
+
+
+
+export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost, GetPostofChannels };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
