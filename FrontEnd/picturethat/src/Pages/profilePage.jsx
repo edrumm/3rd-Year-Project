@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import './profilePage.css';
 import './Pages.css';
 import {useState} from 'react';
+import ImageGrid from '../components/ImageGrid';
 
 /* import for image files DEMO */
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
@@ -17,10 +18,10 @@ import Footer from '../components/footer';
 
 import firebase from '../firebase';
 
-
 const ProfilePage  = () => {
 
     const[text, setText] = useState('Bio');
+    
     const[isEdit, setIsEdit] = useState(false);
 
     const changeToEditMode = () =>{
@@ -62,7 +63,6 @@ const ProfilePage  = () => {
             ))}
             
             <img src={dog} alt="" className="profileimageProfile" />
-            <p>Realname</p>
 
             {isEdit ? renderEdit() : renderDefault()}
         </div>
@@ -96,16 +96,7 @@ const ProfilePage  = () => {
 
         <p className="spanLine"><span></span></p>
 
-        <div className= "imageGrid">
-
-            <div className="imageWrap"><Link to="/PictureThat/FullPostPage"><img src={pic1} alt="" /></Link></div>
-            <div className="imageWrap"><img src={pic2} alt=""/></div>
-            <div className="imageWrap"><img src={pic3} alt=""/></div>
-
-            <div className="imageWrap"><img src={pic4} alt=""/></div>
-            <div className="imageWrap"><img src={pic5} alt=""/></div>
-            <div className="imageWrap"><img src={pic6} alt=""/></div>
-        </div>
+        <ImageGrid/>
 
         <Footer/>
     </>

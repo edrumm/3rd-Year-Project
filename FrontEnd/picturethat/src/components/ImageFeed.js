@@ -22,13 +22,11 @@ const ImageFeed = () => {
            setLiked(false);
            setButton("far fa-heart")
        }
-    } ;
+    };
 
     const { docs } = firebase.GetImg('posts');
     console.log(docs);
  
-
-    
     
     // const setSelectedImgId = (id) => {
     //     imgId = id;
@@ -39,8 +37,6 @@ const ImageFeed = () => {
     //return selectedImgId;
 
     // const [showPopUp, setShowPopUp] = useState(false);
-
-
     // const openPopUp = () => {
     //     setShowPopUp(prev => !prev)
     // };

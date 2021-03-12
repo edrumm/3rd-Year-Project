@@ -30,14 +30,14 @@
 
 .channelPhoto{
     width: 60%;
-    
+    max-height: 33rem;
 }
 
 .channelInfo{
     
     padding-top: 25%;
     max-width: 47.625rem;
-    height: 33rem;
+    max-height: 33rem;
     text-align: left;
     border: solid 2px #efefef;
     border-top-right-radius: 15px;
