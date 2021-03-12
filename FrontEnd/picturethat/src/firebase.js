@@ -92,7 +92,7 @@ const UploadPost = async (caption, loc, channel, image) => {
   //const timestamp = firebase.firestore.FieldValue.timestamp();
 
   const Data = {
-    uploaddate: firebase.firestore.Timestamp.now(),
+    uploaddate: firebase.firestore.Timestamp.now().toDate(),
     caption: caption,
     location: loc,
     channel: refchannel,
@@ -196,7 +196,7 @@ const GetImg = (collection) => {
 
   useEffect(() => {
       const unsub = firestore.collection(collection)
-          //.orderBy('uploaddate', 'desc')
+          .orderBy('uploaddate', 'desc')
           .onSnapshot((snap) => {
               let documents = [];
               snap.forEach(doc => {
@@ -266,7 +266,42 @@ const GetSinglePost = (id) => {
     
 }
 
-export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost };
+const GetPostofChannels = (id) => {
+
+  const posts = [];
+  posts = firestore.collection('channels').doc(id).get();
+  return posts;
+
+  // let query = firestore.collection('channels').doc(id);
+
+  //let allPosts = firestore.collection('posts');
+
+  // FOR ALL IN query.postArray {
+
+    //allposts.doc(query.postArray).data()
+    //allposts.doc(query.postArray).id Or equivalentm, to match get img
+    //push these to an array, then do the same from there as in get img
+
+  //}
+  // let newpostref;
+  // query.get().then(querySnapshot => {
+  //   querySnapshot.forEach(documentSnapshot => {
+  //     newpostref = documentSnapshot.ref;
+  //     refchannel.set({
+  //       //updates the posts array inside the channel document with the post with the matching url
+  //       posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
+  //       //increments the number of posts a given channel has by 1
+  //       number_of_posts: 1
+  //     });
+  //   });
+  // });
+
+}
+
+
+
+
+export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost, GetPostofChannels };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
