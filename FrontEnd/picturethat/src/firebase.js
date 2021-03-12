@@ -92,7 +92,7 @@ const UploadPost = async (caption, loc, channel, image) => {
   //const timestamp = firebase.firestore.FieldValue.timestamp();
 
   const Data = {
-    uploaddate: firebase.firestore.Timestamp.now(),
+    uploaddate: firebase.firestore.Timestamp.now().toDate(),
     caption: caption,
     location: loc,
     channel: refchannel,
@@ -196,7 +196,7 @@ const GetImg = (collection) => {
 
   useEffect(() => {
       const unsub = firestore.collection(collection)
-          //.orderBy('uploaddate', 'desc')
+          .orderBy('uploaddate', 'desc')
           .onSnapshot((snap) => {
               let documents = [];
               snap.forEach(doc => {
@@ -267,6 +267,10 @@ const GetSinglePost = (id) => {
 }
 
 const GetPostofChannels = (id) => {
+
+  const posts = [];
+  posts = firestore.collection('channels').doc(id).data();
+          
 
   // let query = firestore.collection('channels').doc(id);
 
