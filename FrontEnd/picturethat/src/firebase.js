@@ -269,8 +269,8 @@ const GetSinglePost = (id) => {
 const GetPostofChannels = (id) => {
 
   const posts = [];
-  posts = firestore.collection('channels').doc(id).data();
-          
+  posts = firestore.collection('channels').doc(id).get();
+  return posts;
 
   // let query = firestore.collection('channels').doc(id);
 
