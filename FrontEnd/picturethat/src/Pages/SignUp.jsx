@@ -6,6 +6,8 @@ import {useState} from 'react';
 import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
 
+import firebase from '../firebase';
+
 const SignUp  = () => {
 
     const[email, setEmail] = useState('');
@@ -39,7 +41,7 @@ const SignUp  = () => {
         //arrays to hold errors set to empty array
         const emailError = {};
         const passwordError = {};
-        
+
         if (!checkEmail(email)) {
                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
                 alert(emailError.InvalidCharacters);
@@ -49,7 +51,7 @@ const SignUp  = () => {
             emailError.EmailMismatch = "Re-entered email MUST be the same as email";
             alert(emailError.EmailMismatch);
         }
-        
+
         if((checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail)){
             console.log("Valid email address");
         }
@@ -63,7 +65,7 @@ const SignUp  = () => {
             passwordError.PasswordMismatch = "Re-entered password MUST be the same as password";
             alert(passwordError.PasswordMismatch);
         }
-        
+
         if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword)){
             console.log("Valid password");
         }
@@ -81,36 +83,22 @@ const SignUp  = () => {
         setPasswordError(passwordError);
         console.log(isValid);
 
-        if(isValid === true){
-            const data = {
-                email: email,
-                password: password
-              };
-              
-                //needed for fetch to work, always keep!
-                const options = {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(data)
-                };
-              
-                fetch('/api/signup', options)
-                .then(response => response.json())
-                .then(json => isValid = json.body)
-                .catch(err => console.error(err));
+        if (isValid) {
 
-            history.push("/PictureThat");
+            firebase.signup(email, password)
+            .then(() => {
+              history.push("/PictureThat");
+            })
+            .catch(err => console.error(err));
 
         }
-        
-        if(isValid === false){
+
+        if (!isValid) {
             return isValid;
         }
 
-        
-        
+
+
     }
 
     return (
@@ -123,63 +111,63 @@ const SignUp  = () => {
 
             <div>
                 <form>
-                    <input 
-                        type="text" 
-                        id="emailInput" 
-                        className="inputbox" 
+                    <input
+                        type="text"
+                        id="emailInput"
+                        className="inputbox"
                         placeholder="Email Address"
                         autoFocus required
                         value= {email}
-                        onChange= {(e) => {setEmail(e.target.value)}} 
+                        onChange= {(e) => {setEmail(e.target.value)}}
                     />
 
-                    <input 
-                        type="text" 
-                        id="emailInput" 
-                        className="inputbox" 
+                    <input
+                        type="text"
+                        id="emailInput"
+                        className="inputbox"
                         placeholder="Re-enter Email Address"
                         value= {confirmEmail}
-                        onChange= {(e) => {setConfirmEmail(e.target.value)}} 
+                        onChange= {(e) => {setConfirmEmail(e.target.value)}}
                     />
 
-                    <input 
-                        type="password" 
-                        id="passwordInput" 
-                        className="inputbox" 
-                        placeholder="Enter Password" 
+                    <input
+                        type="password"
+                        id="passwordInput"
+                        className="inputbox"
+                        placeholder="Enter Password"
                         autoFocus required
                         value= {password}
-                        onChange= {(e) => {setPassword(e.target.value)}} 
+                        onChange= {(e) => {setPassword(e.target.value)}}
                     />
 
-                    <input 
-                        type="password" 
-                        id="passwordInput" 
-                        className="inputbox" 
+                    <input
+                        type="password"
+                        id="passwordInput"
+                        className="inputbox"
                         placeholder="Re-enter Password"
                         value= {confirmPassword}
-                        onChange= {(e) => {setConfirmPassword(e.target.value)}} 
+                        onChange= {(e) => {setConfirmPassword(e.target.value)}}
                     />
 
-                    <input 
-                        type="checkbox" 
-                        id="termsAndConditions" 
-                        name="termsAndConditions" 
-                        value="Accept" 
+                    <input
+                        type="checkbox"
+                        id="termsAndConditions"
+                        name="termsAndConditions"
+                        value="Accept"
                     />
 
                     <label className="termsAndConditions"> I agree to the <Link to="/PictureThat/TermsAndConditions">Terms of Services and Privacy Policy</Link></label><br></br>
-                    
+
                         <button
                             id="signInButton"
-                            onClick= {validateForm} 
+                            onClick= {validateForm}
                             className="button">Sign Up
                         </button>
-                
+
                     <p>Have an Account?</p><Link to="/SignIn">Sign In</Link>
                     </form>
             </div>
-            
+
         </div>
         <Footer />
         </>
