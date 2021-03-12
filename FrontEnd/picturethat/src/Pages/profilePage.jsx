@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
 import './profilePage.css';
 import './Pages.css';
+import {useState} from 'react';
+import ImageGrid from '../components/ImageGrid';
 
 /* import for image files DEMO */
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
@@ -14,21 +16,55 @@ import pic5 from '../components/ImageFiles/picture5.jpg';
 import pic6 from '../components/ImageFiles/picture6.jpg';
 import Footer from '../components/footer';
 
-//import 'antd/dist/antd.css';
+import firebase from '../firebase';
 
-const profilePage  = () => {
+const ProfilePage  = () => {
+
+    const[text, setText] = useState('Bio');
+    
+    const[isEdit, setIsEdit] = useState(false);
+
+    const changeToEditMode = () =>{
+        setIsEdit(true);
+    }
+
+    const updateEditText = () => {
+        setIsEdit(false);
+    }
+
+    const renderEdit = () => {
+        return(
+            <div>
+                <input type="text" className="editBio" defaultValue={text} onChange= {(e) => {setText(e.target.value)}} />
+                <button onClick={updateEditText}>OK</button>
+            </div>
+        );
+    }
+
+    const renderDefault = () => {
+        return (
+            <p onDoubleClick={changeToEditMode}>{text}</p>
+        );
+    }
+
+    const { dataDocs } = firebase.GetData('users');
+    console.log(dataDocs);
+
     return (
         <>
-        
+
         <Navbar></Navbar>
 
         <div className="personalsection">
 
         <div className="column personalsectionLeft">
-            <p>Username</p>
+            {dataDocs && dataDocs.map(dataDocs => (
+                <p>{dataDocs.username}</p>
+            ))}
+            
             <img src={dog} alt="" className="profileimageProfile" />
-            <p>Realname</p>
-            <p>bio</p>
+
+            {isEdit ? renderEdit() : renderDefault()}
         </div>
 
         <div class="column personalsectionRight">
@@ -60,20 +96,11 @@ const profilePage  = () => {
 
         <p className="spanLine"><span></span></p>
 
-        <div className= "imageGrid">
-
-            <div className="imageWrap"><img src={pic1} alt=""/></div>
-            <div className="imageWrap"><img src={pic2} alt=""/></div>
-            <div className="imageWrap"><img src={pic3} alt=""/></div>
-
-            <div className="imageWrap"><img src={pic4} alt=""/></div>
-            <div className="imageWrap"><img src={pic5} alt=""/></div>
-            <div className="imageWrap"><img src={pic6} alt=""/></div>
-        </div>
+        <ImageGrid/>
 
         <Footer/>
     </>
     );
 };
 
-export default profilePage;
+export default ProfilePage;

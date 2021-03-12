@@ -10,10 +10,22 @@ let setSelectedImgId;
 
 
 const ImageFeed = () => {
+
+    const [liked, setLiked] = useState(false);
+    const [button, setButton] = useState("far fa-heart");
+
+    const likepost = () => {
+       if(liked === false) {
+            setLiked(true);
+            setButton("fas fa-heart")
+       } else {
+           setLiked(false);
+           setButton("far fa-heart")
+       }
+    };
+
     const { docs } = firebase.GetImg('posts');
     console.log(docs);
-
-
 
     // const setSelectedImgId = (id) => {
     //     imgId = id;
@@ -24,7 +36,6 @@ const ImageFeed = () => {
     //return selectedImgId;
 
     // const [showPopUp, setShowPopUp] = useState(false);
-
     // const openPopUp = () => {
     //     setShowPopUp(prev => !prev)
     // };
@@ -40,7 +51,11 @@ const ImageFeed = () => {
                             <img src={dog} alt="" className="profileimage"/>
                             <br></br>
                             <div className="profilecard">
-                            <label className="profileN">Username</label>
+
+                           
+                                <label className="profileN">Username</label>
+                        
+                                
                             <br></br>
                             <label className="location">{doc.location} </label>
                             </div>
@@ -58,7 +73,7 @@ const ImageFeed = () => {
                     <div className="bottominfo">
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
-                    <a className="far fa-heart" />
+                    <a onClick={likepost} className={button} />
                     <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">

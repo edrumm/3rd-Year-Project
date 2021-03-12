@@ -81,7 +81,6 @@ auth.onAuthStateChanged(user => {
 
 });
 
-
 const UploadPost = async (caption, loc, channel, image) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();

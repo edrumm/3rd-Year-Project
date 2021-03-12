@@ -4,7 +4,7 @@ import ChangeEmail from '../components/ChangeEmail';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/footer';
 import './Settings.css';
-
+import DeleteAccount from '../components/DeleteAccount';
 
 const Settings = () => {
 
@@ -31,7 +31,7 @@ const Settings = () => {
                 {
                     name: "Delete Account",
                     description: "Warning! Closing your account is irreversible",
-                    tags: ["delete"],
+                    tags: [<DeleteAccount/>],
                 },
             ],
         },
@@ -85,15 +85,15 @@ const Settings = () => {
         </div>
 
         <div className="Account">
-            {visibleOptions.map((option) => <div key={option.header.name}>
+            {visibleOptions.map((option) => <div className="settingsDivision" key={option.header.name}>
 
                 <h3>{option.header.name}</h3>
 
-                <div>
-                    {option.values.map((value) => <div className="settingContents" key={value.name}>
+                <div className ="settingsDivision">
+                    {option.values.map((value) => <div key={value.name}>
                         <ul>
                             <li>
-                                <h6>{value.name}</h6>
+                                <h4>{value.name}</h4>
                                 <p>{value.description}</p>
                                 <div className="inputFields">{value.tags}</div>
                             </li>
