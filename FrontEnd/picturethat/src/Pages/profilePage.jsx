@@ -30,7 +30,7 @@ const ProfilePage  = () => {
         return(
             <div>
                 <input type="text" className="editBio" defaultValue={text} onChange= {(e) => {setText(e.target.value)}} />
-                <button onClick={updateEditText}>OK</button>
+                <button className="editBioButton" onClick={updateEditText}>OK</button>
             </div>
         );
     }
@@ -64,7 +64,6 @@ const ProfilePage  = () => {
         <div class="column personalsectionRight">
             
             <div className="column1 leftPersonalSide">
-                <div className="content">Followers</div>
                 <div className="content">No. of Posts</div>
             </div>
 
@@ -87,8 +86,6 @@ const ProfilePage  = () => {
             </div>
 
         </div>
-
-        <p className="spanLine"><span></span></p>
 
         <ImageGrid/>
 

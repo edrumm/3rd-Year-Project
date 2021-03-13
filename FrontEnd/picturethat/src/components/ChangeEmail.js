@@ -57,7 +57,7 @@ const ChangeEmail = () => {
                 <input 
                         type="email" 
                         id="passwordInput" 
-                        className="inputbox" 
+                        className="inputboxSettings" 
                         placeholder="Enter Email" 
                         required
                         value= {changeEmail}
@@ -67,7 +67,7 @@ const ChangeEmail = () => {
                 <input 
                         type="email" 
                         id="passwordInput" 
-                        className="inputbox" 
+                        className="inputboxSettings" 
                         placeholder="Re-enter Email"
                         value= {confirmChangeEmail}
                         onChange= {(e) => {setConfirmChangeEmail(e.target.value)}} 
@@ -75,7 +75,7 @@ const ChangeEmail = () => {
                  <br></br>   
                     <button
                         id="signInButton" 
-                        className="button"
+                        className="buttonSettings"
                         onClick= {validateEmail}>
                             Submit
                     </button>
