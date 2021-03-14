@@ -173,10 +173,15 @@ const GetData = (collection) => {
   return { docs };
 }
 
+
+//Should work, but might need some tweaking depending on how specific values are returned
 const AlreadyLiked = async (post, user) => {
   let already = false;
   let postref = "/post/" + post;
 
+  //goes through all users and finds ones where this specific post has been liked
+  //if any of these users match the one we are currently interested in, return true
+  //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
   const allPosts = firestore.collection("users").where("likedPosts", 'array-contains', postref)
     .get()
     .then((querySnapshot) => {
@@ -207,12 +212,16 @@ const LikePost = async (post, user) => {
 }
 
 const UnlikePost = async (post, user) => {
+  //firebase built in method for incrementing, just set with negative value
   const decrement = firebase.firestore.FieldValue.increment(-1);
+
+  //post end just increments in the negative direction - i.e decrementing
   let postref = firestore.collection("posts").doc(post);
   postref.update({
     likes: decrement
   })
 
+  //user end uses opposite array method from UNION to remove the specific post from the array
   let userref = firestore.collection("users").doc(user);
   userref.update({
     likedPosts: firebase.firestore.FieldValue.arrayRemove("/posts/" + post)
