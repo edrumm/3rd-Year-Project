@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-//import { render } from "react-dom";
 import { Link } from "react-router-dom";
 import firebase from "../firebase.js";
 import './UploadImage.css';
-//import { Button } from '@material-ui/core';
-//import upload from "../storage";
 
 const ImageUpload = () => {
 
@@ -42,30 +39,26 @@ const ImageUpload = () => {
     return (
         <>
         <div className="container">
-        <img src={localimg || "https://via.placeholder.com/400x380.png?text=Upload+Image"} alt="" className="images" />
+        <img src={localimg || "https://via.placeholder.com/400x380.png?text=Upload+Image"} alt="" className="imagesDiv" />
         { error && <div className="error">{error}</div>}
         <div className="button-wrapper">
-        <button className="button width">Add Photo</button>
+        <button className="buttonAdd width">Add Photo</button>
         <input type="file" onChange={imgChange} />
         </div>
-        <div>
+        <div className="textFields">
         <a className="text" >Details</a>
         <input type="text" className="inputboxT" placeholder="Title" value= {caption} onChange= {(e) => {setTitle(e.target.value)}}/>
         <input type="text" className="inputboxT" placeholder="Location" value= {loc} onChange= {(e) => {setLoc(e.target.value)}}/>
         <input type="text" className="inputboxT" placeholder="Channel" value= {channel} onChange= {(e) => {setDescription(e.target.value)}}/>
        
-        <Link to="/PictureThat" onClick={handleUpload}><button className="button">Post</button></Link>
+        <Link to="/PictureThat" onClick={handleUpload}><button className="buttonUpload">Post</button></Link>
         </div>
         </div>
         </>
     );
 };
 
-//render(<ImageUpload />, document.querySelector("#root"));
-
 export default ImageUpload;
-
-
 //https://www.youtube.com/watch?v=8r1Pb6Ja90o
 
 
