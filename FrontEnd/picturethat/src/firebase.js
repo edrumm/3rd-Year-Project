@@ -132,9 +132,9 @@ const UploadPost = async (caption, loc, channel, image) => {
       querySnapshot.forEach(documentSnapshot => {
         newpostref = documentSnapshot.ref;
         refchannel.set({
-          //updates the posts array inside the channel document with the post with the matching url
+          //creates the array that will contain the references to all the posts
           posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
-          //increments the number of posts a given channel has by 1
+          //sets the number of posts a channel has to one, where it can be incremented 
           number_of_posts: 1
         });
       });
@@ -171,6 +171,52 @@ const GetData = (collection) => {
   }, [collection])
 
   return { docs };
+}
+
+const AlreadyLiked = async (post, user) => {
+  let already = false;
+  let postref = "/post/" + post;
+
+  const allPosts = firestore.collection("users").where("likedPosts", 'array-contains', postref)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) =>{
+        if(doc == user){
+          already = true;
+          return already;
+        }
+      })
+    })
+    return already;
+}
+
+const LikePost = async (post, user) => {
+  //Uses built in FireBase method for incrementing
+  const increment = firebase.firestore.FieldValue.increment(1);
+  let postref = firestore.collection("posts").doc(post);
+  //on the post side, simply increment the number of likes by one
+  postref.update({
+    likes: increment
+  })
+
+  //on user side, add the post reference to the array within the specific user document
+  let userref = firestore.collection("users").doc(user);
+  userref.update({
+    likedPosts: firebase.firestore.FieldValue.arrayUnion("/posts/" + post)
+  })
+}
+
+const UnlikePost = async (post, user) => {
+  const decrement = firebase.firestore.FieldValue.increment(-1);
+  let postref = firestore.collection("posts").doc(post);
+  postref.update({
+    likes: decrement
+  })
+
+  let userref = firestore.collection("users").doc(user);
+  userref.update({
+    likedPosts: firebase.firestore.FieldValue.arrayRemove("/posts/" + post)
+  })
 }
 
 const GetImg = (collection) => {
@@ -301,7 +347,7 @@ const GetPostofChannels = (id) => {
 
 
 
-export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost, GetPostofChannels };
+export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost, GetPostofChannels, LikePost, UnlikePost, AlreadyLiked };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
