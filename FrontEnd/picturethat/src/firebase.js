@@ -154,6 +154,7 @@ const AddComment = async (username, text, post) => {
   }
   await refcom.set(Data);
 }
+
 const GetData = (collection) => {
   const [docs, setDocs] = useState([]);
 
@@ -269,7 +270,7 @@ const GetSinglePost = (id) => {
 const GetPostofChannels = (id) => {
 
   const posts = [];
-  posts = firestore.collection('channels').doc(id).get();
+  posts = firestore.collection('channels').doc(id);
   return posts;
 
   // let query = firestore.collection('channels').doc(id);
