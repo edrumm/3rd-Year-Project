@@ -42,6 +42,8 @@ const login = async (email, password) => {
 
   let user = await auth.signInWithEmailAndPassword(email, password);
 
+  console.log(user);
+
   return true;
 
 };
@@ -51,6 +53,27 @@ const signup = (email, password) => {
 
   auth.createUserWithEmailAndPassword(email, password)
   .then(user => {
+
+  let user = await db.collection('users').doc(email);
+  let doc = await user.get();
+
+  if (doc.exists) {
+    // redirect to login
+    throw new Error('An account with these details exists already');
+  }
+
+  // await db.collection('users').doc(data.email).set({
+  await db.collection('users').doc(data.username).set({
+    email: data.email,
+    followed_channels: ['channels/feed'],
+    followers: [],
+    following: [],
+    liked_posts: [],
+    // password: password,
+    posts: [],
+    score: 0
+  });
+
     // ...
 
     console.log('Account created');
@@ -73,11 +96,7 @@ const logout = () => {
 // Detects change in login state
 auth.onAuthStateChanged(user => {
 
-  if (user) {
-    console.log('Signed in');
-  } else {
-    console.log('Signed out');
-  }
+
 
 });
 
@@ -134,7 +153,7 @@ const UploadPost = async (caption, loc, channel, image) => {
         refchannel.set({
           //creates the array that will contain the references to all the posts
           posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
-          //sets the number of posts a channel has to one, where it can be incremented 
+          //sets the number of posts a channel has to one, where it can be incremented
           number_of_posts: 1
         });
       });
@@ -282,7 +301,7 @@ const GetImg = (collection) => {
 
 const GetSinglePost = (id) => {
 
-  
+
   // var docRef = firestore.collection("posts").doc(id);
   // const [singlePost, setSinglePost] = useState('');
 
@@ -296,7 +315,7 @@ const GetSinglePost = (id) => {
   // }).catch((error) => {
   //     console.log("Error getting document:", error);
   // });
- 
+
   // return singlePost;
 
   const [docs, setDocs] = useState([]);
@@ -313,13 +332,13 @@ const GetSinglePost = (id) => {
         });
         return () => { isMounted = false};
       }, [])
-        
-  
-    
+
+
+
     //console.log(docs);
     return docs;
 
-    
+
 }
 
 const GetPostofChannels = (id) => {

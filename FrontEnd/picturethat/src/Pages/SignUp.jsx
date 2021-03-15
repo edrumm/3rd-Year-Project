@@ -94,11 +94,17 @@ const SignUp  = () => {
 
         if (isValid) {
 
+            // try to signup
             firebase.signup(email, password)
             .then(() => {
+              // successful
               history.push("/PictureThat");
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+              // unsucessful
+              console.error(err);
+              history.push('/');
+            });
 
         }
 
