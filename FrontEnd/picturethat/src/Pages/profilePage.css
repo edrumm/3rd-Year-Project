@@ -17,12 +17,16 @@
 
 /* ------------------------ Personal Info Header ----------------------- */
 .personalsection{
-    margin: 100px auto;
+    margin: 60px auto;
     margin-bottom: 0;
     flex-grow: 1;
     max-width: 935px;
     left: 50%;
     height: 230px;
+
+    border-radius: 5px;
+    border: solid 1px #efefef;
+    background-color: white;
 }
 .column{
     float: left;
@@ -71,26 +75,6 @@
     text-align: center;
 }
 
-/* ----------------------- span Line -------------------------------- */
-
-.spanLine{
-    margin-left: 95px;
-    margin-right: 95px;
-    flex-direction: row;
-    overflow: hidden;
-}
-.spanLine> span{
-   position: relative;
-   display: inline-block;
-}
-.spanLine > span:before, .spanLine > span:after{
-   content: '';
-   position: absolute;
-   top: 50%;
-   border-bottom: 2px solid;
-   width: 100vw;
-}
-
 /*-----------------------Image Wrap ---------------------------------------*/
 .imageWrap{
     border-radius: 15px;
@@ -123,9 +107,18 @@
 
 .editBio{
     width: 150px;
-    height: 38px;
+    height: 25px;
     margin: 3px 40px 3px;
     border-radius: 5px;
     border: solid 1px #efefef;
     background-color: white;
+    text-align: center;
+}
+
+.editBioButton{
+    width: 150px;
+    height: 25px;
+    margin: 3px 40px 3px;
+    border-radius: 5px;
+    text-align: center;
 }

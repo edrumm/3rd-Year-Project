@@ -54,7 +54,7 @@ const ChangePassword = () => {
                 <input 
                         type="password" 
                         id="passwordInput" 
-                        className="inputbox" 
+                        className="inputboxSettings" 
                         placeholder="Enter Password" 
                         required
                         value= {changePassword}
@@ -64,7 +64,7 @@ const ChangePassword = () => {
                 <input 
                         type="password" 
                         id="passwordInput" 
-                        className="inputbox" 
+                        className="inputboxSettings" 
                         placeholder="Re-enter Password"
                         value= {confirmChangePassword}
                         onChange= {(e) => {setConfirmChangePassword(e.target.value)}} 
@@ -72,7 +72,7 @@ const ChangePassword = () => {
                 <br></br>
                     <button
                         id="signInButton" 
-                        className="button"
+                        className="buttonSettings"
                         onClick= {validatePassword}>
                             Submit
                     </button>
