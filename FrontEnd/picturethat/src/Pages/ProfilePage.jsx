@@ -14,6 +14,7 @@ import pic3 from '../components/ImageFiles/picture3.jpg';
 import pic4 from '../components/ImageFiles/picture4.jpg';
 import pic5 from '../components/ImageFiles/picture5.jpg';
 import pic6 from '../components/ImageFiles/picture6.jpg';
+
 import Footer from '../components/footer';
 
 import firebase from '../firebase';
@@ -95,7 +96,6 @@ const ProfilePage  = () => {
         </div>
 
         <p className="spanLine"><span></span></p>
-
         <ImageGrid/>
 
         <Footer/>
