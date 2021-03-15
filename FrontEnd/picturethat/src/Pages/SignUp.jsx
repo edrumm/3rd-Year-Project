@@ -97,7 +97,7 @@ const SignUp  = () => {
         if (isValid) {
 
             // try to signup
-            firebase.signup(email, password)
+            firebase.signup(email, password, username)
             .then(() => {
               // successful
               history.push("/PictureThat");

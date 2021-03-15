@@ -48,7 +48,7 @@ const login = async (email, password) => {
 
 };
 
-const signup = async (email, password) => {
+const signup = async (email, password, username) => {
   // joi validate
 
   let ok =  await auth.createUserWithEmailAndPassword(email, password);
@@ -62,6 +62,7 @@ const signup = async (email, password) => {
 
   // await db.collection('users').doc(data.email).set({
   await firestore.collection('users').doc(email).set({
+    username: username,
     email: email,
     followed_channels: ['channels/feed'],
     followers: [],
