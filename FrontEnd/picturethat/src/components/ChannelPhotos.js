@@ -5,14 +5,17 @@ import './ImageFeed.css';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase.js";
 //import PopUp from '../components/PostPopUp';
+import {setSelectedChannel} from '../components/Channel';
 
 let setSelectedImgId;
 
 
 const ImageFeed = () => {
-    const { docs } = firebase.GetImg('posts');
+    const { docs } = firebase.GetPostofChannels('posts');
     console.log(docs);
 
+    let currentChannel = setSelectedChannel;
+    console.log(currentChannel);
     
     
     // const setSelectedImgId = (id) => {

@@ -42,24 +42,41 @@ const login = async (email, password) => {
 
   let user = await auth.signInWithEmailAndPassword(email, password);
 
+  console.log(user);
+
   return true;
 
 };
 
-const signup = (email, password) => {
+const signup = async (email, password, username) => {
   // joi validate
 
-  auth.createUserWithEmailAndPassword(email, password)
-  .then(user => {
+  let ok =  await auth.createUserWithEmailAndPassword(email, password);
+  let user = await firestore.collection('users').doc(email);
+  let doc = await user.get();
+
+  if (doc.exists) {
+    // redirect to login
+    throw new Error('An account with these details exists already');
+  }
+
+  // await db.collection('users').doc(data.email).set({
+  await firestore.collection('users').doc(email).set({
+    username: username,
+    email: email,
+    followed_channels: ['channels/feed'],
+    followers: [],
+    following: [],
+    liked_posts: [],
+    posts: [],
+    score: 0
+  });
+
     // ...
 
     console.log('Account created');
 
     // ...
-  })
-  .catch(err => {
-    console.error(err);
-  });
 
   // add account to db
 }
@@ -70,16 +87,33 @@ const logout = () => {
 
 };
 
+const ResetEmail = (email) => {
+  var auth = firebase.auth();
+  var emailAddress = email;
+
+  auth.sendPasswordResetEmail(emailAddress).then(function() {
+    // Email sent.
+    }).catch(function(error) {
+    // An error happened.
+    });
+};
+
 // Detects change in login state
 auth.onAuthStateChanged(user => {
 
-  if (user) {
-    console.log('Signed in');
-  } else {
-    console.log('Signed out');
-  }
+
 
 });
+
+const getUser = () => {
+  let user = auth.currentUser;
+
+  if (user != null) {
+    return user;
+  } else {
+    return null;
+  }
+}
 
 const UploadPost = async (caption, loc, channel, image) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
@@ -92,7 +126,7 @@ const UploadPost = async (caption, loc, channel, image) => {
   //const timestamp = firebase.firestore.FieldValue.timestamp();
 
   const Data = {
-    uploaddate: firebase.firestore.Timestamp.now(),
+    uploaddate: firebase.firestore.Timestamp.now().toDate(),
     caption: caption,
     location: loc,
     channel: refchannel,
@@ -132,9 +166,9 @@ const UploadPost = async (caption, loc, channel, image) => {
       querySnapshot.forEach(documentSnapshot => {
         newpostref = documentSnapshot.ref;
         refchannel.set({
-          //updates the posts array inside the channel document with the post with the matching url
+          //creates the array that will contain the references to all the posts
           posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
-          //increments the number of posts a given channel has by 1
+          //sets the number of posts a channel has to one, where it can be incremented
           number_of_posts: 1
         });
       });
@@ -145,15 +179,30 @@ const UploadPost = async (caption, loc, channel, image) => {
 
 const AddComment = async (username, text, post) => {
 
-  const refcom = firestore.collection('comments').doc();
-  let query = firestore.collection('posts').doc(post);
+  const refcom = firestore.collection('comments');
+  let postref = firestore.collection('posts').doc(post);
   const Data = {
     username: username,
     text: text,
-    post: query
+    post: postref
   }
   await refcom.set(Data);
+
+  //For Use if Users should retain mention of all their comments
+  // const userref = firestore.collection('users').doc(username);
+  // let query = firestore.collection('comments').where("username", '==', username);
+  // query.get().then(querySnapshot => {
+  //   querySnapshot.forEach(documentSnapshot => {
+  //     newuserref = documentSnapshot.ref;
+  //     userref.update({
+  //       //creates the array that will contain the references to all the comments
+  //       comments: firebase.firestore.FieldValue.arrayUnion(newuserref),
+  //     });
+  //   });
+  // });
+
 }
+
 const GetData = (collection) => {
   const [docs, setDocs] = useState([]);
 
@@ -171,6 +220,61 @@ const GetData = (collection) => {
   }, [collection])
 
   return { docs };
+}
+
+
+//Should work, but might need some tweaking depending on how specific values are returned
+const AlreadyLiked = async (post, user) => {
+  let already = false;
+  let postref = "/post/" + post;
+
+  //goes through all users and finds ones where this specific post has been liked
+  //if any of these users match the one we are currently interested in, return true
+  //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
+  const allPosts = firestore.collection("users").where("likedPosts", 'array-contains', postref)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) =>{
+        if(doc == user){
+          already = true;
+          return already;
+        }
+      })
+    })
+    return already;
+}
+
+const LikePost = async (post, user) => {
+  //Uses built in FireBase method for incrementing
+  const increment = firebase.firestore.FieldValue.increment(1);
+  let postref = firestore.collection("posts").doc(post);
+  //on the post side, simply increment the number of likes by one
+  postref.update({
+    likes: increment
+  })
+
+  //on user side, add the post reference to the array within the specific user document
+  let userref = firestore.collection("users").doc(user);
+  userref.update({
+    likedPosts: firebase.firestore.FieldValue.arrayUnion("/posts/" + post)
+  })
+}
+
+const UnlikePost = async (post, user) => {
+  //firebase built in method for incrementing, just set with negative value
+  const decrement = firebase.firestore.FieldValue.increment(-1);
+
+  //post end just increments in the negative direction - i.e decrementing
+  let postref = firestore.collection("posts").doc(post);
+  postref.update({
+    likes: decrement
+  })
+
+  //user end uses opposite array method from UNION to remove the specific post from the array
+  let userref = firestore.collection("users").doc(user);
+  userref.update({
+    likedPosts: firebase.firestore.FieldValue.arrayRemove("/posts/" + post)
+  })
 }
 
 const GetImg = (collection) => {
@@ -196,7 +300,7 @@ const GetImg = (collection) => {
 
   useEffect(() => {
       const unsub = firestore.collection(collection)
-          //.orderBy('uploaddate', 'desc')
+          .orderBy('uploaddate', 'desc')
           .onSnapshot((snap) => {
               let documents = [];
               snap.forEach(doc => {
@@ -226,7 +330,7 @@ const GetImg = (collection) => {
 
 const GetSinglePost = (id) => {
 
-  
+
   // var docRef = firestore.collection("posts").doc(id);
   // const [singlePost, setSinglePost] = useState('');
 
@@ -240,7 +344,7 @@ const GetSinglePost = (id) => {
   // }).catch((error) => {
   //     console.log("Error getting document:", error);
   // });
- 
+
   // return singlePost;
 
   const [docs, setDocs] = useState([]);
@@ -257,16 +361,66 @@ const GetSinglePost = (id) => {
         });
         return () => { isMounted = false};
       }, [])
-        
-  
-    
+
+
+
     //console.log(docs);
     return docs;
 
-    
+
 }
 
-export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost };
+const GetPostofChannels = (id) => {
+
+  const posts = [];
+  posts = firestore.collection('channels').doc(id);
+  return posts;
+
+  // let query = firestore.collection('channels').doc(id);
+
+  //let allPosts = firestore.collection('posts');
+
+  // FOR ALL IN query.postArray {
+
+    //allposts.doc(query.postArray).data()
+    //allposts.doc(query.postArray).id Or equivalentm, to match get img
+    //push these to an array, then do the same from there as in get img
+
+  //}
+  // let newpostref;
+  // query.get().then(querySnapshot => {
+  //   querySnapshot.forEach(documentSnapshot => {
+  //     newpostref = documentSnapshot.ref;
+  //     refchannel.set({
+  //       //updates the posts array inside the channel document with the post with the matching url
+  //       posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
+  //       //increments the number of posts a given channel has by 1
+  //       number_of_posts: 1
+  //     });
+  //   });
+  // });
+
+}
+
+
+
+
+export default {
+  UploadPost,
+  GetData,
+  GetImg,
+  AddComment,
+  login,
+  logout,
+  signup,
+  GetSinglePost,
+  GetPostofChannels,
+  LikePost,
+  UnlikePost,
+  AlreadyLiked,
+  getUser,
+  ResetEmail
+};
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
