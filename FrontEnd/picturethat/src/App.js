@@ -9,7 +9,7 @@ import SignUp from "./Pages/SignUp";
 import ForgotPassword from "./Pages/ForgotPassword";
 import LandingPage from "./Pages/LandingPage";
 import NotFound from "./Pages/404";
-import ProfilePage from './Pages/profilePage';
+import ProfilePage from './Pages/ProfilePage';
 import EditProfile from './Pages/EditProfile';
 import UploadPage from './Pages/UploadPage';
 import AchievementsPage from './Pages/AchievementsPage';

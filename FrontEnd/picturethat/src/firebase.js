@@ -48,13 +48,11 @@ const login = async (email, password) => {
 
 };
 
-const signup = (email, password) => {
+const signup = async (email, password) => {
   // joi validate
 
-  auth.createUserWithEmailAndPassword(email, password)
-  .then(user => {
-
-  let user = await db.collection('users').doc(email);
+  let ok =  await auth.createUserWithEmailAndPassword(email, password);
+  let user = await firestore.collection('users').doc(email);
   let doc = await user.get();
 
   if (doc.exists) {
@@ -63,13 +61,12 @@ const signup = (email, password) => {
   }
 
   // await db.collection('users').doc(data.email).set({
-  await db.collection('users').doc(data.username).set({
-    email: data.email,
+  await firestore.collection('users').doc(email).set({
+    email: email,
     followed_channels: ['channels/feed'],
     followers: [],
     following: [],
     liked_posts: [],
-    // password: password,
     posts: [],
     score: 0
   });
@@ -79,10 +76,6 @@ const signup = (email, password) => {
     console.log('Account created');
 
     // ...
-  })
-  .catch(err => {
-    console.error(err);
-  });
 
   // add account to db
 }

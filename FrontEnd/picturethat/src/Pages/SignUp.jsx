@@ -50,7 +50,7 @@ const SignUp  = () => {
         const emailError = {};
         const passwordError = {};
 
-        if (!checkEmail(email)) {
+        /*if (!checkEmail(email)) {
                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
                 alert(emailError.InvalidCharacters);
         }
@@ -90,7 +90,9 @@ const SignUp  = () => {
         setEmailError(emailError);
         setPasswordError(passwordError);
         setUsernameError(usernameError);
-        console.log(isValid);
+        console.log(isValid);*/
+
+        isValid = true;
 
         if (isValid) {
 
