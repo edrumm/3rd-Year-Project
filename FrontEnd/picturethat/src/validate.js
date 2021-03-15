@@ -15,11 +15,10 @@ const signupSchema = joi.object({
     joi.string()
     .min(5)
     .max(20)
-    .required()
+    .required(),
   password:
     joi.string()
-    .min(6)
-    .required(),
+    .pattern(new RegExp('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/')),
   confirmEmail: joi.ref('email'),
   confirmPassword: joi.ref('password')
 });
