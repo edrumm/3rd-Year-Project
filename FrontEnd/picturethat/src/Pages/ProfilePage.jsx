@@ -8,6 +8,13 @@ import ImageGrid from '../components/ImageGrid';
 
 /* import for image files DEMO */
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
+import pic1 from '../components/ImageFiles/picture1.jpg';
+import pic2 from '../components/ImageFiles/picture2.jpg';
+import pic3 from '../components/ImageFiles/picture3.jpg';
+import pic4 from '../components/ImageFiles/picture4.jpg';
+import pic5 from '../components/ImageFiles/picture5.jpg';
+import pic6 from '../components/ImageFiles/picture6.jpg';
+
 import Footer from '../components/footer';
 
 import firebase from '../firebase';
@@ -30,7 +37,7 @@ const ProfilePage  = () => {
         return(
             <div>
                 <input type="text" className="editBio" defaultValue={text} onChange= {(e) => {setText(e.target.value)}} />
-                <button className="editBioButton" onClick={updateEditText}>OK</button>
+                <button onClick={updateEditText}>OK</button>
             </div>
         );
     }
@@ -64,6 +71,7 @@ const ProfilePage  = () => {
         <div class="column personalsectionRight">
             
             <div className="column1 leftPersonalSide">
+                <div className="content">Followers</div>
                 <div className="content">No. of Posts</div>
             </div>
 
@@ -87,6 +95,7 @@ const ProfilePage  = () => {
 
         </div>
 
+        <p className="spanLine"><span></span></p>
         <ImageGrid/>
 
         <Footer/>

@@ -68,7 +68,7 @@ const SignIn  = () => {
         }*/
 
 
-        if(isValid){
+        if(isValid) {
 
             firebase.login(email, password)
             .then(res => {
@@ -81,7 +81,7 @@ const SignIn  = () => {
 
         }
 
-        if(!isValid){
+        if(!isValid) {
 
         }
 

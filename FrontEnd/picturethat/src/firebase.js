@@ -42,24 +42,41 @@ const login = async (email, password) => {
 
   let user = await auth.signInWithEmailAndPassword(email, password);
 
+  console.log(user);
+
   return true;
 
 };
 
-const signup = (email, password) => {
+const signup = async (email, password, username) => {
   // joi validate
 
-  auth.createUserWithEmailAndPassword(email, password)
-  .then(user => {
+  let ok =  await auth.createUserWithEmailAndPassword(email, password);
+  let user = await firestore.collection('users').doc(email);
+  let doc = await user.get();
+
+  if (doc.exists) {
+    // redirect to login
+    throw new Error('An account with these details exists already');
+  }
+
+  // await db.collection('users').doc(data.email).set({
+  await firestore.collection('users').doc(email).set({
+    username: username,
+    email: email,
+    followed_channels: ['channels/feed'],
+    followers: [],
+    following: [],
+    liked_posts: [],
+    posts: [],
+    score: 0
+  });
+
     // ...
 
     console.log('Account created');
 
     // ...
-  })
-  .catch(err => {
-    console.error(err);
-  });
 
   // add account to db
 }
@@ -73,11 +90,7 @@ const logout = () => {
 // Detects change in login state
 auth.onAuthStateChanged(user => {
 
-  if (user) {
-    console.log('Signed in');
-  } else {
-    console.log('Signed out');
-  }
+
 
 });
 
@@ -134,7 +147,7 @@ const UploadPost = async (caption, loc, channel, image) => {
         refchannel.set({
           //creates the array that will contain the references to all the posts
           posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
-          //sets the number of posts a channel has to one, where it can be incremented 
+          //sets the number of posts a channel has to one, where it can be incremented
           number_of_posts: 1
         });
       });
@@ -145,14 +158,28 @@ const UploadPost = async (caption, loc, channel, image) => {
 
 const AddComment = async (username, text, post) => {
 
-  const refcom = firestore.collection('comments').doc();
-  let query = firestore.collection('posts').doc(post);
+  const refcom = firestore.collection('comments');
+  let postref = firestore.collection('posts').doc(post);
   const Data = {
     username: username,
     text: text,
-    post: query
+    post: postref
   }
   await refcom.set(Data);
+
+  //For Use if Users should retain mention of all their comments
+  // const userref = firestore.collection('users').doc(username);
+  // let query = firestore.collection('comments').where("username", '==', username);
+  // query.get().then(querySnapshot => {
+  //   querySnapshot.forEach(documentSnapshot => {
+  //     newuserref = documentSnapshot.ref;
+  //     userref.update({
+  //       //creates the array that will contain the references to all the comments
+  //       comments: firebase.firestore.FieldValue.arrayUnion(newuserref),
+  //     });
+  //   });
+  // });
+
 }
 
 const GetData = (collection) => {
@@ -282,7 +309,7 @@ const GetImg = (collection) => {
 
 const GetSinglePost = (id) => {
 
-  
+
   // var docRef = firestore.collection("posts").doc(id);
   // const [singlePost, setSinglePost] = useState('');
 
@@ -296,7 +323,7 @@ const GetSinglePost = (id) => {
   // }).catch((error) => {
   //     console.log("Error getting document:", error);
   // });
- 
+
   // return singlePost;
 
   const [docs, setDocs] = useState([]);
@@ -313,13 +340,13 @@ const GetSinglePost = (id) => {
         });
         return () => { isMounted = false};
       }, [])
-        
-  
-    
+
+
+
     //console.log(docs);
     return docs;
 
-    
+
 }
 
 const GetPostofChannels = (id) => {

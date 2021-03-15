@@ -50,7 +50,7 @@ const SignUp  = () => {
         const emailError = {};
         const passwordError = {};
 
-        if (!checkEmail(email)) {
+        /*if (!checkEmail(email)) {
                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
                 alert(emailError.InvalidCharacters);
         }
@@ -90,15 +90,23 @@ const SignUp  = () => {
         setEmailError(emailError);
         setPasswordError(passwordError);
         setUsernameError(usernameError);
-        console.log(isValid);
+        console.log(isValid);*/
+
+        isValid = true;
 
         if (isValid) {
 
-            firebase.signup(email, password)
+            // try to signup
+            firebase.signup(email, password, username)
             .then(() => {
+              // successful
               history.push("/PictureThat");
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+              // unsucessful
+              console.error(err);
+              history.push('/');
+            });
 
         }
 
