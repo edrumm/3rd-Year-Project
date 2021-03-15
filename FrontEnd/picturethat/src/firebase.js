@@ -94,6 +94,16 @@ auth.onAuthStateChanged(user => {
 
 });
 
+const getUser = () => {
+  let user = auth.currentUser;
+
+  if (user != null) {
+    return user;
+  } else {
+    return null;
+  }
+}
+
 const UploadPost = async (caption, loc, channel, image) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
@@ -384,7 +394,21 @@ const GetPostofChannels = (id) => {
 
 
 
-export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost, GetPostofChannels, LikePost, UnlikePost, AlreadyLiked };
+export default {
+  UploadPost,
+  GetData,
+  GetImg,
+  AddComment,
+  login,
+  logout,
+  signup,
+  GetSinglePost,
+  GetPostofChannels,
+  LikePost,
+  UnlikePost,
+  AlreadyLiked,
+  getUser
+};
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
