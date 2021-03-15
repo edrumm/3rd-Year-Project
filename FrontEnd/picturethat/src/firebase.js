@@ -132,9 +132,9 @@ const UploadPost = async (caption, loc, channel, image) => {
       querySnapshot.forEach(documentSnapshot => {
         newpostref = documentSnapshot.ref;
         refchannel.set({
-          //updates the posts array inside the channel document with the post with the matching url
+          //creates the array that will contain the references to all the posts
           posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
-          //increments the number of posts a given channel has by 1
+          //sets the number of posts a channel has to one, where it can be incremented 
           number_of_posts: 1
         });
       });
@@ -154,6 +154,7 @@ const AddComment = async (username, text, post) => {
   }
   await refcom.set(Data);
 }
+
 const GetData = (collection) => {
   const [docs, setDocs] = useState([]);
 
@@ -171,6 +172,61 @@ const GetData = (collection) => {
   }, [collection])
 
   return { docs };
+}
+
+
+//Should work, but might need some tweaking depending on how specific values are returned
+const AlreadyLiked = async (post, user) => {
+  let already = false;
+  let postref = "/post/" + post;
+
+  //goes through all users and finds ones where this specific post has been liked
+  //if any of these users match the one we are currently interested in, return true
+  //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
+  const allPosts = firestore.collection("users").where("likedPosts", 'array-contains', postref)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) =>{
+        if(doc == user){
+          already = true;
+          return already;
+        }
+      })
+    })
+    return already;
+}
+
+const LikePost = async (post, user) => {
+  //Uses built in FireBase method for incrementing
+  const increment = firebase.firestore.FieldValue.increment(1);
+  let postref = firestore.collection("posts").doc(post);
+  //on the post side, simply increment the number of likes by one
+  postref.update({
+    likes: increment
+  })
+
+  //on user side, add the post reference to the array within the specific user document
+  let userref = firestore.collection("users").doc(user);
+  userref.update({
+    likedPosts: firebase.firestore.FieldValue.arrayUnion("/posts/" + post)
+  })
+}
+
+const UnlikePost = async (post, user) => {
+  //firebase built in method for incrementing, just set with negative value
+  const decrement = firebase.firestore.FieldValue.increment(-1);
+
+  //post end just increments in the negative direction - i.e decrementing
+  let postref = firestore.collection("posts").doc(post);
+  postref.update({
+    likes: decrement
+  })
+
+  //user end uses opposite array method from UNION to remove the specific post from the array
+  let userref = firestore.collection("users").doc(user);
+  userref.update({
+    likedPosts: firebase.firestore.FieldValue.arrayRemove("/posts/" + post)
+  })
 }
 
 const GetImg = (collection) => {
@@ -269,7 +325,7 @@ const GetSinglePost = (id) => {
 const GetPostofChannels = (id) => {
 
   const posts = [];
-  posts = firestore.collection('channels').doc(id).get();
+  posts = firestore.collection('channels').doc(id);
   return posts;
 
   // let query = firestore.collection('channels').doc(id);
@@ -301,7 +357,7 @@ const GetPostofChannels = (id) => {
 
 
 
-export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost, GetPostofChannels };
+export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost, GetPostofChannels, LikePost, UnlikePost, AlreadyLiked };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
