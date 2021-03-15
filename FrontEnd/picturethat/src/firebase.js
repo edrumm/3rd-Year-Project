@@ -164,14 +164,28 @@ const UploadPost = async (caption, loc, channel, image) => {
 
 const AddComment = async (username, text, post) => {
 
-  const refcom = firestore.collection('comments').doc();
-  let query = firestore.collection('posts').doc(post);
+  const refcom = firestore.collection('comments');
+  let postref = firestore.collection('posts').doc(post);
   const Data = {
     username: username,
     text: text,
-    post: query
+    post: postref
   }
   await refcom.set(Data);
+
+  //For Use if Users should retain mention of all their comments
+  // const userref = firestore.collection('users').doc(username);
+  // let query = firestore.collection('comments').where("username", '==', username);
+  // query.get().then(querySnapshot => {
+  //   querySnapshot.forEach(documentSnapshot => {
+  //     newuserref = documentSnapshot.ref;
+  //     userref.update({
+  //       //creates the array that will contain the references to all the comments
+  //       comments: firebase.firestore.FieldValue.arrayUnion(newuserref),
+  //     });
+  //   });
+  // });
+
 }
 
 const GetData = (collection) => {
