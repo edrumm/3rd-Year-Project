@@ -87,12 +87,25 @@ const logout = () => {
 
 };
 
+const ResetEmail = (email) => {
+  var auth = firebase.auth();
+  var emailAddress = email;
+
+  auth.sendPasswordResetEmail(emailAddress).then(function() {
+    // Email sent.
+    }).catch(function(error) {
+    // An error happened.
+    });
+};
+
 // Detects change in login state
 auth.onAuthStateChanged(user => {
 
 
 
 });
+
+
 
 const UploadPost = async (caption, loc, channel, image) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
@@ -384,7 +397,7 @@ const GetPostofChannels = (id) => {
 
 
 
-export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost, GetPostofChannels, LikePost, UnlikePost, AlreadyLiked };
+export default { UploadPost, GetData, GetImg, AddComment, login, logout, signup, GetSinglePost, GetPostofChannels, LikePost, UnlikePost, AlreadyLiked, ResetEmail };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
