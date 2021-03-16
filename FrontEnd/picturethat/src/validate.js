@@ -37,11 +37,11 @@ const signup = (credentials) => {
 };
 
 // Check login, throws error if invalid
-const login = (credentials) => {
+const signin = (credentials) => {
   let { error, value } = loginSchema.validate(credentials);
 
   if (error)
     throw error;
 };
 
-export default { login, signup };
+export default { signin, signup };
