@@ -109,10 +109,10 @@ const SignUp  = () => {
               history.push('/');
             });
 
-        }
+            return true;
 
-        if (!isValid) {
-            return isValid;
+        } else {
+            return false;
         }
 
 

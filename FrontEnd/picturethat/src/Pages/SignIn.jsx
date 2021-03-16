@@ -6,6 +6,7 @@ import {useState} from 'react';
 import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
 import firebase from '../firebase';
+import validate from '../validate';
 
 const SignIn  = () => {
 
@@ -79,10 +80,11 @@ const SignIn  = () => {
               history.push('/');
             });
 
-        }
+            return true;
 
-        if(!isValid) {
+        } else {
           history.push('/');
+          return false;
         }
 
         setEmailError(emailError);
