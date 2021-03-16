@@ -5,6 +5,9 @@ import './UploadImage.css';
 
 const ImageUpload = () => {
 
+    let username = firebase.getUser().displayName;
+    console.log(username);
+
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
     const [error, setError] = useState(null);
@@ -33,7 +36,7 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
-        firebase.UploadPost(caption, loc, channel, image);
+        firebase.UploadPost(caption, loc, channel, image, username);
     };
 
     return (

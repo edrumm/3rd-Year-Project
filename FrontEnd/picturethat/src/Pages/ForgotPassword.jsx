@@ -3,11 +3,16 @@ import {Link} from 'react-router-dom';
 import './Pages.css';
 import logo from './logo.png';
 import Footer from '../components/footer';
+import {useState} from 'react';
+import firebase from '../firebase';
 
 const ForgotPassword  = () => {
 
-    const onSubmitForgot = (e) => {
-        e.preventDefault();
+    const[email, setEmail] = useState('');
+    console.log(email);
+
+    const onSubmitForgot = () => {
+        firebase.ForgotPassword(email);
     }
 
     return (
@@ -18,8 +23,14 @@ const ForgotPassword  = () => {
             <div>
                 <h1>Forgot Password</h1>
             </div>
-                <input type="email" className="inputbox" id="emailInput" placeholder="Email Address" />
-                <button id="signInButton" class="signInButton" onclick="submitBtnPress()"><Link to="/SignIn">Submit</Link></button>
+                <input 
+                    type="email" 
+                    className="inputbox" 
+                    id="emailInput" 
+                    placeholder="Email Address" 
+                    value= {email}
+                    onChange= {(e) => {setEmail(e.target.value)}}/>
+                <button id="signInButton" class="signInButton" onclick={onSubmitForgot}><Link to="/SignIn">Submit</Link></button>
 
                 <p className="or"><span>OR</span>
                     <div className="whiteSpace"></div>

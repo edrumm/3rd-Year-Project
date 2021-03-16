@@ -115,7 +115,7 @@ const getUser = () => {
   }
 }
 
-const UploadPost = async (caption, loc, channel, image) => {
+const UploadPost = async (caption, loc, channel, image, username) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
   });
@@ -127,6 +127,7 @@ const UploadPost = async (caption, loc, channel, image) => {
 
   const Data = {
     uploaddate: firebase.firestore.Timestamp.now().toDate(),
+    UserName: username,
     caption: caption,
     location: loc,
     channel: refchannel,
