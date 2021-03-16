@@ -100,7 +100,7 @@ const SignUp  = () => {
             firebase.signup(email, password, username)
             .then(() => {
               // successful
-              history.push("/PictureThat");
+              history.push("/SignIn");
             })
             .catch(err => {
               // unsucessful
