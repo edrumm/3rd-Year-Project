@@ -23,11 +23,11 @@ const SignUp  = () => {
     const[usernameError, setUsernameError] = useState('');
 
     //boolean isValid to check if credentials are valid set to true
-    var isValid = false;
+    // var isValid = false;
 
     const history = useHistory();
 
-    const checkUsername = (userNameInput) => {
+    /*const checkUsername = (userNameInput) => {
         const usernameRequirements = new RegExp (/^[a-z\d]{5,20}$/i);
         return usernameRequirements.test(userNameInput);
     }
@@ -44,14 +44,14 @@ const SignUp  = () => {
     const checkPassword = (userPasswordInput) => {
         const passwordRequirements = new RegExp (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/);
         return passwordRequirements.test(userPasswordInput);
-    }
+    }*/
     const validateForm = (e) => {
 
-        //arrays to hold errors set to empty array
+        /*arrays to hold errors set to empty array
         const emailError = {};
         const passwordError = {};
 
-        /*if (!checkEmail(email)) {
+        if (!checkEmail(email)) {
                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
                 alert(emailError.InvalidCharacters);
         }
@@ -93,7 +93,24 @@ const SignUp  = () => {
         setUsernameError(usernameError);
         console.log(isValid);*/
 
-        isValid = true;
+        let isValid = true;
+
+        try {
+          let credentials = {
+              username: username,
+              email: email,
+              password: password,
+              confirmPassword: confirmPassword,
+              confirmEmail: confirmEmail
+          };
+
+          validate.signup(credentials);
+          isValid = true;
+
+        } catch (err) {
+          alert(err.message);
+          isValid = false;
+        }
 
         if (isValid) {
 
@@ -102,20 +119,21 @@ const SignUp  = () => {
             .then(() => {
               // successful
               history.push("/SignIn");
+              alert('Account created! You can now log in');
             })
             .catch(err => {
               // unsucessful
               console.error(`Signup error: ${err}`);
+              alert('There was a problem signing up, please try again');
+
               history.push('/');
             });
 
             return true;
 
         } else {
-            return false;
+          return false;
         }
-
-
 
     }
 

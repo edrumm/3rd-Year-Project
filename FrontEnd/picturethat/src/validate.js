@@ -23,10 +23,11 @@ const signupSchema = joi.object({
     joi.string()
     .alphanum()
     .min(6),
-    // new RegExp('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/')
   confirmEmail: joi.ref('email'),
   confirmPassword: joi.ref('password')
 });
+//.with('email', 'confirmEmail')
+//.with('password', 'confirmPassword');
 
 // Check signup, throws error if invalid
 const signup = (credentials) => {
