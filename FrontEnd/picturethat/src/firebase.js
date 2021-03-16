@@ -49,6 +49,7 @@ const login = async (email, password) => {
 };
 
 const signup = async (email, password, username) => {
+  console.log('SIGNUP CALLED!');
   // joi validate
 
   // try {
