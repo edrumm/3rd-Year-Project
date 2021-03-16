@@ -126,6 +126,40 @@ const changeUserPass = (newPass) => {
   });
 }
 
+const changeUserEmail = () => {
+  var user = auth.currentUser;
+
+  user.updateEmail("user@example.com").then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
+const changeUserName = (newUserName) => {
+  var user = auth.currentUser;
+
+  user.updateProfile({
+    displayName: newUserName
+  }).then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
+const changeUserProfilePic = (url) => {
+  var user = auth.currentUser;
+
+  user.updateProfile({
+    photoURL: url
+  }).then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
 const deleteUser = () => {
   var user = firebase.auth().currentUser;
 
@@ -445,7 +479,10 @@ export default {
   getUser,
   ResetEmail,
   changeUserPass,
-  deleteUser
+  deleteUser,
+  changeUserEmail,
+  changeUserName,
+  changeUserProfilePic
 };
 
 
