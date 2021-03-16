@@ -52,12 +52,12 @@ const signup = async (email, password, username) => {
   console.log('SIGNUP CALLED!');
   // joi validate
 
-  try {
+  // try {
     await auth.createUserWithEmailAndPassword(email, password);
 
-  } catch (err) {
-    console.error(`Firebase error: ${err}`);
-  }
+  // } catch (err) {
+  //   console.error(`Firebase error: ${err}`);
+  // }
 
   let user = await firestore.collection('users').doc(email);
   let doc = await user.get();
