@@ -115,6 +115,17 @@ const getUser = () => {
   }
 }
 
+const changeUserPass = (newPass) => {
+  var user = auth.currentUser;
+  var newPassword = newPass;
+
+  user.updatePassword(newPassword).then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
 const UploadPost = async (caption, loc, channel, image, username) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
@@ -420,7 +431,8 @@ export default {
   UnlikePost,
   AlreadyLiked,
   getUser,
-  ResetEmail
+  ResetEmail,
+  changeUserPass
 };
 
 
