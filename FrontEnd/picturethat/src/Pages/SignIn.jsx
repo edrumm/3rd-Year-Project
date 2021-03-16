@@ -74,7 +74,10 @@ const SignIn  = () => {
             .then(res => {
               history.push("/PictureThat");
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+              console.error(err);
+              history.push('/');
+            });
 
             // Call this to logout:
             // firebase.logout();
