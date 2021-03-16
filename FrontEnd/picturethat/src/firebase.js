@@ -76,6 +76,16 @@ const signup = async (email, password, username) => {
     score: 0
   });
 
+ 
+
+  auth.currentUser.updateProfile({
+    displayName: username
+  }).then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+
     // ...
 
     console.log('Account created');
