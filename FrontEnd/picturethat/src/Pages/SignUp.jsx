@@ -104,7 +104,7 @@ const SignUp  = () => {
             })
             .catch(err => {
               // unsucessful
-              console.error(err);
+              console.error(`Signup error: ${err}`);
               history.push('/');
             });
 
