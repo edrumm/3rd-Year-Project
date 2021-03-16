@@ -7,6 +7,7 @@ import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
 
 import firebase from '../firebase';
+import validate from '../validate';
 
 const SignUp  = () => {
 

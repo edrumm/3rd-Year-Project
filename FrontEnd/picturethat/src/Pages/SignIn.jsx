@@ -79,13 +79,10 @@ const SignIn  = () => {
               history.push('/');
             });
 
-            // Call this to logout:
-            // firebase.logout();
-
         }
 
         if(!isValid) {
-
+          history.push('/');
         }
 
         setEmailError(emailError);
