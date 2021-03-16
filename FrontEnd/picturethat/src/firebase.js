@@ -126,6 +126,18 @@ const changeUserPass = (newPass) => {
   });
 }
 
+const deleteUser = () => {
+  var user = firebase.auth().currentUser;
+
+  user.delete().then(function() {
+    // User deleted.
+  }).catch(function(error) {
+    // An error happened.
+  });
+
+  //need to delete db user info and posts
+}
+
 const UploadPost = async (caption, loc, channel, image, username) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
@@ -432,7 +444,8 @@ export default {
   AlreadyLiked,
   getUser,
   ResetEmail,
-  changeUserPass
+  changeUserPass,
+  deleteUser
 };
 
 
