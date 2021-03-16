@@ -6,14 +6,15 @@ import {useState} from 'react';
 import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
 import firebase from '../firebase';
+import validate from '../validate';
 
 const SignIn  = () => {
 
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
 
-    const[emailError, setEmailError] = useState({});
-    const[passwordError, setPasswordError] = useState({});
+    // const[emailError, setEmailError] = useState({});
+    // const[passwordError, setPasswordError] = useState({});
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -22,53 +23,25 @@ const SignIn  = () => {
 
     const history = useHistory();
 
-    const checkEmail = (userEmailInput) => {
-
-        //link for the regex used
-        //https://sigparser.com/developers/email-parsing/regex-validate-email-address/
-
-        const emailRequirements = new RegExp (/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
-        return emailRequirements.test(userEmailInput);
-    }
-
-    const checkPassword = (userPasswordInput) => {
-        const passwordRequirements = new RegExp (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/);
-        return passwordRequirements.test(userPasswordInput);
-    }
     const validateForm = () => {
 
-        //arrays to hold errors set to empty array
-        const emailError = {};
-        const passwordError = {};
-
-        //boolean isValid to check if credentials are valid set to true
         let isValid = true;
 
+        try {
+          let credentials = {
+            email: email,
+            password: password
+          };
 
-        /*if (!checkEmail(email)) {
-                isValid = false;
-                emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
-                alert(emailError.InvalidCharacters);
+          validate.signin(credentials);
+          isValid = true;
+
+        } catch (err) {
+          alert(err.message);
+          isValid = false;
         }
-        else{
-            isValid = true;
-            console.log("Valid email address");
-            console.log(email);
-        }
 
-        if(!checkPassword(password)){
-            isValid = false;
-            passwordError.InvalidCharacters = "Password MUST contain at least one number/lowercase/uppercase letter and be at least 6 characaters in length";
-            alert(passwordError.InvalidCharacters);
-        }
-        else{
-            isValid = true;
-            console.log("Valid password");
-            console.log(password);
-        }*/
-
-
-        if(isValid) {
+        if (isValid) {
 
             firebase.login(email, password)
             .then(res => {
@@ -79,24 +52,15 @@ const SignIn  = () => {
               history.push('/');
             });
 
-            // Call this to logout:
-            // firebase.logout();
+            return true;
 
+        } else {
+          history.push('/');
+          return false;
         }
-
-        if(!isValid) {
-
-        }
-
-        setEmailError(emailError);
-        setPasswordError(passwordError);
-
-
-        //fetch block that will take a username and password and return a value for
-        //if there is a user in the database that matches those credentials.
 
         /* TO DO : Add functionality for this to take user to the landing page if all clear*/
-
+        
     }
 
 
@@ -137,7 +101,7 @@ const SignIn  = () => {
                     id="signInButton"
                     className="button"
                     type= "submit"
-                    onClick= {() => {validateForm(); }}>
+                    onClick= {() => { validateForm(); }}>
                     Sign In
                 </button>
 

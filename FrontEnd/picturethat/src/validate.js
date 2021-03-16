@@ -2,14 +2,17 @@ import joi from 'joi';
 
 // Schema for username / password for login
 const loginSchema = joi.object({
-  email: joi.string().email().required(),
+  email:
+    joi.string()
+    .email({ tlds: { allow: false } })
+    .required(),
   password: joi.string().required()
 });
 
 const signupSchema = joi.object({
   email:
     joi.string()
-    .email()
+    .email({ tlds: { allow: false } })
     .required(),
   username:
     joi.string()
@@ -18,7 +21,9 @@ const signupSchema = joi.object({
     .required(),
   password:
     joi.string()
-    .pattern(new RegExp('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/')),
+    .alphanum()
+    .min(6),
+    // new RegExp('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/')
   confirmEmail: joi.ref('email'),
   confirmPassword: joi.ref('password')
 });
@@ -32,11 +37,11 @@ const signup = (credentials) => {
 };
 
 // Check login, throws error if invalid
-const login = (credentials) => {
+const signin = (credentials) => {
   let { error, value } = loginSchema.validate(credentials);
 
   if (error)
     throw error;
 };
 
-export default { login, signup };
+export default { signin, signup };

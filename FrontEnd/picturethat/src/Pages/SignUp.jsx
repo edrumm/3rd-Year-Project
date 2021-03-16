@@ -7,6 +7,7 @@ import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
 
 import firebase from '../firebase';
+import validate from '../validate';
 
 const SignUp  = () => {
 
@@ -108,10 +109,10 @@ const SignUp  = () => {
               history.push('/');
             });
 
-        }
+            return true;
 
-        if (!isValid) {
-            return isValid;
+        } else {
+            return false;
         }
 
 
