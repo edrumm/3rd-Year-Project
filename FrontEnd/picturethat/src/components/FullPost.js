@@ -58,7 +58,7 @@ const FullPost = () => {
                             <img src={dog} alt="" className="profileimg"/>
                             <br></br>
                             <div className="profilecard">
-                            <label className="profileN">Username</label>
+                            <label className="profileN">{singlePost.UserName}</label>
                             <br></br>
                             <label className="location">{singlePost.location}</label>
                             </div>
