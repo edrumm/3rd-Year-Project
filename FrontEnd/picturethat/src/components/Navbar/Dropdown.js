@@ -9,13 +9,15 @@ function Dropdown() {
         <div>
                 <ul className="dropdown">
                     <li>
-                        <Link to='/PictureThat/ProfilePage' className="fas fa-user-circle b"><a href="#/">Profile</a></Link>
+                        <Link to='/PictureThat/ProfilePage' className="fas fa-user-circle b"><a href="/PictureThat/ProfilePage">Profile</a></Link>
                     </li>
                     <li>
-                        <Link to='/PictureThat/Settings' className="fas fa-cog b" href=""><a href="#/">Settings</a></Link>
+                        <Link to='/PictureThat/Settings' className="fas fa-cog b" href=""><a href="/PictureThat/Settings">Settings</a></Link>
                     </li>
                     <li onClick= {fetch('/api/logout').catch(err => console.error(err))}>
-                        <Link to='/' class="fas fa-sign-out-alt" href="" ><a href="#/"> Logout</a></Link>
+                        <Link to='/' onClick= {fetch('/api/logout').catch(err => console.error(err))} class="fas fa-sign-out-alt" href="" >
+                            <Link to="/" onClick= {fetch('/api/logout').catch(err => console.error(err))}> Logout</Link>
+                        </Link>
                     </li>
                 </ul>
           </div>      

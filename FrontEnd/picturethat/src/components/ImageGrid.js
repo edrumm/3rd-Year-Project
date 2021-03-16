@@ -5,7 +5,7 @@ import './ImageGrid.css';
 
 const ImageGrid = () => {
 
-    const docs = firebase.GetImg("posts");
+    const { docs } = firebase.GetImg("posts");
     console.log(docs);
 
     return (
