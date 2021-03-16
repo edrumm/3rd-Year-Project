@@ -22,42 +22,20 @@ const storage = firebase.storage();
 const firestore = firebase.firestore();
 const auth = firebase.auth();
 
-let user = null;
+// let user = null;
 
 const login = async (email, password) => {
 
-  /*auth.signInWithEmailAndPassword(email, password)
-  .then(user => {
-    // ...
-
-    console.log('Signed in');
-
-    // ...
-  })
-  .catch(err => {
-    console.error(err);
-
-
-  });*/
-
-  let user = await auth.signInWithEmailAndPassword(email, password);
-
-  console.log(user);
-
-  return true;
+  user = await auth.signInWithEmailAndPassword(email, password);
 
 };
 
 const signup = async (email, password, username) => {
-  console.log('SIGNUP CALLED!');
   // joi validate
 
-  // try {
-    await auth.createUserWithEmailAndPassword(email, password);
+  // errors caught on top level
+  await auth.createUserWithEmailAndPassword(email, password);
 
-  // } catch (err) {
-  //   console.error(`Firebase error: ${err}`);
-  // }
 
   let user = await firestore.collection('users').doc(email);
   let doc = await user.get();
@@ -77,14 +55,14 @@ const signup = async (email, password, username) => {
     score: 0
   });
 
- 
+
 
   auth.currentUser.updateProfile({
     displayName: username
-  }).then(function() {
+  }).then(() => {
     // Update successful.
-  }).catch(function(error) {
-    // An error happened.
+  }).catch(err => {
+    console.error(err);
   });
 
     // ...

@@ -92,10 +92,6 @@ const SignUp  = () => {
         setUsernameError(usernameError);
         console.log(isValid);*/
 
-        console.log(`Email: ${email}`);
-        console.log(`Password: ${password}`);
-        console.log(`Username: ${username}`);
-
         isValid = true;
 
         if (isValid) {
