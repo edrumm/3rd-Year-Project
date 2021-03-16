@@ -115,7 +115,64 @@ const getUser = () => {
   }
 }
 
-const UploadPost = async (caption, loc, channel, image) => {
+const changeUserPass = (newPass) => {
+  var user = auth.currentUser;
+  var newPassword = newPass;
+
+  user.updatePassword(newPassword).then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
+const changeUserEmail = () => {
+  var user = auth.currentUser;
+
+  user.updateEmail("user@example.com").then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
+const changeUserName = (newUserName) => {
+  var user = auth.currentUser;
+
+  user.updateProfile({
+    displayName: newUserName
+  }).then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
+const changeUserProfilePic = (url) => {
+  var user = auth.currentUser;
+
+  user.updateProfile({
+    photoURL: url
+  }).then(function() {
+    // Update successful.
+  }).catch(function(error) {
+    // An error happened.
+  });
+}
+
+const deleteUser = () => {
+  var user = firebase.auth().currentUser;
+
+  user.delete().then(function() {
+    // User deleted.
+  }).catch(function(error) {
+    // An error happened.
+  });
+
+  //need to delete db user info and posts
+}
+
+const UploadPost = async (caption, loc, channel, image, username) => {
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
   });
@@ -127,6 +184,7 @@ const UploadPost = async (caption, loc, channel, image) => {
 
   const Data = {
     uploaddate: firebase.firestore.Timestamp.now().toDate(),
+    UserName: username,
     caption: caption,
     location: loc,
     channel: refchannel,
@@ -419,7 +477,12 @@ export default {
   UnlikePost,
   AlreadyLiked,
   getUser,
-  ResetEmail
+  ResetEmail,
+  changeUserPass,
+  deleteUser,
+  changeUserEmail,
+  changeUserName,
+  changeUserProfilePic
 };
 
 
