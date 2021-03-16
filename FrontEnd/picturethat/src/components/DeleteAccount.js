@@ -15,7 +15,7 @@ const DeleteAccount = () => {
 
                 <button
                     id="signInButton" 
-                    className="button"
+                    className="buttonSettings"
                 >
                         Delete
                 </button>

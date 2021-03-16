@@ -5,6 +5,7 @@ import logo from './logo.png';
 import {useState} from 'react';
 import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
+import firebase from '../firebase';
 
 const SignIn  = () => {
 
@@ -44,7 +45,7 @@ const SignIn  = () => {
         let isValid = true;
 
 
-        if (!checkEmail(email)) {
+        /*if (!checkEmail(email)) {
                 isValid = false;
                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
                 alert(emailError.InvalidCharacters);
@@ -64,65 +65,41 @@ const SignIn  = () => {
             isValid = true;
             console.log("Valid password");
             console.log(password);
-        }
+        }*/
 
 
-        if(isValid == true){
-            const data = {
-                email: email,
-                password: password
-            };
-            const options = {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            };
-            
-            fetch('/api/login', options)
-            .then(response => response.json())
-            .then(json => console.log(json))
-            .catch(err => console.error(err));
+        if(isValid) {
 
-            history.push("/PictureThat");
+            firebase.login(email, password)
+            .then(res => {
+              history.push("/PictureThat");
+            })
+            .catch(err => {
+              console.error(err);
+              history.push('/');
+            });
+
+            // Call this to logout:
+            // firebase.logout();
 
         }
 
-        if(isValid == false){
+        if(!isValid) {
 
         }
 
         setEmailError(emailError);
         setPasswordError(passwordError);
-        
+
 
         //fetch block that will take a username and password and return a value for
         //if there is a user in the database that matches those credentials.
 
-        /* TO DO : Add functionality for this to take user to the landing page if all clear*/ 
-        const data = {
-        email: email,
-        password: password
-      };
-      
-        //needed for fetch to work, always keep!
-        const options = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        };
-      
-        fetch('/api/login', options)
-        .then(response => response.json())
-        .then(json => console.log(json))
-        .catch(err => console.error(err));
-        return isValid;
+        /* TO DO : Add functionality for this to take user to the landing page if all clear*/
+
     }
 
-     
+
     return (
         <>
         <div className= "signInWelcome">

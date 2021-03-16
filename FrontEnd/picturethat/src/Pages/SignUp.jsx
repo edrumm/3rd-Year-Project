@@ -6,6 +6,8 @@ import {useState} from 'react';
 import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
 
+import firebase from '../firebase';
+
 const SignUp  = () => {
 
     const[email, setEmail] = useState('');
@@ -48,12 +50,7 @@ const SignUp  = () => {
         const emailError = {};
         const passwordError = {};
 
-        if(!checkUsername(username)){
-            usernameError.InvalidCharacters = "Your Username is incorrect. Username must be alphanumeric and contain 5-12 characters";
-            alert(usernameError.InvalidCharacters);
-        }
-        
-        if (!checkEmail(email)) {
+        /*if (!checkEmail(email)) {
                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
                 alert(emailError.InvalidCharacters);
         }
@@ -62,7 +59,7 @@ const SignUp  = () => {
             emailError.EmailMismatch = "Re-entered email MUST be the same as email";
             alert(emailError.EmailMismatch);
         }
-        
+
         if((checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail)){
             console.log("Valid email address");
         }
@@ -76,7 +73,7 @@ const SignUp  = () => {
             passwordError.PasswordMismatch = "Re-entered password MUST be the same as password";
             alert(passwordError.PasswordMismatch);
         }
-        
+
         if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword)){
             console.log("Valid password");
         }
@@ -93,38 +90,32 @@ const SignUp  = () => {
         setEmailError(emailError);
         setPasswordError(passwordError);
         setUsernameError(usernameError);
-        console.log(isValid);
+        console.log(isValid);*/
 
-        if(isValid === true){
-            const data = {
-                username : username,
-                email: email,
-                password: password
-              };
-              
-                //needed for fetch to work, always keep!
-                const options = {
-                  method: 'POST',
-                  headers: {
-                    'Content-Type': 'application/json'
-                  },
-                  body: JSON.stringify(data)
-                };
-              
-                fetch('/api/signup', options)
-                .then(response => response.json())
-                .then(json => isValid = json.body)
-                .catch(err => console.error(err));
+        isValid = true;
 
-            history.push("/PictureThat");
+        if (isValid) {
+
+            // try to signup
+            firebase.signup(email, password, username)
+            .then(() => {
+              // successful
+              history.push("/SignIn");
+            })
+            .catch(err => {
+              // unsucessful
+              console.error(`Signup error: ${err}`);
+              history.push('/');
+            });
+
         }
-        
-        if(isValid === false){
+
+        if (!isValid) {
             return isValid;
         }
 
-        
-        
+
+
     }
 
     return (
@@ -138,74 +129,74 @@ const SignUp  = () => {
             <div>
                 <form>
 
-                    <input 
-                        type="text" 
-                        id="emailInput" 
-                        className="inputbox" 
+                    <input
+                        type="text"
+                        id="emailInput"
+                        className="inputbox"
                         placeholder="Username"
                         autoFocus required
                         value= {username}
-                        onChange= {(e) => {setUsername(e.target.value)}} 
+                        onChange= {(e) => {setUsername(e.target.value)}}
                     />
 
-                    <input 
-                        type="text" 
-                        id="emailInput" 
-                        className="inputbox" 
+                    <input
+                        type="text"
+                        id="emailInput"
+                        className="inputbox"
                         placeholder="Email Address"
                         autoFocus required
                         value= {email}
-                        onChange= {(e) => {setEmail(e.target.value)}} 
+                        onChange= {(e) => {setEmail(e.target.value)}}
                     />
 
-                    <input 
-                        type="text" 
-                        id="emailInput" 
-                        className="inputbox" 
+                    <input
+                        type="text"
+                        id="emailInput"
+                        className="inputbox"
                         placeholder="Re-enter Email Address"
                         value= {confirmEmail}
-                        onChange= {(e) => {setConfirmEmail(e.target.value)}} 
+                        onChange= {(e) => {setConfirmEmail(e.target.value)}}
                     />
 
-                    <input 
-                        type="password" 
-                        id="passwordInput" 
-                        className="inputbox" 
-                        placeholder="Enter Password" 
+                    <input
+                        type="password"
+                        id="passwordInput"
+                        className="inputbox"
+                        placeholder="Enter Password"
                         autoFocus required
                         value= {password}
-                        onChange= {(e) => {setPassword(e.target.value)}} 
+                        onChange= {(e) => {setPassword(e.target.value)}}
                     />
 
-                    <input 
-                        type="password" 
-                        id="passwordInput" 
-                        className="inputbox" 
+                    <input
+                        type="password"
+                        id="passwordInput"
+                        className="inputbox"
                         placeholder="Re-enter Password"
                         value= {confirmPassword}
-                        onChange= {(e) => {setConfirmPassword(e.target.value)}} 
+                        onChange= {(e) => {setConfirmPassword(e.target.value)}}
                     />
 
-                    <input 
-                        type="checkbox" 
-                        id="termsAndConditions" 
-                        name="termsAndConditions" 
-                        value="Accept" 
+                    <input
+                        type="checkbox"
+                        id="termsAndConditions"
+                        name="termsAndConditions"
+                        value="Accept"
                         required
                     />
 
                     <label className="termsAndConditions"> I agree to the <Link to="/PictureThat/TermsAndConditions">Terms of Services <br></br> and Privacy Policy</Link></label><br></br>
-                    
+
                         <button
                             id="signInButton"
-                            onClick= {validateForm} 
+                            onClick= {validateForm}
                             className="button">Sign Up
                         </button>
-                
+
                     <p>Have an Account? <Link to="/SignIn"> Sign In</Link></p>
                     </form>
             </div>
-            
+
         </div>
         <Footer />
         </>

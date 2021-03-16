@@ -2,37 +2,40 @@ import React, { useState } from 'react';
 import './Channel.css';
 import cat from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import {Link} from 'react-router-dom';
+import firebase from "../firebase.js";
 
 
-
+    let setSelectedChannel;
 
     function Channel() {
-        // const { docs } = getImg('channels');
-        // console.log(docs);
+        const { docs } = firebase.GetData('channels');
+        console.log(docs);
 
         return(
             <>
             <div className="Channel">
-            <div class="card">
+            { docs && docs.map(doc => (
+            <div class="card" key={doc.id}>
 
                 
-                <div className="column channelPhoto">
+                {/* <div className="column channelPhoto">
                     <img src={cat} alt="" className="Channelimg"/>
-                </div>
+                </div> */}
                 
-                <div className="column channelInfo">
-                    <label className="label">Channel Name: Cats</label>
+                <div className="channelInfo">
+                    <label className="label">Channel Name: {doc.id}</label>
                     <br/>
                     <label className="label">No of Followers: 100 </label>
                     <br/>
-                    <label className="label">No of Pictures: 1</label>
+                    <label className="label">No of Pictures: {doc.number_of_posts}</label>
                     <br/>
-                    <Link to="/PictureThat/channelphotospage" ><button className="button">See Channel</button></Link>
+                    <Link to="/PictureThat/channelphotospage" ><button className="button" onClick={() => {setSelectedChannel = doc.id}} >See Channel</button></Link>
                 </div>
                 
 
                 
             </div>
+            ))}
             </div>
             
             </>
@@ -43,3 +46,4 @@ import {Link} from 'react-router-dom';
 
 
 export default Channel;
+export {setSelectedChannel};
