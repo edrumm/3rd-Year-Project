@@ -59,10 +59,10 @@ const signup = async (email, password, username) => {
 
   auth.currentUser.updateProfile({
     displayName: username
-  }).then(function() {
+  }).then(() => {
     // Update successful.
-  }).catch(function(error) {
-    // An error happened.
+  }).catch(err => {
+    console.error(err);
   });
 
     // ...
