@@ -74,9 +74,9 @@ const signup = async (email, password, username) => {
   // add account to db
 }
 
-const logout = () => {
+const logout = async () => {
 
-  auth.signOut();
+  await auth.signOut();
 
 };
 

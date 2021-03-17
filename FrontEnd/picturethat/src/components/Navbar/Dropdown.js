@@ -1,9 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import './Dropdown.css';
+import firebase from '../../firebase';
 
 function Dropdown() {
-    
+
+  const history = useHistory();
+
+  const logout = () => {
+    firebase.logout()
+    .then(() => history.push('/'))
+    .catch(err => console.error(err));
+  };
+
     return (
         <>
         <div>
@@ -14,11 +23,11 @@ function Dropdown() {
                     <li>
                         <Link to='/PictureThat/Settings' className="fas fa-cog b" href=""><a href="#/">Settings</a></Link>
                     </li>
-                    <li onClick= {fetch('/api/logout').catch(err => console.error(err))}>
+                    <li onClick= {logout}>
                         <Link to='/' class="fas fa-sign-out-alt" href="" ><a href="#/"> Logout</a></Link>
                     </li>
                 </ul>
-          </div>      
+          </div>
         </>
     );
 }
