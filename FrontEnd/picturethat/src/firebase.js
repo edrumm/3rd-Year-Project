@@ -173,6 +173,7 @@ const UploadPost = async (caption, loc, channel, image, username) => {
   const increment = firebase.firestore.FieldValue.increment(1);
   const refnewpost = firestore.collection('posts').doc();
   const refchannel = firestore.collection('channels').doc(channel);
+  const refuser = firestore.collection('users').doc(username);
   //const timestamp = firebase.firestore.FieldValue.timestamp();
 
   const Data = {
@@ -225,6 +226,18 @@ const UploadPost = async (caption, loc, channel, image, username) => {
       });
     });
   }
+  let query = firestore.collection('posts').where('url', '==', url);
+  let newpostref;
+  query.get().then(querySnapshot => {
+    querySnapshot.forEach(documentSnapshot => {
+      newpostref = documentSnapshot.ref;
+      userref.update({
+        //updates the posts array inside the user document with the post with the matching url
+        posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
+      });
+    });
+  });
+
 }
 
 
