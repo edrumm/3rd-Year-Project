@@ -463,6 +463,13 @@ const GetPostofChannels = (id) => {
   //     });
   //   });
   // });
+  let allPost = [];
+  const channelpost = firestore.collection('posts').where('channel', '==', channel);
+  channelpost.get().then(querySnapshot => {
+    querySnapshot.forEach(documentSnapshot => {
+      allPost.push({... documentSnapshot.data(), id: documentSnapshot.id});
+    });
+  });
 
 }
 
