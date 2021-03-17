@@ -44,7 +44,7 @@ const SignIn  = () => {
         if (isValid) {
 
             firebase.login(email, password)
-            .then(res => {
+            .then(() => {
               history.push("/PictureThat");
             })
             .catch(err => {
@@ -60,7 +60,7 @@ const SignIn  = () => {
         }
 
         /* TO DO : Add functionality for this to take user to the landing page if all clear*/
-        
+
     }
 
 

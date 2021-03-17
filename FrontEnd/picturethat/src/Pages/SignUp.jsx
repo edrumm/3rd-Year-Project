@@ -118,8 +118,16 @@ const SignUp  = () => {
             firebase.signup(email, password, username)
             .then(() => {
               // successful
-              history.push("/SignIn");
-              alert('Account created! You can now log in');
+
+              firebase.login(email, password)
+              .then(() => {
+                history.push("/PictureThat");
+              })
+              .catch(err => {
+                console.error(err);
+                history.push('/');
+              });
+
             })
             .catch(err => {
               // unsucessful
