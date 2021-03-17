@@ -18,10 +18,10 @@ const FullPost = () => {
     const[comment, setComment] = useState('');
     // const Imgid = require("./ImageFeed");
     console.log(currentPost);
-
+    const user = firebase.getUser();
 
     const handleUpload = () => {
-        firebase.AddComment(comment);
+        firebase.AddComment(user, comment, currentPost);
     };
 
    
@@ -32,9 +32,17 @@ const FullPost = () => {
        if(liked === false) {
             setLiked(true);
             setButton("fas fa-heart")
+            const alreadyLiked = firebase.AlreadyLiked(user);
+            if(!alreadyLiked){
+                firebase.LikePost(user);
+            }
        } else {
            setLiked(false);
            setButton("far fa-heart")
+           const alreadyLiked = firebase.AlreadyLiked(user);
+           if(alreadyLiked){
+               firebase.UnlikePost(user);
+           }
        }
     } ;
 
