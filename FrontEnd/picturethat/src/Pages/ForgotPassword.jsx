@@ -21,7 +21,7 @@ const ForgotPassword  = () => {
             <form onSubmit = {onSubmitForgot}>
             <img src={logo} alt="" className="logoimg" />
             <div>
-                <h1>Forgot Password</h1>
+                <h3>Forgot Password</h3>
             </div>
                 <input 
                     type="email" 

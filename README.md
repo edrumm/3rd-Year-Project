@@ -21,9 +21,10 @@ PictureThat is a social media platform for photographers
 ## Dependencies
 
 **PictureThat was created using**:
-- Express
 - React
+- React-dom
 - Firebase
+- Joi
 
 ## Installation
 
