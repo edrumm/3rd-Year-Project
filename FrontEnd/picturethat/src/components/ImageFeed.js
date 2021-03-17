@@ -7,7 +7,7 @@ import firebase from "../firebase";
 //import PopUp from '../components/PostPopUp';
 
 let setSelectedImgId;
-
+const user = firebase.getUser();
 
 const ImageFeed = () => {
 
@@ -18,9 +18,17 @@ const ImageFeed = () => {
        if(liked === false) {
             setLiked(true);
             setButton("fas fa-heart")
+            const alreadyLiked = firebase.AlreadyLiked(user);
+            if(!alreadyLiked){
+                firebase.LikePost(user);
+            }
        } else {
            setLiked(false);
            setButton("far fa-heart")
+           const alreadyLiked = firebase.AlreadyLiked(user);
+           if(alreadyLiked){
+               firebase.UnlikePost(user);
+           }
        }
     };
 
