@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './FullPost.css';
 import firebase from "../firebase.js";
-import ImageFeed from "./ImageFeed";
+//import ImageFeed from "./ImageFeed";
 import {setSelectedImgId} from "./ImageFeed";
 
 
@@ -11,8 +11,10 @@ import {setSelectedImgId} from "./ImageFeed";
 
 
 const FullPost = () => {
-
-    const singlePost = firebase.GetSinglePost(setSelectedImgId);
+    const selectedImg = setSelectedImgId;
+    const singlePost = firebase.GetSinglePost(selectedImg);
+    const getcomments = firebase.GetComments(selectedImg);
+    //console.log(getcomments);
     //console.log(singlePost);
 
     let currentPost = setSelectedImgId;    
@@ -30,21 +32,21 @@ const FullPost = () => {
     const [button, setButton] = useState("far fa-heart");
 
     const likepost = () => {
-       if(liked === false) {
-            setLiked(true);
-            setButton("fas fa-heart")
-            const alreadyLiked = firebase.AlreadyLiked(user);
-            if(!alreadyLiked){
-                firebase.LikePost(user);
-            }
-       } else {
-           setLiked(false);
-           setButton("far fa-heart")
-           const alreadyLiked = firebase.AlreadyLiked(user);
-           if(alreadyLiked){
-               firebase.UnlikePost(user);
-           }
-       }
+    //    if(liked === false) {
+    //         setLiked(true);
+    //         setButton("fas fa-heart")
+    //         const alreadyLiked = firebase.AlreadyLiked(user);
+    //         if(!alreadyLiked){
+    //             firebase.LikePost(user);
+    //         }
+    //    } else {
+    //        setLiked(false);
+    //        setButton("far fa-heart")
+    //        const alreadyLiked = firebase.AlreadyLiked(user);
+    //        if(alreadyLiked){
+    //            firebase.UnlikePost(user);
+    //        }
+    //    }
     } ;
 
     return (
@@ -84,11 +86,13 @@ const FullPost = () => {
                         <label className="date">Date</label>
                     </div>  
                         <div className="commentfield">
-                            <div className="singlecomment">
-                            <div>Username</div>
+                        { getcomments && getcomments.map(doc => (
+                            <div className="singlecomment" key={doc.id}>
+                            <div>{doc.username}</div>
                             <div>Date</div>
-                            <div>Comment</div>
+                            <div>{doc.text}</div>
                             </div>
+                        ))}
                         </div>
 
                         <div className="likesection">
