@@ -58,7 +58,8 @@ const signup = async (email, password, username) => {
 
 
   auth.currentUser.updateProfile({
-    displayName: username
+    displayName: username,
+    //photoUrl = photoURL
   }).then(() => {
     // Update successful.
   }).catch(err => {
@@ -119,10 +120,10 @@ const changeUserPass = (newPass) => {
   });
 }
 
-const changeUserEmail = () => {
+const changeUserEmail = (newEmail) => {
   var user = auth.currentUser;
 
-  user.updateEmail("user@example.com").then(function() {
+  user.updateEmail(newEmail).then(function() {
     // Update successful.
   }).catch(function(error) {
     // An error happened.
@@ -173,6 +174,7 @@ const UploadPost = async (caption, loc, channel, image, username) => {
   const increment = firebase.firestore.FieldValue.increment(1);
   const refnewpost = firestore.collection('posts').doc();
   const refchannel = firestore.collection('channels').doc(channel);
+  const userref = firestore.collection('users').doc(username);
   //const timestamp = firebase.firestore.FieldValue.timestamp();
 
   const Data = {
@@ -225,6 +227,18 @@ const UploadPost = async (caption, loc, channel, image, username) => {
       });
     });
   }
+  let query = firestore.collection('posts').where('url', '==', url);
+  let newpostref;
+  query.get().then(querySnapshot => {
+    querySnapshot.forEach(documentSnapshot => {
+      newpostref = documentSnapshot.ref;
+      userref.update({
+        //updates the posts array inside the user document with the post with the matching url
+        posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
+      });
+    });
+  });
+
 }
 
 
@@ -421,11 +435,11 @@ const GetSinglePost = (id) => {
 
 }
 
-const GetPostofChannels = (id) => {
+const GetPostofChannels = (channel) => {
 
-  const posts = [];
-  posts = firestore.collection('channels').doc(id);
-  return posts;
+  // const posts = [];
+  // posts = firestore.collection('channels').doc(id);
+  // return posts;
 
   // let query = firestore.collection('channels').doc(id);
 
@@ -450,6 +464,13 @@ const GetPostofChannels = (id) => {
   //     });
   //   });
   // });
+  let allPost = [];
+  const channelpost = firestore.collection('posts').where('channel', '==', channel);
+  channelpost.get().then(querySnapshot => {
+    querySnapshot.forEach(documentSnapshot => {
+      allPost.push({... documentSnapshot.data(), id: documentSnapshot.id});
+    });
+  });
 
 }
 

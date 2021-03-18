@@ -22,6 +22,8 @@ const SignUp  = () => {
     const[username, setUsername] = useState('');
     const[usernameError, setUsernameError] = useState('');
 
+    
+
     //boolean isValid to check if credentials are valid set to true
     // var isValid = false;
 
