@@ -12,7 +12,9 @@ import {setSelectedImgId} from "./ChannelPhotos";
 
 const FullPost = () => {
 
-    const singlePost = firebase.GetSinglePost(setSelectedImgId);
+    const selectedImg = setSelectedImgId;
+    const singlePost = firebase.GetSinglePost(selectedImg);
+    const getcomments = firebase.GetComments(selectedImg);
     //console.log(singlePost);
 
     let currentPost = setSelectedImgId;    
@@ -84,11 +86,13 @@ const FullPost = () => {
                         <label className="date">Date</label>
                     </div>  
                         <div className="commentfield">
-                            <div className="singlecomment">
-                            <div>Username</div>
+                        { getcomments && getcomments.map(doc => (
+                            <div className="singlecomment" key={doc.id}>
+                            <div>{doc.username}</div>
                             <div>Date</div>
-                            <div>Comment</div>
+                            <div>{doc.text}</div>
                             </div>
+                        ))}
                         </div>
 
                         <div className="likesection">

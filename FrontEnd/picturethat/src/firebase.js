@@ -31,7 +31,6 @@ const login = async (email, password) => {
 };
 
 const signup = async (email, password, username) => {
-  // joi validate
 
   // errors caught on top level
   await auth.createUserWithEmailAndPassword(email, password);
@@ -92,9 +91,7 @@ const ResetEmail = (email) => {
 };
 
 // Detects change in login state
-auth.onAuthStateChanged(user => {
-
-
+auth.onAuthStateChanged(u => {
 
 });
 
@@ -102,6 +99,7 @@ const getUser = () => {
   let user = auth.currentUser;
 
   if (user != null) {
+    console.log(`user = ${user.displayName}`);
     return user;
   } else {
     return null;
@@ -305,7 +303,7 @@ const GetComments = (postid) => {
   useEffect(() => {
       const unsub = firestore.collection('comments')
           //.where('post', '==', postref)
-          //.orderBy('uploaddate', 'desc')
+          .orderBy('uploaddate', 'desc')
           .onSnapshot((snap) => {
               let documents = [];
               snap.forEach(doc => {
@@ -503,7 +501,7 @@ const GetSinglePost = (id) => {
       }, [])
 
 
-      
+
 
     //console.log(docs);
     return docs;
@@ -558,7 +556,7 @@ const GetPostofChannels = (channel) => {
   }, ['posts'])
 
   return { docs };
-  
+
   // let allPost = [];
   // const channelpost = firestore.collection('posts').where('channelName', '==', channel);
   // channelpost.get().then(querySnapshot => {

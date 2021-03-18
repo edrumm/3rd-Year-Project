@@ -87,7 +87,7 @@ const FullPost = () => {
                     </div>  
                         <div className="commentfield">
                         { getcomments && getcomments.map(doc => (
-                            <div className="singlecomment">
+                            <div className="singlecomment" key={doc.id}>
                             <div>{doc.username}</div>
                             <div>Date</div>
                             <div>{doc.text}</div>
