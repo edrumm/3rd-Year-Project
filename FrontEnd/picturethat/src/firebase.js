@@ -447,6 +447,7 @@ const GetSinglePost = (id) => {
       }, [])
 
 
+      
 
     //console.log(docs);
     return docs;
