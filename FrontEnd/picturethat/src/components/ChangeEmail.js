@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 import "../Pages/Settings.css";
+import firebase from "../firebase.js";
 
 
 const ChangeEmail = () => {
@@ -30,19 +31,24 @@ const ChangeEmail = () => {
         if (!checkEmail(changeEmail)) {
             emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
             alert(emailError.InvalidCharacters);
+            isValid = false;
         }
 
         if(!(changeEmail === confirmChangeEmail)){
             emailError.EmailMismatch = "Re-entered email MUST be the same as email";
             alert(emailError.EmailMismatch);
+            isValid = false
         }
         
         if((checkEmail(changeEmail) && checkEmail(confirmChangeEmail)) && (changeEmail === confirmChangeEmail)){
             console.log("Valid email address");
+            isValid = true;
         }
 
         setEmailChangeError(emailChangeError);
-        console.log(isValid);
+        if(isValid==true){
+            firebase.changeUserEmail(changeEmail);
+        }
 
     }
 

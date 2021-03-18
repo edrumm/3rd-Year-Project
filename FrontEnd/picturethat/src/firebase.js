@@ -44,11 +44,10 @@ const signup = async (email, password, username) => {
     // redirect to login
     throw new Error('An account with these details exists already');
   }
-
+  let userID = auth.currentUser.uid;
   // await db.collection('users').doc(data.email).set({
-  await firestore.collection('users').doc(email).set({
+  await firestore.collection('users').doc(userID).set({
     username: username,
-    email: email,
     followed_channels: ['channels/feed'],
     liked_posts: [],
     posts: [],
@@ -111,9 +110,8 @@ const getUser = () => {
 
 const changeUserPass = (newPass) => {
   var user = auth.currentUser;
-  var newPassword = newPass;
 
-  user.updatePassword(newPassword).then(function() {
+  user.updatePassword(newPass).then(function() {
     // Update successful.
   }).catch(function(error) {
     // An error happened.
@@ -122,12 +120,28 @@ const changeUserPass = (newPass) => {
 
 const changeUserEmail = (newEmail) => {
   var user = auth.currentUser;
+  var newemail = newEmail;
+  // var oldEmail = user.email;
+  // console.log(oldEmail);
 
-  user.updateEmail(newEmail).then(function() {
+  user.updateEmail(newemail).then(function() {
     // Update successful.
   }).catch(function(error) {
     // An error happened.
   });
+
+  // const updateEmail = firestore.collection('users').doc(oldEmail)
+  // .get()
+  // .then((doc) => {
+  //   let data = doc.data();
+  //   firestore.collection('users').doc(newEmail).set(data).then(() => {
+  //     firestore.collection('users').doc(oldEmail).delete();
+  //   });
+  // });
+  // const updateEmailAdress = firestore.collection('users').doc(oldEmail);
+  // updateEmailAdress.update({
+  //   email: newEmail
+  // });
 }
 
 const changeUserName = (newUserName) => {
@@ -139,6 +153,11 @@ const changeUserName = (newUserName) => {
     // Update successful.
   }).catch(function(error) {
     // An error happened.
+  });
+
+  const updateUsername = firestore.collection('users').doc(user.uid);
+  updateUsername.update({
+    username: newUserName
   });
 }
 
@@ -155,7 +174,7 @@ const changeUserProfilePic = (url) => {
 }
 
 const deleteUser = () => {
-  var user = firebase.auth().currentUser;
+  var user = auth.currentUser;
 
   user.delete().then(function() {
     // User deleted.
@@ -244,7 +263,7 @@ const UploadPost = async (caption, loc, channel, image, username) => {
 
 const AddComment = async (username, text, post) => {
 
-  const refcom = firestore.collection('comments');
+  const refcom = firestore.collection('comments').doc();
   let postref = firestore.collection('posts').doc(post);
   const Data = {
     username: username,
@@ -480,14 +499,33 @@ const GetPostofChannels = (channel) => {
   //     });
   //   });
   // });
-  let allPost = [];
-  const channelpost = firestore.collection('posts').where('channel', '==', channel);
-  channelpost.get().then(querySnapshot => {
-    querySnapshot.forEach(documentSnapshot => {
-      allPost.push({... documentSnapshot.data(), id: documentSnapshot.id});
-    });
-  });
+  const [docs, setDocs] = useState([]);
 
+  useEffect(() => {
+      const unsub = firestore.collection('posts')
+          .where('channelName', '==', channel)
+          .orderBy('uploaddate', 'desc')
+          .onSnapshot((snap) => {
+              let documents = [];
+              snap.forEach(doc => {
+                  documents.push({...doc.data(), id: doc.id})
+          });
+          setDocs(documents);
+      })
+
+      return () => unsub();
+  }, ['posts'])
+
+  return { docs };
+  
+  // let allPost = [];
+  // const channelpost = firestore.collection('posts').where('channelName', '==', channel);
+  // channelpost.get().then(querySnapshot => {
+  //   querySnapshot.forEach(documentSnapshot => {
+  //     allPost.push({... documentSnapshot.data(), id: documentSnapshot.id});
+  //   });
+  // });
+  // return {allPost};
 }
 
 
