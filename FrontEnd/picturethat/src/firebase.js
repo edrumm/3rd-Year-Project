@@ -173,7 +173,7 @@ const UploadPost = async (caption, loc, channel, image, username) => {
   const increment = firebase.firestore.FieldValue.increment(1);
   const refnewpost = firestore.collection('posts').doc();
   const refchannel = firestore.collection('channels').doc(channel);
-  const refuser = firestore.collection('users').doc(username);
+  const userref = firestore.collection('users').doc(username);
   //const timestamp = firebase.firestore.FieldValue.timestamp();
 
   const Data = {
@@ -434,11 +434,11 @@ const GetSinglePost = (id) => {
 
 }
 
-const GetPostofChannels = (id) => {
+const GetPostofChannels = (channel) => {
 
-  const posts = [];
-  posts = firestore.collection('channels').doc(id);
-  return posts;
+  // const posts = [];
+  // posts = firestore.collection('channels').doc(id);
+  // return posts;
 
   // let query = firestore.collection('channels').doc(id);
 
