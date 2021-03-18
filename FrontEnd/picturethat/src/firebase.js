@@ -98,7 +98,7 @@ auth.onAuthStateChanged(user => {
 
 });
 
-const getUser = () => {
+const getUser = async() => {
   let user = auth.currentUser;
 
   if (user != null) {
@@ -321,10 +321,12 @@ const AlreadyLiked = async (post, user) => {
       querySnapshot.forEach((doc) =>{
         if(doc == user){
           already = true;
+          console.log(already);
           return already;
         }
       })
     })
+    console.log(already);
     return already;
 }
 
@@ -359,6 +361,21 @@ const UnlikePost = async (post, user) => {
   userref.update({
     likedPosts: firebase.firestore.FieldValue.arrayRemove("/posts/" + post)
   })
+}
+
+
+const FollowChannel = async (user, channel) =>{
+  const userref = firestore.collection('users').doc(user);
+  userref.update({
+    followed_channels: firebase.firestore.FieldValue.arrayUnion("/channels/" + channel)
+  });
+  const increment = firebase.firestore.FieldValue.increment(1);
+
+  const channelref = firestore.collection('channels').doc(channel);
+  channelref.update({
+    number_of_posts: increment
+  })
+
 }
 
 const GetImg = (collection) => {
@@ -535,7 +552,8 @@ export default {
   deleteUser,
   changeUserEmail,
   changeUserName,
-  changeUserProfilePic
+  changeUserProfilePic,
+  FollowChannel
 };
 
 

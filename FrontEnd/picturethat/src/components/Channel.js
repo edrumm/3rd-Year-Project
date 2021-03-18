@@ -10,7 +10,12 @@ import firebase from "../firebase.js";
     function Channel() {
         const { docs } = firebase.GetData('channels');
         console.log(docs);
+        let user = firebase.getUser().displayName;
+        const currchannel = setSelectedChannel;
 
+        const channelFollow = () =>{
+            const follow = firebase.FollowChannel(user, currchannel);
+        }
         return(
             <>
             <div className="Channel">
