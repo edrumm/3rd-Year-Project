@@ -98,7 +98,7 @@ auth.onAuthStateChanged(user => {
 
 });
 
-const getUser = () => {
+const getUser = async() => {
   let user = auth.currentUser;
 
   if (user != null) {
