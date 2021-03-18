@@ -19,19 +19,19 @@ const ImageFeed = () => {
         if(liked === false) {
             setLiked(true);
             setButton("fas fa-heart")
-           let alreadyLiked = firebase.AlreadyLiked(postref, user);
-            console.log(alreadyLiked);
-            if(alreadyLiked == false){
+           //let alreadyLiked = firebase.AlreadyLiked(postref, user);
+            //console.log(alreadyLiked);
+            //if(alreadyLiked == false){
                 console.log("not liked, lets add!")
                 firebase.LikePost(postref, user);
-           }
+          // }
        } else {
            setLiked(false);
            setButton("far fa-heart")
-            let alreadyLiked = firebase.AlreadyLiked(postref, user);
-           if(alreadyLiked){
+            //let alreadyLiked = firebase.AlreadyLiked(postref, user);
+          // if(alreadyLiked){
                firebase.UnlikePost(postref, user);
-          }
+          //}
        }
     };
 
