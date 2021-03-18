@@ -25,7 +25,7 @@ import firebase from "../firebase.js";
                 <div className="channelInfo">
                     <label className="label">Channel Name: {doc.id}</label>
                     <br/>
-                    <label className="label">No of Followers: 100 </label>
+                    <label className="label">No of Followers:  </label>
                     <br/>
                     <label className="label">No of Pictures: {doc.number_of_posts}</label>
                     <br/>

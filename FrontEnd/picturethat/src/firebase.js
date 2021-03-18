@@ -110,9 +110,8 @@ const getUser = () => {
 
 const changeUserPass = (newPass) => {
   var user = auth.currentUser;
-  var newPassword = newPass;
 
-  user.updatePassword(newPassword).then(function() {
+  user.updatePassword(newPass).then(function() {
     // Update successful.
   }).catch(function(error) {
     // An error happened.
@@ -121,10 +120,11 @@ const changeUserPass = (newPass) => {
 
 const changeUserEmail = (newEmail) => {
   var user = auth.currentUser;
+  var newemail = newEmail;
   // var oldEmail = user.email;
   // console.log(oldEmail);
 
-  user.updateEmail(newEmail).then(function() {
+  user.updateEmail(newemail).then(function() {
     // Update successful.
   }).catch(function(error) {
     // An error happened.
@@ -154,6 +154,11 @@ const changeUserName = (newUserName) => {
   }).catch(function(error) {
     // An error happened.
   });
+
+  const updateUsername = firestore.collection('users').doc(user.uid);
+  updateUsername.update({
+    username: newUserName
+  });
 }
 
 const changeUserProfilePic = (url) => {
@@ -169,7 +174,7 @@ const changeUserProfilePic = (url) => {
 }
 
 const deleteUser = () => {
-  var user = firebase.auth().currentUser;
+  var user = auth.currentUser;
 
   user.delete().then(function() {
     // User deleted.
@@ -478,14 +483,33 @@ const GetPostofChannels = (channel) => {
   //     });
   //   });
   // });
-  let allPost = [];
-  const channelpost = firestore.collection('posts').where('channel', '==', channel);
-  channelpost.get().then(querySnapshot => {
-    querySnapshot.forEach(documentSnapshot => {
-      allPost.push({... documentSnapshot.data(), id: documentSnapshot.id});
-    });
-  });
+  const [docs, setDocs] = useState([]);
 
+  useEffect(() => {
+      const unsub = firestore.collection('posts')
+          .where('channelName', '==', channel)
+          .orderBy('uploaddate', 'desc')
+          .onSnapshot((snap) => {
+              let documents = [];
+              snap.forEach(doc => {
+                  documents.push({...doc.data(), id: doc.id})
+          });
+          setDocs(documents);
+      })
+
+      return () => unsub();
+  }, ['posts'])
+
+  return { docs };
+  
+  // let allPost = [];
+  // const channelpost = firestore.collection('posts').where('channelName', '==', channel);
+  // channelpost.get().then(querySnapshot => {
+  //   querySnapshot.forEach(documentSnapshot => {
+  //     allPost.push({... documentSnapshot.data(), id: documentSnapshot.id});
+  //   });
+  // });
+  // return {allPost};
 }
 
 

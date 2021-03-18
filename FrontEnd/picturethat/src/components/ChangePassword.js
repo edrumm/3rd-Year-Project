@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 import "../Pages/Settings.css";
+import firebase from "../firebase.js";
 
 const ChangePassword = () => {
 
@@ -26,20 +27,25 @@ const ChangePassword = () => {
         if(!checkPassword(changePassword)){
             passwordError.InvalidCharacters = "Password MUST contain at least one number/lowercase/uppercase letter and be at least 6 characaters in length";
             alert(passwordError.InvalidCharacters);
+            isValid = false;
         }
 
         if(!(changePassword === confirmChangePassword)){
             passwordError.PasswordMismatch = "Re-entered password MUST be the same as password";
             alert(passwordError.PasswordMismatch);
+            isValid = false;
         }
         
         if((checkPassword(changePassword) && checkPassword(confirmChangePassword)) && (changePassword === confirmChangePassword)){
             console.log("Valid password");
+            isValid = true;
         }
   
 
-    setPasswordChangeError(passwordChangeError);
-    console.log(isValid);
+        setPasswordChangeError(passwordChangeError);
+        if(isValid==true){
+            firebase.changeUserPass(changePassword);
+        }
 
     }
 

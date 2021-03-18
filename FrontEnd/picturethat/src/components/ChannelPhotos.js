@@ -11,10 +11,11 @@ let setSelectedImgId;
 
 
 const ImageFeed = () => {
-    const { docs } = firebase.GetPostofChannels('posts');
+    let currentChannel = setSelectedChannel;
+    const { docs } = firebase.GetPostofChannels(currentChannel);
     console.log(docs);
 
-    let currentChannel = setSelectedChannel;
+   
     console.log(currentChannel);
     
     
