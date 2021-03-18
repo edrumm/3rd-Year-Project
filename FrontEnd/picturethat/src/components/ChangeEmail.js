@@ -30,15 +30,18 @@ const ChangeEmail = () => {
         if (!checkEmail(changeEmail)) {
             emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
             alert(emailError.InvalidCharacters);
+            isValid = false;
         }
 
         if(!(changeEmail === confirmChangeEmail)){
             emailError.EmailMismatch = "Re-entered email MUST be the same as email";
             alert(emailError.EmailMismatch);
+            isValid = false
         }
         
         if((checkEmail(changeEmail) && checkEmail(confirmChangeEmail)) && (changeEmail === confirmChangeEmail)){
             console.log("Valid email address");
+            isValid = true;
         }
 
         setEmailChangeError(emailChangeError);
