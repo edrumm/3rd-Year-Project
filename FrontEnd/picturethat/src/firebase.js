@@ -342,6 +342,21 @@ const UnlikePost = async (post, user) => {
   })
 }
 
+
+const FollowChannel = async (user, channel) =>{
+  const userref = firestore.collection('users').doc(user);
+  userref.update({
+    followed_channels: firebase.firestore.FieldValue.arrayUnion("/channels/" + channel)
+  });
+  const increment = firebase.firestore.FieldValue.increment(1);
+
+  const channelref = firestore.collection('channels').doc(channel);
+  channelref.update({
+    number_of_posts: increment
+  })
+
+}
+
 const GetImg = (collection) => {
   // let docs = [];
 
@@ -497,7 +512,8 @@ export default {
   deleteUser,
   changeUserEmail,
   changeUserName,
-  changeUserProfilePic
+  changeUserProfilePic,
+  FollowChannel
 };
 
 
