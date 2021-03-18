@@ -4,7 +4,7 @@ import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './FullPost.css';
 import firebase from "../firebase.js";
 import ImageFeed from "./ImageFeed";
-import {setSelectedImgId} from "./ImageFeed";
+import {setSelectedImgId} from "./ChannelPhotos";
 
 
 
@@ -50,7 +50,7 @@ const FullPost = () => {
     return (
         <>
         <div className="backbutton">
-        <Link to="/PictureThat" className="fas fa-arrow-left" />
+        <Link to="/PictureThat/channelphotospage" className="fas fa-arrow-left" />
         </div>
         <div className= "FullPost">
                 <div class="card">
