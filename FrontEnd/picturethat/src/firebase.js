@@ -263,7 +263,7 @@ const UploadPost = async (caption, loc, channel, image, username) => {
 
 const AddComment = async (username, text, post) => {
 
-  const refcom = firestore.collection('comments');
+  const refcom = firestore.collection('comments').doc();
   let postref = firestore.collection('posts').doc(post);
   const Data = {
     username: username,

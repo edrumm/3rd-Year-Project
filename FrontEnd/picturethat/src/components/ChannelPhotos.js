@@ -13,10 +13,10 @@ let setSelectedImgId;
 const ImageFeed = () => {
     let currentChannel = setSelectedChannel;
     const { docs } = firebase.GetPostofChannels(currentChannel);
-    console.log(docs);
+    //console.log(docs);
 
    
-    console.log(currentChannel);
+    //console.log(currentChannel);
     
     
     // const setSelectedImgId = (id) => {
@@ -34,7 +34,10 @@ const ImageFeed = () => {
     // };
       
     return (
-      
+        <>
+        <div className="backbutton">
+        <Link to="/PictureThat/ChannelsPage" className="fas fa-arrow-left" />
+        </div>
         <div className= "imageFeed">
             { docs && docs.map(doc => (
                 <div class="post" key={doc.id}>
@@ -63,7 +66,7 @@ const ImageFeed = () => {
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
                     <a className="far fa-heart" />
-                    <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
+                    <Link to="/PictureThat/FullPostChannel"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">
                         <label className="">Score:</label>
@@ -80,8 +83,8 @@ const ImageFeed = () => {
         </div>
         ))}
     </div>
+    </>
     )
-    
 }
 
 export default ImageFeed ;
