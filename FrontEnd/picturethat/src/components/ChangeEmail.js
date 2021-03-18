@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import {useState} from 'react';
 import "../Pages/Settings.css";
+import firebase from "../firebase.js";
 
 
 const ChangeEmail = () => {
@@ -45,7 +46,9 @@ const ChangeEmail = () => {
         }
 
         setEmailChangeError(emailChangeError);
-        console.log(isValid);
+        if(isValid==true){
+            firebase.changeUserEmail(changeEmail);
+        }
 
     }
 

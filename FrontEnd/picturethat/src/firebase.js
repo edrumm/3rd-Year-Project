@@ -44,11 +44,10 @@ const signup = async (email, password, username) => {
     // redirect to login
     throw new Error('An account with these details exists already');
   }
-
+  let userID = auth.currentUser.uid;
   // await db.collection('users').doc(data.email).set({
-  await firestore.collection('users').doc(email).set({
+  await firestore.collection('users').doc(userID).set({
     username: username,
-    email: email,
     followed_channels: ['channels/feed'],
     liked_posts: [],
     posts: [],
@@ -122,12 +121,27 @@ const changeUserPass = (newPass) => {
 
 const changeUserEmail = (newEmail) => {
   var user = auth.currentUser;
+  // var oldEmail = user.email;
+  // console.log(oldEmail);
 
   user.updateEmail(newEmail).then(function() {
     // Update successful.
   }).catch(function(error) {
     // An error happened.
   });
+
+  // const updateEmail = firestore.collection('users').doc(oldEmail)
+  // .get()
+  // .then((doc) => {
+  //   let data = doc.data();
+  //   firestore.collection('users').doc(newEmail).set(data).then(() => {
+  //     firestore.collection('users').doc(oldEmail).delete();
+  //   });
+  // });
+  // const updateEmailAdress = firestore.collection('users').doc(oldEmail);
+  // updateEmailAdress.update({
+  //   email: newEmail
+  // });
 }
 
 const changeUserName = (newUserName) => {
