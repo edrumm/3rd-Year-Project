@@ -14,7 +14,7 @@ const FullPost = () => {
     const selectedImg = setSelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
     const getcomments = firebase.GetComments(selectedImg);
-    console.log(getcomments);
+    //console.log(getcomments);
     //console.log(singlePost);
 
     let currentPost = setSelectedImgId;    
@@ -86,11 +86,13 @@ const FullPost = () => {
                         <label className="date">Date</label>
                     </div>  
                         <div className="commentfield">
+                        { getcomments && getcomments.map(doc => (
                             <div className="singlecomment">
-                            <div>Username</div>
+                            <div>{doc.username}</div>
                             <div>Date</div>
-                            <div>Comment</div>
+                            <div>{doc.text}</div>
                             </div>
+                        ))}
                         </div>
 
                         <div className="likesection">
