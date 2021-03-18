@@ -305,7 +305,7 @@ const GetComments = (postid) => {
   useEffect(() => {
       const unsub = firestore.collection('comments')
           //.where('post', '==', postref)
-          //.orderBy('uploaddate', 'desc')
+          .orderBy('uploaddate', 'desc')
           .onSnapshot((snap) => {
               let documents = [];
               snap.forEach(doc => {
