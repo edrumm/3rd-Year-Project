@@ -58,7 +58,8 @@ const signup = async (email, password, username) => {
 
 
   auth.currentUser.updateProfile({
-    displayName: username
+    displayName: username,
+    //photoUrl = photoURL
   }).then(() => {
     // Update successful.
   }).catch(err => {
@@ -119,10 +120,10 @@ const changeUserPass = (newPass) => {
   });
 }
 
-const changeUserEmail = () => {
+const changeUserEmail = (newEmail) => {
   var user = auth.currentUser;
 
-  user.updateEmail("user@example.com").then(function() {
+  user.updateEmail(newEmail).then(function() {
     // Update successful.
   }).catch(function(error) {
     // An error happened.
