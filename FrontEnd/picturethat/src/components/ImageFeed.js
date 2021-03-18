@@ -15,23 +15,23 @@ const ImageFeed = () => {
     const [button, setButton] = useState("far fa-heart");
 
     const likepost = (postref) => {
-       const postreference = postref;
-       console.log(postreference);
-        if(liked === false) {
-            setLiked(true);
-            setButton("fas fa-heart")
-            const alreadyLiked = firebase.AlreadyLiked(user);
-            if(!alreadyLiked){
-                firebase.LikePost(user);
-            }
-       } else {
-           setLiked(false);
-           setButton("far fa-heart")
-           const alreadyLiked = firebase.AlreadyLiked(user);
-           if(alreadyLiked){
-               firebase.UnlikePost(user);
-           }
-       }
+    //    const postreference = postref;
+    //    console.log(postreference);
+    //     if(liked === false) {
+    //         setLiked(true);
+    //         setButton("fas fa-heart")
+    //         const alreadyLiked = firebase.AlreadyLiked(user);
+    //         if(!alreadyLiked){
+    //             firebase.LikePost(user);
+    //         }
+    //    } else {
+    //        setLiked(false);
+    //        setButton("far fa-heart")
+    //        const alreadyLiked = firebase.AlreadyLiked(user);
+    //        if(alreadyLiked){
+    //            firebase.UnlikePost(user);
+    //        }
+    //    }
     };
 
     const { docs } = firebase.GetImg('posts');
