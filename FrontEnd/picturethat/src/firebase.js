@@ -276,6 +276,7 @@ const AddComment = async (username, text, post) => {
   const refcom = firestore.collection('comments').doc();
   let postref = firestore.collection('posts').doc(post);
   const Data = {
+    uploaddate: firebase.firestore.Timestamp.now().toDate(),
     username: username,
     text: text,
     post: postref
@@ -295,6 +296,28 @@ const AddComment = async (username, text, post) => {
   //   });
   // });
 
+}
+
+const GetComments = (postid) => {
+  const [docs, setDocs] = useState([]);
+  let postref = "/posts/" + postid;
+  
+  useEffect(() => {
+      const unsub = firestore.collection('comments')
+          //.where('post', '==', postref)
+          //.orderBy('uploaddate', 'desc')
+          .onSnapshot((snap) => {
+              let documents = [];
+              snap.forEach(doc => {
+                  documents.push({...doc.data(), id: doc.id})
+          });
+          setDocs(documents);
+      })
+
+      return () => unsub();
+  }, ['comments'])
+
+  return docs;
 }
 
 const GetData = (collection) => {
@@ -570,6 +593,7 @@ export default {
   changeUserName,
   changeUserProfilePic,
   FollowChannel,
+  GetComments,
   getUserID
 };
 
