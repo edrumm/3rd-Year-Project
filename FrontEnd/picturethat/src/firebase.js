@@ -302,10 +302,12 @@ const AlreadyLiked = async (post, user) => {
       querySnapshot.forEach((doc) =>{
         if(doc == user){
           already = true;
+          console.log(already);
           return already;
         }
       })
     })
+    console.log(already);
     return already;
 }
 

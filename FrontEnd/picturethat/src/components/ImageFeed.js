@@ -7,15 +7,17 @@ import firebase from "../firebase";
 //import PopUp from '../components/PostPopUp';
 
 let setSelectedImgId;
-const user = firebase.getUser();
+
 
 const ImageFeed = () => {
-
+    const user = firebase.getUser().displayName;
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
 
-    const likepost = () => {
-       if(liked === false) {
+    const likepost = (postref) => {
+       const postreference = postref;
+       console.log(postreference);
+        if(liked === false) {
             setLiked(true);
             setButton("fas fa-heart")
             const alreadyLiked = firebase.AlreadyLiked(user);
@@ -81,7 +83,7 @@ const ImageFeed = () => {
                     <div className="bottominfo">
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
-                    <a onClick={likepost} className={button} />
+                    <a onClick={likepost(doc.id)} className={button} />
                     <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">
