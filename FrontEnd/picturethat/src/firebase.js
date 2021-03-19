@@ -1,36 +1,22 @@
-import firebase from 'firebase';
-import 'firebase/storage';
-import 'firebase/firestore';
-import { useState, useEffect } from 'react';
+import { firebase, storage, firestore, auth } from './Auth';
+import React, { useState, useEffect, useContext } from 'react';
 import { number } from 'joi';
-//import { ref } from 'joi';
 
-// PictureThat Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyCBVN9q8Dyb-jkn-tTBE6roFpImLrf3wyo",
-  authDomain: "picture-that-y3.firebaseapp.com",
-  projectId: "picture-that-y3",
-  storageBucket: "picture-that-y3.appspot.com",
-  messagingSenderId: "971709327177",
-  appId: "1:971709327177:web:555305dfeed34241829c98",
-  measurementId: "G-JS9RB6QVSJ"
+const context = React.createContext();
+
+const Auth = () => {
+  return useContext(context);
 };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-const storage = firebase.storage();
-const firestore = firebase.firestore();
-const auth = firebase.auth();
 
 // let user = null;
 
-const login = async (email, password) => {
+const Login = async (email, password) => {
 
   await auth.signInWithEmailAndPassword(email, password);
 
 };
 
-const signup = async (email, password, username) => {
+const Signup = async (email, password, username) => {
 
   // errors caught on top level
   await auth.createUserWithEmailAndPassword(email, password);
@@ -73,7 +59,7 @@ const signup = async (email, password, username) => {
   // add account to db
 }
 
-const logout = async () => {
+const Logout = async () => {
 
   await auth.signOut();
 
@@ -299,7 +285,7 @@ const AddComment = async (username, text, post) => {
 const GetComments = (postid) => {
   const [docs, setDocs] = useState([]);
   let postref = postid;
-  
+
   useEffect(() => {
       const unsub = firestore.collection('comments')
           .where('post', '==', postref)
@@ -567,28 +553,6 @@ const GetPostofChannels = (channel) => {
   // return {allPost};
 }
 
-const GetPostofUser = (user) => {
-
-  const [docs, setDocs] = useState([]);
-
-  useEffect(() => {
-      const unsub = firestore.collection('posts')
-          .where('UserName', '==', user)
-          .orderBy('uploaddate', 'desc')
-          .onSnapshot((snap) => {
-              let documents = [];
-              snap.forEach(doc => {
-                  documents.push({...doc.data(), id: doc.id})
-          });
-          setDocs(documents);
-      })
-
-      return () => unsub();
-  }, ['posts'])
-
-  return { docs };
-}
-
 
 
 
@@ -597,9 +561,6 @@ export default {
   GetData,
   GetImg,
   AddComment,
-  login,
-  logout,
-  signup,
   GetSinglePost,
   GetPostofChannels,
   LikePost,
@@ -614,9 +575,10 @@ export default {
   changeUserProfilePic,
   FollowChannel,
   GetComments,
-  getUserID,
-  GetPostofUser
+  getUserID
 };
+
+export { Auth, Login, Signup, Logout };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M

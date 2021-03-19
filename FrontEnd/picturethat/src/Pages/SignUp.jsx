@@ -6,7 +6,7 @@ import {useState} from 'react';
 import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
 
-import firebase from '../firebase';
+import {Login, Signup} from '../firebase';
 import validate from '../validate';
 
 const SignUp  = () => {
@@ -22,7 +22,7 @@ const SignUp  = () => {
     const[username, setUsername] = useState('');
     const[usernameError, setUsernameError] = useState('');
 
-    
+
 
     //boolean isValid to check if credentials are valid set to true
     // var isValid = false;
@@ -117,11 +117,11 @@ const SignUp  = () => {
         if (isValid) {
 
             // try to signup
-            firebase.signup(email, password, username)
+            Signup(email, password, username)
             .then(() => {
               // successful
 
-              firebase.login(email, password)
+              Login(email, password)
               .then(() => {
                 history.push("/PictureThat");
               })
