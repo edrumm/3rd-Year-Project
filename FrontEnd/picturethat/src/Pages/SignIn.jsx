@@ -5,7 +5,7 @@ import logo from './logo.png';
 import {useState} from 'react';
 import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
-import firebase from '../firebase';
+import {Login} from '../firebase';
 import validate from '../validate';
 
 const SignIn  = () => {
@@ -43,7 +43,7 @@ const SignIn  = () => {
 
         if (isValid) {
 
-            firebase.login(email, password)
+            Login(email, password)
             .then(() => {
               history.push("/PictureThat");
             })

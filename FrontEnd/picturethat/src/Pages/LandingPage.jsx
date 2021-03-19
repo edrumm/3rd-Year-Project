@@ -2,11 +2,11 @@ import React from 'react';
 import ImageFeed from '../components/ImageFeed';
 import Navbar from '../components/Navbar/Navbar';
 
-import firebase from '../firebase';
+// import firebase from '../firebase';
 
 const LandingPage  = () => {
-  firebase.getUser();
-  
+  // firebase.getUser();
+
     return (
     <>
     <Navbar />

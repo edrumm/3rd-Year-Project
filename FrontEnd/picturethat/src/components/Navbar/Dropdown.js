@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import './Dropdown.css';
-import firebase from '../../firebase';
+import {Logout} from '../../firebase';
 
 function Dropdown() {
 
   const history = useHistory();
 
   const logout = () => {
-    firebase.logout()
+    Logout()
     .then(() => history.push('/'))
     .catch(err => console.error(err));
   };
