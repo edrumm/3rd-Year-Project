@@ -272,12 +272,12 @@ const UploadPost = async (caption, loc, channel, image, username) => {
 const AddComment = async (username, text, post) => {
 
   const refcom = firestore.collection('comments').doc();
-  let postref = firestore.collection('posts').doc(post);
+  //let postref = firestore.collection('posts').doc(post);
   const Data = {
     uploaddate: firebase.firestore.Timestamp.now().toDate(),
     username: username,
     text: text,
-    post: postref
+    post: post
   }
   await refcom.set(Data);
 
@@ -298,11 +298,11 @@ const AddComment = async (username, text, post) => {
 
 const GetComments = (postid) => {
   const [docs, setDocs] = useState([]);
-  let postref = "/posts/" + postid;
+  let postref = postid;
   
   useEffect(() => {
       const unsub = firestore.collection('comments')
-          //.where('post', '==', postref)
+          .where('post', '==', postref)
           .orderBy('uploaddate', 'desc')
           .onSnapshot((snap) => {
               let documents = [];
@@ -567,6 +567,28 @@ const GetPostofChannels = (channel) => {
   // return {allPost};
 }
 
+const GetPostofUser = (user) => {
+
+  const [docs, setDocs] = useState([]);
+
+  useEffect(() => {
+      const unsub = firestore.collection('posts')
+          .where('UserName', '==', user)
+          .orderBy('uploaddate', 'desc')
+          .onSnapshot((snap) => {
+              let documents = [];
+              snap.forEach(doc => {
+                  documents.push({...doc.data(), id: doc.id})
+          });
+          setDocs(documents);
+      })
+
+      return () => unsub();
+  }, ['posts'])
+
+  return { docs };
+}
+
 
 
 
@@ -592,7 +614,8 @@ export default {
   changeUserProfilePic,
   FollowChannel,
   GetComments,
-  getUserID
+  getUserID,
+  GetPostofUser
 };
 
 
