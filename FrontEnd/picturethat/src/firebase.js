@@ -554,6 +554,33 @@ const GetPostofChannels = (channel) => {
 }
 
 
+const GetAllUserChannelPosts = (user) => {
+  
+  const [docs, setDocs] = useState([]);
+
+  useEffect(() =>{
+    const userref =firestore.collection("users").doc(user)
+    .get()
+    .then((doc) =>{
+      let documents = [];
+      let channels = doc.data().followed_channels;
+      var i;
+      for(i = 0; i < channels.length; i++){
+        let post = channels[i].replace("/posts/", "");
+        let postref = firestore.collection("posts").doc(post)
+        .get()
+        .then((doc) => {
+          documents.push({...doc.data(), id: doc.id})
+        });
+      }
+      setDocs(document);
+    });
+    return () => userref();
+  })
+
+  return { docs };
+}
+
 
 
 export default {
@@ -575,7 +602,8 @@ export default {
   changeUserProfilePic,
   FollowChannel,
   GetComments,
-  getUserID
+  getUserID,
+  GetAllUserChannelPosts
 };
 
 export { Auth, Login, Signup, Logout };
