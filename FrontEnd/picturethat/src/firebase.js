@@ -566,10 +566,11 @@ const GetAllUserChannelPosts = (user) => {
       let channels = doc.data().followed_channels;
       var i;
       for(i = 0; i < channels.length; i++){
-        let post = channels[i].replace("/posts/", "");
-        let postref = firestore.collection("posts").doc(post)
-        .get()
-        .then((doc) => {
+        let channel = channels[i].replace("/channels/", "");
+        let postref = firestore.collection("post")
+        .where("channelName", "==", channel)
+        .orderBy("uploaddate", 'desc')
+        .onSnapshot((doc) => {
           documents.push({...doc.data(), id: doc.id})
         });
       }
