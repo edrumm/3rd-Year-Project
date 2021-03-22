@@ -325,32 +325,48 @@ const GetData = (collection) => {
 
 
 //Should work, but might need some tweaking depending on how specific values are returned
-const AlreadyLiked = async (post, user) => {
-  let already = false;
+const AlreadyLiked = (post, user) => {
+
+  const [doc, setDocs] = useState();
   let postref = "/posts/" + post;
-  console.log(postref);
-  let realvalue;
   //goes through all users and finds ones where this specific post has been liked
   //if any of these users match the one we are currently interested in, return true
   //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
-  const allPosts =  await firestore.collection("users").where("likedPosts", 'array-contains', postref)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) =>{
-        if(doc == user){
-          already = true;
-          //console.log(already);
+  
+  useEffect(() =>{
+    const allike = firestore.collection('users')
+    .where("likedPosts", 'array-contains', postref)
+    .onSnapshot((snap) =>{
+      let found = false;
+      snap.forEach(doc =>{
+        if(user == doc.id){
+        found = true
         }
-      })
-      return already;
-    })
+      });
+      setDocs(found);
+    }) 
+    return () => allike();
+    }) 
+    return doc;
+  }
+  // const allPosts =  await firestore.collection("users").where("likedPosts", 'array-contains', postref)
+  //   .get()
+  //   .then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) =>{
+  //       if(doc == user){
+  //         already = true;
+  //         //console.log(already);
+  //       }
+  //     })
+  //     return already;
+  //   })
 
-    allPosts.then((result) =>{
-      realvalue = result;
-    })
+  //   allPosts.then((result) =>{
+  //     realvalue = result;
+  //   })
 
-    return realvalue;
-}
+  //   return realvalue;
+
 
 const LikePost = async (post, user) => {
   //Uses built in FireBase method for incrementing
@@ -556,10 +572,10 @@ const GetPostofChannels = (channel) => {
 
 const GetAllUserChannelPosts = (user) => {
   
-  const [docs, setDocs] = useState([]);
+  const [docs, setDocs] = useState();
 
   useEffect(() =>{
-    const userref =firestore.collection("users").doc(user)
+    const userref = firestore.collection("users").doc(user)
     .get()
     .then((doc) =>{
       let documents = [];
