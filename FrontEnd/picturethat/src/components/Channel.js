@@ -10,6 +10,7 @@ import firebase from "../firebase.js";
         const { docs } = firebase.GetData('channels');
         console.log(docs);
         let user = firebase.getUser().displayName;
+        let userfollow = firebase.getUserID();
         const currchannel = setSelectedChannel;
 
         const [follow, setLiked] = useState(false);
@@ -20,6 +21,7 @@ import firebase from "../firebase.js";
             if(follow === false) {
                 setLiked(true);
                 setButton("UnFollow Channel")
+                firebase.FollowChannel(userfollow, currchannel);
               
            } else {
                setLiked(false);
