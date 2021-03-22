@@ -597,14 +597,15 @@ const GetAllUserChannelPosts = (user) => {
   const [docs, setDocs] = useState();
 
   useEffect(() =>{
-    const userref = firestore.collection("users").doc(user)
+    firestore.collection("users").doc(user)
     .get()
     .then((doc) =>{
       let documents = [];
       let channels = doc.data().followed_channels;
+      console.log(channels[1]);
       var i;
       for(i = 0; i < channels.length; i++){
-        let channel = channels[i].replace("/channels/", "");
+        var channel = channels[i].replace("/channels/", "");
         let postref = firestore.collection("posts")
         .where("channelName", "==", channel)
         .orderBy("uploaddate", 'desc')
@@ -614,7 +615,7 @@ const GetAllUserChannelPosts = (user) => {
       }
       setDocs(document);
     });
-    return () => userref();
+    return () => document;
   })
 
   return { docs };
