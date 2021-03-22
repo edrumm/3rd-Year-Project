@@ -7,7 +7,6 @@ import {useState} from 'react';
 import ImageGrid from '../components/ImageGrid';
 
 /* import for image files DEMO */
-import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import Footer from '../components/footer';
 import firebase from '../firebase';
 

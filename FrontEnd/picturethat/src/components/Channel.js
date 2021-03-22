@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Channel.css';
-import cat from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase.js";
 

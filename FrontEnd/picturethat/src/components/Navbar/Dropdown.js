@@ -18,10 +18,10 @@ function Dropdown() {
         <div>
                 <ul className="dropdown">
                     <li>
-                        <Link to='/PictureThat/ProfilePage' className="fas fa-user-circle b"><a href="/PictureThat/ProfilePage">Profile</a></Link>
+                        <Link to='/PictureThat/ProfilePage' className="fas fa-user-circle b"><a href="/PictureThat/ProfilePage"> Profile</a></Link>
                     </li>
                     <li>
-                        <Link to='/PictureThat/Settings' className="fas fa-cog b" href=""><a href="/PictureThat/Settings">Settings</a></Link>
+                        <Link to='/PictureThat/Settings' className="fas fa-cog b" href=""><a href="/PictureThat/Settings"> Settings</a></Link>
                     </li>
                     <li onClick= {logout}>
                         <Link to='/' class="fas fa-sign-out-alt" href="" ><a href="#/"> Logout</a></Link>
