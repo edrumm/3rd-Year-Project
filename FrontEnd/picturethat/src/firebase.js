@@ -417,6 +417,28 @@ const FollowChannel = async (user, channel) =>{
 
 }
 
+const GetPostofUser = (user) => {
+
+  const [docs, setDocs] = useState([]);
+
+  useEffect(() => {
+      const unsub = firestore.collection('posts')
+          .where('UserName', '==', user)
+          .orderBy('uploaddate', 'desc')
+          .onSnapshot((snap) => {
+              let documents = [];
+              snap.forEach(doc => {
+                  documents.push({...doc.data(), id: doc.id})
+          });
+          setDocs(documents);
+      })
+
+      return () => unsub();
+  }, ['posts'])
+
+  return { docs };
+}
+
 const GetImg = (collection) => {
   // let docs = [];
 
@@ -620,7 +642,8 @@ export default {
   FollowChannel,
   GetComments,
   getUserID,
-  GetAllUserChannelPosts
+  GetAllUserChannelPosts,
+  GetPostofUser
 };
 
 export { Auth, Login, Signup, Logout };

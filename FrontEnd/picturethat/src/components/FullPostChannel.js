@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './FullPost.css';
 import firebase from "../firebase.js";
 import ImageFeed from "./ImageFeed";
@@ -105,7 +104,7 @@ const FullPost = () => {
 
                     <div className="headpart">
                     
-                            <img src={dog} alt="" className="profileimg"/>
+                         
                             <br></br>
                             <div className="profilecard">
                             <label className="profileN">{singlePost.UserName}</label>

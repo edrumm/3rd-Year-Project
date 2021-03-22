@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import dog from '../components/ImageFiles/iz-phil-pdALzg0yN-8-unsplash.jpg';
 import './ImageFeed.css';
 //import getImg from '../getImg';
 import {Link} from 'react-router-dom';
@@ -78,7 +77,7 @@ const ImageFeed = () => {
                     <div className="postDetailsContainer">
                     <div className="topinfo">
                     <div className="user">
-                            <img src={dog} alt="" className="profileimage"/>
+                            
                             <br></br>
                             <div className="profilecard">
 
