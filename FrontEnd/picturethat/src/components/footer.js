@@ -17,7 +17,6 @@ import './footer.css';
                     <br />
                     <a className="link"><div>Contact</div></a>
                     <br />
-                    <a className="link" href=""><div>Help</div></a>
                 </div>
                 <div>© 2021 PictureThat by Pronto. All Rights Reserved.</div>
             </footer>

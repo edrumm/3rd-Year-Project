@@ -7,8 +7,6 @@ import ImageFeed from "./ImageFeed";
 import {setSelectedImgId} from "./ImageFeed";
 
 
-
-
 const FullPost = () => {
 
     const singlePost = firebase.GetSinglePost(setSelectedImgId);
