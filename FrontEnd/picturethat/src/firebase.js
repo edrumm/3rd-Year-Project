@@ -567,7 +567,7 @@ const GetAllUserChannelPosts = (user) => {
       var i;
       for(i = 0; i < channels.length; i++){
         let channel = channels[i].replace("/channels/", "");
-        let postref = firestore.collection("post")
+        let postref = firestore.collection("posts")
         .where("channelName", "==", channel)
         .orderBy("uploaddate", 'desc')
         .onSnapshot((doc) => {
