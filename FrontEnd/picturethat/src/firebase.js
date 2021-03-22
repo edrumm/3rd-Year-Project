@@ -325,29 +325,34 @@ const GetData = (collection) => {
 
 
 //Should work, but might need some tweaking depending on how specific values are returned
-const AlreadyLiked = (post, user) => {
-
-  const [doc, setDocs] = useState();
+const AlreadyLiked =  (post, user) => {
+  let liked_post = false;
   let postref = "/posts/" + post;
+  console.log(postref);
   //goes through all users and finds ones where this specific post has been liked
   //if any of these users match the one we are currently interested in, return true
   //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
   
-  useEffect(() =>{
-    const allike = firestore.collection('users')
+    const allike =   firestore.collection('users')
     .where("likedPosts", 'array-contains', postref)
     .onSnapshot((snap) =>{
       let found = false;
       snap.forEach(doc =>{
-        if(user == doc.id){
+        let test = doc.id;
+        if(user == test){
         found = true
+        console.log(user);
+        console.log("user likes post");
+        console.log(test);
+        }
+        else{
+          found = false;
         }
       });
-      setDocs(found);
+      console.log(found);
+      liked_post = found;
     }) 
-    return () => allike();
-    }) 
-    return doc;
+    return liked_post;
   }
   // const allPosts =  await firestore.collection("users").where("likedPosts", 'array-contains', postref)
   //   .get()
