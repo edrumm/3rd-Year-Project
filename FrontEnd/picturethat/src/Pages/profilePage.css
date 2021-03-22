@@ -6,24 +6,16 @@
     }
 }
 
-/* --------------------------- profile picture ------------------------ */
-
-.profileimageProfile {
-    border-radius: 75px;
-    height: 150px;
-    width: 150px;
-    align-content: left;
-}
-
 /* ------------------------ Personal Info Header ----------------------- */
 .personalsection{
     margin: 60px auto;
     margin-bottom: 0;
     flex-grow: 1;
-    max-width: 935px;
+    max-width: 700px;
     left: 50%;
-    height: 200px;
+    height: 150px;
 
+    text-align: center;
     border-radius: 5px;
     border: solid 1px #efefef;
     background-color: white;
@@ -38,27 +30,15 @@
     clear: both;
 }
 
-.personalsectionLeft{
-    text-align: center;
-    height: 230px;
-    width: 25%;
-}
-
-.personalsectionRight{
-    text-align: center;
-    height: 230px;
-    width: 75%;
-}
-
 /* ------------------- div divider for personal section ---------------*/
 
 .leftPersonalSide{
-    height: 130px;
+    height: 100px;
     width: 50%;
 }
 
 .rightPersonalSide{
-    height: 130px;
+    height: 100px;
     width: 50%;
 }
 
