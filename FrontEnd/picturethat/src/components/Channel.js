@@ -13,8 +13,20 @@ import firebase from "../firebase.js";
         let user = firebase.getUser().displayName;
         const currchannel = setSelectedChannel;
 
-        const channelFollow = () =>{
-            const follow = firebase.FollowChannel(user, currchannel);
+        const [follow, setLiked] = useState(false);
+        const [button, setButton] = useState("Follow Channel");
+    
+        const FollowChannel = (channelId) =>{
+            //const follow = firebase.FollowChannel(user, currchannel);
+            if(follow === false) {
+                setLiked(true);
+                setButton("UnFollow Channel")
+              
+           } else {
+               setLiked(false);
+               setButton("Follow Channel")
+               
+           }
         }
         return(
             <>
@@ -36,7 +48,7 @@ import firebase from "../firebase.js";
                     <br/>
                     <Link to="/PictureThat/channelphotospage" ><button className="button" onClick={() => {setSelectedChannel = doc.id}} >See Channel</button></Link>
                     <br/>
-                    <button className="button" onClick={() => {setSelectedChannel = doc.id}} >See Channel</button>
+                    <button className="button" onClick={() =>FollowChannel(doc.id)} >{button}</button>
                 </div>
                 
 
