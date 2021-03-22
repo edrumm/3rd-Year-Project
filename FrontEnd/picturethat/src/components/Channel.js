@@ -35,6 +35,8 @@ import firebase from "../firebase.js";
                     <label className="label">No of Pictures: {doc.number_of_posts}</label>
                     <br/>
                     <Link to="/PictureThat/channelphotospage" ><button className="button" onClick={() => {setSelectedChannel = doc.id}} >See Channel</button></Link>
+                    <br/>
+                    <button className="button" onClick={() => {setSelectedChannel = doc.id}} >See Channel</button>
                 </div>
                 
 

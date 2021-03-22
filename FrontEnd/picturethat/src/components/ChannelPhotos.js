@@ -14,7 +14,47 @@ const ImageFeed = () => {
     let currentChannel = setSelectedChannel;
     const { docs } = firebase.GetPostofChannels(currentChannel);
     //console.log(docs);
+    const user = firebase.getUserID();
+    const [liked, setLiked] = useState(false);
+    const [button, setButton] = useState("far fa-heart");
 
+    const likepost = (postref) => {
+    //    const postreference = postref;
+    //    console.log(postreference);
+    //     if(liked === false) {
+    //         setLiked(true);
+    //         setButton("fas fa-heart")
+    //         const alreadyLiked = firebase.AlreadyLiked(user);
+    //         if(!alreadyLiked){
+    //             firebase.LikePost(user);
+    //         }
+    //    } else {
+    //        setLiked(false);
+    //        setButton("far fa-heart")
+    //        const alreadyLiked = firebase.AlreadyLiked(user);
+    //        if(alreadyLiked){
+    //            firebase.UnlikePost(user);
+    //        }
+    //    }
+       //console.log(postreference);
+        if(liked === false) {
+            setLiked(true);
+            setButton("fas fa-heart")
+           //let alreadyLiked = firebase.AlreadyLiked(postref, user);
+            //console.log(alreadyLiked);
+            //if(alreadyLiked == false){
+                console.log("not liked, lets add!")
+                firebase.LikePost(postref, user);
+          // }
+       } else {
+           setLiked(false);
+           setButton("far fa-heart")
+            //let alreadyLiked = firebase.AlreadyLiked(postref, user);
+          // if(alreadyLiked){
+               firebase.UnlikePost(postref, user);
+          //}
+       }
+    };
    
     //console.log(currentChannel);
     
@@ -65,11 +105,11 @@ const ImageFeed = () => {
                     <div className="bottominfo">
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
-                    <a className="far fa-heart" />
+                    <a onClick={() =>likepost(doc.id)} className={button} />
                     <Link to="/PictureThat/FullPostChannel"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">
-                        <label className="">Score:</label>
+                        <label className="">Score: {doc.likes}</label>
                         <br></br>
                         <label>Caption: {doc.caption} </label>
                         <br></br>
