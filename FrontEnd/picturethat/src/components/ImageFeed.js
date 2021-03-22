@@ -105,7 +105,7 @@ const ImageFeed = () => {
                     <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">
-                        <label className="">Score:</label>
+                        <label className="">Score: {doc.likes}</label>
                         <br></br>
                         <label>Caption: {doc.caption} </label>
                         <br></br>

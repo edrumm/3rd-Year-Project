@@ -26,6 +26,7 @@
     display: flex;
     flex-direction: row;
     border-radius: 15px;
+    padding-top: 2rem;
 }
 
 .channelPhoto{
@@ -40,9 +41,7 @@
     max-height: 33rem;
     text-align: left;
     border: solid 2px #efefef;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    border-left: none;
+    border-radius: 15px;
     box-shadow: 2px 0px 4px 3px lightgray;
 
     
@@ -53,14 +52,14 @@
     
 }
 
-.Channelimg {
+/* .Channelimg {
     max-height: 33rem;
     max-width: 100%;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
     box-shadow: -2px 0px 4px 3px lightgray;
     border-right: none;
-}
+} */
 
 .button{
     padding: 1% 3%;
