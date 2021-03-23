@@ -53,8 +53,8 @@ const ImageFeed = () => {
        }
     };
 
-    //const { docs } = firebase.GetImg('posts');
-    const { docs } = firebase.GetAllUserChannelPosts(user);
+    const { docs } = firebase.GetImg('posts');
+    //const { docs } = firebase.GetAllUserChannelPosts(user);
     console.log(docs);
 
     // const setSelectedImgId = (id) => {

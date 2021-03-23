@@ -25,6 +25,8 @@
 }
 
 .image{
+    min-height: 25rem;
+    min-width: 50%;
     max-height: 43.75rem;
     max-width: 100%;
     margin-bottom: -4px;
