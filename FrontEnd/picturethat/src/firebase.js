@@ -65,10 +65,9 @@ const Logout = async () => {
 
 };
 
-const ResetEmail = (email) => {
-  var emailAddress = email;
+const forgotPass = (email) => {
 
-  auth.sendPasswordResetEmail(emailAddress).then(function() {
+  auth.sendPasswordResetEmail(email).then(function() {
     // Email sent.
     }).catch(function(error) {
       console.log(error);
@@ -721,7 +720,7 @@ export default {
   UnlikePost,
   AlreadyLiked,
   getUser,
-  ResetEmail,
+  forgotPass,
   changeUserPass,
   deleteUser,
   changeUserEmail,

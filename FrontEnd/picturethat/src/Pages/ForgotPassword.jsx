@@ -9,10 +9,10 @@ import firebase from '../firebase';
 const ForgotPassword  = () => {
 
     const[email, setEmail] = useState('');
-    console.log(email);
+    //console.log(email);
 
     const onSubmitForgot = () => {
-        firebase.ForgotPassword(email);
+        firebase.forgotPass(email);
     }
 
     return (
@@ -30,14 +30,14 @@ const ForgotPassword  = () => {
                     placeholder="Email Address" 
                     value= {email}
                     onChange= {(e) => {setEmail(e.target.value)}}/>
-                <button id="signInButton" class="signInButton" onclick={onSubmitForgot}><Link to="/SignIn">Submit</Link></button>
+                <button id="signInButton" className="signInButton" onClick={onSubmitForgot}><Link to="/SignIn">Submit</Link></button>
 
-                <p className="or"><span>OR</span>
+                <div className="or"><span>OR</span>
                     <div className="whiteSpace"></div>
-                </p>
+                </div>
 
                 <Link to="/SignIn">    
-                    <p>Sign In</p>
+                    <div>Sign In</div>
                 </Link>
             </form>
         </div>
