@@ -33,7 +33,7 @@ const Signup = async (email, password, username) => {
   // await db.collection('users').doc(data.email).set({
   await firestore.collection('users').doc(userID).set({
     username: username,
-    followed_channels: ['channels/feed'],
+    followed_channels: [],
     liked_posts: [],
     posts: [],
     score: 0
@@ -140,6 +140,7 @@ const changeUserEmail = (newEmail) => {
 
 const changeUserName = (newUserName) => {
   var user = auth.currentUser;
+  var Username = auth.currentUser.displayName;
 
   user.updateProfile({
     displayName: newUserName
@@ -153,29 +154,81 @@ const changeUserName = (newUserName) => {
   updateUsername.update({
     username: newUserName
   });
+
+  const postupdate = firestore.collection('posts')
+  .where("UserName", "==", Username)
+  .get()
+  .then(querySnapshot =>{
+    querySnapshot.forEach(documentSnapshot =>{
+      let updatepost = firestore.collection('posts').doc(documentSnapshot.id)
+      updatepost.update({
+        UserName: newUserName
+      })
+    })
+  })
+
+  const commmentupdate = firestore.collection('comments')
+  .where("username", "==", Username)
+  .get()
+  .then(querySnapshot =>{
+    querySnapshot.forEach(documentSnapshot =>{
+      let updatepost = firestore.collection('comments').doc(documentSnapshot.id)
+      updatepost.update({
+        username: newUserName
+      })
+    })
+  })
 }
 
-const changeUserProfilePic = (url) => {
-  var user = auth.currentUser;
+// const changeUserProfilePic = (url) => {
+//   var user = auth.currentUser;
 
-  user.updateProfile({
-    photoURL: url
-  }).then(function() {
-    // Update successful.
-  }).catch(function(error) {
-    // An error happened.
-  });
-}
+//   user.updateProfile({
+//     photoURL: url
+//   }).then(function() {
+//     // Update successful.
+//   }).catch(function(error) {
+//     // An error happened.
+//   });
+// }
 
 const deleteUser = () => {
-  var user = auth.currentUser;
+  var userdelete = auth.currentUser;
+  var deletedid = auth.currentUser.uid;
+  var username = auth.currentUser.displayName;
+  firestore.collection('users').doc(deletedid).delete();
+  const postupdate = firestore.collection('posts')
+  .where("UserName", "==", username)
+  .get()
+  .then(querySnapshot =>{
+    querySnapshot.forEach(documentSnapshot =>{
+      let updatepost = firestore.collection('posts').doc(documentSnapshot.id)
+      updatepost.update({
+        UserName: "[Deleted User]"
+      })
+    })
+  })
 
-  user.delete().then(function() {
-    // User deleted.
+  const commmentupdate = firestore.collection('comments')
+  .where("username", "==", username)
+  .get()
+  .then(querySnapshot =>{
+    querySnapshot.forEach(documentSnapshot =>{
+      let updatepost = firestore.collection('comments').doc(documentSnapshot.id)
+      updatepost.update({
+        username: "[Deleted User]"
+      })
+    })
+  })
+  
+  userdelete.delete().then(function() {
+    console.log("Successfully deleted user");
   }).catch(function(error) {
-    // An error happened.
+    console.log("Error deleting user:", error);
   });
 
+
+  
   //need to delete db user info and posts
 }
 
@@ -235,7 +288,8 @@ const UploadPost = async (caption, loc, channel, image, username) => {
           //creates the array that will contain the references to all the posts
           posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
           //sets the number of posts a channel has to one, where it can be incremented
-          number_of_posts: 1
+          number_of_posts: 1,
+          number_of_followers: 0
         });
       });
     });
@@ -325,32 +379,53 @@ const GetData = (collection) => {
 
 
 //Should work, but might need some tweaking depending on how specific values are returned
-const AlreadyLiked = async (post, user) => {
-  let already = false;
+const AlreadyLiked =  (post, user) => {
+  let liked_post = false;
   let postref = "/posts/" + post;
   console.log(postref);
-  let realvalue;
   //goes through all users and finds ones where this specific post has been liked
   //if any of these users match the one we are currently interested in, return true
   //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
-  const allPosts =  await firestore.collection("users").where("likedPosts", 'array-contains', postref)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) =>{
-        if(doc == user){
-          already = true;
-          //console.log(already);
+  
+    const allike =   firestore.collection('users')
+    .where("likedPosts", 'array-contains', postref)
+    .onSnapshot((snap) =>{
+      let found = false;
+      snap.forEach(doc =>{
+        let test = doc.id;
+        if(user == test){
+        found = true
+        console.log(user);
+        console.log("user likes post");
+        console.log(test);
         }
-      })
-      return already;
-    })
+        else{
+          found = false;
+        }
+      });
+      console.log(found);
+      liked_post = found;
+    }) 
+    return liked_post;
+  }
+  // const allPosts =  await firestore.collection("users").where("likedPosts", 'array-contains', postref)
+  //   .get()
+  //   .then((querySnapshot) => {
+  //     querySnapshot.forEach((doc) =>{
+  //       if(doc == user){
+  //         already = true;
+  //         //console.log(already);
+  //       }
+  //     })
+  //     return already;
+  //   })
 
-    allPosts.then((result) =>{
-      realvalue = result;
-    })
+  //   allPosts.then((result) =>{
+  //     realvalue = result;
+  //   })
 
-    return realvalue;
-}
+  //   return realvalue;
+
 
 const LikePost = async (post, user) => {
   //Uses built in FireBase method for incrementing
@@ -396,18 +471,33 @@ const FollowChannel = async (user, channel) =>{
 
   const channelref = firestore.collection('channels').doc(channel);
   channelref.update({
-    number_of_posts: increment
+    number_of_followers: increment
   })
 
 }
 
-const GetPostofUser = (user) => {
+const UnFollowChannel = async (user, channel) =>{
+  const userref = firestore.collection('users').doc(user);
+  userref.update({
+    followed_channels: firebase.firestore.FieldValue.arrayRemove("/channels/" + channel)
+  });
+  const increment = firebase.firestore.FieldValue.increment(-1);
+
+  const channelref = firestore.collection('channels').doc(channel);
+  channelref.update({
+    number_of_followers: increment
+  })
+
+}
+
+const GetPostofUser = () => {
 
   const [docs, setDocs] = useState([]);
+  var username = auth.currentUser.displayName;
 
   useEffect(() => {
       const unsub = firestore.collection('posts')
-          .where('UserName', '==', user)
+          .where('UserName', '==', username)
           .orderBy('uploaddate', 'desc')
           .onSnapshot((snap) => {
               let documents = [];
@@ -578,30 +668,42 @@ const GetPostofChannels = (channel) => {
 
 const GetAllUserChannelPosts = (user) => {
   
-  const [docs, setDocs] = useState([]);
-
+  const [docs, setDocs] = useState();
+  let documents = [];
+  let [alldocs, setAlldocs] = useState();
+  let finaldoc = [];
   useEffect(() =>{
-    const userref =firestore.collection("users").doc(user)
+    firestore.collection("users").doc(user)
     .get()
     .then((doc) =>{
-      let documents = [];
+      
       let channels = doc.data().followed_channels;
+      console.log(channels[1]);
       var i;
       for(i = 0; i < channels.length; i++){
-        let channel = channels[i].replace("/channels/", "");
+        var channel = channels[i].replace("/channels/", "");
+        console.log(channel);
         let postref = firestore.collection("posts")
         .where("channelName", "==", channel)
         .orderBy("uploaddate", 'desc')
-        .onSnapshot((doc) => {
-          documents.push({...doc.data(), id: doc.id})
+        .onSnapshot((snap) => {
+          snap.forEach((doc) =>{
+            documents.push({...doc.data(), id: doc.id})
+            console.log(documents[0]);
+          })
+          setDocs(documents);
+          Array.prototype.push.apply(finaldoc, documents);
+          setAlldocs(finaldoc);
+          console.log(finaldoc[0]);
         });
+        
       }
-      setDocs(document);
+      
+      //console.log(documents[0]);
     });
-    return () => userref();
-  })
-
-  return { docs };
+  }, ['users'])
+//console.log(alldocs[0]);
+  return { finaldoc };
 }
 
 
@@ -622,8 +724,8 @@ export default {
   deleteUser,
   changeUserEmail,
   changeUserName,
-  changeUserProfilePic,
   FollowChannel,
+  UnFollowChannel,
   GetComments,
   getUserID,
   GetAllUserChannelPosts,

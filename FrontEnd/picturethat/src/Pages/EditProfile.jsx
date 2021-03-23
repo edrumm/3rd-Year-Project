@@ -7,6 +7,7 @@ import {UserOutlined} from '@ant-design/icons';
 import { useState } from 'react';
 import './editProfilePage.css';
 import './Pages.css';
+import firebase from "../firebase.js";
 
 //imports for the dropdown menu
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -41,40 +42,22 @@ const useStyles = makeStyles((theme) => ({
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
 
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
-
-    const handleClose = (event) => {
-        if (anchorRef.current && anchorRef.current.contains(event.target)) {
-        return;
+    const [username, setUsername] = useState('');
+    console.log(username);
+    const UpdateData = () => {
+        console.log(username);
+        firebase.changeUserName(username);
     }
 
-    setOpen(false);
-    };
+    
 
-    function handleListKeyDown(event) {
-        if (event.key === 'Tab') {
-            event.preventDefault();
-            setOpen(false);
-        }
-    }
-
-  // return focus to the button when we transitioned from !open -> open
-    const prevOpen = React.useRef(open);
-        React.useEffect(() => {
-            if (prevOpen.current === true && open === false) {
-                    anchorRef.current.focus();
-            }
-
-            prevOpen.current = open;
-            }, [open]);
-
-    const [showUploadImage, setShowUploadImage] = useState(null);
 
     return (
         <>
         <Navbar></Navbar>
+        <div className="backbutton">
+        <Link to='/PictureThat/ProfilePage' className="fas fa-arrow-left" />
+        </div>
         <div className="editProfileContainer">
             <h2>Edit Profile</h2>
             <input 
@@ -83,83 +66,9 @@ const useStyles = makeStyles((theme) => ({
                 id= "inputbox"
                 placeholder="Edit Username"
                 autoFocus
+                value= {username}
+                onChange= {(e) => {setUsername(e.target.value)}}
             />
-
-            <div>
-                <div>
-                    <Avatar size={158} icon={<UserOutlined />}
-                    
-                        style={{
-
-                            height: 150,
-                            width: 150,
-                            backgroundColor: 'lightgray',
-                            borderRadius: 80,
-                            display: 'inline-block'
-                        }}
-                        />
-                        <div>
-
-                        <Button
-                            ref={anchorRef}
-                            aria-controls={open ? 'menu-list-grow' : undefined}
-                            aria-haspopup="true"
-                            onClick={handleToggle}
-
-                            style={{
-                                width: 300,
-                                marginTop: 10
-                            }}
-                            >
-
-                            {/* Display the photo camera icon as the button*/}
-                            <CameraAltIcon fontSize= "large"/>
-                        </Button>
-
-                        <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                        {({ TransitionProps, placement }) => (
-                            <Grow
-                            {...TransitionProps}
-                            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                            >
-                            <Paper>
-                                <ClickAwayListener onClickAway={handleClose}>
-                                <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-
-                                    {/*When you press the change photo menu Item input for requested image pops up */}
-                                    <input 
-                                        type="file"
-                                        accept="image*"
-                                        ref={inputReference}
-                                        style={{display:"none"}}
-                                    />
-                                    <MenuItem 
-                                        onClick= {(event) => {
-                                            filePopup();
-                                            handleClose(event);
-                                        }}
-                                    >
-                                            Change Photo
-                                    </MenuItem>
-
-                                    <MenuItem 
-                                        onClick= {(event) => {
-                                            handleClose(event);
-                                        }}
-                                    >
-                                            Cancel
-                                    </MenuItem>
-                                    
-                                </MenuList>
-                                </ClickAwayListener>
-                            </Paper>
-                            </Grow>
-                        )}
-                        </Popper>
-
-                        </div>
-                </div>
-            </div>
 
             <input
                 className="inputboxEditProfile" 
@@ -177,13 +86,15 @@ const useStyles = makeStyles((theme) => ({
                 autoFocus
             />
 
-            <Link to="/PictureThat/profilePage">    
+              
                 <button 
                     id="signInButton" 
-                    className="buttonEditProfile">
+                    className="buttonEditProfile"
+                    onClick={UpdateData}
+                    >
                         Confirm
                 </button>
-            </Link>
+           
     </div>
     </>
     );

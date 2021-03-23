@@ -17,13 +17,13 @@ const DeleteAccount = () => {
                 <label>Delete Account: </label>
                 <br></br>
 
-                <button
+                <Link to='/'><button
                     id="signInButton" 
                     className="buttonSettings"
                     onClick={deleteAcount}
                 >
                         Delete
-                </button>
+                </button></Link>
             </form>
         </div>
     </>

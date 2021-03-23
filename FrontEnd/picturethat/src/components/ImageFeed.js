@@ -12,8 +12,9 @@ const ImageFeed = () => {
     const user = firebase.getUserID();
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
-
-    const likepost = (postref) => {
+    
+    const likepost = async (postref) => {
+        const alreadyLiked =  await firebase.AlreadyLiked(postref, user);
     //    const postreference = postref;
     //    console.log(postreference);
     //     if(liked === false) {
@@ -35,23 +36,25 @@ const ImageFeed = () => {
         if(liked === false) {
             setLiked(true);
             setButton("fas fa-heart")
-           //let alreadyLiked = firebase.AlreadyLiked(postref, user);
+           
             //console.log(alreadyLiked);
-            //if(alreadyLiked == false){
+            if(alreadyLiked == false){
                 console.log("not liked, lets add!")
                 firebase.LikePost(postref, user);
-          // }
+           }
        } else {
            setLiked(false);
            setButton("far fa-heart")
             //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-          // if(alreadyLiked){
+            //console.log(alreadyLiked);
+           //if(alreadyLiked){
                firebase.UnlikePost(postref, user);
           //}
        }
     };
 
     const { docs } = firebase.GetImg('posts');
+    //const { docs } = firebase.GetAllUserChannelPosts(user);
     console.log(docs);
 
     // const setSelectedImgId = (id) => {

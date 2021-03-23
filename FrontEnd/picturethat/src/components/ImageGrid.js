@@ -7,8 +7,8 @@ import {useHistory} from 'react-router-dom';
 let setSelectedImgId;
 
 const ImageGrid = () => {
-    const user = firebase.getUser().displayName;
-    const { docs } = firebase.GetPostofUser(user);
+    //const user = firebase.getUser().displayName;
+    const { docs } = firebase.GetPostofUser();
     console.log(docs);
 
     const history = useHistory();
