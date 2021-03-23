@@ -507,7 +507,7 @@ const UnFollowChannel = async (channel) =>{
 const GetPostofUser = () => {
 
   const [docs, setDocs] = useState([]);
-  var username = auth.currentUser.displayName;
+  const username = auth.currentUser.displayName;
 
   useEffect(() => {
       const unsub = firestore.collection('posts')
