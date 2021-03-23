@@ -614,29 +614,35 @@ const GetPostofChannels = (channel) => {
 const GetAllUserChannelPosts = (user) => {
   
   const [docs, setDocs] = useState();
-
+  let documents = [];
   useEffect(() =>{
     firestore.collection("users").doc(user)
     .get()
     .then((doc) =>{
-      let documents = [];
+      
       let channels = doc.data().followed_channels;
       console.log(channels[1]);
       var i;
       for(i = 0; i < channels.length; i++){
         var channel = channels[i].replace("/channels/", "");
+        console.log(channel);
         let postref = firestore.collection("posts")
         .where("channelName", "==", channel)
         .orderBy("uploaddate", 'desc')
-        .onSnapshot((doc) => {
-          documents.push({...doc.data(), id: doc.id})
+        .onSnapshot((snap) => {
+          snap.forEach((doc) =>{
+            documents.push({...doc.data(), id: doc.id})
+            console.log(documents[0]);
+          })
+          setDocs(documents);
         });
       }
-      setDocs(document);
+      
+      console.log(documents[0]);
     });
-    return () => document;
-  })
+  }, ['users'])
 
+  //console.log(docs[0]);
   return { docs };
 }
 
