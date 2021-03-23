@@ -310,8 +310,8 @@ const UploadPost = async (caption, loc, channel, image) => {
 }
 
 
-const AddComment = async (username, text, post) => {
-
+const AddComment = async (text, post) => {
+  const username = auth.currentUser.displayName;
   const refcom = firestore.collection('comments').doc();
   //let postref = firestore.collection('posts').doc(post);
   const Data = {
@@ -380,10 +380,11 @@ const GetData = (collection) => {
 
 
 //Should work, but might need some tweaking depending on how specific values are returned
-const AlreadyLiked =  (post, user) => {
+const AlreadyLiked =  (post) => {
   let liked_post = false;
   let postref = "/posts/" + post;
   console.log(postref);
+  const user = getUserID();
   //goes through all users and finds ones where this specific post has been liked
   //if any of these users match the one we are currently interested in, return true
   //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
@@ -428,7 +429,7 @@ const AlreadyLiked =  (post, user) => {
   //   return realvalue;
 
 
-const LikePost = async (post, user) => {
+const LikePost = async (post) => {
   //Uses built in FireBase method for incrementing
   const increment = firebase.firestore.FieldValue.increment(1);
   let postref = firestore.collection("posts").doc(post);
@@ -438,13 +439,14 @@ const LikePost = async (post, user) => {
   })
 
   //on user side, add the post reference to the array within the specific user document
+  const user = getUserID();
   let userref = firestore.collection("users").doc(user);
   userref.update({
     likedPosts: firebase.firestore.FieldValue.arrayUnion("/posts/" + post)
   })
 }
 
-const UnlikePost = async (post, user) => {
+const UnlikePost = async (post) => {
   //firebase built in method for incrementing, just set with negative value
   const decrement = firebase.firestore.FieldValue.increment(-1);
   console.log("notgg");
@@ -455,6 +457,7 @@ const UnlikePost = async (post, user) => {
     likes: decrement
   })
 
+  const user = getUserID();
   //user end uses opposite array method from UNION to remove the specific post from the array
   let userref = firestore.collection("users").doc(user);
   userref.update({
@@ -463,7 +466,8 @@ const UnlikePost = async (post, user) => {
 }
 
 
-const FollowChannel = async (user, channel) =>{
+const FollowChannel = async (channel) =>{
+  const user = getUserID();
   const userref = firestore.collection('users').doc(user);
   userref.update({
     followed_channels: firebase.firestore.FieldValue.arrayUnion("/channels/" + channel)
@@ -477,7 +481,8 @@ const FollowChannel = async (user, channel) =>{
 
 }
 
-const UnFollowChannel = async (user, channel) =>{
+const UnFollowChannel = async (channel) =>{
+  const user = getUserID();
   const userref = firestore.collection('users').doc(user);
   userref.update({
     followed_channels: firebase.firestore.FieldValue.arrayRemove("/channels/" + channel)
@@ -667,8 +672,9 @@ const GetPostofChannels = (channel) => {
 }
 
 
-const GetAllUserChannelPosts = (user) => {
+const GetAllUserChannelPosts = () => {
   
+  const user = getUserID();
   const [docs, setDocs] = useState();
   let documents = [];
   let [alldocs, setAlldocs] = useState();
