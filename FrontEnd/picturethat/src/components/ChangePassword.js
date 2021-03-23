@@ -76,12 +76,12 @@ const ChangePassword = () => {
                         onChange= {(e) => {setConfirmChangePassword(e.target.value)}} 
                 />
                 <br></br>
-                    <button
+                <Link to='/'><button
                         id="signInButton" 
                         className="buttonSettings"
                         onClick= {validatePassword}>
                             Submit
-                    </button>
+                    </button></Link>
                     <br></br>
                     <Link to="/ForgotPassword">Forgot Password?</Link>
                 </form>

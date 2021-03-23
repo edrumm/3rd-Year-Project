@@ -79,12 +79,12 @@ const ChangeEmail = () => {
                         onChange= {(e) => {setConfirmChangeEmail(e.target.value)}} 
                 />
                  <br></br>   
-                    <button
+                 <Link to='/'><button
                         id="signInButton" 
                         className="buttonSettings"
                         onClick= {validateEmail}>
                             Submit
-                    </button>
+                    </button></Link>
                     
                 </form>
             </div>
