@@ -400,9 +400,11 @@ const AlreadyLiked =  (post) => {
         console.log(user);
         console.log("user likes post");
         console.log(test);
+        liked_post = found;
         }
         else{
           found = false;
+          liked_post = found;
         }
       });
       console.log(found);

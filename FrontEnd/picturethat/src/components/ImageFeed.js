@@ -13,7 +13,7 @@ const ImageFeed = () => {
     const [button, setButton] = useState("far fa-heart");
     
     const likepost = async (postref) => {
-        const alreadyLiked =  await firebase.AlreadyLiked(postref, user);
+        const alreadyLiked =  await firebase.AlreadyLiked(postref);
     //    const postreference = postref;
     //    console.log(postreference);
     //     if(liked === false) {
