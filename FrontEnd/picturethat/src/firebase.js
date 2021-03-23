@@ -140,6 +140,7 @@ const changeUserEmail = (newEmail) => {
 
 const changeUserName = (newUserName) => {
   var user = auth.currentUser;
+  var username = auth.currentUser.displayName;
 
   user.updateProfile({
     displayName: newUserName
@@ -153,6 +154,30 @@ const changeUserName = (newUserName) => {
   updateUsername.update({
     username: newUserName
   });
+
+  const postupdate = firestore.collection('posts')
+  .where("UserName", "==", username)
+  .get()
+  .then(querySnapshot =>{
+    querySnapshot.forEach(documentSnapshot =>{
+      let updatepost = firestore.collection('posts').doc(documentSnapshot.id)
+      updatepost.update({
+        UserName: newUserName
+      })
+    })
+  })
+
+  const commmentupdate = firestore.collection('comments')
+  .where("username", "==", username)
+  .get()
+  .then(querySnapshot =>{
+    querySnapshot.forEach(documentSnapshot =>{
+      let updatepost = firestore.collection('comments').doc(documentSnapshot.id)
+      updatepost.update({
+        username: newUserName
+      })
+    })
+  })
 }
 
 // const changeUserProfilePic = (url) => {
