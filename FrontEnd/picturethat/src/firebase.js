@@ -380,43 +380,29 @@ const GetData = (collection) => {
 
 
 //Should work, but might need some tweaking depending on how specific values are returned
-const AlreadyLiked =  (post) => {
-  let liked_post = false;
-  let postref = "/posts/" + post;
-  console.log(postref);
-  const user = getUserID();
+const AlreadyLiked =  async (post) => {
   let found = false;
+  let postref = "/posts/" + post;
+  const user = getUserID();
   //goes through all users and finds ones where this specific post has been liked
   //if any of these users match the one we are currently interested in, return true
   //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
   
-    const allike = firestore.collection('users')
+    const allike = await firestore.collection('users')
     .where("likedPosts", 'array-contains', postref)
-    .onSnapshot((snap) =>{
- 
-      snap.forEach(doc =>{
+    .get()
+    .then(querySnapshot =>{
+      querySnapshot.forEach(doc =>{
         let test = doc.id;
         if(user == test){
         found = true
-        return () => isLiked(found);
         }
         else{
           found = false;
-          return () => isLiked(found);
         }
       });
-    
     }) 
-  }
-
-
-  const isLiked = (liked) =>{
-    if(liked == true){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return found;
   }
   // const allPosts =  await firestore.collection("users").where("likedPosts", 'array-contains', postref)
   //   .get()
@@ -457,8 +443,6 @@ const LikePost = async (post) => {
 const UnlikePost = async (post) => {
   //firebase built in method for incrementing, just set with negative value
   const decrement = firebase.firestore.FieldValue.increment(-1);
-  console.log("notgg");
-  console.log(post);
   //post end just increments in the negative direction - i.e decrementing
   let postref = firestore.collection("posts").doc(post);
   postref.update({
