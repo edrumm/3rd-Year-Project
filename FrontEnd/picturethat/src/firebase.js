@@ -169,13 +169,41 @@ const changeUserProfilePic = (url) => {
 
 const deleteUser = () => {
   var userdelete = auth.currentUser;
+  var deletedid = auth.currentUser.uid;
+  var username = auth.currentUser.displayName;
+  firestore.collection('users').doc(deletedid).delete();
+  const postupdate = firestore.collection('posts')
+  .where("UserName", "==", username)
+  .get()
+  .then(querySnapshot =>{
+    querySnapshot.forEach(documentSnapshot =>{
+      let updatepost = firestore.collection('posts').doc(documentSnapshot.id)
+      updatepost.update({
+        UserName: "[Deleted User]"
+      })
+    })
+  })
 
+  const commmentupdate = firestore.collection('comments')
+  .where("username", "==", username)
+  .get()
+  .then(querySnapshot =>{
+    querySnapshot.forEach(documentSnapshot =>{
+      let updatepost = firestore.collection('comments').doc(documentSnapshot.id)
+      updatepost.update({
+        username: "[Deleted User]"
+      })
+    })
+  })
+  
   userdelete.delete().then(function() {
     console.log("Successfully deleted user");
   }).catch(function(error) {
     console.log("Error deleting user:", error);
   });
 
+
+  
   //need to delete db user info and posts
 }
 
