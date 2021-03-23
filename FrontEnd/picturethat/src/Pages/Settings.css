@@ -1,7 +1,7 @@
 .Account{
     text-align: center;
-    overflow-y: scroll;
-    height: 550px;
+    overflow: scroll;
+    height: 45rem;
     padding-top: 20px;
     padding-bottom: 10px;
     position: relative;
@@ -16,14 +16,14 @@
 }
 
 .SearchBar{
-    width: 70%;
+    width: 40%;
     text-align: center;
     height: auto;
     margin: 0 auto;
     padding: 10px;
     position: relative;
 
-    border-radius: 5px;
+    border-radius: 20px;
     border: solid 1px #efefef;
     background-color: white;
 }

@@ -5,14 +5,17 @@ import logo from './logo.png';
 import Footer from '../components/footer';
 import {useState} from 'react';
 import firebase from '../firebase';
+import {useHistory} from 'react-router-dom';
 
 const ForgotPassword  = () => {
 
+    const history = useHistory();
     const[email, setEmail] = useState('');
     //console.log(email);
 
     const onSubmitForgot = () => {
         firebase.forgotPass(email);
+        history.push('/');
     }
 
     return (
