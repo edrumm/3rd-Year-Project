@@ -616,6 +616,7 @@ const GetAllUserChannelPosts = (user) => {
   const [docs, setDocs] = useState();
   let documents = [];
   let [alldocs, setAlldocs] = useState();
+  let finaldoc = [];
   useEffect(() =>{
     firestore.collection("users").doc(user)
     .get()
@@ -636,14 +637,17 @@ const GetAllUserChannelPosts = (user) => {
             console.log(documents[0]);
           })
           setDocs(documents);
+          Array.prototype.push.apply(finaldoc, documents);
         });
+        
       }
-      
+      setAlldocs(finaldoc);
       console.log(documents[0]);
     });
   }, ['users'])
+  setAlldocs(finaldoc);
 
-  //console.log(docs[0]);
+console.log(alldocs[0]);
   return { docs };
 }
 
