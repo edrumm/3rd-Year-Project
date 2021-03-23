@@ -39,7 +39,7 @@ const Signup = async (email, password, username) => {
     liked_posts: [],
     posts: [],
     // not yet implemented, will store ID's of unlocked achievements
-    // achievements: [],
+    achievements: [],
     score: 0
   });
 
@@ -91,7 +91,7 @@ const forgotPass = (email) => {
 
   auth.sendPasswordResetEmail(email).then(function() {
     // Email sent.
-    }).catch(function(error) {
+  }).catch(error => {
       console.log(error);
     // An error happened.
     });
@@ -126,10 +126,10 @@ const getUserID = () =>{
 const changeUserPass = (newPass) => {
   var user = auth.currentUser;
 
-  user.updatePassword(newPass).then(function() {
+  user.updatePassword(newPass).then(() => {
     // Update successful.
-  }).catch(function(error) {
-    // An error happened.
+  }).catch(err => {
+    console.error(err);
   });
 }
 
@@ -139,10 +139,10 @@ const changeUserEmail = (newEmail) => {
   // var oldEmail = user.email;
   // console.log(oldEmail);
 
-  user.updateEmail(newemail).then(function() {
+  user.updateEmail(newemail).then(() => {
     // Update successful.
-  }).catch(function(error) {
-    // An error happened.
+  }).catch(err => {
+    console.error(err);
   });
 
   // const updateEmail = firestore.collection('users').doc(oldEmail)
@@ -165,10 +165,10 @@ const changeUserName = (newUserName) => {
 
   user.updateProfile({
     displayName: newUserName
-  }).then(function() {
+  }).then(() => {
     // Update successful.
-  }).catch(function(error) {
-    // An error happened.
+  }).catch(err => {
+    console.error(err);
   });
 
   const updateUsername = firestore.collection('users').doc(user.uid);
@@ -242,9 +242,9 @@ const deleteUser = () => {
     })
   })
 
-  userdelete.delete().then(function() {
+  userdelete.delete().then(() => {
     console.log("Successfully deleted user");
-  }).catch(function(error) {
+  }).catch(error => {
     console.log("Error deleting user:", error);
   });
 
@@ -487,7 +487,7 @@ const AlreadyFollowed = async (channel) =>{
   //goes through all users and finds ones where this specific post has been liked
   //if any of these users match the one we are currently interested in, return true
   //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
-  
+
     const allike = await firestore.collection('users')
     .where("likedPosts", 'array-contains', channelref)
     .get()
@@ -501,7 +501,7 @@ const AlreadyFollowed = async (channel) =>{
           found = false;
         }
       });
-    }) 
+    })
     return found;
 }
 
