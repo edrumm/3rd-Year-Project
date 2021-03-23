@@ -15,7 +15,7 @@ function Dropdown() {
 
     return (
         <>
-        <div>
+        <div className="dropdownposition">
                 <ul className="dropdown">
                     <li>
                         <Link to='/PictureThat/ProfilePage' className="fas fa-user-circle b"><a href="/PictureThat/ProfilePage"> Profile</a></Link>
