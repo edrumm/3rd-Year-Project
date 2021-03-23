@@ -13,7 +13,6 @@ const ImageFeed = () => {
     let currentChannel = setSelectedChannel;
     const { docs } = firebase.GetPostofChannels(currentChannel);
     //console.log(docs);
-    const user = firebase.getUserID();
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
 
@@ -43,14 +42,14 @@ const ImageFeed = () => {
             //console.log(alreadyLiked);
             //if(alreadyLiked == false){
                 console.log("not liked, lets add!")
-                firebase.LikePost(postref, user);
+                firebase.LikePost(postref);
           // }
        } else {
            setLiked(false);
            setButton("far fa-heart")
             //let alreadyLiked = firebase.AlreadyLiked(postref, user);
           // if(alreadyLiked){
-               firebase.UnlikePost(postref, user);
+               firebase.UnlikePost(postref);
           //}
        }
     };
