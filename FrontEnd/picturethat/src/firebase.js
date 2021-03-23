@@ -33,7 +33,7 @@ const Signup = async (email, password, username) => {
   // await db.collection('users').doc(data.email).set({
   await firestore.collection('users').doc(userID).set({
     username: username,
-    followed_channels: ['channels/feed'],
+    followed_channels: [],
     liked_posts: [],
     posts: [],
     score: 0
@@ -263,7 +263,8 @@ const UploadPost = async (caption, loc, channel, image, username) => {
           //creates the array that will contain the references to all the posts
           posts: firebase.firestore.FieldValue.arrayUnion(newpostref),
           //sets the number of posts a channel has to one, where it can be incremented
-          number_of_posts: 1
+          number_of_posts: 1,
+          number_of_followers: 0
         });
       });
     });
@@ -445,7 +446,7 @@ const FollowChannel = async (user, channel) =>{
 
   const channelref = firestore.collection('channels').doc(channel);
   channelref.update({
-    number_of_posts: increment
+    number_of_followers: increment
   })
 
 }
@@ -459,7 +460,7 @@ const UnFollowChannel = async (user, channel) =>{
 
   const channelref = firestore.collection('channels').doc(channel);
   channelref.update({
-    number_of_posts: increment
+    number_of_followers: increment
   })
 
 }
@@ -666,17 +667,17 @@ const GetAllUserChannelPosts = (user) => {
           })
           setDocs(documents);
           Array.prototype.push.apply(finaldoc, documents);
+          setAlldocs(finaldoc);
+          console.log(finaldoc[0]);
         });
         
       }
-      setAlldocs(finaldoc);
-      console.log(documents[0]);
+      
+      //console.log(documents[0]);
     });
   }, ['users'])
-  setAlldocs(finaldoc);
-
-console.log(alldocs[0]);
-  return { docs };
+//console.log(alldocs[0]);
+  return { finaldoc };
 }
 
 
