@@ -4,8 +4,8 @@ import firebase from "../firebase.js";
 import './ImageGrid.css';
 
 const ImageGrid = () => {
-    const user = firebase.getUser().displayName;
-    const { docs } = firebase.GetPostofUser(user);
+    //const user = firebase.getUser().displayName;
+    const { docs } = firebase.GetPostofUser();
     console.log(docs);
 
     return (

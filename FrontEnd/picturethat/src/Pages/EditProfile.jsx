@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
     return (
         <>
         <Navbar></Navbar>
+        <div className="backbutton">
+        <Link to='/PictureThat/ProfilePage' className="fas fa-arrow-left" />
+        </div>
         <div className="editProfileContainer">
             <h2>Edit Profile</h2>
             <input 
@@ -83,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
                 autoFocus
             />
 
-            <Link to="/PictureThat/profilePage">    
+              
                 <button 
                     id="signInButton" 
                     className="buttonEditProfile"
@@ -91,7 +94,7 @@ const useStyles = makeStyles((theme) => ({
                     >
                         Confirm
                 </button>
-            </Link>
+           
     </div>
     </>
     );

@@ -490,13 +490,14 @@ const UnFollowChannel = async (user, channel) =>{
 
 }
 
-const GetPostofUser = (user) => {
+const GetPostofUser = () => {
 
   const [docs, setDocs] = useState([]);
+  var username = auth.currentUser.displayName;
 
   useEffect(() => {
       const unsub = firestore.collection('posts')
-          .where('UserName', '==', user)
+          .where('UserName', '==', username)
           .orderBy('uploaddate', 'desc')
           .onSnapshot((snap) => {
               let documents = [];
