@@ -422,6 +422,20 @@ const FollowChannel = async (user, channel) =>{
 
 }
 
+const UnFollowChannel = async (user, channel) =>{
+  const userref = firestore.collection('users').doc(user);
+  userref.update({
+    followed_channels: firebase.firestore.FieldValue.arrayRemove("/channels/" + channel)
+  });
+  const increment = firebase.firestore.FieldValue.increment(-1);
+
+  const channelref = firestore.collection('channels').doc(channel);
+  channelref.update({
+    number_of_posts: increment
+  })
+
+}
+
 const GetPostofUser = (user) => {
 
   const [docs, setDocs] = useState([]);
@@ -646,6 +660,7 @@ export default {
   changeUserName,
   changeUserProfilePic,
   FollowChannel,
+  UnFollowChannel,
   GetComments,
   getUserID,
   GetAllUserChannelPosts,
