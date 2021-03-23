@@ -776,7 +776,8 @@ export default {
   GetComments,
   getUserID,
   GetAllUserChannelPosts,
-  GetPostofUser
+  GetPostofUser,
+  AlreadyFollowed
 };
 
 export { Auth, Login, Signup, Logout };
