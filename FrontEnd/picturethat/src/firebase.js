@@ -155,17 +155,17 @@ const changeUserName = (newUserName) => {
   });
 }
 
-const changeUserProfilePic = (url) => {
-  var user = auth.currentUser;
+// const changeUserProfilePic = (url) => {
+//   var user = auth.currentUser;
 
-  user.updateProfile({
-    photoURL: url
-  }).then(function() {
-    // Update successful.
-  }).catch(function(error) {
-    // An error happened.
-  });
-}
+//   user.updateProfile({
+//     photoURL: url
+//   }).then(function() {
+//     // Update successful.
+//   }).catch(function(error) {
+//     // An error happened.
+//   });
+// }
 
 const deleteUser = () => {
   var userdelete = auth.currentUser;
@@ -669,7 +669,6 @@ export default {
   deleteUser,
   changeUserEmail,
   changeUserName,
-  changeUserProfilePic,
   FollowChannel,
   UnFollowChannel,
   GetComments,
