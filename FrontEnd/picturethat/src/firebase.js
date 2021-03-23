@@ -385,30 +385,38 @@ const AlreadyLiked =  (post) => {
   let postref = "/posts/" + post;
   console.log(postref);
   const user = getUserID();
+  let found = false;
   //goes through all users and finds ones where this specific post has been liked
   //if any of these users match the one we are currently interested in, return true
   //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
   
-    const allike =   firestore.collection('users')
+    const allike = firestore.collection('users')
     .where("likedPosts", 'array-contains', postref)
     .onSnapshot((snap) =>{
-      let found = false;
+ 
       snap.forEach(doc =>{
         let test = doc.id;
         if(user == test){
         found = true
-        console.log(user);
-        console.log("user likes post");
-        console.log(test);
+        return () => isLiked(found);
         }
         else{
           found = false;
+          return () => isLiked(found);
         }
       });
-      console.log(found);
-      liked_post = found;
+    
     }) 
-    return liked_post;
+  }
+
+
+  const isLiked = (liked) =>{
+    if(liked == true){
+      return true;
+    }
+    else{
+      return false;
+    }
   }
   // const allPosts =  await firestore.collection("users").where("likedPosts", 'array-contains', postref)
   //   .get()

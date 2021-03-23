@@ -36,7 +36,7 @@ const ImageFeed = () => {
             setLiked(true);
             setButton("fas fa-heart")
            
-            //console.log(alreadyLiked);
+            console.log(alreadyLiked);
             if(alreadyLiked == false){
                 console.log("not liked, lets add!")
                 firebase.LikePost(postref);
@@ -46,9 +46,9 @@ const ImageFeed = () => {
            setButton("far fa-heart")
             //let alreadyLiked = firebase.AlreadyLiked(postref, user);
             //console.log(alreadyLiked);
-           //if(alreadyLiked){
+           if(alreadyLiked == true){
                firebase.UnlikePost(postref);
-          //}
+          }
        }
     };
 
