@@ -11,7 +11,7 @@ const Auth = () => {
 // let user = null;
 
 const Login = async (email, password) => {
-  
+
   await auth.signInWithEmailAndPassword(email, password);
 
 };
@@ -30,12 +30,16 @@ const Signup = async (email, password, username) => {
     throw new Error('An account with these details exists already');
   }
   let userID = auth.currentUser.uid;
-  // await db.collection('users').doc(data.email).set({
+
+  const achievements = [];
+
   await firestore.collection('users').doc(userID).set({
     username: username,
     followed_channels: [],
     liked_posts: [],
     posts: [],
+    // not yet implemented, will store ID's of unlocked achievements
+    // achievements: [],
     score: 0
   });
 
@@ -63,6 +67,24 @@ const Logout = async () => {
 
   await auth.signOut();
 
+};
+
+/**
+ Under construction
+ Testing needed
+ Needs exporting
+ Achievements needs implemented in users collection
+ */
+const AchievementUnlock = async (id) => {
+  let username = getUser();
+  let user = await firestore.collection('users').where('username', '==', username).get()[0];
+  let achievements = user.data().achievements;
+
+  if (!achievements.includes(id)) {
+    achievements.push(id);
+
+    await firestore.collection('users').doc(user.id).update({ achievements: achievements });
+  }
 };
 
 const forgotPass = (email) => {
@@ -219,7 +241,7 @@ const deleteUser = () => {
       })
     })
   })
-  
+
   userdelete.delete().then(function() {
     console.log("Successfully deleted user");
   }).catch(function(error) {
@@ -227,7 +249,7 @@ const deleteUser = () => {
   });
 
 
-  
+
   //need to delete db user info and posts
 }
 
@@ -387,7 +409,7 @@ const AlreadyLiked =  async (post) => {
   //goes through all users and finds ones where this specific post has been liked
   //if any of these users match the one we are currently interested in, return true
   //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
-  
+
     const allike = await firestore.collection('users')
     .where("likedPosts", 'array-contains', postref)
     .get()
@@ -401,7 +423,7 @@ const AlreadyLiked =  async (post) => {
           found = false;
         }
       });
-    }) 
+    })
     return found;
   }
   // const allPosts =  await firestore.collection("users").where("likedPosts", 'array-contains', postref)
@@ -665,7 +687,7 @@ const GetPostofChannels = (channel) => {
 
 
 const GetAllUserChannelPosts = () => {
-  
+
   const user = getUserID();
   const [docs, setDocs] = useState();
   let documents = [];
@@ -675,7 +697,7 @@ const GetAllUserChannelPosts = () => {
     firestore.collection("users").doc(user)
     .get()
     .then((doc) =>{
-      
+
       let channels = doc.data().followed_channels;
       console.log(channels[1]);
       var i;
@@ -695,9 +717,9 @@ const GetAllUserChannelPosts = () => {
           setAlldocs(finaldoc);
           console.log(finaldoc[0]);
         });
-        
+
       }
-      
+
       //console.log(documents[0]);
     });
   }, ['users'])
