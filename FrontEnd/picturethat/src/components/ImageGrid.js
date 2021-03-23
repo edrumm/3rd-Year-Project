@@ -9,7 +9,7 @@ let setSelectedImgId;
 const ImageGrid = () => {
     //const user = firebase.getUser().displayName;
     const { docs } = firebase.GetPostofUser();
-    console.log(docs);
+    //console.log(docs);
 
     const history = useHistory();
 

@@ -11,7 +11,7 @@ const Auth = () => {
 // let user = null;
 
 const Login = async (email, password) => {
-
+  
   await auth.signInWithEmailAndPassword(email, password);
 
 };
@@ -232,7 +232,9 @@ const deleteUser = () => {
   //need to delete db user info and posts
 }
 
-const UploadPost = async (caption, loc, channel, image, username) => {
+const UploadPost = async (caption, loc, channel, image) => {
+  const username = auth.currentUser.displayName;
+
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
   });
