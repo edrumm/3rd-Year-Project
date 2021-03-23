@@ -458,6 +458,32 @@ const UnlikePost = async (post) => {
 }
 
 
+const AlreadyFollowed = async (channel) =>{
+  let found = false;
+  let channelref = "/channel/" + channel;
+  const user = getUserID();
+  //goes through all users and finds ones where this specific post has been liked
+  //if any of these users match the one we are currently interested in, return true
+  //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
+  
+    const allike = await firestore.collection('users')
+    .where("likedPosts", 'array-contains', channelref)
+    .get()
+    .then(querySnapshot =>{
+      querySnapshot.forEach(doc =>{
+        let test = doc.id;
+        if(user == test){
+        found = true
+        }
+        else{
+          found = false;
+        }
+      });
+    }) 
+    return found;
+}
+
+
 const FollowChannel = async (channel) =>{
   const user = getUserID();
   const userref = firestore.collection('users').doc(user);
