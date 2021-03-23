@@ -615,6 +615,7 @@ const GetAllUserChannelPosts = (user) => {
   
   const [docs, setDocs] = useState();
   let documents = [];
+  let [alldocs, setAlldocs] = useState();
   useEffect(() =>{
     firestore.collection("users").doc(user)
     .get()
