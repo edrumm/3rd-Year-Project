@@ -168,12 +168,12 @@ const changeUserProfilePic = (url) => {
 }
 
 const deleteUser = () => {
-  var user = auth.currentUser;
+  var userdelete = auth.currentUser;
 
-  user.delete().then(function() {
-    // User deleted.
+  userdelete.delete().then(function() {
+    console.log("Successfully deleted user");
   }).catch(function(error) {
-    // An error happened.
+    console.log("Error deleting user:", error);
   });
 
   //need to delete db user info and posts
