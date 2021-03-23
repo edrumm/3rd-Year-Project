@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import logo from '../ImageFiles/logo2.png';
 import Dropdown from './Dropdown';
 // import logoicon from '../ImageFiles/logoIcon.png';
 
@@ -20,7 +21,7 @@ import Dropdown from './Dropdown';
         return(
             <>
             <nav className="Navbar">
-                {/* <img src={logoicon} alt=""/> */}
+                <img src={logo} alt="" className="logo"/>
                 <Link to='/PictureThat'><h1 className="navbar-logo">PictureThat</h1></Link>
                 <ul className="nav-menu">
                     <li>
