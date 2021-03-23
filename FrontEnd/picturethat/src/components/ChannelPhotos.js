@@ -85,7 +85,7 @@ const ImageFeed = () => {
                     <div className="user">
                             <br></br>
                             <div className="profilecard">
-                            <label className="profileN">Username</label>
+                            <label className="profileN">{doc.UserName}</label>
                             <br></br>
                             <label className="location">{doc.location} </label>
                             </div>
