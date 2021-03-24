@@ -4,7 +4,12 @@ import { assert } from 'chai';
 
 describe('Login Test', () => {
   it('tests login', () => {
-    Login('esd0658@googlemail.com', 'ckasTy88').then(() => {
+
+    // enter own details
+    let email = '';
+    let password = '';
+
+    Login(email', password).then(() => {
       assert.isOk(true);
     })
     .catch(err => {
@@ -12,3 +17,8 @@ describe('Login Test', () => {
     });
   });
 });
+
+/**
+  Add more tests below
+  ...
+*/
