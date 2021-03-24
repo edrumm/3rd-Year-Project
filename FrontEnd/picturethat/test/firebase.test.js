@@ -5,12 +5,12 @@ import { assert } from 'chai';
 describe('Login Test', () => {
   it('tests login', () => {
 
-    // enter own details
-    let email = '';
-    let password = '';
+    // enter your own login details
+    let email = '...';
+    let password = '...';
 
-    Login(email', password).then(() => {
-      assert.isOk(true);
+    Login(email, password).then(() => {
+      assert.isOk(true, 'login successful');
     })
     .catch(err => {
       assert.fail(err, 'login returned error');
