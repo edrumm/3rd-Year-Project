@@ -65,7 +65,7 @@ const ImageFeed = () => {
                             <div className="profilecard">
 
                            
-                                <label className="profileN">{doc.UserName}</label>
+                                <label className="profileName">{doc.UserName}</label>
                         
                                 
                             <br></br>
@@ -73,7 +73,7 @@ const ImageFeed = () => {
                             </div>
                             </div>
                             <br></br>
-                            <lable className="reportb">Report</lable>
+                            <label className="reportb">Report</label>
 
                     </div>
                     </div>
@@ -89,13 +89,13 @@ const ImageFeed = () => {
                     <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">
-                        <label className="">Score: {doc.likes}</label>
+                        <label className="bottomText">Score: {doc.likes}</label>
                         <br></br>
-                        <label>Caption: {doc.caption} </label>
+                        <label className="bottomText">Caption: {doc.caption} </label>
                         <br></br>
-                        <label>Channel: {doc.channelName} </label>
+                        <label className="bottomText">Channel: {doc.channelName} </label>
                         <br></br>
-                        <label>Date: </label>
+                        <label className="bottomText">Date: </label>
                     </div>
                 </div>
 
