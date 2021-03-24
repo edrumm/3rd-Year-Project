@@ -1,4 +1,4 @@
-import { Login, Logout } from '../src/firebase';
+import { Login, AchievementUnlock, Logout } from '../src/firebase';
 import { assert } from 'chai';
 
 
@@ -15,6 +15,17 @@ describe('Login Test', () => {
     .catch(err => {
       assert.fail(err, 'login returned error');
     });
+  });
+});
+
+describe('Achievement Unnlock Test', () => {
+  it('tests unlocking an achievement', () => {
+    AchievementUnlock('1-photo')
+    .then(res => {
+      // should be false as user will have this achievement already
+      assert.isFalse(res);
+    })
+    .catch(err => assert.fail(err.message));
   });
 });
 
