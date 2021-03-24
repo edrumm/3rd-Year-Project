@@ -61,14 +61,19 @@ const Logout = async () => {
  Achievements needs implemented in users collection
  */
 const AchievementUnlock = async (id) => {
-  let username = getUser();
-  let user = await firestore.collection('users').where('username', '==', username).get()[0];
+  let username = auth.currentUser.displayName;
+  let user = await firestore.collection('users').doc(auth.currentUser.uid).get();
+
   let achv = user.data().achievements;
 
   if (!achv.includes(id)) {
     achv.push(id);
     await firestore.collection('users').doc(user.id).update({ achievements: achv });
+
+    return true;
   }
+
+  return false;
 };
 
 const forgotPass = (email) => {
@@ -759,7 +764,7 @@ export default {
   AlreadyFollowed
 };
 
-export { Auth, Login, Signup, Logout };
+export { Auth, Login, Signup, Logout, AchievementUnlock };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
