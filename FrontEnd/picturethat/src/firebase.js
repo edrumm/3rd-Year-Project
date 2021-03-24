@@ -389,8 +389,7 @@ const GetData = (collection) => {
   return { docs };
 }
 
-const UsernameTaken = async () => {
-  const username = auth.currentUser.displayName;
+const UsernameTaken = async (username) => {
   let found = false;
 
 
