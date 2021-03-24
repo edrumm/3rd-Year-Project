@@ -153,15 +153,13 @@
 
 @media screen and (max-height: 900px) {
     .imageFeed{
-        margin-top: 100px;
-        
+        margin-top: 100px;    
     }
 }
 
 @media screen and (max-height: 790px) {
     .imageFeed{
         margin-top: 110px;
-        
     }
 }
 
@@ -181,22 +179,17 @@
 
 @media screen and (max-height: 650px) {
     .imageFeed{
-        margin-top: 170px;
-        
+        margin-top: 170px;   
     }
 }
 
 @media screen and (max-height: 590px) {
     .imageFeed{
         margin-top: 200px;
-        
     }
 }
 
-
-
 @media screen and (max-width: 700px) {
-
     .imageFeed{
         min-width: 37.5rem;
     }

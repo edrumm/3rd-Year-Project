@@ -3,7 +3,6 @@
     text-align: center;
     max-width: 63.5rem;
     max-height: 31.75rem;
-
     margin-top: 50px;
     position: absolute;
     left: calc(40vw - 10px);
@@ -40,9 +39,7 @@
 }
 
 .imginfo{
-    padding-top: 1rem;
-    display: flex;
-    flex-direction: row;
+    text-align: left;
 }
 
 .date{
@@ -54,6 +51,7 @@
     display: flex;
     flex-direction: row;
     border-radius: 15px;
+    left: 10px;
 }
 
 .addcomment{
@@ -65,7 +63,6 @@
 .inputText{
     width: 20rem;
     height: 38px;
-    
     margin-top: 7px;
     border-radius: 20px;
     border-left: none;
@@ -79,13 +76,13 @@
     box-shadow: -2px 0px 4px 3px lightgray;
     max-height: 31.75rem;
     max-width: 47.625rem;
+    overflow: hidden;
 }
 
 .likesection{
     display: flex;
     flex-direction: column;
-    padding-left: 1rem;
-    
+    padding-left: 1rem;   
 }
 
 .channel{
@@ -139,6 +136,7 @@
     border-top-right-radius: 20px;
     box-shadow: 2px 0px 4px 3px lightgray;
     padding: 10px;
+    background-color: white;
    
    /* box-shadow: 0px 2px 7px 3px lightgray; */
 }
@@ -154,8 +152,7 @@
 
 .profileN {
     padding-top: 1.3rem;
-    padding-left: 0.5rem;
-    
+    padding-left: 0.5rem;   
 }
 
 .report{
