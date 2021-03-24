@@ -31,8 +31,6 @@ const Signup = async (email, password, username) => {
   }
   let userID = auth.currentUser.uid;
 
-  const achievements = [];
-
   await firestore.collection('users').doc(userID).set({
     username: username,
     followed_channels: [],
@@ -43,24 +41,11 @@ const Signup = async (email, password, username) => {
     score: 0
   });
 
-
-
-  auth.currentUser.updateProfile({
+  await auth.currentUser.updateProfile({
     displayName: username,
-    //photoUrl = photoURL
-  }).then(() => {
-    // Update successful.
-  }).catch(err => {
-    console.error(err);
   });
 
-    // ...
-
-    console.log('Account created');
-
-    // ...
-
-  // add account to db
+  console.log('Account created');
 }
 
 const Logout = async () => {
@@ -78,12 +63,11 @@ const Logout = async () => {
 const AchievementUnlock = async (id) => {
   let username = getUser();
   let user = await firestore.collection('users').where('username', '==', username).get()[0];
-  let achievements = user.data().achievements;
+  let achv = user.data().achievements;
 
-  if (!achievements.includes(id)) {
-    achievements.push(id);
-
-    await firestore.collection('users').doc(user.id).update({ achievements: achievements });
+  if (!achv.includes(id)) {
+    achv.push(id);
+    await firestore.collection('users').doc(user.id).update({ achievements: achv });
   }
 };
 
