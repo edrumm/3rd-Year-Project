@@ -23,7 +23,6 @@ const FullPost = () => {
 
     const handleUpload = () => {
         firebase.AddComment(comment, currentPost);
-        setComment('');
     };
 
    
@@ -97,12 +96,14 @@ const FullPost = () => {
                     </div>
                     <div>
                         <div className="imginfo">
-                        <label className="caption">{singlePost.caption}</label>
-                        <br></br>
-                        <label className="channel">{singlePost.channelName}</label>
+                            
+                            <label className="caption">Caption: {singlePost.caption}</label>
+                            <br></br>
+                            <label className="channel">Channel: {singlePost.channelName}</label>
+                            <br></br>
+                            <label className="date">Date</label>
                         </div>
                         
-                        <label className="date">Date</label>
                     </div>  
                         <div className="commentfield">
                         { getcomments && getcomments.map(doc => (

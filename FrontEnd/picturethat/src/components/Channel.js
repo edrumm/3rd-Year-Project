@@ -40,15 +40,14 @@ import firebase from "../firebase.js";
                 </div> */}
                 
                 <div className="channelInfo">
-                    <label className="label">Channel Name: {doc.id}</label>
+                    <label className="labelHeader">Channel Name: {doc.id}</label>
+                    <br/>
                     <br/>
                     <label className="label">No of Followers:  </label>
-                    <br/>
                     <label className="label">No of Pictures: {doc.number_of_posts}</label>
                     <br/>
-                    <Link to="/PictureThat/channelphotospage" ><button className="button" onClick={() => {setSelectedChannel = doc.id}} >See Channel</button></Link>
-                    <br/>
-                    <button className="button" onClick={() =>FollowChannel(doc.id)} >{button}</button>
+                    <button className="buttonChannel" onClick={() =>FollowChannel(doc.id)} >{button}</button>
+                    <Link to="/PictureThat/channelphotospage" ><button className="buttonChannel" onClick={() => {setSelectedChannel = doc.id}} >See Channel</button></Link>
                 </div>
                 
 
