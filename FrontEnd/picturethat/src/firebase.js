@@ -593,7 +593,7 @@ const GetImg = (collection) => {
 
       return () => unsub();
   }, [collection])
-
+  console.log(docs);
   return { docs };
   // const [blogs,setBlogs]=useState([])
   // const fetchBlogs=async()=>{
@@ -715,13 +715,9 @@ const GetPostofChannels = (channel) => {
 const GetAllUserChannelPosts = async () => {
 
   const user = getUserID();
-  const [docs, setDocs] = useState();
   let documents = [];
-  let [alldocs, setAlldocs] = useState();
-  let finaldoc = [];
   let channels = [];
-  let superfinal = [];
-  //
+  let fuck = [];
     const test =  await firestore.collection("users").doc(user)
     .get()
     .then((doc) =>{
@@ -742,21 +738,14 @@ const GetAllUserChannelPosts = async () => {
         .then((querySnapshot) => {
            querySnapshot.forEach((doc) =>{
              documents.push({...doc.data(), id: doc.id})
-             console.log(documents[0]);
-             Array.prototype.push.apply(finaldoc, documents);
-             console.log(finaldoc[0]);
+             console.log(documents);
            });
-        //   setDocs(documents);
-           
-        //   //setAlldocs(finaldoc);
-        //   //return finaldoc;
-           console.log(finaldoc[0]);
         });
       }
-    
+      fuck = documents;
   //}, ['users'])
-  console.log(finaldoc);
-  return { finaldoc };
+  console.log(documents);
+  return { documents };
 }
 
 

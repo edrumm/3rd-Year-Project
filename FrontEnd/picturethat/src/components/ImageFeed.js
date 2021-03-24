@@ -7,8 +7,14 @@ import firebase from "../firebase";
 
 let setSelectedImgId;
 
-
+ const Getall = async() =>{
+    let doc  = await firebase.GetAllUserChannelPosts();
+    console.log(doc.documents);
+    console.log("test");
+    return doc;
+    }
 const ImageFeed = () => {
+    
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
     
@@ -31,17 +37,12 @@ const ImageFeed = () => {
           }
        }
     };
+    //const testdoc = Getall();
+    //console.log(testdoc.documents);
+    //const  { docs }  = Getall();
     const { docs } = firebase.GetImg('posts');
-    // const Getall = async() =>{
+    console.log(docs);
     
-    // let { docs }  = await firebase.GetAllUserChannelPosts();
-    // console.log(docs);
-    // console.log("test");
-    // }
-    // const setSelectedImgId = (id) => {
-    //     imgId = id;
-    //     console.log(imgId);
-    // }
 
 
     //return selectedImgId;
