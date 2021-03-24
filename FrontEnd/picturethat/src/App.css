@@ -11,8 +11,6 @@ body{
   background-color:#EEEEEE;
 }
 
-
-
 /* hides the side scroll bar */
 *::-webkit-scrollbar {
   display: none;

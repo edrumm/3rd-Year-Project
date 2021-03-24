@@ -84,10 +84,8 @@ const useStyles = makeStyles((theme) => ({
                 id= "inputbox"
                 placeholder="Edit Bio"
                 autoFocus
-            />
-
-              
-                <button 
+            />              
+            <button 
                     id="signInButton" 
                     className="buttonEditProfile"
                     onClick={UpdateData}

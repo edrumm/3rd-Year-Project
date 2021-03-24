@@ -3,6 +3,7 @@ import './ImageFeed.css';
 //import getImg from '../getImg';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase";
+import Footer from './footer';
 //import PopUp from '../components/PostPopUp';
 
 let setSelectedImgId;
@@ -70,7 +71,7 @@ const ImageFeed = () => {
     // };
 
     return (
-
+        <>
         <div className= "imageFeed">
             { docs && docs.map(doc => (
                 <div class="post" key={doc.id}>
@@ -79,12 +80,8 @@ const ImageFeed = () => {
                     <div className="user">
                             
                             <br></br>
-                            <div className="profilecard">
-
-                           
+                            <div className="profilecard">                           
                                 <label className="profileName">{doc.UserName}</label>
-                        
-                                
                             <br></br>
                             <label className="location">{doc.location} </label>
                             </div>
@@ -120,14 +117,12 @@ const ImageFeed = () => {
         </div>
         ))}
     </div>
+    </>
     )
-
 }
 
 export default ImageFeed ;
 export {setSelectedImgId};
-
-
 
 //the source bellow was used to help set up how to send and get data from database
 //https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia
