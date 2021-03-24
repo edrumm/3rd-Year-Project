@@ -16,18 +16,18 @@ import firebase from "../firebase.js";
     
         const FollowChannel = async (channelId) =>{
             //const follow = firebase.FollowChannel(user, currchannel);
-            const AlreadyFollowed = await firebase.AlreadyFollowed(channelId);
+            const following = await firebase.AlreadyFollowed(channelId);
             if(follow === false) {
                 setLiked(true);
                 setButton("UnFollow Channel")
-                if(AlreadyFollowed == false){
+                if(following == false){
                 firebase.FollowChannel(channelId);
                 }
               
            } else {
                setLiked(false);
                setButton("Follow Channel")
-               if(AlreadyFollowed == true){
+               if(following == true){
                firebase.UnFollowChannel(channelId);
                }
            }

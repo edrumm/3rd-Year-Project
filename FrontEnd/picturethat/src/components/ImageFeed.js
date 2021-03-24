@@ -7,8 +7,14 @@ import firebase from "../firebase";
 
 let setSelectedImgId;
 
-
+ const Getall = async() =>{
+    let doc  = await firebase.GetAllUserChannelPosts();
+    console.log(doc.documents);
+    console.log("test");
+    return doc;
+    }
 const ImageFeed = () => {
+    
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
     
@@ -31,15 +37,12 @@ const ImageFeed = () => {
           }
        }
     };
-
+    //const testdoc = Getall();
+    //console.log(testdoc.documents);
+    //const  { docs }  = Getall();
     const { docs } = firebase.GetImg('posts');
-    //const { docs } = firebase.GetAllUserChannelPosts(user);
     console.log(docs);
-
-    // const setSelectedImgId = (id) => {
-    //     imgId = id;
-    //     console.log(imgId);
-    // }
+    
 
 
     //return selectedImgId;
@@ -48,7 +51,7 @@ const ImageFeed = () => {
     // const openPopUp = () => {
     //     setShowPopUp(prev => !prev)
     // };
-
+    //Getall();
     return (
 
         <div className= "imageFeed">

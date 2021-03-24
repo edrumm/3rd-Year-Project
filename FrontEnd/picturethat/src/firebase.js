@@ -31,8 +31,6 @@ const Signup = async (email, password, username) => {
   }
   let userID = auth.currentUser.uid;
 
-  const achievements = [];
-
   await firestore.collection('users').doc(userID).set({
     username: username,
     followed_channels: [],
@@ -43,24 +41,11 @@ const Signup = async (email, password, username) => {
     score: 0
   });
 
-
-
-  auth.currentUser.updateProfile({
+  await auth.currentUser.updateProfile({
     displayName: username,
-    //photoUrl = photoURL
-  }).then(() => {
-    // Update successful.
-  }).catch(err => {
-    console.error(err);
   });
 
-    // ...
-
-    console.log('Account created');
-
-    // ...
-
-  // add account to db
+  console.log('Account created');
 }
 
 const Logout = async () => {
@@ -78,12 +63,11 @@ const Logout = async () => {
 const AchievementUnlock = async (id) => {
   let username = getUser();
   let user = await firestore.collection('users').where('username', '==', username).get()[0];
-  let achievements = user.data().achievements;
+  let achv = user.data().achievements;
 
-  if (!achievements.includes(id)) {
-    achievements.push(id);
-
-    await firestore.collection('users').doc(user.id).update({ achievements: achievements });
+  if (!achv.includes(id)) {
+    achv.push(id);
+    await firestore.collection('users').doc(user.id).update({ achievements: achv });
   }
 };
 
@@ -593,7 +577,7 @@ const GetImg = (collection) => {
 
       return () => unsub();
   }, [collection])
-
+  console.log(docs);
   return { docs };
   // const [blogs,setBlogs]=useState([])
   // const fetchBlogs=async()=>{
@@ -712,45 +696,40 @@ const GetPostofChannels = (channel) => {
 }
 
 
-const GetAllUserChannelPosts = () => {
+const GetAllUserChannelPosts = async () => {
 
   const user = getUserID();
-  const [docs, setDocs] = useState();
   let documents = [];
-  let [alldocs, setAlldocs] = useState();
-  let finaldoc = [];
-  useEffect(() =>{
-    firestore.collection("users").doc(user)
+  let channels = [];
+  let fuck = [];
+    const test =  await firestore.collection("users").doc(user)
     .get()
     .then((doc) =>{
-
-      let channels = doc.data().followed_channels;
-      console.log(channels[1]);
-      var i;
-      for(i = 0; i < channels.length; i++){
-        var channel = channels[i].replace("/channels/", "");
-        console.log(channel);
-        let postref = firestore.collection("posts")
-        .where("channelName", "==", channel)
-        .orderBy("uploaddate", 'desc')
-        .onSnapshot((snap) => {
-          snap.forEach((doc) =>{
-            documents.push({...doc.data(), id: doc.id})
-            console.log(documents[0]);
-          })
-          setDocs(documents);
-          Array.prototype.push.apply(finaldoc, documents);
-          setAlldocs(finaldoc);
-          console.log(finaldoc[0]);
-        });
-
-      }
-
-      //console.log(documents[0]);
+      channels = doc.data().followed_channels;
+      //console.log(channels);
+      //console.log(channels[1]);
     });
-  }, ['users'])
-//console.log(alldocs[0]);
-  return { finaldoc };
+    //console.log(channels.length);
+      for(let i = 0; i < channels.length; i++){
+        console.log(i);
+        console.log(channels.length);
+         var channel = channels[i].replace("/channels/", "");
+         console.log(channel);
+         const postref =  await firestore.collection("posts")
+         .where("channelName", "==", channel)
+         //.orderBy("uploaddate", 'desc')
+        .get()
+        .then((querySnapshot) => {
+           querySnapshot.forEach((doc) =>{
+             documents.push({...doc.data(), id: doc.id})
+             console.log(documents);
+           });
+        });
+      }
+      fuck = documents;
+  //}, ['users'])
+  console.log(documents);
+  return { documents };
 }
 
 
@@ -776,7 +755,8 @@ export default {
   GetComments,
   getUserID,
   GetAllUserChannelPosts,
-  GetPostofUser
+  GetPostofUser,
+  AlreadyFollowed
 };
 
 export { Auth, Login, Signup, Logout };
