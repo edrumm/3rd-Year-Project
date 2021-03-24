@@ -389,7 +389,21 @@ const GetData = (collection) => {
   return { docs };
 }
 
+const UsernameTaken = async () => {
+  const username = auth.currentUser.displayName;
+  let found = false;
 
+
+  const usertaken = await firestore.collection('users')
+  .where('username', '==', username)
+  .get()
+  .then(querySnapshot => {
+    querySnapshot.forEach(doc =>{
+      found = true;
+    });
+  })
+  return found;
+}
 //Should work, but might need some tweaking depending on how specific values are returned
 const AlreadyLiked =  async (post) => {
   let found = false;
@@ -761,7 +775,8 @@ export default {
   getUserID,
   GetAllUserChannelPosts,
   GetPostofUser,
-  AlreadyFollowed
+  AlreadyFollowed,
+  UsernameTaken
 };
 
 export { Auth, Login, Signup, Logout, AchievementUnlock };
