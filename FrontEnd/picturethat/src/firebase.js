@@ -712,44 +712,50 @@ const GetPostofChannels = (channel) => {
 }
 
 
-const GetAllUserChannelPosts = () => {
+const GetAllUserChannelPosts = async () => {
 
   const user = getUserID();
   const [docs, setDocs] = useState();
   let documents = [];
   let [alldocs, setAlldocs] = useState();
   let finaldoc = [];
-  useEffect(() =>{
-    firestore.collection("users").doc(user)
+  let channels = [];
+  let superfinal = [];
+  //
+    const test =  await firestore.collection("users").doc(user)
     .get()
     .then((doc) =>{
-
-      let channels = doc.data().followed_channels;
-      console.log(channels[1]);
-      var i;
-      for(i = 0; i < channels.length; i++){
-        var channel = channels[i].replace("/channels/", "");
-        console.log(channel);
-        let postref = firestore.collection("posts")
-        .where("channelName", "==", channel)
-        .orderBy("uploaddate", 'desc')
-        .onSnapshot((snap) => {
-          snap.forEach((doc) =>{
-            documents.push({...doc.data(), id: doc.id})
-            console.log(documents[0]);
-          })
-          setDocs(documents);
-          Array.prototype.push.apply(finaldoc, documents);
-          setAlldocs(finaldoc);
-          console.log(finaldoc[0]);
-        });
-
-      }
-
-      //console.log(documents[0]);
+      channels = doc.data().followed_channels;
+      //console.log(channels);
+      //console.log(channels[1]);
     });
-  }, ['users'])
-//console.log(alldocs[0]);
+    //console.log(channels.length);
+      for(let i = 0; i < channels.length; i++){
+        console.log(i);
+        console.log(channels.length);
+         var channel = channels[i].replace("/channels/", "");
+         console.log(channel);
+         const postref =  await firestore.collection("posts")
+         .where("channelName", "==", channel)
+         //.orderBy("uploaddate", 'desc')
+        .get()
+        .then((querySnapshot) => {
+           querySnapshot.forEach((doc) =>{
+             documents.push({...doc.data(), id: doc.id})
+             console.log(documents[0]);
+             Array.prototype.push.apply(finaldoc, documents);
+             console.log(finaldoc[0]);
+           });
+        //   setDocs(documents);
+           
+        //   //setAlldocs(finaldoc);
+        //   //return finaldoc;
+           console.log(finaldoc[0]);
+        });
+      }
+    
+  //}, ['users'])
+  console.log(finaldoc);
   return { finaldoc };
 }
 

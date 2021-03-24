@@ -31,11 +31,13 @@ const ImageFeed = () => {
           }
        }
     };
-
     const { docs } = firebase.GetImg('posts');
-    //const { docs } = firebase.GetAllUserChannelPosts(user);
-    console.log(docs);
-
+    // const Getall = async() =>{
+    
+    // let { docs }  = await firebase.GetAllUserChannelPosts();
+    // console.log(docs);
+    // console.log("test");
+    // }
     // const setSelectedImgId = (id) => {
     //     imgId = id;
     //     console.log(imgId);
@@ -48,7 +50,7 @@ const ImageFeed = () => {
     // const openPopUp = () => {
     //     setShowPopUp(prev => !prev)
     // };
-
+    //Getall();
     return (
 
         <div className= "imageFeed">
