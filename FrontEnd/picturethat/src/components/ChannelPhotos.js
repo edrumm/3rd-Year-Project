@@ -73,7 +73,7 @@ const ImageFeed = () => {
       
     return (
         <>
-        <div className="backbutton">
+        <div className="backbuttonC">
         <Link to="/PictureThat/ChannelsPage" className="fas fa-arrow-left" />
         </div>
         <div className= "imageFeed">
