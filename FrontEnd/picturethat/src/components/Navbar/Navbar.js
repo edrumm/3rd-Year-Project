@@ -31,7 +31,7 @@ import Dropdown from './Dropdown';
                         <Link to='/PictureThat/ChannelsPage' className='fas fa-search a'/>
                     </li>
                     <li>
-                        <Link to='/PictureThat/UploadPage' className='fas fa-images a'/>
+                        <Link to='/PictureThat/UploadPage' className='fas fa-camera a'/>
                     </li>
                     <li>
                         <Link to='/PictureThat/TopPosts' className='fas fa-crown a'/>
@@ -53,7 +53,7 @@ import Dropdown from './Dropdown';
                         <Link to='/PictureThat/ChannelsPage' className='fas fa-search b'/>
                     </li>
                     <li>
-                        <Link to='/PictureThat/UploadPage' className='fas fa-images b'/>
+                        <Link to='/PictureThat/UploadPage' className='fas fa-camera b'/>
                     </li>
                     <li>
                         <Link to='/PictureThat/TopPosts' className='fas fa-crown b'/>
