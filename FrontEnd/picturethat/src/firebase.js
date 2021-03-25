@@ -730,6 +730,8 @@ const GetAllUserChannelPosts = async () => {
   let documents = [];
   let channels = [];
   let fuck = [];
+  let basetest ;
+  const tesst1 = firestore.collection("posts");
     const test =  await firestore.collection("users").doc(user)
     .get()
     .then((doc) =>{
@@ -743,8 +745,7 @@ const GetAllUserChannelPosts = async () => {
         console.log(channels.length);
          var channel = channels[i].replace("/channels/", "");
          console.log(channel);
-         const postref =  await firestore.collection("posts")
-         .where("channelName", "==", channel)
+         basetest = await tesst1.where("channelName", "==", channel)
          //.orderBy("uploaddate", 'desc')
         .get()
         .then((querySnapshot) => {
@@ -752,14 +753,18 @@ const GetAllUserChannelPosts = async () => {
              documents.push({...doc.data(), id: doc.id})
              console.log(documents);
            });
+           return documents;
         });
+        console.log(basetest);
       }
-      fuck = documents;
+      // basetest.then(function (test){
+      //   fuck = basetest.documents;
+      // })
+      //console.log(basetest.documents);
   //}, ['users'])
   console.log(documents);
-  return { documents };
+  return ;
 }
-
 
 
 export default {
