@@ -549,24 +549,7 @@ const GetPostofUser = () => {
 }
 
 const GetImg = (collection) => {
-  // let docs = [];
 
-  // firestore
-  //   .collection(collection)
-  //   .orderBy('uploaddate', 'desc')
-  //   .get()
-  //   .then( (querySnapshot) => {
-  //     querySnapshot.forEach((doc) => {
-  //       //for (let doc of querySnapshot.docs) {
-  //         docs.push({...doc.data(), id: doc.id})
-  //       });
-  //   })
-  //   .catch((error) => {
-  //       console.log(error)
-  //       throw Error('unexpected error when getting all posts')
-  //   })
-  //   //console.log(docs);
-  //   return docs;
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
@@ -584,19 +567,30 @@ const GetImg = (collection) => {
   }, [collection])
   console.log(docs);
   return { docs };
-  // const [blogs,setBlogs]=useState([])
-  // const fetchBlogs=async()=>{
-  //   const response= firestore.collection(collection);
-  //   const data=await response.get();
-  //   data.docs.forEach(item=>{
-  //    setBlogs([...blogs,item.data()])
-  //   })
-  // }
-  // useEffect(() => {
-  //   fetchBlogs();
-  // }, [])
+ 
+}
 
-  // return blogs;
+const GetTopPosts = (collection) => {
+
+  const [docs, setDocs] = useState([]);
+
+  useEffect(() => {
+      const unsub = firestore.collection(collection)
+          .orderBy('likes', 'desc')
+          .limit(10)
+          .onSnapshot((snap) => {
+              let documents = [];
+              snap.forEach(doc => {
+                  documents.push({...doc.data(), id: doc.id})
+          });
+          setDocs(documents);
+      })
+
+      return () => unsub();
+  }, [collection])
+  console.log(docs);
+  return { docs };
+ 
 }
 
 const GetSinglePost = (id) => {
@@ -761,7 +755,8 @@ export default {
   getUserID,
   GetAllUserChannelPosts,
   GetPostofUser,
-  AlreadyFollowed
+  AlreadyFollowed,
+  GetTopPosts
 };
 
 export { Auth, Login, Signup, Logout, AchievementUnlock };
