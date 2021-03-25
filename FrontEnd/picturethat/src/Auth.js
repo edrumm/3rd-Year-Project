@@ -19,9 +19,9 @@ firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 const firestore = firebase.firestore();
 const auth = firebase.auth();
-const analytics = firebase.analytics();
+/*const analytics = firebase.analytics();
 const testvalue = () =>{
 firebase.analytics().logEvent("test");
 }
-testvalue();
-export { firebase, firestore, storage, auth, analytics };
+testvalue();*/
+export { firebase, firestore, storage, auth /*, analytics*/ };
