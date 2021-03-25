@@ -39,7 +39,7 @@ const ProfilePage  = () => {
         );
     }
 
-    const { dataDocs } = firebase.GetData('users');
+    const { dataDocs } = firebase.GetImg('posts');
     console.log(dataDocs);
 
     return (
@@ -48,6 +48,16 @@ const ProfilePage  = () => {
         <Navbar></Navbar>
 
         <div className="personalsection">
+
+        <div className="column personalsectionLeft">
+            {dataDocs && dataDocs.map(dataDoc => (
+                <label>{dataDoc.UserName}</label>
+            ))}
+
+            {isEdit ? renderEdit() : renderDefault()}
+        </div>
+
+        <div class="column personalsectionRight">
             
             <div className="column1 leftPersonalSide">
                 <div className="content">Followers</div>
@@ -60,18 +70,19 @@ const ProfilePage  = () => {
             </div>
 
                 <Link to="/PictureThat/ProfilePage/EditProfile">    
-                    <button>
+                    <button className= "buttonChannel">
                             Edit Profile
                     </button>
                 </Link>
 
                 <Link to="/PictureThat/ProfilePage/Achievements">    
-                    <button>
+                    <button className= "buttonChannel">
                             Achievements
                     </button>
                 </Link>
             </div>
 
+        </div>
         <p className="spanLine"><span></span></p>
         <ImageGrid/>
 

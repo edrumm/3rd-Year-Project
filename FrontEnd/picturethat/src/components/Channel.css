@@ -35,6 +35,7 @@
     border: solid 2px #efefef;
     border-radius: 10px;
     box-shadow: 2px 0px 4px 3px lightgray;
+    background-color: white;
 }
 
 .label{
