@@ -62,14 +62,7 @@ const useStyles = makeStyles((theme) => ({
                 value= {username}
                 onChange= {(e) => {setUsername(e.target.value)}}
             />
-
-            <input
-                className="inputboxEditProfile" 
-                type="text"
-                id= "inputbox"
-                placeholder="Edit Bio"
-                autoFocus
-            />              
+                        
             <button 
                     id="signInButton" 
                     className="buttonEditProfile"

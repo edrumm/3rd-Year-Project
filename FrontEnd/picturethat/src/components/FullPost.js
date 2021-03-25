@@ -82,30 +82,32 @@ const FullPost = () => {
                     <div className="fullpostinfo">
                         <div className="headpart">
                         
-                            <br></br>
                             <div className="profilecard">
                                 <label className="profileN">{singlePost.UserName}</label>
                                 <br></br>
                                 <label className="location">{singlePost.location}</label>
                                 </div>
                                 <br></br>
-                                <lable className="report">Report</lable>
+                                <label className="report">Report</label>
                             </div>
                         <div>
                             <div className="imginfo">
+                                <br></br>
                                 <label className="caption">Caption: {singlePost.caption}</label>
                                 <br></br>
                                 <label className="channel">Channel: {singlePost.channelName}</label>
                                 <br></br>
                                 <label className="date">Date:</label>
+                                <br></br>
                             </div>
                         </div>  
                         <div className="commentfield">
                             { getcomments && getcomments.map(doc => (
                                 <div className="singlecomment" key={doc.id}>
-                                <div>{doc.username}</div>
-                                <div>Date</div>
-                                <div>{doc.text}</div>
+                                    <label className="commentFormat">{doc.username}: </label>
+                                    <label className="commentFormat">{doc.text}</label>
+                                    <br></br>
+                                    <label className="commentFormat">Date:</label>   
                         </div>
                         ))}
                         </div>
@@ -130,4 +132,3 @@ const FullPost = () => {
 }
 
 export default FullPost;
-

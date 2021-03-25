@@ -12,35 +12,9 @@ import firebase from '../firebase';
 
 const ProfilePage  = () => {
 
-    const[text, setText] = useState('Bio');
-    
-    const[isEdit, setIsEdit] = useState(false);
 
-    const changeToEditMode = () =>{
-        setIsEdit(true);
-    }
-
-    const updateEditText = () => {
-        setIsEdit(false);
-    }
-
-    const renderEdit = () => {
-        return(
-            <div>
-                <input type="text" className="editBio" defaultValue={text} onChange= {(e) => {setText(e.target.value)}} />
-                <button className="editBioButton" onClick={updateEditText}>OK</button>
-            </div>
-        );
-    }
-
-    const renderDefault = () => {
-        return (
-            <p onDoubleClick={changeToEditMode}>{text}</p>
-        );
-    }
-
-    const { dataDocs } = firebase.GetImg('posts');
-    console.log(dataDocs);
+    const dataDoc = firebase.getUser().displayName;
+    console.log(dataDoc);
 
     return (
         <>
@@ -50,11 +24,7 @@ const ProfilePage  = () => {
         <div className="personalsection">
 
         <div className="column personalsectionLeft">
-            {dataDocs && dataDocs.map(dataDoc => (
-                <label>{dataDoc.UserName}</label>
-            ))}
-
-            {isEdit ? renderEdit() : renderDefault()}
+              <div className="circle">{dataDoc}</div>
         </div>
 
         <div class="column personalsectionRight">
