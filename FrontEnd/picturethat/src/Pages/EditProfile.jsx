@@ -33,11 +33,6 @@ const useStyles = makeStyles((theme) => ({
 
  const EditProfile  = () => {
 
-    const inputReference = React.useRef();
-
-    const filePopup = () => inputReference.current.click();
-    
-     
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const anchorRef = React.useRef(null);
@@ -48,8 +43,6 @@ const useStyles = makeStyles((theme) => ({
         console.log(username);
         firebase.changeUserName(username);
     }
-
-    
 
 
     return (
@@ -68,14 +61,6 @@ const useStyles = makeStyles((theme) => ({
                 autoFocus
                 value= {username}
                 onChange= {(e) => {setUsername(e.target.value)}}
-            />
-
-            <input
-                className="inputboxEditProfile" 
-                type="text"
-                id= "inputbox"
-                placeholder="Edit Realname"
-                autoFocus
             />
 
             <input
