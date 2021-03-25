@@ -61,7 +61,7 @@
 }
 
 .inputText{
-    width: 20rem;
+    width: 15rem;
     height: 38px;
     margin-top: 7px;
     border-radius: 20px;
@@ -86,7 +86,7 @@
 }
 
 .channel{
-    padding-left: 15rem;
+    padding-left: 1rem;
 }
 
 .caption{

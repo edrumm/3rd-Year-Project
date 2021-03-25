@@ -1,4 +1,4 @@
-@media (min-width: 736px){
+@media (min-width: 735px){
 .personalsection{
     padding: 30px 20px 0;
     width: calc(100% - 40px);
@@ -44,7 +44,6 @@
     height: 180px;
     width: 75%;
 }
-
 
 .leftPersonalSide{
     height: 130px;
