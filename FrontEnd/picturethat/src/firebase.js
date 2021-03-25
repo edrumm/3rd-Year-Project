@@ -1,4 +1,4 @@
-import { firebase, storage, firestore, auth, analytics } from './Auth';
+import { firebase, storage, firestore, auth } from './Auth';
 import React, { useState, useEffect, useContext } from 'react';
 import { number } from 'joi';
 
