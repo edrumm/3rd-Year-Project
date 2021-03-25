@@ -18,6 +18,12 @@ const ImageFeed = () => {
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
     
+
+    const report = async (postref) =>{
+        firebase.reportPost(postref);
+        console.log("reported?");
+    }
+
     const likepost = async (postref) => {
         const alreadyLiked =  await firebase.AlreadyLiked(postref);
 
@@ -40,7 +46,7 @@ const ImageFeed = () => {
     //const testdoc = Getall();
     //console.log(testdoc.documents);
     //const  { docs }  = Getall();
-    const { docs } = firebase.GetImg('posts');
+    const { docs } = firebase.GetAllUserChannelPosts();
     console.log(docs);
     
 
@@ -73,7 +79,7 @@ const ImageFeed = () => {
                             </div>
                             </div>
                             <br></br>
-                            <lable className="reportb">Report</lable>
+                            <label onClick={(report(doc.id))} className="reportb">Report</label>
 
                     </div>
                     </div>

@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { number } from 'joi';
 
 const context = React.createContext();
-
+const analytics = firebase.analytics();
 const Auth = () => {
   return useContext(context);
 };
@@ -240,6 +240,16 @@ const deleteUser = () => {
 
 
   //need to delete db user info and posts
+}
+
+const reportPost = async (post) =>{
+  const postref = firestore.collection('posts').doc(post);
+
+  postref.update({
+    reported: true
+  })
+
+  analytics.logEvent('notification received');
 }
 
 const UploadPost = async (caption, loc, channel, image) => {
@@ -775,7 +785,8 @@ export default {
   GetAllUserChannelPosts,
   GetPostofUser,
   AlreadyFollowed,
-  UsernameTaken
+  UsernameTaken,
+  reportPost
 };
 
 export { Auth, Login, Signup, Logout, AchievementUnlock };
