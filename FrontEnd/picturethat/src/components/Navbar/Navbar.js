@@ -21,7 +21,7 @@ import Dropdown from './Dropdown';
         return(
             <>
             <nav className="Navbar">
-                <img src={logo} alt="" className="logo"/>
+                <Link to='/PictureThat'><img src={logo} alt="" className="logo"/></Link>
                 <Link to='/PictureThat'><h1 className="navbar-logo">PictureThat</h1></Link>
                 <ul className="nav-menu">
                     <li>
