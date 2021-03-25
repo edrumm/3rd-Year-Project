@@ -1,4 +1,4 @@
-import { firebase, storage, firestore, auth } from './Auth';
+import { firebase, storage, firestore, auth /*, analytics*/} from './Auth';
 import React, { useState, useEffect, useContext } from 'react';
 import { number } from 'joi';
 
@@ -64,12 +64,20 @@ const AchievementUnlock = async (id) => {
   let user = await firestore.collection('users').doc(auth.currentUser.uid).get();
 
   let achv = user.data().achievements;
+  let score = user.data().score;
 
   if (!achv.includes(id)) {
-    achv.push(id);
-    await firestore.collection('users').doc(user.id).update({ achievements: achv });
 
-    return true;
+    let achvDoc = await firestore.collection('achievements').doc(id).get();
+    let achvScore = achvDoc.data().score;
+    let description = achvDoc.data().description;
+
+    score += achvScore;
+
+    achv.push(id);
+    await firestore.collection('users').doc(user.id).update({ achievements: achv, score: score });
+
+    return `Earned achievement: ${description}! ${score} score gained!`;
   }
 
   return false;
@@ -733,7 +741,7 @@ const GetAllUserChannelPosts = async () => {
     .collection("users")
     .doc(user)
     .get()
-    .then((doc) => 
+    .then((doc) =>
       doc.data().followed_channels
     ).then( async (channels) => {
       let posts = [];
