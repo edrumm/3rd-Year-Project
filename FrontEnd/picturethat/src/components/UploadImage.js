@@ -36,7 +36,8 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
-        firebase.UploadPost(caption, loc, channel, image);
+        const channelLC = channel.toLowerCase();
+        firebase.UploadPost(caption, loc, channelLC, image);
     };
 
     return (

@@ -116,6 +116,12 @@
 
 }
 
+.backbuttonC{
+    position: fixed;
+    left: 1.5rem;
+    top: 5rem;
+}
+
 .fas.fa-arrow-left{
     color: black;
     text-decoration: none;

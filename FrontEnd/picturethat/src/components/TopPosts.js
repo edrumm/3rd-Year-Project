@@ -8,12 +8,7 @@ import Footer from './footer';
 
 let setSelectedImgId;
 
- const Getall = async() =>{
-    let doc  = await firebase.GetAllUserChannelPosts();
-    console.log(doc.documents);
-    console.log("test");
-    return doc;
-    }
+
 const ImageFeed = () => {
     
     const [liked, setLiked] = useState(false);
@@ -41,7 +36,7 @@ const ImageFeed = () => {
     //const testdoc = Getall();
     //console.log(testdoc.documents);
     //const  { docs }  = Getall();
-    const { docs } = firebase.GetImg('posts');
+    const { docs } = firebase.GetTopPosts('posts');
     console.log(docs);
     
 
@@ -55,7 +50,9 @@ const ImageFeed = () => {
     //Getall();
     return (
         <>
+        
         <div className= "imageFeed">
+            <div className="Title">Top 10 posts</div>
             { docs && docs.map(doc => (
                 <div class="post" key={doc.id}>
                     <div className="postDetailsContainer">
