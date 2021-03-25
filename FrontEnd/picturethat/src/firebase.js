@@ -77,12 +77,12 @@ const AchievementUnlock = async (id) => {
 
 const forgotPass = (email) => {
 
-  auth.sendPasswordResetEmail(email).then(function() {
+  auth.sendPasswordResetEmail(email).then(function () {
     // Email sent.
   }).catch(error => {
-      console.log(error);
+    console.log(error);
     // An error happened.
-    });
+  });
 };
 
 // Detects change in login state
@@ -101,13 +101,13 @@ const getUser = () => {
   }
 }
 
-const getUserID = () =>{
+const getUserID = () => {
   let user = auth.currentUser;
 
-  if(user != null){
+  if (user != null) {
     return user.uid;
   }
-  else{
+  else {
     return null;
   }
 }
@@ -165,28 +165,28 @@ const changeUserName = (newUserName) => {
   });
 
   const postupdate = firestore.collection('posts')
-  .where("UserName", "==", Username)
-  .get()
-  .then(querySnapshot =>{
-    querySnapshot.forEach(documentSnapshot =>{
-      let updatepost = firestore.collection('posts').doc(documentSnapshot.id)
-      updatepost.update({
-        UserName: newUserName
+    .where("UserName", "==", Username)
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        let updatepost = firestore.collection('posts').doc(documentSnapshot.id)
+        updatepost.update({
+          UserName: newUserName
+        })
       })
     })
-  })
 
   const commmentupdate = firestore.collection('comments')
-  .where("username", "==", Username)
-  .get()
-  .then(querySnapshot =>{
-    querySnapshot.forEach(documentSnapshot =>{
-      let updatepost = firestore.collection('comments').doc(documentSnapshot.id)
-      updatepost.update({
-        username: newUserName
+    .where("username", "==", Username)
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        let updatepost = firestore.collection('comments').doc(documentSnapshot.id)
+        updatepost.update({
+          username: newUserName
+        })
       })
     })
-  })
 }
 
 // const changeUserProfilePic = (url) => {
@@ -207,28 +207,28 @@ const deleteUser = () => {
   var username = auth.currentUser.displayName;
   firestore.collection('users').doc(deletedid).delete();
   const postupdate = firestore.collection('posts')
-  .where("UserName", "==", username)
-  .get()
-  .then(querySnapshot =>{
-    querySnapshot.forEach(documentSnapshot =>{
-      let updatepost = firestore.collection('posts').doc(documentSnapshot.id)
-      updatepost.update({
-        UserName: "[Deleted User]"
+    .where("UserName", "==", username)
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        let updatepost = firestore.collection('posts').doc(documentSnapshot.id)
+        updatepost.update({
+          UserName: "[Deleted User]"
+        })
       })
     })
-  })
 
   const commmentupdate = firestore.collection('comments')
-  .where("username", "==", username)
-  .get()
-  .then(querySnapshot =>{
-    querySnapshot.forEach(documentSnapshot =>{
-      let updatepost = firestore.collection('comments').doc(documentSnapshot.id)
-      updatepost.update({
-        username: "[Deleted User]"
+    .where("username", "==", username)
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(documentSnapshot => {
+        let updatepost = firestore.collection('comments').doc(documentSnapshot.id)
+        updatepost.update({
+          username: "[Deleted User]"
+        })
       })
     })
-  })
 
   userdelete.delete().then(() => {
     console.log("Successfully deleted user");
@@ -241,7 +241,7 @@ const deleteUser = () => {
   //need to delete db user info and posts
 }
 
-const reportPost = async (post) =>{
+const reportPost = async (post) => {
   const postref = firestore.collection('posts').doc(post);
 
   postref.update({
@@ -363,18 +363,18 @@ const GetComments = (postid) => {
   let postref = postid;
 
   useEffect(() => {
-      const unsub = firestore.collection('comments')
-          .where('post', '==', postref)
-          .orderBy('uploaddate', 'desc')
-          .onSnapshot((snap) => {
-              let documents = [];
-              snap.forEach(doc => {
-                  documents.push({...doc.data(), id: doc.id})
-          });
-          setDocs(documents);
+    const unsub = firestore.collection('comments')
+      .where('post', '==', postref)
+      .orderBy('uploaddate', 'desc')
+      .onSnapshot((snap) => {
+        let documents = [];
+        snap.forEach(doc => {
+          documents.push({ ...doc.data(), id: doc.id })
+        });
+        setDocs(documents);
       })
 
-      return () => unsub();
+    return () => unsub();
   }, ['comments'])
 
   return docs;
@@ -404,17 +404,17 @@ const UsernameTaken = async (username) => {
 
 
   const usertaken = await firestore.collection('users')
-  .where('username', '==', username)
-  .get()
-  .then(querySnapshot => {
-    querySnapshot.forEach(doc =>{
-      found = true;
-    });
-  })
+    .where('username', '==', username)
+    .get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
+        found = true;
+      });
+    })
   return found;
 }
 //Should work, but might need some tweaking depending on how specific values are returned
-const AlreadyLiked =  async (post) => {
+const AlreadyLiked = async (post) => {
   let found = false;
   let postref = "/posts/" + post;
   const user = getUserID();
@@ -422,39 +422,39 @@ const AlreadyLiked =  async (post) => {
   //if any of these users match the one we are currently interested in, return true
   //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
 
-    const allike = await firestore.collection('users')
+  const allike = await firestore.collection('users')
     .where("likedPosts", 'array-contains', postref)
     .get()
-    .then(querySnapshot =>{
-      querySnapshot.forEach(doc =>{
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
         let test = doc.id;
-        if(user == test){
-        found = true
+        if (user == test) {
+          found = true
         }
-        else{
+        else {
           found = false;
         }
       });
     })
-    return found;
-  }
-  // const allPosts =  await firestore.collection("users").where("likedPosts", 'array-contains', postref)
-  //   .get()
-  //   .then((querySnapshot) => {
-  //     querySnapshot.forEach((doc) =>{
-  //       if(doc == user){
-  //         already = true;
-  //         //console.log(already);
-  //       }
-  //     })
-  //     return already;
-  //   })
+  return found;
+}
+// const allPosts =  await firestore.collection("users").where("likedPosts", 'array-contains', postref)
+//   .get()
+//   .then((querySnapshot) => {
+//     querySnapshot.forEach((doc) =>{
+//       if(doc == user){
+//         already = true;
+//         //console.log(already);
+//       }
+//     })
+//     return already;
+//   })
 
-  //   allPosts.then((result) =>{
-  //     realvalue = result;
-  //   })
+//   allPosts.then((result) =>{
+//     realvalue = result;
+//   })
 
-  //   return realvalue;
+//   return realvalue;
 
 
 const LikePost = async (post) => {
@@ -492,7 +492,7 @@ const UnlikePost = async (post) => {
 }
 
 
-const AlreadyFollowed = async (channel) =>{
+const AlreadyFollowed = async (channel) => {
   let found = false;
   let channelref = "/channel/" + channel;
   const user = getUserID();
@@ -500,25 +500,25 @@ const AlreadyFollowed = async (channel) =>{
   //if any of these users match the one we are currently interested in, return true
   //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
 
-    const allike = await firestore.collection('users')
+  const allike = await firestore.collection('users')
     .where("likedPosts", 'array-contains', channelref)
     .get()
-    .then(querySnapshot =>{
-      querySnapshot.forEach(doc =>{
+    .then(querySnapshot => {
+      querySnapshot.forEach(doc => {
         let test = doc.id;
-        if(user == test){
-        found = true
+        if (user == test) {
+          found = true
         }
-        else{
+        else {
           found = false;
         }
       });
     })
-    return found;
+  return found;
 }
 
 
-const FollowChannel = async (channel) =>{
+const FollowChannel = async (channel) => {
   const user = getUserID();
   const userref = firestore.collection('users').doc(user);
   userref.update({
@@ -533,7 +533,7 @@ const FollowChannel = async (channel) =>{
 
 }
 
-const UnFollowChannel = async (channel) =>{
+const UnFollowChannel = async (channel) => {
   const user = getUserID();
   const userref = firestore.collection('users').doc(user);
   userref.update({
@@ -554,18 +554,18 @@ const GetPostofUser = () => {
   const username = auth.currentUser.displayName;
 
   useEffect(() => {
-      const unsub = firestore.collection('posts')
-          .where('UserName', '==', username)
-          .orderBy('uploaddate', 'desc')
-          .onSnapshot((snap) => {
-              let documents = [];
-              snap.forEach(doc => {
-                  documents.push({...doc.data(), id: doc.id})
-          });
-          setDocs(documents);
+    const unsub = firestore.collection('posts')
+      .where('UserName', '==', username)
+      .orderBy('uploaddate', 'desc')
+      .onSnapshot((snap) => {
+        let documents = [];
+        snap.forEach(doc => {
+          documents.push({ ...doc.data(), id: doc.id })
+        });
+        setDocs(documents);
       })
 
-      return () => unsub();
+    return () => unsub();
   }, ['posts'])
 
   return { docs };
@@ -593,17 +593,17 @@ const GetImg = (collection) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-      const unsub = firestore.collection(collection)
-          .orderBy('uploaddate', 'desc')
-          .onSnapshot((snap) => {
-              let documents = [];
-              snap.forEach(doc => {
-                  documents.push({...doc.data(), id: doc.id})
-          });
-          setDocs(documents);
+    const unsub = firestore.collection(collection)
+      .orderBy('uploaddate', 'desc')
+      .onSnapshot((snap) => {
+        let documents = [];
+        snap.forEach(doc => {
+          documents.push({ ...doc.data(), id: doc.id })
+        });
+        setDocs(documents);
       })
 
-      return () => unsub();
+    return () => unsub();
   }, [collection])
   console.log(docs);
   return { docs };
@@ -644,23 +644,23 @@ const GetSinglePost = (id) => {
   const [docs, setDocs] = useState([]);
   let isMounted = true;
   useEffect(() => {
-  firestore
-    .collection('posts').doc(id)
-    .get()
-    .then( (doc) => {
-       if (isMounted){
-        //for (let doc of querySnapshot.docs) {
-          setDocs({...doc.data(), id: doc.id})
+    firestore
+      .collection('posts').doc(id)
+      .get()
+      .then((doc) => {
+        if (isMounted) {
+          //for (let doc of querySnapshot.docs) {
+          setDocs({ ...doc.data(), id: doc.id })
         }
-        });
-        return () => { isMounted = false};
-      }, [])
+      });
+    return () => { isMounted = false };
+  }, [])
 
 
 
 
-    //console.log(docs);
-    return docs;
+  //console.log(docs);
+  return docs;
 
 
 }
@@ -677,9 +677,9 @@ const GetPostofChannels = (channel) => {
 
   // FOR ALL IN query.postArray {
 
-    //allposts.doc(query.postArray).data()
-    //allposts.doc(query.postArray).id Or equivalentm, to match get img
-    //push these to an array, then do the same from there as in get img
+  //allposts.doc(query.postArray).data()
+  //allposts.doc(query.postArray).id Or equivalentm, to match get img
+  //push these to an array, then do the same from there as in get img
 
   //}
   // let newpostref;
@@ -697,18 +697,18 @@ const GetPostofChannels = (channel) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-      const unsub = firestore.collection('posts')
-          .where('channelName', '==', channel)
-          .orderBy('uploaddate', 'desc')
-          .onSnapshot((snap) => {
-              let documents = [];
-              snap.forEach(doc => {
-                  documents.push({...doc.data(), id: doc.id})
-          });
-          setDocs(documents);
+    const unsub = firestore.collection('posts')
+      .where('channelName', '==', channel)
+      .orderBy('uploaddate', 'desc')
+      .onSnapshot((snap) => {
+        let documents = [];
+        snap.forEach(doc => {
+          documents.push({ ...doc.data(), id: doc.id })
+        });
+        setDocs(documents);
       })
 
-      return () => unsub();
+    return () => unsub();
   }, ['posts'])
 
   return { docs };
@@ -725,46 +725,46 @@ const GetPostofChannels = (channel) => {
 
 
 const GetAllUserChannelPosts = async () => {
-
   const user = getUserID();
-  let documents = [];
-  let channels = [];
-  let fuck = [];
-  let basetest ;
-  const tesst1 = firestore.collection("posts");
-    const test =  await firestore.collection("users").doc(user)
+
+
+
+  let all = await firestore
+    .collection("users")
+    .doc(user)
     .get()
-    .then((doc) =>{
-      channels = doc.data().followed_channels;
-      //console.log(channels);
-      //console.log(channels[1]);
-    });
-    //console.log(channels.length);
-      for(let i = 0; i < channels.length; i++){
-        console.log(i);
-        console.log(channels.length);
-         var channel = channels[i].replace("/channels/", "");
-         console.log(channel);
-         basetest = await tesst1.where("channelName", "==", channel)
-         //.orderBy("uploaddate", 'desc')
-        .get()
-        .then((querySnapshot) => {
-           querySnapshot.forEach((doc) =>{
-             documents.push({...doc.data(), id: doc.id})
-             console.log(documents);
-           });
-           return documents;
-        });
-        console.log(basetest);
+    .then((doc) => 
+      doc.data().followed_channels
+    ).then( async (channels) => {
+      let posts = [];
+
+      for (let i = 0; i < channels.length; i++) {
+
+        var channel = channels[i].replace("/channels/", "");
+
+        var allposts = await firestore
+          .collection("posts")
+          .where("channelName", "==", channel)
+          .get()
+          .then((querySnapshot) => {
+            let postsInChannel = [];
+            querySnapshot.forEach((doc) => {
+              postsInChannel.push({ ...doc.data(), id: doc.id });
+            });
+            return postsInChannel;
+          });
+          console.log(allposts);
+        posts = posts.concat(allposts);
       }
-      // basetest.then(function (test){
-      //   fuck = basetest.documents;
-      // })
-      //console.log(basetest.documents);
-  //}, ['users'])
-  console.log(documents);
-  return ;
-}
+
+      return posts;
+    }
+
+    );
+    console.log(typeof all);
+  return { all };
+
+};
 
 
 export default {
