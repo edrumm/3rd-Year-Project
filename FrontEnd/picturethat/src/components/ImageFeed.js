@@ -46,7 +46,7 @@ const ImageFeed = () => {
     //const testdoc = Getall();
     //console.log(testdoc.documents);
     //const  { docs }  = Getall();
-    const { docs } = firebase.GetAllUserChannelPosts();
+    const { docs } = firebase.GetImg('posts');
     console.log(docs);
     
 
@@ -79,7 +79,7 @@ const ImageFeed = () => {
                             </div>
                             </div>
                             <br></br>
-                            <label onClick={(report(doc.id))} className="reportb">Report</label>
+                            <label onClick={() => report(doc.id)} className="reportb">Report</label>
 
                     </div>
                     </div>

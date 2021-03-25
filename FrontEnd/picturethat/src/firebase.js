@@ -1,9 +1,8 @@
-import { firebase, storage, firestore, auth } from './Auth';
+import { firebase, storage, firestore, auth, analytics } from './Auth';
 import React, { useState, useEffect, useContext } from 'react';
 import { number } from 'joi';
 
 const context = React.createContext();
-const analytics = firebase.analytics();
 const Auth = () => {
   return useContext(context);
 };
@@ -249,7 +248,7 @@ const reportPost = async (post) =>{
     reported: true
   })
 
-  analytics.logEvent('notification received');
+  firebase.analytics().logEvent('notification received', post);
 }
 
 const UploadPost = async (caption, loc, channel, image) => {
@@ -274,7 +273,8 @@ const UploadPost = async (caption, loc, channel, image) => {
     channelName: channel,
     url: url,
     //comments: [],
-    likes: 0
+    likes: 0,
+    reported: false
   };
 
 
