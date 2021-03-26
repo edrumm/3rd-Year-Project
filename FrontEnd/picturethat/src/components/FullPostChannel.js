@@ -111,7 +111,7 @@ const FullPost = () => {
                             <label className="location">{singlePost.location}</label>
                             </div>
                             <br></br>
-                            <div className="reportb"><Link to="/PictureThat/Report">Report</Link></div>
+                            <Link to="/PictureThat/ReportC"><div className="reportb">Report</div></Link>
                     </div>
                     <div>
                         <div className="imginfo">

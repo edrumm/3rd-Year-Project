@@ -79,7 +79,7 @@ const ImageFeed = () => {
                                     </div>
                                 </div>
                                 <br></br>
-                                <div className="reportb" onClick={() => { setSelectedImgId = doc.id }}><Link to="/PictureThat/Report">Report</Link></div>
+                                <Link to="/PictureThat/Report"><div className="reportb" onClick={() => { setSelectedImgId = doc.id }}>Report</div></Link>
 
                             </div>
                         </div>

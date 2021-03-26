@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 import './Report.css';
 import firebase from "../firebase.js";
 //import ImageFeed from "./ImageFeed";
-import { setSelectedImgId } from "./ImageFeed";
+import { SelectedImgId } from './TopPosts';
 
 
-
-const Report = () => {
-    const selectedImg = setSelectedImgId;
+const FullPost = () => {
+    const selectedImg = SelectedImgId;
 
     const singlePost = firebase.GetSinglePost(selectedImg);
 
@@ -28,10 +27,9 @@ const Report = () => {
     return (
         <>
             <div className="backbutton">
-                <Link to="/PictureThat" className="fas fa-arrow-left" />
+                <Link to="/PictureThat/TopPosts" className="fas fa-arrow-left" />
             </div>
             <div className="FullPostR">
-
                 <div class="cardR">
 
                     <div>
@@ -56,4 +54,4 @@ const Report = () => {
     )
 }
 
-export default Report;
+export default FullPost;
