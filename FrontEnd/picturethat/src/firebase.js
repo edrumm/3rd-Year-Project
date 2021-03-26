@@ -59,6 +59,14 @@ const Logout = async () => {
  Needs exporting
  Achievements needs implemented in users collection
  */
+
+const AchievementNumPosts = async () => {
+  let uid = auth.currentUser.uid;
+  let user = await firestore.collection('users').doc(uid).get();
+
+  return user.data().posts.length;
+};
+
 const AchievementUnlock = async (id) => {
   let username = auth.currentUser.displayName;
   let user = await firestore.collection('users').doc(auth.currentUser.uid).get();
@@ -250,7 +258,7 @@ const deleteUser = () => {
 }
 
 const reportPost = async (post, reportReason) => {
-  
+
   const reportref = firestore.collection('reports').doc();
   const username = auth.currentUser.displayName;
 
@@ -339,6 +347,21 @@ const UploadPost = async (caption, loc, channel, image) => {
   });
 
 }
+
+const DeletePost = async (url) => {
+  let uid = auth.currentUser.uid;
+  let user = await firestore.collection('users').doc(uid).get();
+  let post = await firestore.collection('posts').doc(url).get();
+
+  let channelName = post.data().channel;
+  channelName = channelName.replace('/channels/', '');
+  let channel = await firestore.collection('channels').doc(channelName).get();
+
+  let storageRef = await storage.refFromURL(post.data().url);
+
+  await storageRef.delete();
+  await post.update({ url: 'deleted' });
+};
 
 
 const AddComment = async (text, post) => {
@@ -599,7 +622,7 @@ const GetImg = (collection) => {
     return () => unsub();
   }, [collection])
   return { docs };
- 
+
 }
 
 const GetTopPosts = (collection) => {
@@ -621,7 +644,7 @@ const GetTopPosts = (collection) => {
       return () => unsub();
   }, [collection])
   return { docs };
- 
+
 }
 
 const GetSinglePost = (id) => {
@@ -752,6 +775,7 @@ const GetAllUserChannelPosts = async () => {
 
 
 
+
   /*let all = await firestore
     .collection("users")
     .doc(user)
@@ -787,8 +811,50 @@ const GetAllUserChannelPosts = async () => {
     console.log(typeof all);
   return { all };*/
 
-};
+}
 
+
+// const newChannelFeed = async () => {
+//   const user = getUserID();
+//   const userchannels = await firestore.collection('users').doc(user).get();
+//   const channellist = userchannels.data().followed_channels;
+//   let posts = [];
+
+//   for(let i = 0; i <channellist.length; i++){
+//     channellist[i] = channellist[i].replace("/channels/", "");
+//   }
+
+//   for(let j = 0; j <channellist.length; j++){
+//     await firestore.collection('channels')
+//     .doc(channellist[j])
+//     .collection('posts')
+//     .forEach(( async snapshot =>{
+//       let following = snapshot.docs.map(doc =>{
+//         const id = doc.id;
+//         return id;
+//       })
+//       for(let k = 0; k <following.length; k++){
+//         posts.push(channelPosts(following[k]));
+//         console.log(posts);
+//       }
+//     })
+//   }
+//   console.log(posts);
+//   return posts;
+// }
+
+
+// const channelPosts = async (post) =>{
+//   let postdata;
+//   const postref = await firestore.collection('posts')
+//   .doc(post)
+//   .get()
+
+//   postdata = {...postref.data(), id: post};
+//   console.log(postdata);
+//   return postdata;
+
+// }
 
 export default {
   UploadPost,
@@ -816,7 +882,8 @@ export default {
   UsernameTaken,
   reportPost,
   GetTopPosts,
-  GetSingleChannel
+  GetSingleChannel,
+  //newChannelFeed
 };
 
 export { Auth, Login, Signup, Logout, AchievementUnlock };
