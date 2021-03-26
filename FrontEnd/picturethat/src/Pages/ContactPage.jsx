@@ -15,6 +15,15 @@ const ContactPage  = () => {
             <div>
                 <h3>Contact Information</h3>
             </div>
+            <div>PictureThat has been created by Pronto</div>
+            <br />
+            <div>Contact Us</div>
+            <div>prontoenquiries@gmail.com</div>
+            <br />
+            <br />
+            <div>Address</div>
+            <div>Heriot Watt University</div>
+            <div>EH14 4AS</div>
                 
         </div>
         <Footer />
