@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ImageFeed.css';
 //import getImg from '../getImg';
 import { Link } from 'react-router-dom';
@@ -16,8 +16,19 @@ let setSelectedImgId;
 const ImageFeed = () => {
 
     const [liked, setLiked] = useState(false);
+    const [docs, setDocs] = useState([]);
     const [button, setButton] = useState("far fa-heart");
 
+    useEffect(() => {
+      const getAll = () => {
+        firebase.GetAllUserChannelPosts()
+        .then(posts => {
+          setDocs(posts);
+        })
+        .catch(err => console.error(err));
+      };
+      getAll();
+    }, []);
 
     // const report = async (postref) =>{
     //     firebase.reportPost(postref);
@@ -43,6 +54,7 @@ const ImageFeed = () => {
             }
         }
     };
+
     //const testdoc = Getall();
     //console.log(testdoc.documents);
     //const  { docs }  = Getall();
@@ -60,70 +72,67 @@ const ImageFeed = () => {
     //     //  })
     // }
 
-    var docs;
-    firebase.GetAllUserChannelPosts().then(function (result) {
-        docs = result;
-    })
-    
     //return selectedImgId;
 
     // const [showPopUp, setShowPopUp] = useState(false);
     // const openPopUp = () => {
     //     setShowPopUp(prev => !prev)
     // };
-    //Getall();
-    
+
+
     return (
 
         <div className="imageFeed">
 
-            { docs && docs.map(doc => (
-                <div class="post" key={doc.id}>
-                    <div className="postDetailsContainer">
-                        <div className="topinfo">
-                            <div className="user">
+        {
+          docs && docs.map(doc => (
+            <div class="post" key={doc.id}>
+                <div className="postDetailsContainer">
+                    <div className="topinfo">
+                        <div className="user">
 
-                                <br></br>
-                                <div className="profilecard">
-
-
-                                    <label className="profileN">{doc.UserName}</label>
-
-
-                                    <br></br>
-                                    <label className="location">{doc.location} </label>
-                                </div>
-                            </div>
                             <br></br>
-                            <label className="reportb">Report</label>
+                            <div className="profilecard">
 
-                        </div>
-                    </div>
 
-                    <div>
-                        <img src={doc.url} alt="" className="image" />
-                    </div>
+                                <label className="profileN">{doc.UserName}</label>
 
-                    <div className="bottominfo">
-                        <div className="postDetailsContainer">
-                            <div className="buttonfield">
-                                <a onClick={() => likepost(doc.id)} className={button} />
-                                <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => { setSelectedImgId = doc.id }} /></Link>
-                            </div>
-                            <div className="">
-                                <label className="">Score: {doc.likes}</label>
+
                                 <br></br>
-                                <label>Caption: {doc.caption} </label>
-                                <br></br>
-                                <label>Channel: {doc.channelName} </label>
-                                <br></br>
-                                <label>Date: </label>
+                                <label className="location">{doc.location} </label>
                             </div>
                         </div>
+                        <br></br>
+                        <label className="reportb">Report</label>
 
                     </div>
                 </div>
-            ))}
+
+                <div>
+                    <img src={doc.url} alt="" className="image" />
+                </div>
+
+                <div className="bottominfo">
+                    <div className="postDetailsContainer">
+                        <div className="buttonfield">
+                            <a onClick={() => likepost(doc.id)} className={button} />
+                            <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => { setSelectedImgId = doc.id }} /></Link>
+                        </div>
+                        <div className="">
+                            <label className="">Score: {doc.likes}</label>
+                            <br></br>
+                            <label>Caption: {doc.caption} </label>
+                            <br></br>
+                            <label>Channel: {doc.channelName} </label>
+                            <br></br>
+                            <label>Date: </label>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+          ))
+        }
 
         </div>
     )

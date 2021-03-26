@@ -735,9 +735,28 @@ const GetPostofChannels = (channel) => {
 const GetAllUserChannelPosts = async () => {
   const user = getUserID();
 
+  let posts = [];
+  let all = await firestore.collection('users').doc(user).get();
+  let channels = all.data().followed_channels;
+
+  for (let i = 0; i < channels.length; i++) {
+    channels[i] = channels[i].replace('/channels/', '');
+  }
+
+  channels.forEach(async chan => {
+
+    let allPosts = await firestore.collection('posts').where('channelName', '==', chan).get();
+
+    allPosts.forEach(post => {
+        posts.push({ ...post.data(), id: post.id })
+    });
+  });
+
+  return posts;
 
 
-  let all = await firestore
+
+  /*let all = await firestore
     .collection("users")
     .doc(user)
     .get()
@@ -770,7 +789,7 @@ const GetAllUserChannelPosts = async () => {
 
     );
     console.log(typeof all);
-  return { all };
+  return { all };*/
 
 };
 
