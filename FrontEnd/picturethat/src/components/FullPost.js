@@ -89,7 +89,7 @@ const FullPost = () => {
                                 <label className="location">{singlePost.location}</label>
                                 </div>
                                 <br></br>
-                                <label className="report">Report</label>
+                                <div className="reportb"><Link to="/PictureThat/Report">Report</Link></div>
                             </div>
                         <div>
                             <div className="imginfo">

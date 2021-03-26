@@ -6,7 +6,7 @@ import firebase from "../firebase.js";
 //import PopUp from '../components/PostPopUp';
 import { setSelectedChannel } from '../components/Channel';
 
-let setSelectedImgId;
+let sSelectedImgId;
 
 
 const ImageFeed = () => {
@@ -128,7 +128,7 @@ const ImageFeed = () => {
                                     </div>
                                 </div>
                                 <br></br>
-                                <lable className="reportb">Report</lable>
+                                <div className="reportb" onClick={() => { sSelectedImgId = doc.id }}><Link to="/PictureThat/Report">Report</Link></div>
 
                             </div>
                         </div>
@@ -141,7 +141,7 @@ const ImageFeed = () => {
                             <div className="postDetailsContainer">
                                 <div className="buttonfield">
                                     <a onClick={() => likepost(doc.id)} className={button} />
-                                    <Link to="/PictureThat/FullPostChannel"><a className="far fa-comment" onClick={() => { setSelectedImgId = doc.id }} /></Link>
+                                    <Link to="/PictureThat/FullPostChannel"><a className="far fa-comment" onClick={() => { sSelectedImgId = doc.id }} /></Link>
                                 </div>
                                 <div className="">
                                     <label className="">Score: {doc.likes}</label>
@@ -163,7 +163,7 @@ const ImageFeed = () => {
 }
 
 export default ImageFeed;
-export { setSelectedImgId };
+export { sSelectedImgId };
 
 
 

@@ -4,6 +4,7 @@ import './Report.css';
 import firebase from "../firebase.js";
 //import ImageFeed from "./ImageFeed";
 import {setSelectedImgId} from "./ImageFeed";
+import {sSelectedImgId} from './ChannelPhotos';
 
 
 
@@ -11,7 +12,7 @@ import {setSelectedImgId} from "./ImageFeed";
 
 
 const FullPost = () => {
-    const selectedImg = setSelectedImgId;
+    const selectedImg = (setSelectedImgId || sSelectedImgId);
     const singlePost = firebase.GetSinglePost(selectedImg);
 
     const [reason, setReason] = useState('');
