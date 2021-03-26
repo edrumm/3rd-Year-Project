@@ -69,7 +69,7 @@ const SignIn  = () => {
         <div className= "signInWelcome">
             <div>
                 <img src={logo} alt="" className="logoimg" />
-                <p className="text" >Hi there! Nice to see you again.</p>
+                <div className="text" >Hi there! Nice to see you again.</div>
             </div>
 
             <div className="whiteSpace"></div>
@@ -107,9 +107,9 @@ const SignIn  = () => {
 
                 <div className="whiteSpace"></div>
 
-                <p className="or"><span>OR</span>
+                <div className="or"><span>OR</span>
                     <div className="whiteSpace"></div>
-                </p>
+                </div>
 
                 {/* <button
                     id="signInButton"
