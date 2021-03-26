@@ -31,7 +31,7 @@ const FullPost = () => {
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
 
-    const likepost = () => {
+    const likepost = async (postref) => {
         const alreadyLiked = await firebase.AlreadyLiked(postref);
             if(liked === false) {
                 setLiked(true);
