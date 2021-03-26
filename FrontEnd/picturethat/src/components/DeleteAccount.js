@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {useState} from 'react';
 import "../Pages/Settings.css";
 import firebase from "../firebase.js";
 
@@ -18,7 +17,7 @@ const DeleteAccount = () => {
                 <br></br>
 
                 <Link to='/'><button
-                    id="signInButton" 
+                    id="sigInButton" 
                     className="buttonSettings"
                     onClick={deleteAcount}
                 >

@@ -16,10 +16,10 @@ const SignIn  = () => {
     // const[emailError, setEmailError] = useState({});
     // const[passwordError, setPasswordError] = useState({});
 
-    const onSubmit = (e) => {
-        e.preventDefault();
-        const isValid = validateForm();
-    }
+    // const onSubmit = (e) => {
+    //     e.preventDefault();
+    //     const isValid = validateForm();
+    // }
 
     const history = useHistory();
 
@@ -75,7 +75,7 @@ const SignIn  = () => {
             <div className="whiteSpace"></div>
 
             <div>
-                <form onSubmit = {onSubmit}>
+                {/* <form onSubmit = {onSubmit}> */}
                 <input
                     type="text"
                     id="emailInput"
@@ -119,7 +119,7 @@ const SignIn  = () => {
 
                 <Link to="/ForgotPassword">Forgot Password?</Link>
                 <Link to="/SignUp"> Sign Up</Link>
-                </form>
+                {/* </form> */}
             </div>
         </div>
         <Footer />

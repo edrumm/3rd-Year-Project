@@ -3,17 +3,17 @@ import './ImageFeed.css';
 //import getImg from '../getImg';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase";
-import Footer from './footer';
+// import Footer from './footer';
 //import PopUp from '../components/PostPopUp';
 
 let setSelectedImgId;
 
- const Getall = async() =>{
-    let doc  = await firebase.GetAllUserChannelPosts();
-    console.log(doc.documents);
-    console.log("test");
-    return doc;
-    }
+//  const Getall = async() =>{
+//     let doc  = await firebase.GetAllUserChannelPosts();
+//     console.log(doc.documents);
+//     console.log("test");
+//     return doc;
+//     }
 const ImageFeed = () => {
     
     const [liked, setLiked] = useState(false);
@@ -27,13 +27,13 @@ const ImageFeed = () => {
             setButton("fas fa-heart")
            
             console.log(alreadyLiked);
-            if(alreadyLiked == false){
+            if(alreadyLiked === false){
                 firebase.LikePost(postref);
            }
        } else {
            setLiked(false);
            setButton("far fa-heart")
-           if(alreadyLiked == true){
+           if(alreadyLiked === true){
                firebase.UnlikePost(postref);
           }
        }

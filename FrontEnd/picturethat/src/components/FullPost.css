@@ -74,8 +74,11 @@
     border-bottom-left-radius: 20px;
     border-top-left-radius: 20px;
     box-shadow: -2px 0px 4px 3px lightgray;
+    min-height: 25rem;
+    min-width: 50%;
     max-height: 31.75rem;
-    max-width: 47.625rem;
+    max-width: 30rem;
+    
     overflow: hidden;
 }
 
@@ -108,8 +111,8 @@
     border-top: solid 1.5px lightgray;
     border-bottom: solid 1.5px lightgray;
     scroll-behavior: smooth;
-    overflow : scroll;
-    height: 15rem;
+    overflow-y: scroll;
+    height: 5rem;
     text-align: center;
 }
 
@@ -139,8 +142,10 @@
 }
 
 .fullpostinfo {
+    min-height: 25rem;
+    min-width: 50%;
     max-height: 31.75rem;
-    max-width: 47.625rem;
+    max-width: 30rem;
     border: solid 1px lightgray;
     border-bottom-right-radius: 20px;
     border-top-right-radius: 20px;

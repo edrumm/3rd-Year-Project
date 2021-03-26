@@ -20,14 +20,14 @@ import firebase from "../firebase.js";
             if(follow === false) {
                 setLiked(true);
                 setButton("UnFollow Channel")
-                if(following == false){
+                if(following === false){
                 firebase.FollowChannel(channelId);
                 }
               
            } else {
                setLiked(false);
                setButton("Follow Channel")
-               if(following == true){
+               if(following === true){
                firebase.UnFollowChannel(channelId);
                }
            }

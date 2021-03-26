@@ -16,11 +16,11 @@ const SignUp  = () => {
     const[confirmEmail, setConfirmEmail] = useState('');
     const[confirmPassword, setConfirmPassword] = useState('');
 
-    const[emailError, setEmailError] = useState({});
-    const[passwordError, setPasswordError] = useState({});
+    // const[emailError, setEmailError] = useState({});
+    // const[passwordError, setPasswordError] = useState({});
 
     const[username, setUsername] = useState('');
-    const[usernameError, setUsernameError] = useState('');
+    // const[usernameError, setUsernameError] = useState('');
 
 
 
@@ -151,7 +151,7 @@ const SignUp  = () => {
         <>
         <div className= "signup">
             <div>
-                <img src={logo} alt="" class="logoimg" />
+                <img src={logo} alt="" className="logoimg" />
                 <p className="text">Sign up to see photos that are tailored to you!</p>
             </div>
 
@@ -160,7 +160,7 @@ const SignUp  = () => {
 
                     <input
                         type="text"
-                        id="emailInput"
+                        id="UsernameInput"
                         className="inputbox"
                         placeholder="Username"
                         autoFocus required
@@ -180,7 +180,7 @@ const SignUp  = () => {
 
                     <input
                         type="text"
-                        id="emailInput"
+                        id="CemailInput"
                         className="inputbox"
                         placeholder="Re-enter Email Address"
                         value= {confirmEmail}
@@ -199,7 +199,7 @@ const SignUp  = () => {
 
                     <input
                         type="password"
-                        id="passwordInput"
+                        id="CpasswordInput"
                         className="inputbox"
                         placeholder="Re-enter Password"
                         value= {confirmPassword}
