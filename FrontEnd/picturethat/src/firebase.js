@@ -612,6 +612,28 @@ const GetSinglePost = (id) => {
 
 }
 
+const GetSingleChannel = (channel) => {
+
+  const [docs, setDocs] = useState([]);
+  let isMounted = true;
+  useEffect(() => {
+  firestore
+    .collection('channels').doc(channel)
+    .get()
+    .then( (doc) => {
+       if (isMounted){
+        //for (let doc of querySnapshot.docs) {
+          setDocs({...doc.data(), id: doc.id})
+        }
+        });
+        return () => { isMounted = false};
+      }, [])
+
+    return docs;
+
+
+}
+
 const GetPostofChannels = (channel) => {
 
   // const posts = [];
@@ -732,7 +754,8 @@ export default {
   GetAllUserChannelPosts,
   GetPostofUser,
   AlreadyFollowed,
-  GetTopPosts
+  GetTopPosts,
+  GetSingleChannel
 };
 
 export { Auth, Login, Signup, Logout, AchievementUnlock };

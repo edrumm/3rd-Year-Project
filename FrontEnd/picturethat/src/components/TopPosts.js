@@ -37,7 +37,6 @@ const ImageFeed = () => {
     //console.log(testdoc.documents);
     //const  { docs }  = Getall();
     const { docs } = firebase.GetTopPosts('posts');
-    console.log(docs);
     
 
 

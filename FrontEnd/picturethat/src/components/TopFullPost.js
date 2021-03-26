@@ -69,7 +69,7 @@ const FullPost = () => {
     return (
         <>
         <div className="backbutton">
-        <Link to="/PictureThat" className="fas fa-arrow-left" />
+        <Link to="/PictureThat/TopPosts" className="fas fa-arrow-left" />
         </div>
         <div className= "FullPost">
                 <div class="card">
