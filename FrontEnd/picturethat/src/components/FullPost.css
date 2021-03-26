@@ -12,7 +12,7 @@
 }
 
 .postbutton{
-    width: 3.5rem;
+    width: 4rem;
 }
 
 .far.fa-heart {
@@ -61,8 +61,8 @@
 }
 
 .inputText{
-    width: 20rem;
-    height: 38px;
+    width: 15rem;
+    height: 30px;
     margin-top: 7px;
     border-radius: 20px;
     border-left: none;
@@ -86,7 +86,7 @@
 }
 
 .channel{
-    padding-left: 15rem;
+    padding-left: 1rem;
 }
 
 .caption{
@@ -95,10 +95,13 @@
 
 .singlecomment{
     width: 20rem;
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
-    border: solid 1.5px lightgray;
-    border-radius: 20px;
+    margin-top: 0.7rem;
+    text-align: left;
+    border-bottom: solid 1.5px lightgray;
+}
+
+.commentFormat{
+    margin-left: 15px;
 }
 
 .commentfield{
@@ -107,6 +110,7 @@
     scroll-behavior: smooth;
     overflow : scroll;
     height: 15rem;
+    text-align: center;
 }
 
 .backbutton{
@@ -162,11 +166,25 @@
 }
 
 .report{
-    padding-bottom: 0.5rem;
-    padding-top: 1.3rem;
-    padding-left: 16rem;
+    margin: 10px;
+    padding: 5px;
+    height: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;         
+    border-radius: 5px;
+    margin-left: 7.4rem;
     cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
 }
+
+.report:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+    background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)
+  }
 
 .profilecard{
     padding-top: 1rem;

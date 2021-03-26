@@ -80,38 +80,35 @@ const FullPost = () => {
                     </div>
                     
                     <div className="fullpostinfo">
-                    
-
-                    <div className="headpart">
-                    
-                            
-                            <br></br>
-                            <div className="profilecard">
-                            <label className="profileN">{singlePost.UserName}</label>
-                            <br></br>
-                            <label className="location">{singlePost.location}</label>
-                            </div>
-                            <br></br>
-                            <lable className="report">Report</lable>
-                    </div>
-                    <div>
-                        <div className="imginfo">
-                            
-                            <label className="caption">Caption: {singlePost.caption}</label>
-                            <br></br>
-                            <label className="channel">Channel: {singlePost.channelName}</label>
-                            <br></br>
-                            <label className="date">Date</label>
-                        </div>
+                        <div className="headpart">
                         
-                    </div>  
-                        <div className="commentfield">
-                        { getcomments && getcomments.map(doc => (
-                            <div className="singlecomment" key={doc.id}>
-                            <div>{doc.username}</div>
-                            <div>Date</div>
-                            <div>{doc.text}</div>
+                            <div className="profilecard">
+                                <label className="profileN">{singlePost.UserName}</label>
+                                <br></br>
+                                <label className="location">{singlePost.location}</label>
+                                </div>
+                                <br></br>
+                                <label className="report">Report</label>
                             </div>
+                        <div>
+                            <div className="imginfo">
+                                <br></br>
+                                <label className="caption">Caption: {singlePost.caption}</label>
+                                <br></br>
+                                <label className="channel">Channel: {singlePost.channelName}</label>
+                                <br></br>
+                                <label className="date">Date:</label>
+                                <br></br>
+                            </div>
+                        </div>  
+                        <div className="commentfield">
+                            { getcomments && getcomments.map(doc => (
+                                <div className="singlecomment" key={doc.id}>
+                                    <label className="commentFormat">{doc.username}: </label>
+                                    <label className="commentFormat">{doc.text}</label>
+                                    <br></br>
+                                    <label className="commentFormat">Date:</label>   
+                        </div>
                         ))}
                         </div>
 
@@ -126,7 +123,7 @@ const FullPost = () => {
                         <input type="text" className="inputText" placeholder="Add a comment" value= {comment} onChange= {(e) => {setComment(e.target.value)}} />
                         <button onClick={handleUpload} className="postbutton">Post</button>
                         </div>
-            </div>
+                </div>
         </div>
         
     </div>
@@ -135,4 +132,3 @@ const FullPost = () => {
 }
 
 export default FullPost;
-

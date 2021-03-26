@@ -91,7 +91,7 @@
     height: 2rem;
 }
 
-.fas.fa-images {
+.fas.fa-camera {
     color: white;
     text-decoration: none;
     padding: 0.5rem 0.2rem;
@@ -107,7 +107,7 @@
         display: flex;
     }
 
-    .fas.fa-images.a {
+    .fas.fa-camera.a {
         display: none;
     }
 
@@ -122,7 +122,7 @@
         display: none;
     }
 
-    .fas.fa-images.b {
+    .fas.fa-camera.b {
         margin-left: 2.5rem;
         margin-right: 2.5rem;
         font-size: 1.8rem;

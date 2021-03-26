@@ -9,14 +9,14 @@
     list-style: none;
     text-align: start;
     z-index: 1;
-    border-radius: 15px;
-    
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
   }
   
   .dropdownposition{
     position: relative;
     display: inline-block;
-    right: 2rem;
+    right: 1.7rem;
   }
 
   .dropdown a {
@@ -48,8 +48,18 @@
     font-size: 1.2rem;
   }
   
-  @media screen and (max-width: 889px) {
+
+  @media screen and (max-width: 1020px) {
     .dropdownposition{
-      right: 3rem;
+      right: 4.5rem;
+      transition: 0.3s;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .dropdownposition{
+      right: 4.5rem;
+      transition: 0.3s;
+      top: -0.05rem;
     }
   }

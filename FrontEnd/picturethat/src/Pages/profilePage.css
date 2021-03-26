@@ -1,6 +1,6 @@
-@media (min-width: 736px){
+@media (min-width: 735px){
 .personalsection{
-    padding: 30px 20px 0;
+    padding: 15px 20px 0;
     width: calc(100% - 40px);
     box-sizing: content-box;
     }
@@ -31,12 +31,20 @@
 }
 
 /* ------------------- div divider for personal section ---------------*/
-
-
 .personalsectionLeft{
     text-align: center;
     height: 180px;
     width: 25%;
+}
+
+.circle{
+    text-align: center;
+    width: 170px;
+    height: 160px;
+    background-color:  #0095f6;
+    border-radius: 50%;
+    line-height: 160px;
+    vertical-align: middle;
 }
 
 .personalsectionRight{
@@ -44,7 +52,6 @@
     height: 180px;
     width: 75%;
 }
-
 
 .leftPersonalSide{
     height: 130px;
