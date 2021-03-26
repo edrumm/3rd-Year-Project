@@ -26,9 +26,7 @@ import firebase from "../firebase.js";
 
 
     const [username, setUsername] = useState('');
-    console.log(username);
     const UpdateData = () => {
-        console.log(username);
         firebase.changeUserName(username);
     }
 

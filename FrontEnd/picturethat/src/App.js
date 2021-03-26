@@ -20,6 +20,7 @@ import FullPostPage from './Pages/FullPostPage';
 import TermsAndConditions from './Pages/TermsAndConditions';
 import FullPostChannel from './Pages/FullPostChannel';
 import TopPosts from './Pages/TopPosts';
+import TopFullPost from './Pages/TopFullPost';
 
 function App() {
 
@@ -46,6 +47,7 @@ function App() {
           <Route exact path= "/PictureThat/TermsAndConditions" component={TermsAndConditions}/>
           <Route exact path= "/PictureThat/FullPostChannel" component={FullPostChannel} />
           <Route exact path= "/PictureThat/TopPosts" component={TopPosts} />
+          <Route exact path= "/PictureThat/TopFullPost" component={TopFullPost} />
 
           <Route exact path="/404" component={NotFound} />
           <Redirect to="/404"/> {/*Redirect used to redirect users to 404 page if an invalid url is typed in the url searchbar */}

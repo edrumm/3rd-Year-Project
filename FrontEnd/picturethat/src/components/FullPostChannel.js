@@ -72,7 +72,7 @@ const FullPost = () => {
                //let alreadyLiked = firebase.AlreadyLiked(postref, user);
                 //console.log(alreadyLiked);
                 //if(alreadyLiked == false){
-                    console.log("not liked, lets add!")
+                    
                     firebase.LikePost(selectedImg);
               // }
            } else {

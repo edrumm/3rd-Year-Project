@@ -232,9 +232,9 @@ const deleteUser = () => {
   })
 
   userdelete.delete().then(() => {
-    console.log("Successfully deleted user");
+    //console.log("Successfully deleted user");
   }).catch(error => {
-    console.log("Error deleting user:", error);
+    //console.log("Error deleting user:", error);
   });
 
 
@@ -269,7 +269,6 @@ const UploadPost = async (caption, loc, channel, image) => {
 
 
   await refnewpost.set(Data);
-  console.log(Data);
 
   //if/else statement that either adds a post to a channel or creates a new channel and adds that post to it
   if ((await refchannel.get()).exists) {
@@ -565,7 +564,6 @@ const GetImg = (collection) => {
 
       return () => unsub();
   }, [collection])
-  console.log(docs);
   return { docs };
  
 }
@@ -588,29 +586,11 @@ const GetTopPosts = (collection) => {
 
       return () => unsub();
   }, [collection])
-  console.log(docs);
   return { docs };
  
 }
 
 const GetSinglePost = (id) => {
-
-
-  // var docRef = firestore.collection("posts").doc(id);
-  // const [singlePost, setSinglePost] = useState('');
-
-  // docRef.get().then((doc) => {
-  //     if (doc.exists) {
-  //         setSinglePost(doc.data());
-  //     } else {
-  //         // doc.data() will be undefined in this case
-  //         console.log("No such document!");
-  //     }
-  // }).catch((error) => {
-  //     console.log("Error getting document:", error);
-  // });
-
-  // return singlePost;
 
   const [docs, setDocs] = useState([]);
   let isMounted = true;
@@ -627,10 +607,6 @@ const GetSinglePost = (id) => {
         return () => { isMounted = false};
       }, [])
 
-
-
-
-    //console.log(docs);
     return docs;
 
 

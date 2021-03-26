@@ -25,8 +25,7 @@ const ImageFeed = () => {
         if(liked === false) {
             setLiked(true);
             setButton("fas fa-heart")
-           
-            console.log(alreadyLiked);
+        
             if(alreadyLiked === false){
                 firebase.LikePost(postref);
            }
@@ -42,7 +41,7 @@ const ImageFeed = () => {
     //console.log(testdoc.documents);
     //const  { docs }  = Getall();
     const { docs } = firebase.GetImg('posts');
-    console.log(docs);
+
     
 
 
@@ -57,7 +56,7 @@ const ImageFeed = () => {
         <>
         <div className= "imageFeed">
             { docs && docs.map(doc => (
-                <div class="post" key={doc.id}>
+                <div className="post" key={doc.id}>
                     <div className="postDetailsContainer">
                     <div className="topinfo">
                     <div className="user">
@@ -82,8 +81,8 @@ const ImageFeed = () => {
                     <div className="bottominfo">
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
-                    <a onClick={() =>likepost(doc.id)} className={button} />
-                    <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
+                    <div onClick={() =>likepost(doc.id)} className={button} />
+                    <Link to="/PictureThat/FullPostPage"><div className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">
                         <label className="bottomText">Score: {doc.likes}</label>
