@@ -92,7 +92,6 @@ const FullPost = () => {
                             </div>
                         <div>
                             <div className="imginfo">
-                                <br></br>
                                 <label className="caption">Caption: {singlePost.caption}</label>
                                 <br></br>
                                 <label className="channel">Channel: {singlePost.channelName}</label>
