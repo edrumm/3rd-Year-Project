@@ -19,6 +19,11 @@
     border-radius: 15px;
 }
 
+.Title {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+}
+
 .location{
     overflow: hidden;
     white-space: nowrap;
@@ -39,6 +44,7 @@
     display: flex;
     flex-direction: row;
     padding-left: 1rem;
+    background-color: white;
 }
 
 .far.fa-comment {
@@ -70,7 +76,8 @@
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     display: flex;
-    flex-direction: row;    
+    flex-direction: row;
+    background-color: white;    
 }
 
 .bottominfo {
@@ -83,6 +90,7 @@
     padding: 10px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    background-color: white;
 }
 
 .profileimage {
@@ -97,19 +105,34 @@
 
 .profileName {
     padding-bottom: 0.5rem;
-    
+    font-family: 'Montserrat', sans-serif;
 }
 
 .column{
     float: left;
 }
 
-.reportb{
-    padding-bottom: 0.5rem;
-    padding-top: 1.3rem;
-    cursor: pointer;
-    margin-left: 6rem;
-}
+.reportb {
+   margin: 10px;
+   padding: 5px;
+   height: 30px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;         
+   border-radius: 5px;
+   margin-left: 7.4rem;
+   cursor: pointer;
+   font-family: 'Montserrat', sans-serif;
+ }
+
+ .reportb:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+   background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)
+ }
+
 
 .profilecard{
     margin-left: 0.5rem;
@@ -129,17 +152,19 @@
     width: 70%;
 }
 
+.bottomText{
+    font-family: 'Montserrat', sans-serif;
+}
+
 @media screen and (max-height: 900px) {
     .imageFeed{
-        margin-top: 100px;
-        
+        margin-top: 100px;    
     }
 }
 
 @media screen and (max-height: 790px) {
     .imageFeed{
         margin-top: 110px;
-        
     }
 }
 
@@ -159,22 +184,17 @@
 
 @media screen and (max-height: 650px) {
     .imageFeed{
-        margin-top: 170px;
-        
+        margin-top: 170px;   
     }
 }
 
 @media screen and (max-height: 590px) {
     .imageFeed{
         margin-top: 200px;
-        
     }
 }
 
-
-
 @media screen and (max-width: 700px) {
-
     .imageFeed{
         min-width: 37.5rem;
     }
@@ -198,3 +218,6 @@
         min-width: 350px;
     }
 }
+/* https://gradientbuttons.colorion.co/ */
+/* used for gradient colour of report button */
+  

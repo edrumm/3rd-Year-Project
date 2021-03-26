@@ -3,6 +3,7 @@ import './ImageFeed.css';
 //import getImg from '../getImg';
 import { Link } from 'react-router-dom';
 import firebase from "../firebase";
+import Footer from './footer';
 //import PopUp from '../components/PostPopUp';
 
 let setSelectedImgId;
@@ -92,6 +93,7 @@ const ImageFeed = () => {
                         <div className="user">
 
                             <br></br>
+
                             <div className="profilecard">
 
 
@@ -114,6 +116,7 @@ const ImageFeed = () => {
 
                 <div className="bottominfo">
                     <div className="postDetailsContainer">
+
                         <div className="buttonfield">
                             <a onClick={() => likepost(doc.id)} className={button} />
                             <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => { setSelectedImgId = doc.id }} /></Link>
@@ -136,14 +139,10 @@ const ImageFeed = () => {
 
         </div>
     )
-
-
 }
 
 export default ImageFeed;
 export { setSelectedImgId };
-
-
 
 //the source bellow was used to help set up how to send and get data from database
 //https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia

@@ -1,5 +1,5 @@
 import React from 'react';
-import ImageFeed from '../components/ImageFeed';
+import TopPosts from '../components/TopPosts';
 import Navbar from '../components/Navbar/Navbar';
 
 const LandingPage  = () => {
@@ -7,11 +7,9 @@ const LandingPage  = () => {
     return (
     <>
     <Navbar />
-    <ImageFeed />
+    <TopPosts />
     </>
     );
 };
 
 export default LandingPage;
-
-//https://www.youtube.com/watch?v=hjR-ZveXBpQ

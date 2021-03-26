@@ -1,10 +1,11 @@
 .Account{
     text-align: center;
     overflow: scroll;
-    height: 45rem;
+    height: 35rem;
     padding-top: 20px;
     padding-bottom: 10px;
     position: relative;
+    overflow-y: scroll;
 }
 
 .inputFields{

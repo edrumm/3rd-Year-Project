@@ -2,95 +2,72 @@ import React, { useState } from 'react';
 import './ImageFeed.css';
 //import getImg from '../getImg';
 import {Link} from 'react-router-dom';
-import firebase from "../firebase.js";
+import firebase from "../firebase";
+import Footer from './footer';
 //import PopUp from '../components/PostPopUp';
-import {setSelectedChannel} from '../components/Channel';
 
 let setSelectedImgId;
 
 
 const ImageFeed = () => {
-    let currentChannel = setSelectedChannel;
-    const { docs } = firebase.GetPostofChannels(currentChannel);
-    //console.log(docs);
+    
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
+    
+    const likepost = async (postref) => {
+        const alreadyLiked =  await firebase.AlreadyLiked(postref);
 
-    const likepost = (postref) => {
-    //    const postreference = postref;
-    //    console.log(postreference);
-    //     if(liked === false) {
-    //         setLiked(true);
-    //         setButton("fas fa-heart")
-    //         const alreadyLiked = firebase.AlreadyLiked(user);
-    //         if(!alreadyLiked){
-    //             firebase.LikePost(user);
-    //         }
-    //    } else {
-    //        setLiked(false);
-    //        setButton("far fa-heart")
-    //        const alreadyLiked = firebase.AlreadyLiked(user);
-    //        if(alreadyLiked){
-    //            firebase.UnlikePost(user);
-    //        }
-    //    }
-       //console.log(postreference);
         if(liked === false) {
             setLiked(true);
             setButton("fas fa-heart")
-           //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-            //console.log(alreadyLiked);
-            //if(alreadyLiked == false){
-                console.log("not liked, lets add!")
+           
+            console.log(alreadyLiked);
+            if(alreadyLiked == false){
                 firebase.LikePost(postref);
-          // }
+           }
        } else {
            setLiked(false);
            setButton("far fa-heart")
-            //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-          // if(alreadyLiked){
+           if(alreadyLiked == true){
                firebase.UnlikePost(postref);
-          //}
+          }
        }
     };
-   
-    //console.log(currentChannel);
+    //const testdoc = Getall();
+    //console.log(testdoc.documents);
+    //const  { docs }  = Getall();
+    const { docs } = firebase.GetTopPosts('posts');
+    console.log(docs);
     
-    
-    // const setSelectedImgId = (id) => {
-    //     imgId = id;
-    //     console.log(imgId);
-    // }
-    
-    
+
+
     //return selectedImgId;
 
     // const [showPopUp, setShowPopUp] = useState(false);
-
     // const openPopUp = () => {
     //     setShowPopUp(prev => !prev)
     // };
-      
+    //Getall();
     return (
         <>
-        <div className="backbuttonC">
-        <Link to="/PictureThat/ChannelsPage" className="fas fa-arrow-left" />
-        </div>
+        
         <div className= "imageFeed">
+            <div className="Title">Top 10 posts</div>
             { docs && docs.map(doc => (
                 <div class="post" key={doc.id}>
                     <div className="postDetailsContainer">
                     <div className="topinfo">
                     <div className="user">
+                            
                             <br></br>
-                            <div className="profilecard">
-                            <label className="profileN">{doc.UserName}</label>
+                            <div className="profilecard">                           
+                                <label className="profileName">{doc.UserName}</label>
                             <br></br>
                             <label className="location">{doc.location} </label>
                             </div>
                             </div>
                             <br></br>
-                            <lable className="reportb">Report</lable>
+                            <label className="reportb">Report</label>
 
                     </div>
                     </div>
@@ -98,24 +75,24 @@ const ImageFeed = () => {
                     <div>
                         <img src={doc.url} alt="" className="image"/>
                     </div>
-                    
+
                     <div className="bottominfo">
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
                     <a onClick={() =>likepost(doc.id)} className={button} />
-                    <Link to="/PictureThat/FullPostChannel"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
+                    <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">
-                        <label className="">Score: {doc.likes}</label>
+                        <label className="bottomText">Score: {doc.likes}</label>
                         <br></br>
-                        <label>Caption: {doc.caption} </label>
+                        <label className="bottomText">Caption: {doc.caption} </label>
                         <br></br>
-                        <label>Channel: {doc.channelName} </label>
+                        <label className="bottomText">Channel: {doc.channelName} </label>
                         <br></br>
-                        <label>Date: </label>
+                        <label className="bottomText">Date: </label>
                     </div>
                 </div>
-                
+
             </div>
         </div>
         ))}
@@ -127,10 +104,8 @@ const ImageFeed = () => {
 export default ImageFeed ;
 export {setSelectedImgId};
 
-
-
 //the source bellow was used to help set up how to send and get data from database
-//https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia 
+//https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia
 //https://www.youtube.com/watch?v=vUe91uOx7R0
 
 //<input type="text" className="commentinput" placeholder="Add a comment"></input>
