@@ -251,12 +251,12 @@ const deleteUser = () => {
 
 const reportPost = async (post, reportReason) => {
   
-  const reportref = firestore.collection('reports').doc(post);
+  const reportref = firestore.collection('reports').doc();
   const username = auth.currentUser.displayName;
 
   reportref.set({
     Post: post,
-    Username: username,
+    Reported_by: username,
     Reason: reportReason
   });
 
@@ -748,7 +748,7 @@ const GetAllUserChannelPosts = async () => {
     });
   });
 
-  return posts;
+  return { posts };
 
 
 

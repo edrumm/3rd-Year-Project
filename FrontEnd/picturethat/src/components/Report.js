@@ -13,11 +13,13 @@ import {setSelectedImgId} from "./ImageFeed";
 const FullPost = () => {
     const selectedImg = setSelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
+
+    const [reason, setReason] = useState('');
   
 
-    const handleUpload = () => {
-        
-    };
+    const RPost = () => {
+        firebase.reportPost(selectedImg, reason);
+    }
 
    
 
@@ -37,14 +39,14 @@ const FullPost = () => {
                     
                     <div className="fullpostinfoR">
                     <div>Reporting a post</div>
-                      
-                       
-
-                        
-
-                        
-                        <input type="text" className="inputText" placeholder="Add a comment" />
-                        <button className="Rbutton">Report</button>
+                        <input type="text" 
+                        className="inputTextR" 
+                        placeholder="Add reason for repoting" 
+                        value= {reason}
+                        onChange= {(e) => {setReason(e.target.value)}}
+                        />
+                        <div>By reporting the post this will create a case which the admin team will look into</div>
+                        <button className="Rbutton" onClick={RPost}>Report</button>
                 </div>
         </div>
         

@@ -17,20 +17,25 @@ let setSelectedImgId;
 const ImageFeed = () => {
 
     const [liked, setLiked] = useState(false);
-    const [docs, setDocs] = useState([]);
+    //const [docs, setDocs] = useState([]);
     const [button, setButton] = useState("far fa-heart");
 
-    useEffect(() => {
-      const getAll = () => {
-        firebase.GetAllUserChannelPosts()
-        .then(posts => {
-          setDocs(posts);
-        })
-        .catch(err => console.error(err));
-      };
-      getAll();
-    });
-    
+
+    // useEffect(() => {
+    //     const getAll = async () => {
+    //         await firebase.GetAllUserChannelPosts()
+    //             .then(posts => {
+
+    //                 setDocs(posts);
+    //                 console.log(posts);
+
+    //             })
+    //             .catch(err => console.error(err));
+    //     };
+    //     getAll();
+    // });
+    const { docs } = firebase.GetTopPosts('posts');
+
     const likepost = async (postref) => {
         const alreadyLiked = await firebase.AlreadyLiked(postref);
 
@@ -54,62 +59,62 @@ const ImageFeed = () => {
 
         <div className="imageFeed">
 
-        {
-          docs && docs.map(doc => (
-            <div class="post" key={doc.id}>
-                <div className="postDetailsContainer">
-                    <div className="topinfo">
-                        <div className="user">
+            {
+                docs && docs.map(doc => (
+                    <div class="post" key={doc.id}>
+                        <div className="postDetailsContainer">
+                            <div className="topinfo">
+                                <div className="user">
 
-                            <br></br>
+                                    <br></br>
 
-                            <div className="profilecard">
-
-
-                                <label className="profileN">{doc.UserName}</label>
+                                    <div className="profilecard">
 
 
+                                        <label className="profileN">{doc.UserName}</label>
+
+
+                                        <br></br>
+                                        <label className="location">{doc.location} </label>
+                                    </div>
+                                </div>
                                 <br></br>
-                                <label className="location">{doc.location} </label>
+                                <div className="reportb" onClick={() => { setSelectedImgId = doc.id }}><Link to="/PictureThat/Report">Report</Link></div>
+
                             </div>
                         </div>
-                        <br></br>
-                        <div className="reportb" onClick={() => {setSelectedImgId = doc.id}}><Link to="/PictureThat/Report">Report</Link></div>
 
-                    </div>
-                </div>
-
-                <div>
-                    <img src={doc.url} alt="" className="image" />
-                </div>
-
-                <div className="bottominfo">
-                    <div className="postDetailsContainer">
-
-                        <div className="buttonfield">
-                        <div onClick={() =>likepost(doc.id)} className={button} />
-                        <Link to="/PictureThat/FullPostPage"><div className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
+                        <div>
+                            <img src={doc.url} alt="" className="image" />
                         </div>
-                        <div className="">
-                            <label className="">Score: {doc.likes}</label>
-                            <br></br>
-                            <label>Caption: {doc.caption} </label>
-                            <br></br>
-                            <label>Channel: {doc.channelName} </label>
-                            <br></br>
-                            <label>Date: </label>
+
+                        <div className="bottominfo">
+                            <div className="postDetailsContainer">
+
+                                <div className="buttonfield">
+                                    <div onClick={() => likepost(doc.id)} className={button} />
+                                    <Link to="/PictureThat/FullPostPage"><div className="far fa-comment" onClick={() => { setSelectedImgId = doc.id }} /></Link>
+                                </div>
+                                <div className="">
+                                    <label className="">Score: {doc.likes}</label>
+                                    <br></br>
+                                    <label>Caption: {doc.caption} </label>
+                                    <br></br>
+                                    <label>Channel: {doc.channelName} </label>
+                                    <br></br>
+                                    <label>Date: </label>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
-
-                </div>
-            </div>
-          ))
-        }
+                ))
+            }
 
         </div>
     )
 
-   
+
 }
 
 export default ImageFeed;
