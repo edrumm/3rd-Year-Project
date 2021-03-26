@@ -31,6 +31,7 @@
 
 .score{
     padding-top: 0.7rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .headpart{
@@ -45,6 +46,7 @@
 .date{
     display: flex;
     padding-left: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .card {
@@ -90,21 +92,24 @@
 
 .channel{
     padding-left: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .caption{
     padding-left: 1rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .singlecomment{
-    width: 20rem;
-    margin-top: 0.7rem;
+    width: 25rem;
+    margin-top: 1rem;
     text-align: left;
-    border-bottom: solid 1.5px lightgray;
+
 }
 
 .commentFormat{
     margin-left: 15px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .commentfield{
@@ -168,6 +173,7 @@
 .profileN {
     padding-top: 1.3rem;
     padding-left: 0.5rem;   
+    font-family: 'Montserrat', sans-serif;
 }
 
 .report{
@@ -179,7 +185,7 @@
     transition: 0.5s;
     background-size: 200% auto;         
     border-radius: 5px;
-    margin-left: 7.4rem;
+    margin-left: 12rem;
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
 }
