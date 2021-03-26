@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './footer.css';
+import { Link } from 'react-router-dom';
 
 
 function Footer() {
@@ -10,9 +11,9 @@ function Footer() {
                 <div className="links">
                     <a className="link" href="https://lucasarenaterry.github.io/CompanyWebsite/"><div>About</div></a>
                     <br />
-                    <a className="link" href="http://localhost:3000/PictureThat/TermsAndConditions"><div>Terms and Conditions</div></a>
+                    <a className="link"><Link to="/PictureThat/TermsAndConditions"><div>Terms and Conditions</div></Link></a>
                     <br />
-                    <a className="link"><div>Contact</div></a>
+                    <a className="link"><Link to="/PictureThat/ContactPage"><div>Contact</div></Link></a>
                     <br />
                 </div>
                 <div>© 2021 PictureThat by Pronto. All Rights Reserved.</div>

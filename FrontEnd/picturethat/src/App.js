@@ -25,6 +25,7 @@ import Report from './Pages/Report';
 import ReportC from './Pages/ReportC';
 import ReportT from './Pages/ReportT';
 import ProfileFullPost from './Pages/ProfileFullPost';
+import ContactPage from './Pages/ContactPage';
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
           <Route exact path= "/PictureThat/ReportC" component={ReportC} />
           <Route exact path= "/PictureThat/ReportT" component={ReportT} />
           <Route exact path= "/PictureThat/ProfileFullPost" component={ProfileFullPost} />
+          <Route exact path= "/PictureThat/ContactPage" component={ContactPage} />
 
           <Route exact path="/404" component={NotFound} />
           <Redirect to="/404"/> {/*Redirect used to redirect users to 404 page if an invalid url is typed in the url searchbar */}
