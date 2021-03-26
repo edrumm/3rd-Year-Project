@@ -291,6 +291,20 @@ const UploadPost = async (caption, loc, channel, image) => {
 
 
   await refnewpost.set(Data);
+  let np = await AchievementNumPosts();
+
+  if (np == 1 || np == 10 || np == 50) {
+    AchievementUnlock(`${np}-photos`)
+    .then(message => {
+      if (message) {
+        alert(message);
+      }
+    })
+    .catch(err => {
+      throw err;
+    });
+  }
+
 
   //if/else statement that either adds a post to a channel or creates a new channel and adds that post to it
   if ((await refchannel.get()).exists) {
@@ -356,7 +370,7 @@ const DeletePost = async (id) => {
   await storageRef.delete();
   await post.update({ url: 'deleted' });
 
-  comments.forEach(comm => {
+  comments.forEach(async comm => {
     await firestore.collection('comments').doc(comm.id).delete();
   });
 };
@@ -387,6 +401,15 @@ const AddComment = async (text, post) => {
   //   });
   // });
 
+  AchievementUnlock('comment')
+  .then(message => {
+    if (message) {
+      alert(message);
+    }
+  })
+  .catch(err => {
+    throw err;
+  });
 }
 
 const GetComments = (postid) => {
@@ -560,7 +583,17 @@ const FollowChannel = async (channel) => {
   const channelref = firestore.collection('channels').doc(channel);
   channelref.update({
     number_of_followers: increment
+  });
+
+  AchievementUnlock('followed-channel')
+  .then(message => {
+    if (message) {
+      alert(message);
+    }
   })
+  .catch(err => {
+    throw err;
+  });
 
 }
 
