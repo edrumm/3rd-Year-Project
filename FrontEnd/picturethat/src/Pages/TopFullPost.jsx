@@ -1,16 +1,16 @@
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
-import UploadImage from '../components/UploadImage';
+import FullPost from '../components/TopFullPost';
 import Footer from '../components/footer';
 
-const UploadPage  = () => {
+const LandingPage  = () => {
     return (
     <>
     <Navbar />
-    <UploadImage />
+    <FullPost />
     <Footer />
     </>
     );
 };
 
-export default UploadPage;
+export default LandingPage;

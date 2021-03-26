@@ -37,7 +37,6 @@ const ImageFeed = () => {
     //console.log(testdoc.documents);
     //const  { docs }  = Getall();
     const { docs } = firebase.GetTopPosts('posts');
-    console.log(docs);
     
 
 
@@ -80,7 +79,7 @@ const ImageFeed = () => {
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
                     <a onClick={() =>likepost(doc.id)} className={button} />
-                    <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
+                    <Link to="/PictureThat/TopFullPost"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">
                         <label className="bottomText">Score: {doc.likes}</label>

@@ -43,7 +43,7 @@ const ChangePassword = () => {
   
 
         setPasswordChangeError(passwordChangeError);
-        if(isValid==true){
+        if(isValid===true){
             firebase.changeUserPass(changePassword);
         }
 
@@ -59,7 +59,7 @@ const ChangePassword = () => {
 
                 <input 
                         type="password" 
-                        id="passwordInput" 
+                        id="passInput" 
                         className="inputboxSettings" 
                         placeholder="Enter Password" 
                         required
@@ -69,7 +69,7 @@ const ChangePassword = () => {
 
                 <input 
                         type="password" 
-                        id="passwordInput" 
+                        id="CpassInput" 
                         className="inputboxSettings" 
                         placeholder="Re-enter Password"
                         value= {confirmChangePassword}
@@ -77,7 +77,7 @@ const ChangePassword = () => {
                 />
                 <br></br>
                 <Link to='/'><button
-                        id="signInButton" 
+                        id="sInButton" 
                         className="buttonSettings"
                         onClick= {validatePassword}>
                             Submit

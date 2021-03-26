@@ -3,7 +3,7 @@ import './ImageFeed.css';
 //import getImg from '../getImg';
 import { Link } from 'react-router-dom';
 import firebase from "../firebase";
-import Footer from './footer';
+// import Footer from './footer';
 //import PopUp from '../components/PostPopUp';
 
 let setSelectedImgId;
@@ -74,7 +74,7 @@ const ImageFeed = () => {
                             </div>
                         </div>
                         <br></br>
-                        <label className="reportb">Report</label>
+                        <div className="reportb" onClick={() => {setSelectedImgId = doc.id}}><Link to="/PictureThat/Report">Report</Link></div>
 
                     </div>
                 </div>
@@ -87,8 +87,8 @@ const ImageFeed = () => {
                     <div className="postDetailsContainer">
 
                         <div className="buttonfield">
-                            <a onClick={() => likepost(doc.id)} className={button} />
-                            <Link to="/PictureThat/FullPostPage"><a className="far fa-comment" onClick={() => { setSelectedImgId = doc.id }} /></Link>
+                        <div onClick={() =>likepost(doc.id)} className={button} />
+                        <Link to="/PictureThat/FullPostPage"><div className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                         </div>
                         <div className="">
                             <label className="">Score: {doc.likes}</label>
@@ -108,6 +108,8 @@ const ImageFeed = () => {
 
         </div>
     )
+
+   
 }
 
 export default ImageFeed;

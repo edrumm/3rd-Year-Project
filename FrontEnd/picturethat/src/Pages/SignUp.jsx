@@ -16,11 +16,11 @@ const SignUp  = () => {
     const[confirmEmail, setConfirmEmail] = useState('');
     const[confirmPassword, setConfirmPassword] = useState('');
 
-    const[emailError, setEmailError] = useState({});
-    const[passwordError, setPasswordError] = useState({});
+    // const[emailError, setEmailError] = useState({});
+    // const[passwordError, setPasswordError] = useState({});
 
     const[username, setUsername] = useState('');
-    const[usernameError, setUsernameError] = useState('');
+    // const[usernameError, setUsernameError] = useState('');
 
 
 
@@ -151,7 +151,7 @@ const SignUp  = () => {
         <>
         <div className= "signup">
             <div>
-                <img src={logo} alt="" class="logoimg" />
+                <img src={logo} alt="" className="logoimg" />
                 <p className="text">Sign up to see photos that are tailored to you!</p>
             </div>
 
@@ -160,7 +160,7 @@ const SignUp  = () => {
 
                     <input
                         type="text"
-                        id="emailInput"
+                        id="UsernameInput"
                         className="inputbox"
                         placeholder="Username"
                         autoFocus required
@@ -180,9 +180,10 @@ const SignUp  = () => {
 
                     <input
                         type="text"
-                        id="emailInput"
+                        id="CemailInput"
                         className="inputbox"
                         placeholder="Re-enter Email Address"
+                        autoFocus required
                         value= {confirmEmail}
                         onChange= {(e) => {setConfirmEmail(e.target.value)}}
                     />
@@ -199,9 +200,10 @@ const SignUp  = () => {
 
                     <input
                         type="password"
-                        id="passwordInput"
+                        id="CpasswordInput"
                         className="inputbox"
                         placeholder="Re-enter Password"
+                        autoFocus required
                         value= {confirmPassword}
                         onChange= {(e) => {setConfirmPassword(e.target.value)}}
                     />
@@ -209,12 +211,12 @@ const SignUp  = () => {
                     <input
                         type="checkbox"
                         id="termsAndConditions"
-                        name="termsAndConditions"
+                        className="tc"
                         value="Accept"
                         required
                     />
 
-                    <label className="termsAndConditions"> I agree to the <Link to="/PictureThat/TermsAndConditions">Terms of Services <br></br> and Privacy Policy</Link></label><br></br>
+                    <label className="termsAndConditions"> By sining up, you agree to our <br></br> <Link to="/PictureThat/TermsAndConditions">Terms of Services and Privacy Policy</Link></label><br></br>
 
                         <button
                             id="signInButton"

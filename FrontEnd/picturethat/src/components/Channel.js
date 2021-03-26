@@ -20,14 +20,14 @@ import firebase from "../firebase.js";
             if(follow === false) {
                 setLiked(true);
                 setButton("UnFollow Channel")
-                if(following == false){
+                if(following === false){
                 firebase.FollowChannel(channelId);
                 }
               
            } else {
                setLiked(false);
                setButton("Follow Channel")
-               if(following == true){
+               if(following === true){
                firebase.UnFollowChannel(channelId);
                }
            }
@@ -47,7 +47,7 @@ import firebase from "../firebase.js";
                     <label className="labelHeader">Channel Name: {doc.id}</label>
                     <br/>
                     <br/>
-                    <label className="label">No of Followers:  </label>
+                    <label className="label">No of Followers: {doc.number_of_followers}</label>
                     <label className="label">No of Pictures: {doc.number_of_posts}</label>
                     <br/>
                     <button className="buttonChannel" onClick={() =>FollowChannel(doc.id)} >{button}</button>

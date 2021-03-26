@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './FullPost.css';
 import firebase from "../firebase.js";
-import ImageFeed from "./ImageFeed";
 import {setSelectedImgId} from "./ChannelPhotos";
 
 
@@ -73,7 +72,7 @@ const FullPost = () => {
                //let alreadyLiked = firebase.AlreadyLiked(postref, user);
                 //console.log(alreadyLiked);
                 //if(alreadyLiked == false){
-                    console.log("not liked, lets add!")
+                    
                     firebase.LikePost(selectedImg);
               // }
            } else {

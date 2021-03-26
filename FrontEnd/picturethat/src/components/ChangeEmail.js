@@ -46,7 +46,7 @@ const ChangeEmail = () => {
         }
 
         setEmailChangeError(emailChangeError);
-        if(isValid==true){
+        if(isValid===true){
             firebase.changeUserEmail(changeEmail);
         }
 
@@ -62,7 +62,7 @@ const ChangeEmail = () => {
 
                 <input 
                         type="email" 
-                        id="passwordInput" 
+                        id="eInput" 
                         className="inputboxSettings" 
                         placeholder="Enter Email" 
                         required
@@ -72,7 +72,7 @@ const ChangeEmail = () => {
 
                 <input 
                         type="email" 
-                        id="passwordInput" 
+                        id="ceInput" 
                         className="inputboxSettings" 
                         placeholder="Re-enter Email"
                         value= {confirmChangeEmail}
@@ -80,7 +80,7 @@ const ChangeEmail = () => {
                 />
                  <br></br>   
                  <Link to='/'><button
-                        id="signInButton" 
+                        id="siInButton" 
                         className="buttonSettings"
                         onClick= {validateEmail}>
                             Submit

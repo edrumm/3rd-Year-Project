@@ -2,45 +2,31 @@ import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
 //import 'antd/dist/antd.css';
-import {Avatar} from 'antd';
-import {UserOutlined} from '@ant-design/icons';
 import { useState } from 'react';
 import './editProfilePage.css';
 import './Pages.css';
 import firebase from "../firebase.js";
 
 //imports for the dropdown menu
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuItem from '@material-ui/core/MenuItem';
-import MenuList from '@material-ui/core/MenuList';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 
 //import for the photo camera icon
-import CameraAltIcon from '@material-ui/icons/CameraAlt';
-import { Button } from '@material-ui/core';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      display: 'flex',
-    },
-    paper: {
-      marginRight: theme.spacing(2),
-    },
-  }));
+
+// const useStyles = makeStyles((theme) => ({
+//     root: {
+//       display: 'flex',
+//     },
+//     paper: {
+//       marginRight: theme.spacing(2),
+//     },
+//   }));
 
  const EditProfile  = () => {
 
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-    const anchorRef = React.useRef(null);
 
     const [username, setUsername] = useState('');
-    console.log(username);
     const UpdateData = () => {
-        console.log(username);
         firebase.changeUserName(username);
     }
 
