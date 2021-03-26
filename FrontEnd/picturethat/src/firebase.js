@@ -7,7 +7,6 @@ const Auth = () => {
   return useContext(context);
 };
 
-// let user = null;
 
 const Login = async (email, password) => {
 
@@ -53,13 +52,7 @@ const Logout = async () => {
 
 };
 
-/**
- Under construction
- Testing needed
- Needs exporting
- Achievements needs implemented in users collection
- */
-
+// Needs implemented in front end
 const AchievementNumPosts = async () => {
   let uid = auth.currentUser.uid;
   let user = await firestore.collection('users').doc(uid).get();
@@ -348,10 +341,11 @@ const UploadPost = async (caption, loc, channel, image) => {
 
 }
 
-const DeletePost = async (url) => {
+const DeletePost = async (id) => {
   let uid = auth.currentUser.uid;
   let user = await firestore.collection('users').doc(uid).get();
-  let post = await firestore.collection('posts').doc(url).get();
+  let post = await firestore.collection('posts').doc(id).get();
+  let comments = await firestore.colleciton('comments').where('post', '==', id).get();
 
   let channelName = post.data().channel;
   channelName = channelName.replace('/channels/', '');
@@ -361,6 +355,10 @@ const DeletePost = async (url) => {
 
   await storageRef.delete();
   await post.update({ url: 'deleted' });
+
+  comments.forEach(comm => {
+    await firestore.collection('comments').doc(comm.id).delete();
+  });
 };
 
 
