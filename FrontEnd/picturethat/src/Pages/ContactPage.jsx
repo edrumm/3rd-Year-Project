@@ -12,16 +12,14 @@ const ContactPage  = () => {
         <div className= "signInWelcome">
             
             <img src={logo} alt="" className="logoimg" />
-            <div>
-                <h3>Contact Information</h3>
-            </div>
+            <div><h3>Contact Information</h3></div>
             <div>PictureThat has been created by Pronto</div>
             <br />
-            <div>Contact Us</div>
+            <div><h4>Contact Us</h4></div>
             <div>prontoenquiries@gmail.com</div>
             <br />
             <br />
-            <div>Address</div>
+            <div><h4>Address</h4></div>
             <div>Heriot Watt University</div>
             <div>EH14 4AS</div>
                 
