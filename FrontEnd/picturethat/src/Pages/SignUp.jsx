@@ -47,7 +47,6 @@ const SignUp  = () => {
         const passwordRequirements = new RegExp (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/);
         return passwordRequirements.test(userPasswordInput);
     }*/
-
     const validateForm = (e) => {
 
         /*arrays to hold errors set to empty array
@@ -96,10 +95,6 @@ const SignUp  = () => {
         setUsernameError(usernameError);
         console.log(isValid);*/
 
-
-        // var tcCheck = document.getElementById("termsAndConditions").checked;
-        
-        // if(tcCheck === true){
         let isValid = true;
 
         try {
@@ -149,9 +144,7 @@ const SignUp  = () => {
         } else {
           return false;
         }
-        // } else {
-        //     console.log("notchecked");
-        // }
+
     }
 
     return (
@@ -217,6 +210,7 @@ const SignUp  = () => {
                         type="checkbox"
                         id="termsAndConditions"
                         name="termsAndConditions"
+                        value="Accept"
                         required
                     />
 
