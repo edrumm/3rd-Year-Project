@@ -17,7 +17,7 @@ const ImageGrid = () => {
         <div className= "imageGrid">
             {docs && docs.map(doc => (
                 <div className="imageWrap" key={doc.id}>
-                      <Link to="/PictureThat/FullPostPage"><img src={doc.url} alt="" onClick={() => {setSelectedImgId = doc.id}}/></Link>
+                      <Link to="/PictureThat/ProfileFullPost"><img src={doc.url} alt="" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                 </div>
             ))}
         </div>
