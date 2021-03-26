@@ -29,13 +29,8 @@ const ImageFeed = () => {
         .catch(err => console.error(err));
       };
       getAll();
-    }, []);
-
-    // const report = async (postref) =>{
-    //     firebase.reportPost(postref);
-    //     console.log("reported?");
-    // }
-
+    });
+    
     const likepost = async (postref) => {
         const alreadyLiked = await firebase.AlreadyLiked(postref);
 
@@ -55,32 +50,6 @@ const ImageFeed = () => {
             }
         }
     };
-
-    //const testdoc = Getall();
-    //console.log(testdoc.documents);
-    //const  { docs }  = Getall();
-
-    // const getcposts = async () => {
-    //     // var d;
-    //     // await firebase.GetAllUserChannelPosts()
-    //     //     .then(posts => {
-    //     //         d = posts
-    //     //         console.log(d)
-    //     //     })
-    //     // return d;
-    //     // firebase.GetAllUserChannelPosts().then(function(result) {
-    //     //     console.log(result) // "Some User token"
-    //     //  })
-    // }
-
-    //return selectedImgId;
-
-    // const [showPopUp, setShowPopUp] = useState(false);
-    // const openPopUp = () => {
-    //     setShowPopUp(prev => !prev)
-    // };
-
-
     return (
 
         <div className="imageFeed">

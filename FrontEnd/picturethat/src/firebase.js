@@ -249,14 +249,17 @@ const deleteUser = () => {
   //need to delete db user info and posts
 }
 
-const reportPost = async (post) => {
-  const postref = firestore.collection('posts').doc(post);
+const reportPost = async (post, reportReason) => {
+  
+  const reportref = firestore.collection('reports').doc(post);
+  const username = auth.currentUser.displayName;
 
-  postref.update({
-    reported: true
-  })
+  reportref.set({
+    Post: post,
+    Username: username,
+    Reason: reportReason
+  });
 
-  firebase.analytics().logEvent('notification received', post);
 }
 
 const UploadPost = async (caption, loc, channel, image) => {
