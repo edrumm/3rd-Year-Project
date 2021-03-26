@@ -59,6 +59,14 @@ const Logout = async () => {
  Needs exporting
  Achievements needs implemented in users collection
  */
+
+const AchievementNumPosts = async () => {
+  let uid = auth.currentUser.uid;
+  let user = await firestore.collection('users').doc(uid).get();
+
+  return user.data().posts.length;
+};
+
 const AchievementUnlock = async (id) => {
   let username = auth.currentUser.displayName;
   let user = await firestore.collection('users').doc(auth.currentUser.uid).get();
@@ -250,7 +258,7 @@ const deleteUser = () => {
 }
 
 const reportPost = async (post, reportReason) => {
-  
+
   const reportref = firestore.collection('reports').doc();
   const username = auth.currentUser.displayName;
 
@@ -339,6 +347,21 @@ const UploadPost = async (caption, loc, channel, image) => {
   });
 
 }
+
+const DeletePost = async (url) => {
+  let uid = auth.currentUser.uid;
+  let user = await firestore.collection('users').doc(uid).get();
+  let post = await firestore.collection('posts').doc(url).get();
+
+  let channelName = post.data().channel;
+  channelName = channelName.replace('/channels/', '');
+  let channel = await firestore.collection('channels').doc(channelName).get();
+
+  let storageRef = await storage.refFromURL(post.data().url);
+
+  await storageRef.delete();
+  await post.update({ url: 'deleted' });
+};
 
 
 const AddComment = async (text, post) => {
@@ -599,7 +622,7 @@ const GetImg = (collection) => {
     return () => unsub();
   }, [collection])
   return { docs };
- 
+
 }
 
 const GetTopPosts = (collection) => {
@@ -621,7 +644,7 @@ const GetTopPosts = (collection) => {
       return () => unsub();
   }, [collection])
   return { docs };
- 
+
 }
 
 const GetSinglePost = (id) => {
