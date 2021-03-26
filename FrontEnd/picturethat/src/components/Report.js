@@ -5,6 +5,7 @@ import firebase from "../firebase.js";
 //import ImageFeed from "./ImageFeed";
 import {setSelectedImgId} from "./ImageFeed";
 import {sSelectedImgId} from './ChannelPhotos';
+import {SelectedImgId} from './TopPosts';
 
 
 
@@ -12,7 +13,8 @@ import {sSelectedImgId} from './ChannelPhotos';
 
 
 const FullPost = () => {
-    const selectedImg = (setSelectedImgId || sSelectedImgId);
+    const selectedImg = (setSelectedImgId || sSelectedImgId || SelectedImgId);
+    
     const singlePost = firebase.GetSinglePost(selectedImg);
 
     const [reason, setReason] = useState('');
@@ -21,6 +23,7 @@ const FullPost = () => {
     const RPost = () => {
         firebase.reportPost(selectedImg, reason);
         setReason("");
+
     }
 
    
@@ -29,9 +32,6 @@ const FullPost = () => {
 
     return (
         <>
-        <div className="backbutton">
-        <Link to="/PictureThat" className="fas fa-arrow-left" />
-        </div>
         <div className= "FullPostR">
                 <div class="cardR">
                     

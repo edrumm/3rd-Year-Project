@@ -3,10 +3,9 @@ import './ImageFeed.css';
 //import getImg from '../getImg';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase";
-import Footer from './footer';
 //import PopUp from '../components/PostPopUp';
 
-let setSelectedImgId;
+let SelectedImgId;
 
 
 const ImageFeed = () => {
@@ -66,7 +65,7 @@ const ImageFeed = () => {
                             </div>
                             </div>
                             <br></br>
-                            <label className="reportb">Report</label>
+                            <div className="reportb" onClick={() => { SelectedImgId = doc.id }}><Link to="/PictureThat/Report">Report</Link></div>
 
                     </div>
                     </div>
@@ -79,7 +78,7 @@ const ImageFeed = () => {
                     <div className="postDetailsContainer">
                     <div className="buttonfield">
                     <a onClick={() =>likepost(doc.id)} className={button} />
-                    <Link to="/PictureThat/TopFullPost"><a className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
+                    <Link to="/PictureThat/TopFullPost"><a className="far fa-comment" onClick={() => {SelectedImgId = doc.id}}/></Link>
                     </div>
                     <div className="">
                         <label className="bottomText">Score: {doc.likes}</label>
@@ -101,7 +100,7 @@ const ImageFeed = () => {
 }
 
 export default ImageFeed ;
-export {setSelectedImgId};
+export {SelectedImgId};
 
 //the source bellow was used to help set up how to send and get data from database
 //https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './FullPost.css';
 import firebase from "../firebase.js";
-import {setSelectedImgId} from "./TopPosts";
+import {SelectedImgId} from "./TopPosts";
 
 
 
@@ -10,13 +10,13 @@ import {setSelectedImgId} from "./TopPosts";
 
 
 const FullPost = () => {
-    const selectedImg = setSelectedImgId;
+    const selectedImg = SelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
     const getcomments = firebase.GetComments(selectedImg);
     //console.log(getcomments);
     //console.log(singlePost);
 
-    let currentPost = setSelectedImgId;    
+    let currentPost = SelectedImgId;    
     const[comment, setComment] = useState('');
     // const Imgid = require("./ImageFeed");
     //console.log(currentPost);
@@ -87,7 +87,7 @@ const FullPost = () => {
                                 <label className="location">{singlePost.location}</label>
                                 </div>
                                 <br></br>
-                                <label className="report">Report</label>
+                                <div className="reportb"><Link to="/PictureThat/Report">Report</Link></div>
                             </div>
                         <div>
                             <div className="imginfo">
