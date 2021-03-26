@@ -6,7 +6,7 @@
 
     position: absolute;
     left: calc(40vw - 10px);
-    top: 38%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
 }

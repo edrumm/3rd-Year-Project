@@ -19,6 +19,7 @@ const FullPost = () => {
 
     const RPost = () => {
         firebase.reportPost(selectedImg, reason);
+        setReason("");
     }
 
    
@@ -46,7 +47,7 @@ const FullPost = () => {
                         onChange= {(e) => {setReason(e.target.value)}}
                         />
                         <div>By reporting the post this will create a case which the admin team will look into</div>
-                        <button className="Rbutton" onClick={RPost}>Report</button>
+                        <button className="Rbutton" id="rtext" onClick={RPost}>Report</button>
                 </div>
         </div>
         

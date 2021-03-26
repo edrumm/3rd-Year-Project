@@ -24,6 +24,7 @@ const FullPost = () => {
 
     const handleUpload = () => {
         firebase.AddComment(comment, currentPost);
+        setComment("");
     };
 
    

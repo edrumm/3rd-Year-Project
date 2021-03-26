@@ -54,6 +54,7 @@ const ImageUpload = () => {
                 <input type="text" className="inputboxT" placeholder="Title" value= {caption} onChange= {(e) => {setTitle(e.target.value)}}/>
                 <input type="text" className="inputboxT" placeholder="Location" value= {loc} onChange= {(e) => {setLoc(e.target.value)}}/>
                 <input type="text" className="inputboxT" placeholder="Channel" value= {channel} onChange= {(e) => {setDescription(e.target.value)}}/>
+                <div>Post must follow the Terms and Conditions,<br/> They must not include people in them</div>
                 <Link to="/PictureThat" onClick={handleUpload}><button className="buttonUpload">Post</button></Link>
             </div>
         </div>
