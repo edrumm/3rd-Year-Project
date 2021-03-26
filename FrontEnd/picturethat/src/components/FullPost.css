@@ -177,7 +177,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.report{
+.reportb{
     margin: 10px;
     padding: 5px;
     height: 30px;
@@ -191,7 +191,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.report:hover {
+.reportb:hover {
     background-position: right center; /* change the direction of the change here */
     color: #fff;
     text-decoration: none;

@@ -128,7 +128,7 @@ const ImageFeed = () => {
                                     </div>
                                 </div>
                                 <br></br>
-                                <div className="reportb" onClick={() => { sSelectedImgId = doc.id }}><Link to="/PictureThat/ReportC">Report</Link></div>
+                                <Link to="/PictureThat/ReportC"><div className="reportb" onClick={() => { sSelectedImgId = doc.id }}>Report</div></Link>
 
                             </div>
                         </div>
@@ -150,7 +150,7 @@ const ImageFeed = () => {
                                     <br></br>
                                     <label>Channel: {doc.channelName} </label>
                                     <br></br>
-                                    <label>Date: </label>
+                                    <label>{new Date(doc.uploaddate.seconds * 1000).toLocaleDateString()}</label>
                                 </div>
                             </div>
 

@@ -97,7 +97,7 @@ const FullPost = () => {
                                 <br></br>
                                 <label className="channel">Channel: {singlePost.channelName}</label>
                                 <br></br>
-                                <label className="date">Date:</label>
+                                <label className="date">Date: </label>
                                 <br></br>
                             </div>
                         </div>  
@@ -107,7 +107,7 @@ const FullPost = () => {
                                     <label className="commentFormat">{doc.username}: </label>
                                     <label className="commentFormat">{doc.text}</label>
                                     <br></br>
-                                    <label className="commentFormat">Date:</label>   
+                                    <label className="commentFormat">{new Date(doc.uploaddate.seconds * 1000).toLocaleDateString()}</label>   
                         </div>
                         ))}
                         </div>

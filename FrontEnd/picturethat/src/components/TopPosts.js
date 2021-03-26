@@ -87,7 +87,7 @@ const ImageFeed = () => {
                         <br></br>
                         <label className="bottomText">Channel: {doc.channelName} </label>
                         <br></br>
-                        <label className="bottomText">Date: </label>
+                        <label className="bottomText">{new Date(doc.uploaddate.seconds * 1000).toLocaleDateString()}</label>
                     </div>
                 </div>
 

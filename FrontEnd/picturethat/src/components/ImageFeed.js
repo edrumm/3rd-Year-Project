@@ -35,6 +35,7 @@ const ImageFeed = () => {
     //     getAll();
     // });
     const { docs } = firebase.GetTopPosts('posts');
+    console.log(docs);
 
     const likepost = async (postref) => {
         const alreadyLiked = await firebase.AlreadyLiked(postref);
@@ -102,7 +103,7 @@ const ImageFeed = () => {
                                     <br></br>
                                     <label>Channel: {doc.channelName} </label>
                                     <br></br>
-                                    <label>Date: </label>
+                                    <label>{new Date(doc.uploaddate.seconds * 1000).toLocaleDateString()}</label>
                                 </div>
                             </div>
 

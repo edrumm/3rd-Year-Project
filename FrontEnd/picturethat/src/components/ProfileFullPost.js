@@ -88,7 +88,8 @@ const PFullPost = () => {
                                 <br></br>
                                 <label className="location">{singlePost.location}</label>
                                 </div>
-                               
+                                <br></br>
+                                
                             </div>
                         <div>
                             <div className="imginfo">
@@ -106,7 +107,7 @@ const PFullPost = () => {
                                     <label className="commentFormat">{doc.username}: </label>
                                     <label className="commentFormat">{doc.text}</label>
                                     <br></br>
-                                    <label className="commentFormat">Date:</label>   
+                                    <label className="commentFormat">{new Date(doc.uploaddate.seconds * 1000).toLocaleDateString()}</label>   
                         </div>
                         ))}
                         </div>
