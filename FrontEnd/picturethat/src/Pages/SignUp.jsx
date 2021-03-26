@@ -183,6 +183,7 @@ const SignUp  = () => {
                         id="CemailInput"
                         className="inputbox"
                         placeholder="Re-enter Email Address"
+                        autoFocus required
                         value= {confirmEmail}
                         onChange= {(e) => {setConfirmEmail(e.target.value)}}
                     />
@@ -202,6 +203,7 @@ const SignUp  = () => {
                         id="CpasswordInput"
                         className="inputbox"
                         placeholder="Re-enter Password"
+                        autoFocus required
                         value= {confirmPassword}
                         onChange= {(e) => {setConfirmPassword(e.target.value)}}
                     />
@@ -209,12 +211,12 @@ const SignUp  = () => {
                     <input
                         type="checkbox"
                         id="termsAndConditions"
-                        name="termsAndConditions"
+                        className="tc"
                         value="Accept"
                         required
                     />
 
-                    <label className="termsAndConditions"> I agree to the <Link to="/PictureThat/TermsAndConditions">Terms of Services <br></br> and Privacy Policy</Link></label><br></br>
+                    <label className="termsAndConditions"> By sining up, you agree to our <br></br> <Link to="/PictureThat/TermsAndConditions">Terms of Services and Privacy Policy</Link></label><br></br>
 
                         <button
                             id="signInButton"

@@ -21,6 +21,9 @@
     background-color: white;
 }
 
+.tc{
+    display: none;
+}
 
 .signup{
     position: fixed;
