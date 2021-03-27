@@ -98,6 +98,7 @@ const ImageFeed = () => {
             <div className="backbuttonC">
                 <Link to="/PictureThat/ChannelsPage" className="fas fa-arrow-left" />
             </div>
+
             <div className="imageFeed">
                 <div class="card">
 
@@ -115,6 +116,7 @@ const ImageFeed = () => {
 
 
                 </div>
+                <div className="whitespace" />
                 {docs && docs.map(doc => (
                     <div class="post" key={doc.id}>
                         <div className="postDetailsContainer">

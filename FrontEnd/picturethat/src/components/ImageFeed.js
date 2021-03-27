@@ -20,8 +20,8 @@ const ImageFeed = () => {
     //const [docs, setDocs] = useState([]);
     const [button, setButton] = useState("far fa-heart");
 
-    const test = firebase.newChannelFeed();
-    console.log(test);
+    // const test = firebase.newChannelFeed();
+    // console.log(test);
     // useEffect(() => {
     //     const getAll = async () => {
     //         await firebase.GetAllUserChannelPosts()

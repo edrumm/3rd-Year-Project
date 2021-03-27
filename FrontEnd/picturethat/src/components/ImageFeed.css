@@ -14,6 +14,8 @@
     transform: translate(-50%, -50%);
 }
 
+
+
 .post {
     padding-bottom: 4%;
     border-radius: 15px;
@@ -37,6 +39,10 @@
     margin-bottom: -4px;
     border-left: solid 1px lightgray;
     border-right: solid 1px lightgray;
+}
+
+.whitespace{
+    padding-bottom: 10rem;
 }
 
 .buttonfield{
