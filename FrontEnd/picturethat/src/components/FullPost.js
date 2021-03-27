@@ -6,10 +6,6 @@ import firebase from "../firebase.js";
 import {setSelectedImgId} from "./ImageFeed";
 
 
-
-
-
-
 const FullPost = () => {
     const selectedImg = setSelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
@@ -24,6 +20,7 @@ const FullPost = () => {
 
     const handleUpload = () => {
         firebase.AddComment(comment, currentPost);
+        setComment('');
     };
 
    

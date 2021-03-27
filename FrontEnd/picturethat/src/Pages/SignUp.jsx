@@ -5,31 +5,27 @@ import logo from './logo.png';
 import {useState} from 'react';
 import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import {Login, Signup} from '../firebase';
 import validate from '../validate';
 
 const SignUp  = () => {
+    const Swal = require('sweetalert2');
 
+    const[username, setUsername] = useState('');
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
     const[confirmEmail, setConfirmEmail] = useState('');
     const[confirmPassword, setConfirmPassword] = useState('');
 
-    // const[emailError, setEmailError] = useState({});
-    // const[passwordError, setPasswordError] = useState({});
-
-    const[username, setUsername] = useState('');
-    // const[usernameError, setUsernameError] = useState('');
-
-
-
-    //boolean isValid to check if credentials are valid set to true
-    // var isValid = false;
+    const[emailError, setEmailError] = useState({});
+    const[passwordError, setPasswordError] = useState({});
+    const[usernameError, setUsernameError] = useState({});
 
     const history = useHistory();
 
-    /*const checkUsername = (userNameInput) => {
+    const checkUsername = (userNameInput) => {
         const usernameRequirements = new RegExp (/^[a-z\d]{5,20}$/i);
         return usernameRequirements.test(userNameInput);
     }
@@ -37,65 +33,95 @@ const SignUp  = () => {
     const checkEmail = (userEmailInput) => {
 
         //link for the regex used
-        //https://sigparser.com/developers/email-parsing/regex-validate-email-address/
+        //https://stackoverflow.com/questions/16200965/regular-expression-validate-gmail-addresses
 
-        const emailRequirements = new RegExp (/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/)
+        const emailRequirements = new RegExp (/([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@gmail([\.])com/g);
         return emailRequirements.test(userEmailInput);
     }
 
     const checkPassword = (userPasswordInput) => {
+
+        //link for regex used
+        //https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
+
         const passwordRequirements = new RegExp (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/);
         return passwordRequirements.test(userPasswordInput);
-    }*/
+    }
     const validateForm = (e) => {
-
-        /*arrays to hold errors set to empty array
-        const emailError = {};
-        const passwordError = {};
-
-        if (!checkEmail(email)) {
-                emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
-                alert(emailError.InvalidCharacters);
-        }
-
-        if(!(email === confirmEmail)){
-            emailError.EmailMismatch = "Re-entered email MUST be the same as email";
-            alert(emailError.EmailMismatch);
-        }
-
-        if((checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail)){
-            console.log("Valid email address");
-        }
-
-        if(!checkPassword(password)){
-            passwordError.InvalidCharacters = "Password MUST contain at least one number/lowercase/uppercase letter and be at least 6 characaters in length";
-            alert(passwordError.InvalidCharacters);
-        }
-
-        if(!(password === confirmPassword)){
-            passwordError.PasswordMismatch = "Re-entered password MUST be the same as password";
-            alert(passwordError.PasswordMismatch);
-        }
-
-        if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword)){
-            console.log("Valid password");
-        }
-
-        if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword) && (checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail) && checkUsername(username)){
-            isValid = true;
-            console.log(email);
-            console.log(password);
-        }
-        else{
-            isValid = false;
-        }
-
-        setEmailError(emailError);
-        setPasswordError(passwordError);
-        setUsernameError(usernameError);
-        console.log(isValid);*/
-
+        
         let isValid = true;
+
+         //arrays to hold errors set to empty array
+         const emailError = {};
+         const passwordError = {};
+         const usernameError = {};
+
+        if(!checkUsername(username)){
+            usernameError.InvalidCharacters = "Username must be longer than 5 characters";
+            Swal.fire({
+               icon: 'error',
+               title: 'Oops...',
+               text: usernameError.InvalidCharacters,
+             });     
+        }
+
+         if (!checkEmail(email)) {
+                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Oops...',
+                     text: emailError.InvalidCharacters,
+                   });
+         }
+ 
+         if(!(email === confirmEmail)){
+             emailError.EmailMismatch = "Re-entered email MUST be the same as email";
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Oops...',
+                 text: emailError.EmailMismatch,
+               });
+         }
+ 
+         if((checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail)){
+             console.log("Valid email address");
+         }
+
+         if(!checkPassword(password)){
+             passwordError.InvalidCharacters = "Password MUST contain at least one number/lowercase/uppercase letter and be at least 6 characaters in length";
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Oops...',
+                 text: passwordError.InvalidCharacters,
+               });
+         }
+ 
+         if(!(password === confirmPassword)){
+             passwordError.PasswordMismatch = "Re-entered password MUST be the same as password";
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Oops...',
+                 text: passwordError.PasswordMismatch,
+               });
+         }
+ 
+         if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword)){
+             console.log("Valid password");
+         }
+ 
+         if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword) && (checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail) && checkUsername(username)){
+             isValid = true;
+             console.log(email);
+             console.log(password);
+         }
+         else{
+             isValid = false;
+         }
+ 
+         setEmailError(emailError);
+         setPasswordError(passwordError);
+         setUsernameError(usernameError);
+         console.log(isValid);
 
         try {
           let credentials = {
@@ -110,7 +136,7 @@ const SignUp  = () => {
           isValid = true;
 
         } catch (err) {
-          alert(err.message);
+          //alert(err.message);
           isValid = false;
         }
 

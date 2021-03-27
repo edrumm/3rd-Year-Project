@@ -80,10 +80,12 @@ const ImageFeed = () => {
 
                     <div className="bottominfo">
                     <div className="postDetailsContainer">
+
                     <div className="buttonfield">
-                    <div onClick={() =>likepost(doc.id)} className={button} />
-                    <Link to="/PictureThat/FullPostPage"><div className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
+                        <div onClick={() =>likepost(doc.id)} className={button} />
+                         <Link to="/PictureThat/FullPostPage"><div className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
                     </div>
+
                     <div className="">
                         <label className="bottomText">Score: {doc.likes}</label>
                         <br></br>
