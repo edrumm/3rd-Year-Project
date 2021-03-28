@@ -1,0 +1,43 @@
+/*-----------------------Image Wrap ---------------------------------------*/
+.imageWrap{
+    border-radius: 10px;
+    overflow: hidden;
+    height: 0;
+    padding: 50% 0;
+    position: relative;
+    opacity: 0.8;
+}
+
+.imageWrap img{
+    min-width: 100%;
+    min-height: 100%;
+    max-width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.imageGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-top: 35px;
+    margin-left: 95px;
+    margin-right: 95px;
+    margin-bottom: 95px;
+    grid-gap: 40px;
+    text-align: center;
+    height: 330px;
+    overflow-y: scroll;
+}
+
+@media (max-width: 700px){
+    .imageGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1000px){
+    .imageGrid {
+        grid-template-columns: 1fr;
+    }
+}

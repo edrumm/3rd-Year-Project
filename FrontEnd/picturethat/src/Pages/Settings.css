@@ -1,0 +1,101 @@
+.Account{
+    text-align: center;
+    overflow: scroll;
+    height: 35rem;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    position: relative;
+    overflow-y: scroll;
+}
+
+.inputFields{
+    padding-top: 20px;
+    margin-left: 30%;
+    padding-bottom: 20px;
+    text-align: center;
+    position: relative;
+}
+
+.SearchBar{
+    width: 40%;
+    text-align: center;
+    height: auto;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+
+    border-radius: 20px;
+    border: solid 1px #efefef;
+    background-color: white;
+}
+
+.searchBarContainer{
+    padding-top: 70px;
+    padding-left: 30px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.settingsDivision{
+    text-align: center;
+}
+
+.inputboxSettings{
+    width: 300px;
+    height: 38px;
+    margin: 3px 40px 3px;
+    border-radius: 5px;
+    border: solid 1px #efefef;
+    background-color: white;
+}
+
+.buttonSettings{
+    padding: 1% 3%;
+    width: 300px;
+    height: 38px;
+    margin-top: 8px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 8px;
+
+    border: 1px solid transparent;
+    color: white;
+    background-color: #0095f6;
+    background-color: rgba(var(--d69,0,149,246),1);
+    border-radius: 5px;
+}
+.changePassword{
+    text-align: center;
+    border: solid 1px #efefef;
+    background-image: white;
+    border-radius: 5px;
+    width: 58%;
+}
+
+.h4, p{
+    text-align: center;
+}
+
+
+
+
+/*-----------------------------Scaling Screen Size---------------------------------------------*/
+
+@media (max-width: 700px){
+    .inputboxSettings{
+        width: 130px;
+        height: 20px;
+    }
+
+    .buttonSettings{
+        width: 130px;
+        height: 20px;
+        font-size: 10px;
+    }
+}
+
+
+@media (max-height: 700px){
+    
+}
+

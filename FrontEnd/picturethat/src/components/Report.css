@@ -1,0 +1,187 @@
+.FullPostR{
+    align-items: center;
+    text-align: center;
+    max-width: 63.5rem;
+    max-height: 31.75rem;
+    margin-top: 50px;
+    position: absolute;
+    left: calc(40vw - 10px);
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.Rbutton{
+    width: 6rem;
+}
+
+
+
+
+
+
+
+
+.cardR {
+    display: flex;
+    flex-direction: row;
+    border-radius: 15px;
+    left: 10px;
+}
+
+
+
+.inputTextR{
+    width: 15rem;
+    height: 3rem;
+    margin-top: 7px;
+    border-radius: 20px;
+    border-left: none;
+    border: solid 1px lightgray;
+    background-color: white;
+}
+
+.imagestyleR {
+    border-radius: 20px;
+    box-shadow: -2px 0px 4px 3px lightgray;
+    min-height: 25rem;
+    min-width: 50%;
+    max-height: 31.75rem;
+    max-width: 30rem;
+    margin-right: 2rem;
+    overflow: hidden;
+}
+
+
+
+
+
+
+.commentfieldR{
+    border-top: solid 1.5px lightgray;
+    border-bottom: solid 1.5px lightgray;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    height: 9rem;
+    text-align: center;
+}
+
+.backbutton{
+  position: absolute;
+  left: 1.5rem;
+  top: 5rem;
+
+}
+
+
+
+
+.fullpostinfoR {
+    width: 20rem;
+    max-height: 31.75rem;
+
+    border: solid 1px lightgray;
+    border-radius: 20px;
+    box-shadow: 2px 0px 4px 3px lightgray;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: white;
+   
+   /* box-shadow: 0px 2px 7px 3px lightgray; */
+}
+
+
+
+
+
+
+
+
+.commentinput{
+    width: 50%;
+    height: 38px;
+    margin: 3px 40px 3px;
+    margin-top: 7px;
+    border-radius: 5px;
+    border: solid 1px lightgray;
+    background-color: white;
+}
+
+
+
+.postDetails {
+    margin-top: 10px;
+    text-align: left;
+    width: 70%;
+}
+
+@media screen and (max-height: 900px) {
+    .imageFeed{
+        margin-top: 100px;
+        
+    }
+}
+
+@media screen and (max-height: 790px) {
+    .imageFeed{
+        margin-top: 110px;
+        
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .imageFeed{
+        margin-top: 130px;
+        
+    }
+}
+
+@media screen and (max-height: 690px) {
+    .imageFeed{
+        margin-top: 150px;
+        
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .imageFeed{
+        margin-top: 170px;
+        
+    }
+}
+
+@media screen and (max-height: 590px) {
+    .imageFeed{
+        margin-top: 200px;
+        
+    }
+}
+
+
+
+@media screen and (max-width: 700px) {
+
+    .imageFeed{
+        min-width: 37.5rem;
+    }
+
+}
+
+@media screen and (max-width: 610px) {
+    .imageFeed{
+        min-width: 570px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .imageFeed{
+        min-width: 400px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .imageFeed{
+        min-width: 350px;
+    }
+}

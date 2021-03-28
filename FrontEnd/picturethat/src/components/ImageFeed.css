@@ -1,0 +1,229 @@
+.imageFeed{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 43.75rem;
+    max-height: 43.75rem;
+
+    margin-top: 50px;
+    position: absolute;
+    left: calc(40vw - 10px);
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+.post {
+    padding-bottom: 4%;
+    border-radius: 15px;
+}
+
+.Title {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+}
+
+.location{
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.image{
+    min-height: 25rem;
+    min-width: 50%;
+    max-height: 43.75rem;
+    max-width: 100%;
+    margin-bottom: -4px;
+    border-left: solid 1px lightgray;
+    border-right: solid 1px lightgray;
+}
+
+.whitespace{
+    padding-bottom: 10rem;
+}
+
+.buttonfield{
+    border-bottom: solid 1px lightgray;
+    display: flex;
+    flex-direction: row;
+    padding-left: 1rem;
+    background-color: white;
+}
+
+.far.fa-comment {
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.5rem;
+}
+
+.far.fa-heart {
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.5rem;
+}
+
+.fas.fa-heart {
+    color: black;
+    text-decoration: none;
+    padding: 0.5rem 0.2rem;
+    font-size: 1.5rem;
+}
+
+.topinfo{
+    max-height: 4rem;
+    max-width: 100%;
+    border: solid 1px lightgray;
+    border-bottom: none;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    background-color: white;    
+}
+
+.bottominfo {
+    max-height: 9rem;
+    max-width: 100%;
+    border: solid 1px lightgray;
+    border-top: none;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: white;
+}
+
+.profileimage {
+    border-radius: 44px;
+    height: 44px;
+    width: 44px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+
+.profileName {
+    padding-bottom: 0.5rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.column{
+    float: left;
+}
+
+.reportb {
+   margin: 10px;
+   padding: 5px;
+   height: 30px;
+   text-align: center;
+   text-transform: uppercase;
+   transition: 0.5s;
+   background-size: 200% auto;         
+   border-radius: 5px;
+   margin-left: 7.4rem;
+   cursor: pointer;
+   font-family: 'Montserrat', sans-serif;
+ }
+
+ .reportb:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+   background-image: linear-gradient(to right, #D31027 0%, #EA384D  51%, #D31027  100%)
+ }
+
+
+.profilecard{
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.user {
+    text-align: bottom;
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+}
+
+.postDetails {
+    margin-top: 10px;
+    text-align: left;
+    width: 70%;
+}
+
+.bottomText{
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media screen and (max-height: 900px) {
+    .imageFeed{
+        margin-top: 100px;    
+    }
+}
+
+@media screen and (max-height: 790px) {
+    .imageFeed{
+        margin-top: 110px;
+    }
+}
+
+@media screen and (max-height: 750px) {
+    .imageFeed{
+        margin-top: 130px;
+        
+    }
+}
+
+@media screen and (max-height: 690px) {
+    .imageFeed{
+        margin-top: 150px;
+        
+    }
+}
+
+@media screen and (max-height: 650px) {
+    .imageFeed{
+        margin-top: 170px;   
+    }
+}
+
+@media screen and (max-height: 590px) {
+    .imageFeed{
+        margin-top: 200px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .imageFeed{
+        min-width: 37.5rem;
+    }
+
+}
+
+@media screen and (max-width: 610px) {
+    .imageFeed{
+        min-width: 570px;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .imageFeed{
+        min-width: 400px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .imageFeed{
+        min-width: 350px;
+    }
+}
+/* https://gradientbuttons.colorion.co/ */
+/* used for gradient colour of report button */
+  
