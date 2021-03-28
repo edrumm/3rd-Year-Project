@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Channel.css';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase.js";
-
+import {motion} from 'framer-motion';
 
     let setSelectedChannel;
 
@@ -34,14 +34,9 @@ import firebase from "../firebase.js";
         }
         return(
             <>
-            <div className="Channel">
+            <motion.div className="Channel" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
             { docs && docs.map(doc => (
             <div class="card" key={doc.id}>
-
-                
-                {/* <div className="column channelPhoto">
-                    <img src={cat} alt="" className="Channelimg"/>
-                </div> */}
                 
                 <div className="channelInfo">
                     <label className="labelHeader">Channel Name: {doc.id}</label>
@@ -53,19 +48,12 @@ import firebase from "../firebase.js";
                     <button className="buttonChannel" onClick={() =>FollowChannel(doc.id)} >{button}</button>
                     <Link to="/PictureThat/channelphotospage" ><button className="buttonChannel" onClick={() => {setSelectedChannel = doc.id}} >See Channel</button></Link>
                 </div>
-                
-
-                
             </div>
             ))}
-            </div>
-            
+            </motion.div>
             </>
-            
-
         )
     }
-
 
 export default Channel;
 export {setSelectedChannel};

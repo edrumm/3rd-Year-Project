@@ -10,22 +10,72 @@ import validate from '../validate';
 
 const SignIn  = () => {
 
+  const Swal = require('sweetalert2');
+
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-
-    // const[emailError, setEmailError] = useState({});
-    // const[passwordError, setPasswordError] = useState({});
-
-    // const onSubmit = (e) => {
-    //     e.preventDefault();
-    //     const isValid = validateForm();
-    // }
+  
+    const[emailError, setEmailError] = useState({});
+    const[passwordError, setPasswordError] = useState({});
 
     const history = useHistory();
+
+    const checkEmail = (userEmailInput) => {
+
+      //link for the regex used
+      //https://stackoverflow.com/questions/16200965/regular-expression-validate-gmail-addresses
+
+      const emailRequirements = new RegExp (/([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@gmail([\.])com/g);
+      return emailRequirements.test(userEmailInput);
+  }
+
+    const checkPassword = (userPasswordInput) => {
+
+      //link for regex used
+      //https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
+
+      const passwordRequirements = new RegExp (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/);
+      return passwordRequirements.test(userPasswordInput);
+  }
 
     const validateForm = () => {
 
         let isValid = true;
+
+        const emailError = {};
+        const passwordError = {};
+         
+
+         if (!checkEmail(email)) {
+                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
+                 Swal.fire({
+                     icon: 'error',
+                     title: 'Oops...',
+                     text: emailError.InvalidCharacters,
+                   });
+         }
+ 
+         if(!checkPassword(password)){
+             passwordError.InvalidCharacters = "Your Password entered is incorrect. Try again.";
+             Swal.fire({
+                 icon: 'error',
+                 title: 'Oops...',
+                 text: passwordError.InvalidCharacters,
+               });
+         }
+
+         if(checkPassword(password) && checkEmail(email)){
+             isValid = true;
+             console.log(email);
+             console.log(password);
+         }
+         else{
+             isValid = false;
+         }
+ 
+         setEmailError(emailError);
+         setPasswordError(passwordError);
+         console.log(isValid);
 
         try {
           let credentials = {
@@ -37,7 +87,6 @@ const SignIn  = () => {
           isValid = true;
 
         } catch (err) {
-          alert(err.message);
           isValid = false;
         }
 
@@ -58,9 +107,6 @@ const SignIn  = () => {
           history.push('/');
           return false;
         }
-
-        /* TO DO : Add functionality for this to take user to the landing page if all clear*/
-
     }
 
 
@@ -75,7 +121,6 @@ const SignIn  = () => {
             <div className="whiteSpace"></div>
 
             <div>
-                {/* <form onSubmit = {onSubmit}> */}
                 <input
                     type="text"
                     id="emailInput"
@@ -110,16 +155,8 @@ const SignIn  = () => {
                 <div className="or"><span>OR</span>
                     <div className="whiteSpace"></div>
                 </div>
-
-                {/* <button
-                    id="signInButton"
-                    className="button">
-                    <Link to="/PictureThat">Guest</Link>
-                </button> */}
-
                 <Link to="/ForgotPassword">Forgot Password?</Link>
                 <Link to="/SignUp"> Sign Up</Link>
-                {/* </form> */}
             </div>
         </div>
         <Footer />

@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import firebase from "../firebase.js";
 import './UploadImage.css';
+import {motion} from 'framer-motion';
 
 const ImageUpload = () => {
-
-    
-    //console.log(username);
 
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
@@ -32,7 +30,6 @@ const ImageUpload = () => {
             setLocalimg(null);
             setError('Incorrect Image type, please select a PNG or JPEG image');
         }
-        
     };
 
     const handleUpload = () => {
@@ -42,7 +39,7 @@ const ImageUpload = () => {
 
     return (
         <>
-        <div className="container">
+        <motion.div className="container" initial={{opacity: 0}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
             <img src={localimg || "https://via.placeholder.com/400x380.png?text=Upload+Image"} alt="" className="imagesDiv" />
             { error && <div className="error">{error}</div>}
             <div className="button-wrapper">
@@ -57,7 +54,7 @@ const ImageUpload = () => {
                 <div>Post must follow the Terms and Conditions,<br/> They must not include people in them</div>
                 <Link to="/PictureThat" onClick={handleUpload}><button className="buttonUpload">Post</button></Link>
             </div>
-        </div>
+        </motion.div>
         </>
     );
 };

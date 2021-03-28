@@ -2,51 +2,57 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './FullPost.css';
 import firebase from "../firebase.js";
-//import ImageFeed from "./ImageFeed";
 import {setSelectedImgId} from "./ImageFeed";
-
-
-
-
-
 
 const FullPost = () => {
     const selectedImg = setSelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
     const getcomments = firebase.GetComments(selectedImg);
-    //console.log(getcomments);
-    //console.log(singlePost);
+    const postsLikes = firebase.GetLikes(selectedImg);
 
     let currentPost = setSelectedImgId;    
     const[comment, setComment] = useState('');
-    // const Imgid = require("./ImageFeed");
-    //console.log(currentPost);
+    const [button, setButton] = useState();
+    const [loaded, setLoaded] = useState(false);
+
+    const likedstate = async () => {
+        const alreadyLiked =  await firebase.AlreadyLiked(currentPost);
+        if(alreadyLiked === false){
+            setButton("far fa-heart")
+       } else {
+            setButton("fas fa-heart")
+       }
+    }
+    if(loaded===false){
+    likedstate();
+    setLoaded(true);
+    }
 
     const handleUpload = () => {
         firebase.AddComment(comment, currentPost);
         setComment("");
     };
 
-   
     const [liked, setLiked] = useState(false);
-    const [button, setButton] = useState("far fa-heart");
 
     const likepost = async (postref) => {
-        const alreadyLiked = await firebase.AlreadyLiked(postref);
-            if(liked === false) {
-                setLiked(true);
-                setButton("fas fa-heart")
-                if (alreadyLiked == false) {
-                    firebase.LikePost(postref);
-                }
-           } else {
-               setLiked(false);
-               setButton("far fa-heart")
-                if (alreadyLiked == true) {
-                    firebase.UnlikePost(postref);
-                }
+        const alreadyLiked =  await firebase.AlreadyLiked(postref);
+
+        if(liked === false) {
+            setLiked(true);
+            setButton("fas fa-heart")
+        
+            if(alreadyLiked === false){
+                firebase.LikePost(postref);
            }
-        };
+       } else {
+           setLiked(false);
+           setButton("far fa-heart")
+           if(alreadyLiked === true){
+               firebase.UnlikePost(postref);
+          }
+       }
+    };
 
     return (
         <>
@@ -55,14 +61,11 @@ const FullPost = () => {
         </div>
         <div className= "FullPost">
                 <div class="card">
-                    
                     <div>
                         <img src={singlePost.url} alt="" className="imagestyle"/>
                     </div>
-                    
                     <div className="fullpostinfo">
                         <div className="headpart">
-                        
                             <div className="profilecard">
                                 <label className="profileN">{singlePost.UserName}</label>
                                 <br></br>
@@ -94,8 +97,8 @@ const FullPost = () => {
 
                         <div className="likesection">
                             <div className="like">
-                                <a onClick={() =>likepost()} className={button} />
-                                <label className="score">Score: {singlePost.likes}</label>
+                            <div onClick={() =>likepost(singlePost.id)} className={button} />
+                                <label className="score">Score: {postsLikes.likes}</label>
                             </div>
                         </div>
 
@@ -105,7 +108,6 @@ const FullPost = () => {
                         </div>
                 </div>
         </div>
-        
     </div>
     </>
     )

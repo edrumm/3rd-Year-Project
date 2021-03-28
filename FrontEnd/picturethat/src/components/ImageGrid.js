@@ -2,23 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import firebase from "../firebase.js";
 import './ImageGrid.css';
-import {useHistory} from 'react-router-dom';
+import {motion} from 'framer-motion';
 
 let setSelectedImgId;
 
 const ImageGrid = () => {
-    //const user = firebase.getUser().displayName;
     const { docs } = firebase.GetPostofUser();
-    //console.log(docs);
-
-    const history = useHistory();
-
     return (
         <div className= "imageGrid">
             {docs && docs.map(doc => (
-                <div className="imageWrap" key={doc.id}>
-                      <Link to="/PictureThat/ProfileFullPost"><img src={doc.url} alt="" onClick={() => {setSelectedImgId = doc.id}}/></Link>
-                </div>
+                <motion.div className="imageWrap" key={doc.id} layout whileHover={{opacity: 1}} >
+                      <Link to="/PictureThat/FullPostPage"><motion.img src={doc.url} alt="" initial={{opacity: 0}} animate= {{opacity: 1}} transition={{delay: 0.2}} onClick={() => {setSelectedImgId = doc.id}}/></Link>
+                </motion.div>
             ))}
         </div>
     )

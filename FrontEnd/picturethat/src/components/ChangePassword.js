@@ -5,6 +5,7 @@ import "../Pages/Settings.css";
 import firebase from "../firebase.js";
 
 const ChangePassword = () => {
+    const Swal = require('sweetalert2');
 
     const[changePassword, setChangePassword] = useState('');
     const[confirmChangePassword, setConfirmChangePassword] = useState('');
@@ -26,14 +27,22 @@ const ChangePassword = () => {
 
         if(!checkPassword(changePassword)){
             passwordError.InvalidCharacters = "Password MUST contain at least one number/lowercase/uppercase letter and be at least 6 characaters in length";
-            alert(passwordError.InvalidCharacters);
             isValid = false;
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: passwordError.InvalidCharacters,
+              });
         }
 
         if(!(changePassword === confirmChangePassword)){
             passwordError.PasswordMismatch = "Re-entered password MUST be the same as password";
-            alert(passwordError.PasswordMismatch);
             isValid = false;
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: passwordError.PasswordMismatch,
+              });
         }
         
         if((checkPassword(changePassword) && checkPassword(confirmChangePassword)) && (changePassword === confirmChangePassword)){
@@ -41,10 +50,13 @@ const ChangePassword = () => {
             isValid = true;
         }
   
-
         setPasswordChangeError(passwordChangeError);
         if(isValid===true){
             firebase.changeUserPass(changePassword);
+            Swal.fire({
+                icon: 'success',
+                title: 'Password has been changed',
+              });
         }
 
     }
@@ -53,10 +65,8 @@ const ChangePassword = () => {
         <>
         <div className="changePassword">
             <form>
-
                 <label>Change Password: </label>
                 <br></br>
-
                 <input 
                         type="password" 
                         id="passInput" 

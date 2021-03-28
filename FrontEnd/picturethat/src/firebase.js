@@ -661,21 +661,40 @@ const GetTopPosts = (collection) => {
   const [docs, setDocs] = useState([]);
 
   useEffect(() => {
-      const unsub = firestore.collection(collection)
-          .orderBy('likes', 'desc')
-          .limit(10)
-          .onSnapshot((snap) => {
-              let documents = [];
-              snap.forEach(doc => {
-                  documents.push({...doc.data(), id: doc.id})
-          });
-          setDocs(documents);
+    const unsub = firestore.collection(collection)
+      .orderBy('likes', 'desc')
+      .limit(10)
+      .onSnapshot((snap) => {
+        let documents = [];
+        snap.forEach(doc => {
+          documents.push({ ...doc.data(), id: doc.id })
+        });
+        setDocs(documents);
       })
 
-      return () => unsub();
+    return () => unsub();
   }, [collection])
   return { docs };
 
+}
+
+const GetLikes = (post) => {
+
+ 
+  var docRef = firestore.collection("posts").doc(post);
+  const [docs, setDocs] = useState([]);
+
+  docRef.get().then((doc) => {
+    if (doc.exists) {
+      setDocs(doc.data())
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+  });
+  return docs;
 }
 
 const GetSinglePost = (id) => {
@@ -695,7 +714,9 @@ const GetSinglePost = (id) => {
     return () => { isMounted = false };
   }, [])
 
-    return docs;
+  return docs;
+
+
 
 }
 
@@ -704,19 +725,18 @@ const GetSingleChannel = (channel) => {
   const [docs, setDocs] = useState([]);
   let isMounted = true;
   useEffect(() => {
-  firestore
-    .collection('channels').doc(channel)
-    .get()
-    .then( (doc) => {
-       if (isMounted){
-        //for (let doc of querySnapshot.docs) {
-          setDocs({...doc.data(), id: doc.id})
+    firestore
+      .collection('channels').doc(channel)
+      .get()
+      .then((doc) => {
+        if (isMounted) {
+          //for (let doc of querySnapshot.docs) {
+          setDocs({ ...doc.data(), id: doc.id })
         }
-        });
-        return () => { isMounted = false};
-      }, [])
+      });
+    return () => { isMounted = false };
+  }, [])
 
-  //console.log(docs);
   return docs;
 
 
@@ -913,7 +933,7 @@ export default {
   reportPost,
   GetTopPosts,
   GetSingleChannel,
-  //newChannelFeed
+  GetLikes
 };
 
 export { Auth, Login, Signup, Logout, AchievementUnlock };

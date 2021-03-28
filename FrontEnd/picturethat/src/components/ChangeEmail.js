@@ -4,8 +4,8 @@ import {useState} from 'react';
 import "../Pages/Settings.css";
 import firebase from "../firebase.js";
 
-
 const ChangeEmail = () => {
+    const Swal = require('sweetalert2');
 
     const[changeEmail, setChangeEmail] = useState('');
     const[confirmChangeEmail, setConfirmChangeEmail] = useState('');
@@ -30,14 +30,22 @@ const ChangeEmail = () => {
 
         if (!checkEmail(changeEmail)) {
             emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
-            alert(emailError.InvalidCharacters);
             isValid = false;
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: emailError.InvalidCharacters,
+              });
         }
 
         if(!(changeEmail === confirmChangeEmail)){
             emailError.EmailMismatch = "Re-entered email MUST be the same as email";
-            alert(emailError.EmailMismatch);
-            isValid = false
+            isValid = false;
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: emailError.InvalidCharacters,
+              });
         }
         
         if((checkEmail(changeEmail) && checkEmail(confirmChangeEmail)) && (changeEmail === confirmChangeEmail)){
@@ -48,18 +56,19 @@ const ChangeEmail = () => {
         setEmailChangeError(emailChangeError);
         if(isValid===true){
             firebase.changeUserEmail(changeEmail);
+            Swal.fire({
+                icon: 'success',
+                title: 'Email has been changed',
+              });
         }
-
     }
 
     return (
         <>
         <div className="changePassword">
             <form>
-
                 <label>Change Email Address: </label>
                 <br></br>
-
                 <input 
                         type="email" 
                         id="eInput" 

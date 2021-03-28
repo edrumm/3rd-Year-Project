@@ -19,10 +19,6 @@ function Footer() {
                 <div>© 2021 PictureThat by Pronto. All Rights Reserved.</div>
             </footer>
             </>
-            
-
         )
     }
-
-
 export default Footer;

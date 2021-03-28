@@ -1,25 +1,31 @@
-@media (min-width: 735px){
-.personalsection{
-    padding: 15px 20px 0;
-    width: calc(100% - 40px);
-    box-sizing: content-box;
+@media screen and (max-width: 700px){
+
+    .personalsection{
+        width: 450px;
     }
+
+    .leftPersonalSide{
+        display: none;
+    }
+
+    .personalsectionRight{
+        width: 220px;
+    };
 }
 
 /* ------------------------ Personal Info Header ----------------------- */
 .personalsection{
     margin: 60px auto;
-    margin-bottom: 0;
-    flex-grow: 1;
-    width: 760px;
-    left: 50%;
+    width: 700px;
     height: 190px;
-
+    padding: 15px 20px 0;
+    position: relative;
     text-align: center;
     border-radius: 5px;
     border: solid 1px #efefef;
     background-color: white;
 }
+
 .column{
     float: left;
 }
@@ -33,7 +39,7 @@
 /* ------------------- div divider for personal section ---------------*/
 .personalsectionLeft{
     text-align: center;
-    height: 180px;
+    height: 170px;
     width: 25%;
 }
 
@@ -45,26 +51,31 @@
     border-radius: 50%;
     line-height: 160px;
     vertical-align: middle;
+    margin-left: 5px;
+    color: white;
 }
 
 .personalsectionRight{
     text-align: center;
-    height: 180px;
+    height: 170px;
     width: 75%;
 }
 
 .leftPersonalSide{
     height: 130px;
     width: 50%;
-    width: 270px;
+    width: 220px;
     text-align: center;
+    margin-top: 31px;
+    margin-left: 10px;
 }
 
 .rightPersonalSide{
     height: 130px;
-    margin-left: 30px;
+    margin-top: 25px;
+    margin-left: 10px;
     width: 50%;
-    width: 270px;
+    width: 220px;
     text-align: center;
 }
 

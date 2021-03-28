@@ -5,7 +5,6 @@
     text-align: center;
     min-width: 43.75rem;
     max-height: 43.75rem;
-
     margin-top: 50px;
     position: absolute;
     left: calc(40vw - 10px);
@@ -31,6 +30,28 @@
     white-space: nowrap;
 }
 
+.buttonP{
+    padding: 1% 3%;
+    width: 8rem;
+    height: 1.8rem;
+    margin-top: 8px;
+    margin-right: 40px;
+    margin-left: 40px;
+    margin-bottom: 8px;
+
+    border: 1px solid transparent;
+    color: white;
+    background-color: #0095f6;
+    background-color: rgba(var(--d69,0,149,246),1);
+    border-radius: 5px;
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2vw;
+    display: inline-block;
+    text-align: center;
+}
+
+
 .image{
     min-height: 25rem;
     min-width: 50%;
@@ -47,8 +68,6 @@
 
 .buttonfield{
     border-bottom: solid 1px lightgray;
-    display: flex;
-    flex-direction: row;
     padding-left: 1rem;
     background-color: white;
 }
@@ -61,13 +80,6 @@
 }
 
 .far.fa-heart {
-    color: black;
-    text-decoration: none;
-    padding: 0.5rem 0.2rem;
-    font-size: 1.5rem;
-}
-
-.fas.fa-heart {
     color: black;
     text-decoration: none;
     padding: 0.5rem 0.2rem;
@@ -107,7 +119,6 @@
     margin-left: 10px;
     margin-bottom: 10px;
 }
-
 
 .profileName {
     padding-bottom: 0.5rem;
@@ -177,14 +188,12 @@
 @media screen and (max-height: 750px) {
     .imageFeed{
         margin-top: 130px;
-        
     }
 }
 
 @media screen and (max-height: 690px) {
     .imageFeed{
-        margin-top: 150px;
-        
+        margin-top: 150px;    
     }
 }
 
@@ -204,7 +213,6 @@
     .imageFeed{
         min-width: 37.5rem;
     }
-
 }
 
 @media screen and (max-width: 610px) {

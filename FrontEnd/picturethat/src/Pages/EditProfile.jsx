@@ -1,35 +1,22 @@
 import React from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
-//import 'antd/dist/antd.css';
 import { useState } from 'react';
 import './editProfilePage.css';
 import './Pages.css';
 import firebase from "../firebase.js";
 
-//imports for the dropdown menu
-// import { makeStyles } from '@material-ui/core/styles';
-
-//import for the photo camera icon
-
-
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//       display: 'flex',
-//     },
-//     paper: {
-//       marginRight: theme.spacing(2),
-//     },
-//   }));
-
- const EditProfile  = () => {
-
+const EditProfile  = () => {
+    const Swal = require('sweetalert2');
 
     const [username, setUsername] = useState('');
     const UpdateData = () => {
         firebase.changeUserName(username);
+        Swal.fire({
+            icon: 'error',
+            title: 'Username changed',
+          });
     }
-
 
     return (
         <>
@@ -56,7 +43,6 @@ import firebase from "../firebase.js";
                     >
                         Confirm
                 </button>
-           
     </div>
     </>
     );

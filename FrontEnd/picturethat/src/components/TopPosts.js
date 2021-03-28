@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import './ImageFeed.css';
-//import getImg from '../getImg';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase";
-//import PopUp from '../components/PostPopUp';
+import {motion} from 'framer-motion';
 
 let SelectedImgId;
-
 
 const ImageFeed = () => {
     
@@ -32,24 +30,11 @@ const ImageFeed = () => {
           }
        }
     };
-    //const testdoc = Getall();
-    //console.log(testdoc.documents);
-    //const  { docs }  = Getall();
     const { docs } = firebase.GetTopPosts('posts');
-    
-
-
-    //return selectedImgId;
-
-    // const [showPopUp, setShowPopUp] = useState(false);
-    // const openPopUp = () => {
-    //     setShowPopUp(prev => !prev)
-    // };
-    //Getall();
+  
     return (
         <>
-        
-        <div className= "imageFeed">
+        <motion.div className= "imageFeed" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
             <div className="Title">Top 10 posts</div>
             { docs && docs.map(doc => (
                 <div class="post" key={doc.id}>
@@ -90,11 +75,10 @@ const ImageFeed = () => {
                         <label className="bottomText">{new Date(doc.uploaddate.seconds * 1000).toLocaleDateString()}</label>
                     </div>
                 </div>
-
             </div>
         </div>
         ))}
-    </div>
+    </motion.div>
     </>
     )
 }
@@ -105,7 +89,3 @@ export {SelectedImgId};
 //the source bellow was used to help set up how to send and get data from database
 //https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia
 //https://www.youtube.com/watch?v=vUe91uOx7R0
-
-//<input type="text" className="commentinput" placeholder="Add a comment"></input>
-//<button onClick={openPopUp}>Show Modal</button>
-//<PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp} />

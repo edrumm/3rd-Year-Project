@@ -75,12 +75,10 @@ const PopUP = ({ doc, showPopUp, setShowPopUp }) => {
      </Background>
    ) : null }
    </>
- 
+
   );
 };
 
 export default PopUP;
-
-
 
 //https://www.youtube.com/watch?v=d3aI1Dt0Z50&t=358s&ab_channel=BrianDesign
