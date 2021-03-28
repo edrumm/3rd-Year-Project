@@ -510,17 +510,32 @@ const FollowChannel = async (channel) => {
 }
 
 const UnFollowChannel = async (channel) => {
-  const user = getUserID();
-  const userref = firestore.collection('users').doc(user);
-  userref.update({
-    followed_channels: firebase.firestore.FieldValue.arrayRemove("/channels/" + channel)
-  });
-  const increment = firebase.firestore.FieldValue.increment(-1);
+  //const user = getUserID();
+  // const userref = firestore.collection('users').doc(user);
+  // userref.update({
+  //   followed_channels: firebase.firestore.FieldValue.arrayRemove("/channels/" + channel)
+  // });
+  // const decrement = firebase.firestore.FieldValue.increment(-1);
 
-  const channelref = firestore.collection('channels').doc(channel);
-  channelref.update({
-    number_of_followers: increment
-  })
+  // const channelref = firestore.collection('channels').doc(channel);
+  // channelref.update({
+  //   number_of_followers: decrement
+  // })
+
+   //firebase built in method for incrementing, just set with negative value
+   const decrement = firebase.firestore.FieldValue.increment(-1);
+   //post end just increments in the negative direction - i.e decrementing
+   let postref = firestore.collection("channels").doc(channel);
+   postref.update({
+     number_of_followers: decrement
+   })
+ 
+   const user = getUserID();
+   //user end uses opposite array method from UNION to remove the specific post from the array
+   let userref = firestore.collection("users").doc(user);
+   userref.update({
+     followed_channels: firebase.firestore.FieldValue.arrayRemove("/channels/" + channel)
+   })
 
 }
 
@@ -591,18 +606,6 @@ const GetTopPosts = (collection) => {
 }
 
 const GetLikes = (post) => {
-
-  // const [docs, setDocs] = useState([]);
-  // useEffect(() => {
-  // firestore
-  //   .collection('posts').doc(post)
-  //   .get()
-  //   .then( (doc) => {
-  //         setDocs({...doc.data(), id: doc.id})
-  //       });
-  //     }, [])
-
-  //   return docs;
   var docRef = firestore.collection("posts").doc(post);
   const [docs, setDocs] = useState([]);
 
@@ -611,6 +614,23 @@ const GetLikes = (post) => {
       setDocs(doc.data())
     } else {
       // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+  });
+  return docs;
+}
+
+
+const GetChannelInfo = (channel) => {
+  var docRef = firestore.collection("channels").doc(channel);
+  const [docs, setDocs] = useState([]);
+
+  docRef.get().then((doc) => {
+    if (doc.exists) {
+      setDocs({...doc.data(), id: doc.id })
+    } else {
       console.log("No such document!");
     }
   }).catch((error) => {
@@ -787,7 +807,8 @@ export default {
   AlreadyFollowed,
   GetTopPosts,
   GetSingleChannel,
-  GetLikes
+  GetLikes,
+  GetChannelInfo
 };
 
 export { Auth, Login, Signup, Logout, AchievementUnlock };

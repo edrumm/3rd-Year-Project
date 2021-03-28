@@ -45,7 +45,6 @@ import {motion} from 'framer-motion';
                     <label className="label">No of Followers: {doc.number_of_followers}</label>
                     <label className="label">No of Pictures: {doc.number_of_posts}</label>
                     <br/>
-                    <button className="buttonChannel" onClick={() =>FollowChannel(doc.id)} >{button}</button>
                     <Link to="/PictureThat/channelphotospage" ><button className="buttonChannel" onClick={() => {setSelectedChannel = doc.id}} >See Channel</button></Link>
                 </div>
             </div>
