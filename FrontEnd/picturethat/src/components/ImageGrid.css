@@ -1,6 +1,6 @@
 /*-----------------------Image Wrap ---------------------------------------*/
 .imageWrap{
-    border-radius: 10px;
+    border-radius: 2px;
     overflow: hidden;
     height: 0;
     padding: 50% 0;
@@ -23,21 +23,29 @@
     margin-top: 35px;
     margin-left: 95px;
     margin-right: 95px;
-    margin-bottom: 95px;
+    margin-bottom: 45px;
     grid-gap: 40px;
     text-align: center;
     height: 330px;
     overflow-y: scroll;
 }
 
-@media (max-width: 700px){
+@media screen and (max-width: 1100px){
+    .imageGrid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media screen and (max-width: 950px){
+    .imageGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 700px){
     .imageGrid {
         grid-template-columns: 1fr;
     }
 }
 
-@media (max-width: 1000px){
-    .imageGrid {
-        grid-template-columns: 1fr;
-    }
-}
+
+

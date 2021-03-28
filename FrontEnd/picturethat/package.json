@@ -15,6 +15,7 @@
     "chai": "^4.3.4",
     "firebase": "^8.2.4",
     "firebase-admin": "^9.4.2",
+    "framer-motion": "^4.0.3",
     "joi": "^17.4.0",
     "mocha": "^8.3.2",
     "react": "^17.0.1",

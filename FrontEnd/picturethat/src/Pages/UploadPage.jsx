@@ -8,7 +8,6 @@ const UploadPage  = () => {
     <>
     <Navbar />
     <UploadImage />
-    <Footer />
     </>
     );
 };
