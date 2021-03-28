@@ -39,7 +39,7 @@ const ImageUpload = () => {
 
     return (
         <>
-        <div className="container" initial={{opacity: 0}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
+        <motion.div className="container" initial={{opacity: 0}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
             <img src={localimg || "https://via.placeholder.com/400x380.png?text=Upload+Image"} alt="" className="imagesDiv" />
             { error && <div className="error">{error}</div>}
             <div className="button-wrapper">
@@ -53,7 +53,7 @@ const ImageUpload = () => {
                 <input type="text" className="inputboxT" placeholder="Channel" value= {channel} onChange= {(e) => {setDescription(e.target.value)}}/>
                 <Link to="/PictureThat" onClick={handleUpload}><button className="buttonUpload">Post</button></Link>
             </div>
-        </div>
+        </motion.div>
         </>
     );
 };
