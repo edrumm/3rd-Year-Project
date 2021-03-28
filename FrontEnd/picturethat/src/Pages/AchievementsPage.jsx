@@ -11,7 +11,6 @@ const AchievementsPage = () => {
     return (
         <>
         <Navbar></Navbar>
-
         <div className="AchivementsPage">
 
             {docs && docs.map(doc => (
@@ -21,11 +20,8 @@ const AchievementsPage = () => {
                 <label className={doc.class}/>
                 <div className="divider"></div>
             </div>
-
         ))}
-
         </div>
-
         </>
     );
 };

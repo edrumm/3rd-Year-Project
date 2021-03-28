@@ -4,68 +4,24 @@ import './FullPost.css';
 import firebase from "../firebase.js";
 import {setSelectedImgId} from "./ChannelPhotos";
 
-
-
-
-
 const FullPost = () => {
 
     const selectedImg = setSelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
     const getcomments = firebase.GetComments(selectedImg);
-    //console.log(singlePost);
 
     let currentPost = setSelectedImgId;    
     const[comment, setComment] = useState('');
-    // const Imgid = require("./ImageFeed");
-    //console.log(currentPost);
-    //const user = firebase.getUser().displayName;
 
     const handleUpload = () => {
         firebase.AddComment(comment, currentPost);
     };
 
-   
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
 
-    // const likepost = () => {
-    //    if(liked === false) {
-    //         setLiked(true);
-    //         setButton("fas fa-heart")
-    //         const alreadyLiked = firebase.AlreadyLiked(user);
-    //         if(!alreadyLiked){
-    //             firebase.LikePost(user);
-    //         }
-    //    } else {
-    //        setLiked(false);
-    //        setButton("far fa-heart")
-    //        const alreadyLiked = firebase.AlreadyLiked(user);
-    //        if(alreadyLiked){
-    //            firebase.UnlikePost(user);
-    //        }
-    //    }
-    // } ;
-
     const likepost = () => {
-        //    const postreference = postref;
-        //    console.log(postreference);
-        //     if(liked === false) {
-        //         setLiked(true);
-        //         setButton("fas fa-heart")
-        //         const alreadyLiked = firebase.AlreadyLiked(user);
-        //         if(!alreadyLiked){
-        //             firebase.LikePost(user);
-        //         }
-        //    } else {
-        //        setLiked(false);
-        //        setButton("far fa-heart")
-        //        const alreadyLiked = firebase.AlreadyLiked(user);
-        //        if(alreadyLiked){
-        //            firebase.UnlikePost(user);
-        //        }
-        //    }
-           //console.log(postreference);
+       
             if(liked === false) {
                 setLiked(true);
                 setButton("fas fa-heart")

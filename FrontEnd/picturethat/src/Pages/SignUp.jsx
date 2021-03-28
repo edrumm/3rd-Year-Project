@@ -5,7 +5,6 @@ import logo from './logo.png';
 import {useState} from 'react';
 import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
-import Swal from 'sweetalert2';
 
 import {Login, Signup} from '../firebase';
 import validate from '../validate';
@@ -136,7 +135,6 @@ const SignUp  = () => {
           isValid = true;
 
         } catch (err) {
-          //alert(err.message);
           isValid = false;
         }
 

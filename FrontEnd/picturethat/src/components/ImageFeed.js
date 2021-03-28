@@ -1,19 +1,10 @@
 import React, { useState } from 'react';
 import './ImageFeed.css';
-//import getImg from '../getImg';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase";
-// import Footer from './footer';
-//import PopUp from '../components/PostPopUp';
 
 let setSelectedImgId;
 
-//  const Getall = async() =>{
-//     let doc  = await firebase.GetAllUserChannelPosts();
-//     console.log(doc.documents);
-//     console.log("test");
-//     return doc;
-//     }
 const ImageFeed = () => {
     
     const [liked, setLiked] = useState(false);
@@ -37,21 +28,8 @@ const ImageFeed = () => {
           }
        }
     };
-    //const testdoc = Getall();
-    //console.log(testdoc.documents);
-    //const  { docs }  = Getall();
     const { docs } = firebase.GetImg('posts');
 
-    
-
-
-    //return selectedImgId;
-
-    // const [showPopUp, setShowPopUp] = useState(false);
-    // const openPopUp = () => {
-    //     setShowPopUp(prev => !prev)
-    // };
-    //Getall();
     return (
         <>
         <div className= "imageFeed">
@@ -59,8 +37,7 @@ const ImageFeed = () => {
                 <div className="post" key={doc.id}>
                     <div className="postDetailsContainer">
                     <div className="topinfo">
-                    <div className="user">
-                            
+                    <div className="user">  
                             <br></br>
                             <div className="profilecard">                           
                                 <label className="profileName">{doc.UserName}</label>
@@ -70,7 +47,6 @@ const ImageFeed = () => {
                             </div>
                             <br></br>
                            <div className="reportb" onClick={() => {setSelectedImgId = doc.id}}><Link to="/PictureThat/Report">Report</Link></div>
-
                     </div>
                     </div>
 
@@ -96,7 +72,6 @@ const ImageFeed = () => {
                         <label className="bottomText">Date: </label>
                     </div>
                 </div>
-
             </div>
         </div>
         ))}
@@ -111,7 +86,3 @@ export {setSelectedImgId};
 //the source bellow was used to help set up how to send and get data from database
 //https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia
 //https://www.youtube.com/watch?v=vUe91uOx7R0
-
-//<input type="text" className="commentinput" placeholder="Add a comment"></input>
-//<button onClick={openPopUp}>Show Modal</button>
-//<PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp} />

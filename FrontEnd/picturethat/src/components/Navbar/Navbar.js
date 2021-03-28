@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import './Navbar.css';
 import logo from '../ImageFiles/logo2.png';
 import Dropdown from './Dropdown';
-// import logoicon from '../ImageFiles/logoIcon.png';
-
-
 
     function Navbar() {
         const [clicked, setClicked] = useState(false);
@@ -59,13 +56,8 @@ import Dropdown from './Dropdown';
                         <Link to='/PictureThat/TopPosts' className='fas fa-crown b'/>
                     </li>
             </ul>
-
             </nav>
             </>
-            
-
         )
     }
-
-
 export default Navbar;

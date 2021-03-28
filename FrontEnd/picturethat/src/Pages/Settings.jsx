@@ -44,20 +44,15 @@ const Settings = () => {
         e.preventDefault();
         const value = e.target.value;
 
-
         if(value.trim().length === 0){
             setVisibleOptions(options);
             return;
         }
 
         const returnedValues= [];
-
         visibleOptions.forEach((option, index) => {
-
             const foundOptions = option.values.filter(item => {
-
                 return item.name.toLocaleLowerCase().search(value.trim().toLowerCase()) !== -1 || item.description.toLocaleLowerCase().search(value.trim().toLowerCase()) !== -1;
-
             });
 
             returnedValues[index] = {
@@ -104,7 +99,6 @@ const Settings = () => {
             </div>
             )}
         </div>
-
         <Footer />
         </>
     );

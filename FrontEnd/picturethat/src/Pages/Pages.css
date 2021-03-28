@@ -1,5 +1,4 @@
 .signInWelcome{
-
     position: absolute;
     left: calc(40vw - 10px);
     width: 350px;
@@ -13,7 +12,6 @@
     background-image: white;
     border-radius: 5px;
     
-  
     display: inline-block;
     flex-direction: column;
     align-items: center;
@@ -67,7 +65,6 @@ button{
     text-align: center;
 }
 
-
 .whiteSpace{
     padding: 20px 30px; 
     position: absolute; 
@@ -95,7 +92,6 @@ button{
 }
 
 /* -----------------------line between OR to create division between login and guest --------------*/
-
 .or{
     margin: 10px 40px 18px;
     flex-direction: row;
@@ -157,7 +153,6 @@ input {
     border-bottom: 1px solid black;
     padding:3px;
     text-align: center;
-
     font-size: 12px;
   }
 

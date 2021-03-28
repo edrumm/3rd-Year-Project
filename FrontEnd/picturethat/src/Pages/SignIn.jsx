@@ -14,9 +14,7 @@ const SignIn  = () => {
 
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-    const[confirmEmail, setConfirmEmail] = useState('');
-    const[confirmPassword, setConfirmPassword] = useState('');
-
+  
     const[emailError, setEmailError] = useState({});
     const[passwordError, setPasswordError] = useState({});
 
@@ -89,7 +87,6 @@ const SignIn  = () => {
           isValid = true;
 
         } catch (err) {
-          //alert(err.message);
           isValid = false;
         }
 
@@ -110,9 +107,6 @@ const SignIn  = () => {
           history.push('/');
           return false;
         }
-
-        /* TO DO : Add functionality for this to take user to the landing page if all clear*/
-
     }
 
 
@@ -127,7 +121,6 @@ const SignIn  = () => {
             <div className="whiteSpace"></div>
 
             <div>
-                {/* <form onSubmit = {onSubmit}> */}
                 <input
                     type="text"
                     id="emailInput"
@@ -162,16 +155,8 @@ const SignIn  = () => {
                 <div className="or"><span>OR</span>
                     <div className="whiteSpace"></div>
                 </div>
-
-                {/* <button
-                    id="signInButton"
-                    className="button">
-                    <Link to="/PictureThat">Guest</Link>
-                </button> */}
-
                 <Link to="/ForgotPassword">Forgot Password?</Link>
                 <Link to="/SignUp"> Sign Up</Link>
-                {/* </form> */}
             </div>
         </div>
         <Footer />

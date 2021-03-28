@@ -3,7 +3,6 @@ import './Channel.css';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase.js";
 
-
     let setSelectedChannel;
 
     function Channel() {
@@ -37,11 +36,6 @@ import firebase from "../firebase.js";
             <div className="Channel">
             { docs && docs.map(doc => (
             <div class="card" key={doc.id}>
-
-                
-                {/* <div className="column channelPhoto">
-                    <img src={cat} alt="" className="Channelimg"/>
-                </div> */}
                 
                 <div className="channelInfo">
                     <label className="labelHeader">Channel Name: {doc.id}</label>
@@ -53,19 +47,12 @@ import firebase from "../firebase.js";
                     <button className="buttonChannel" onClick={() =>FollowChannel(doc.id)} >{button}</button>
                     <Link to="/PictureThat/channelphotospage" ><button className="buttonChannel" onClick={() => {setSelectedChannel = doc.id}} >See Channel</button></Link>
                 </div>
-                
-
-                
             </div>
             ))}
             </div>
-            
             </>
-            
-
         )
     }
-
 
 export default Channel;
 export {setSelectedChannel};

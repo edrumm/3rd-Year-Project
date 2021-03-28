@@ -15,21 +15,12 @@
     width: 6rem;
 }
 
-
-
-
-
-
-
-
 .cardR {
     display: flex;
     flex-direction: row;
     border-radius: 15px;
     left: 10px;
 }
-
-
 
 .inputTextR{
     width: 15rem;
@@ -52,11 +43,6 @@
     overflow: hidden;
 }
 
-
-
-
-
-
 .commentfieldR{
     border-top: solid 1.5px lightgray;
     border-bottom: solid 1.5px lightgray;
@@ -73,13 +59,9 @@
 
 }
 
-
-
-
 .fullpostinfoR {
     width: 20rem;
     max-height: 31rem;
-
     border: solid 1px lightgray;
     border-radius: 20px;
     box-shadow: 2px 0px 4px 3px lightgray;
@@ -87,16 +69,7 @@
     padding-left: 10px;
     padding-right: 10px;
     background-color: white;
-   
-   /* box-shadow: 0px 2px 7px 3px lightgray; */
 }
-
-
-
-
-
-
-
 
 .commentinput{
     width: 50%;
@@ -108,8 +81,6 @@
     background-color: white;
 }
 
-
-
 .postDetails {
     margin-top: 10px;
     text-align: left;
@@ -118,54 +89,46 @@
 
 @media screen and (max-height: 900px) {
     .imageFeed{
-        margin-top: 100px;
-        
+        margin-top: 100px; 
     }
 }
 
 @media screen and (max-height: 790px) {
     .imageFeed{
-        margin-top: 110px;
-        
+        margin-top: 110px;  
     }
 }
 
 @media screen and (max-height: 750px) {
     .imageFeed{
-        margin-top: 130px;
-        
+        margin-top: 130px;  
     }
 }
 
 @media screen and (max-height: 690px) {
     .imageFeed{
         margin-top: 150px;
-        
     }
 }
 
 @media screen and (max-height: 650px) {
     .imageFeed{
         margin-top: 170px;
-        
     }
 }
 
 @media screen and (max-height: 590px) {
     .imageFeed{
         margin-top: 200px;
-        
     }
 }
 
 
 
 @media screen and (max-width: 700px) {
-
     .imageFeed{
         min-width: 37.5rem;
     }
-
 }
 
 @media screen and (max-width: 610px) {

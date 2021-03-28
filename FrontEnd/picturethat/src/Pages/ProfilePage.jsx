@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import './profilePage.css';
 import './Pages.css';
 import ImageGrid from '../components/ImageGrid';
-
 import Footer from '../components/footer';
 import firebase from '../firebase';
 
@@ -15,11 +14,8 @@ const ProfilePage  = () => {
 
     return (
         <>
-
         <Navbar></Navbar>
-
         <div className="personalsection">
-
         <div className="column personalsectionLeft">
               <div className="circle"><strong>{dataDoc}</strong></div>
         </div>
@@ -45,11 +41,9 @@ const ProfilePage  = () => {
                 </Link>
             </div>
             </div>
-
         </div>
         <p className="spanLine"><span></span></p>
         <ImageGrid/>
-
         <Footer/>
     </>
     );

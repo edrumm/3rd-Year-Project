@@ -2,15 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import firebase from "../firebase.js";
 import './ImageGrid.css';
-import {useHistory} from 'react-router-dom';
 import {motion} from 'framer-motion';
 
 let setSelectedImgId;
 
 const ImageGrid = () => {
     const { docs } = firebase.GetPostofUser();
-    const history = useHistory();
-
     return (
         <div className= "imageGrid">
             {docs && docs.map(doc => (

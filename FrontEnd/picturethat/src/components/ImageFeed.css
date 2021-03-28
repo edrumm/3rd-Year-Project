@@ -5,7 +5,6 @@
     text-align: center;
     min-width: 43.75rem;
     max-height: 43.75rem;
-
     margin-top: 50px;
     position: absolute;
     left: calc(40vw - 10px);
@@ -95,7 +94,6 @@
     margin-bottom: 10px;
 }
 
-
 .profileName {
     padding-bottom: 0.5rem;
     font-family: 'Montserrat', sans-serif;
@@ -164,14 +162,12 @@
 @media screen and (max-height: 750px) {
     .imageFeed{
         margin-top: 130px;
-        
     }
 }
 
 @media screen and (max-height: 690px) {
     .imageFeed{
-        margin-top: 150px;
-        
+        margin-top: 150px;    
     }
 }
 
@@ -191,7 +187,6 @@
     .imageFeed{
         min-width: 37.5rem;
     }
-
 }
 
 @media screen and (max-width: 610px) {

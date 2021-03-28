@@ -1,6 +1,5 @@
 
 .dropdown {
-    /* background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%); */
     background-color: #0095f6;
     background-color: rgba(var(--d69,0,149,246),1);
     width: 6.875rem;
@@ -48,7 +47,6 @@
     font-size: 1.2rem;
   }
   
-
   @media screen and (max-width: 1020px) {
     .dropdownposition{
       right: 4.5rem;

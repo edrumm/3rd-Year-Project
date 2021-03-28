@@ -5,9 +5,6 @@ import './UploadImage.css';
 
 const ImageUpload = () => {
 
-    
-    //console.log(username);
-
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState("");
     const [error, setError] = useState(null);
@@ -32,7 +29,6 @@ const ImageUpload = () => {
             setLocalimg(null);
             setError('Incorrect Image type, please select a PNG or JPEG image');
         }
-        
     };
 
     const handleUpload = () => {

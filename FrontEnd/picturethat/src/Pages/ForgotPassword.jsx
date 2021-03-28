@@ -10,8 +10,7 @@ import {useHistory} from 'react-router-dom';
 const ForgotPassword  = () => {
 
     const history = useHistory();
-    const[email, setEmail] = useState('');
-    //console.log(email);
+    const[email, setEmail] = useState('')
 
     const onSubmitForgot = () => {
         firebase.forgotPass(email);

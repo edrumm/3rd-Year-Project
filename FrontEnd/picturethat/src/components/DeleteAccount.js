@@ -12,7 +12,6 @@ const DeleteAccount = () => {
     <>
         <div className="changePassword">
             <form>
-
                 <label>Delete Account: </label>
                 <br></br>
 

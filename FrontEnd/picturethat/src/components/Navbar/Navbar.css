@@ -1,5 +1,4 @@
 .Navbar {
-    /* background: linear-gradient(90deg, rgb(110, 94, 254) 0%, rgba(73,63,252,1) 100%); */
     background-color: #0095f6;
     background-color: rgba(var(--d69,0,149,246),1);
     height: 50px;
@@ -38,8 +37,7 @@
 
 .navbar-logo {
     color: white;
-    justify-self: start;
-    
+    justify-self: start; 
 }
 
 .nav-menu {
@@ -58,16 +56,14 @@
     text-decoration: none;
     padding: 0.5rem 0.2rem;
     font-size: 1.5rem;
-    cursor: pointer;
-    
+    cursor: pointer; 
 }
 
 .fas.fa-home {
     color: white;
     text-decoration: none;
     padding: 0.5rem 0.2rem;
-    font-size: 1.5rem;
-    
+    font-size: 1.5rem; 
 }
 
 .fas.fa-crown {
@@ -82,7 +78,6 @@
     text-decoration: none;
     padding: 0.5rem 0.2rem;
     font-size: 1.5rem;
-    
 }
 
 .logo{

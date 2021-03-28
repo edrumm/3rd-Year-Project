@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import './ImageFeed.css';
-//import getImg from '../getImg';
 import { Link } from 'react-router-dom';
 import firebase from "../firebase.js";
-//import PopUp from '../components/PostPopUp';
 import { setSelectedChannel } from '../components/Channel';
 
 let setSelectedImgId;
@@ -13,45 +11,20 @@ const ImageFeed = () => {
     let currentChannel = setSelectedChannel;
     const channelInfo = firebase.GetSingleChannel(currentChannel);
     const { docs } = firebase.GetPostofChannels(currentChannel);
-    //console.log(docs);
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
 
     const likepost = (postref) => {
-        //    const postreference = postref;
-        //    console.log(postreference);
-        //     if(liked === false) {
-        //         setLiked(true);
-        //         setButton("fas fa-heart")
-        //         const alreadyLiked = firebase.AlreadyLiked(user);
-        //         if(!alreadyLiked){
-        //             firebase.LikePost(user);
-        //         }
-        //    } else {
-        //        setLiked(false);
-        //        setButton("far fa-heart")
-        //        const alreadyLiked = firebase.AlreadyLiked(user);
-        //        if(alreadyLiked){
-        //            firebase.UnlikePost(user);
-        //        }
-        //    }
-        //console.log(postreference);
+      
         if (liked === false) {
             setLiked(true);
             setButton("fas fa-heart")
-            //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-            //console.log(alreadyLiked);
-            //if(alreadyLiked == false){
             console.log("not liked, lets add!")
             firebase.LikePost(postref);
-            // }
         } else {
             setLiked(false);
             setButton("far fa-heart")
-            //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-            // if(alreadyLiked){
             firebase.UnlikePost(postref);
-            //}
         }
     };
 
@@ -76,22 +49,6 @@ const ImageFeed = () => {
             }
         }
     }
-    //console.log(currentChannel);
-
-
-    // const setSelectedImgId = (id) => {
-    //     imgId = id;
-    //     console.log(imgId);
-    // }
-
-
-    //return selectedImgId;
-
-    // const [showPopUp, setShowPopUp] = useState(false);
-
-    // const openPopUp = () => {
-    //     setShowPopUp(prev => !prev)
-    // };
 
     return (
         <>
@@ -100,8 +57,6 @@ const ImageFeed = () => {
             </div>
             <div className="imageFeed">
                 <div class="card">
-
-
                     <div className="channelInfo">
                         <label className="labelHeader">Channel Name: {channelInfo.id}</label>
                         <br />
@@ -111,8 +66,6 @@ const ImageFeed = () => {
                         <br />
                         <button className="buttonChannel" onClick={() => FollowChannel(currentChannel)} >{fbutton}</button>
                     </div>
-
-
 
                 </div>
                 {docs && docs.map(doc => (
@@ -129,7 +82,6 @@ const ImageFeed = () => {
                                 </div>
                                 <br></br>
                                 <lable className="reportb">Report</lable>
-
                             </div>
                         </div>
 
@@ -153,7 +105,6 @@ const ImageFeed = () => {
                                     <label>Date: </label>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 ))}
@@ -166,11 +117,6 @@ export default ImageFeed;
 export { setSelectedImgId };
 
 
-
-//the source bellow was used to help set up how to send and get data from database
+//the source below was used to help set up how to send and get data from database
 //https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia 
 //https://www.youtube.com/watch?v=vUe91uOx7R0
-
-//<input type="text" className="commentinput" placeholder="Add a comment"></input>
-//<button onClick={openPopUp}>Show Modal</button>
-//<PopUp showPopUp={showPopUp} setShowPopUp={setShowPopUp} />
