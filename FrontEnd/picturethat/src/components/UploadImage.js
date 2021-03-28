@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import firebase from "../firebase.js";
 import './UploadImage.css';
+import {motion} from 'framer-motion';
 
 const ImageUpload = () => {
 
@@ -38,7 +39,7 @@ const ImageUpload = () => {
 
     return (
         <>
-        <div className="container">
+        <div className="container" initial={{opacity: 0}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
             <img src={localimg || "https://via.placeholder.com/400x380.png?text=Upload+Image"} alt="" className="imagesDiv" />
             { error && <div className="error">{error}</div>}
             <div className="button-wrapper">

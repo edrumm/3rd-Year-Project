@@ -34,7 +34,7 @@ import {motion} from 'framer-motion';
         }
         return(
             <>
-            <div className="Channel" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
+            <motion.div className="Channel" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
             { docs && docs.map(doc => (
             <div class="card" key={doc.id}>
                 
@@ -50,7 +50,7 @@ import {motion} from 'framer-motion';
                 </div>
             </div>
             ))}
-            </div>
+            </motion.div>
             </>
         )
     }
