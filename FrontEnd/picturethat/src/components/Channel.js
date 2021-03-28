@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Channel.css';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase.js";
+import {motion} from 'framer-motion';
 
     let setSelectedChannel;
 
@@ -33,7 +34,7 @@ import firebase from "../firebase.js";
         }
         return(
             <>
-            <div className="Channel">
+            <div className="Channel" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
             { docs && docs.map(doc => (
             <div class="card" key={doc.id}>
                 

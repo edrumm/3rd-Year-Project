@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './ImageFeed.css';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase";
+import {motion} from 'framer-motion';
 
 let setSelectedImgId;
 
@@ -32,7 +33,7 @@ const ImageFeed = () => {
 
     return (
         <>
-        <div className= "imageFeed">
+        <motion.div className= "imageFeed" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
             { docs && docs.map(doc => (
                 <div className="post" key={doc.id}>
                     <div className="postDetailsContainer">
@@ -75,7 +76,7 @@ const ImageFeed = () => {
             </div>
         </div>
         ))}
-    </div>
+    </motion.div>
     </>
     )
 }
