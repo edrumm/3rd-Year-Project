@@ -19,9 +19,6 @@ const ImageFeed = () => {
     const [liked, setLiked] = useState(false);
     //const [docs, setDocs] = useState([]);
     const [button, setButton] = useState("far fa-heart");
-
-    const test = firebase.newChannelFeed();
-    console.log(test);
     // useEffect(() => {
     //     const getAll = async () => {
     //         await firebase.GetAllUserChannelPosts()
@@ -35,7 +32,7 @@ const ImageFeed = () => {
     //     };
     //     getAll();
     // });
-    const { docs } = firebase.GetTopPosts('posts');
+    const { docs } = firebase.GetImg('posts');
 
     const likepost = async (postref) => {
         const alreadyLiked = await firebase.AlreadyLiked(postref);
