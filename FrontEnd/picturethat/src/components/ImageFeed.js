@@ -10,6 +10,7 @@ const ImageFeed = () => {
     
     const { docs } = firebase.GetImg('posts');
 
+    
     return (
         <>
         <motion.div className= "imageFeed" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
