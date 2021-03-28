@@ -31,6 +31,10 @@ const ImageFeed = () => {
                     </div>
                     </div>
 
+                    <div>
+                        <img src={doc.url} alt="" className="image"/>
+                    </div>
+                    
                     <div className="bottominfo">
                     <div className="postDetailsContainer">
 
