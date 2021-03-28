@@ -8,27 +8,6 @@ let setSelectedImgId;
 
 const ImageFeed = () => {
     
-    const [liked, setLiked] = useState(false);
-    const [button, setButton] = useState("far fa-heart");
-    
-    const likepost = async (postref) => {
-        const alreadyLiked =  await firebase.AlreadyLiked(postref);
-
-        if(liked === false) {
-            setLiked(true);
-            setButton("fas fa-heart")
-        
-            if(alreadyLiked === false){
-                firebase.LikePost(postref);
-           }
-       } else {
-           setLiked(false);
-           setButton("far fa-heart")
-           if(alreadyLiked === true){
-               firebase.UnlikePost(postref);
-          }
-       }
-    };
     const { docs } = firebase.GetImg('posts');
 
     return (
@@ -59,8 +38,7 @@ const ImageFeed = () => {
                     <div className="postDetailsContainer">
 
                     <div className="buttonfield">
-                        <div onClick={() =>likepost(doc.id)} className={button} />
-                         <Link to="/PictureThat/FullPostPage"><div className="far fa-comment" onClick={() => {setSelectedImgId = doc.id}}/></Link>
+                         <Link to="/PictureThat/FullPostPage"><div className="buttonP" onClick={() => {setSelectedImgId = doc.id}}>View Post</div></Link>
                     </div>
 
                     <div className="">

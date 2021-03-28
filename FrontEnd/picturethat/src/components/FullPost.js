@@ -8,9 +8,25 @@ const FullPost = () => {
     const selectedImg = setSelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
     const getcomments = firebase.GetComments(selectedImg);
+    const postsLikes = firebase.GetLikes(selectedImg);
 
     let currentPost = setSelectedImgId;    
     const[comment, setComment] = useState('');
+    const [button, setButton] = useState();
+    const [loaded, setLoaded] = useState(false);
+
+    const likedstate = async () => {
+        const alreadyLiked =  await firebase.AlreadyLiked(currentPost);
+        if(alreadyLiked === false){
+            setButton("far fa-heart")
+       } else {
+            setButton("fas fa-heart")
+       }
+    }
+    if(loaded===false){
+    likedstate();
+    setLoaded(true);
+    }
 
     const handleUpload = () => {
         firebase.AddComment(comment, currentPost);
@@ -18,20 +34,25 @@ const FullPost = () => {
     };
 
     const [liked, setLiked] = useState(false);
-    const [button, setButton] = useState("far fa-heart");
 
-    const likepost = () => {
-  
-            if(liked === false) {
-                setLiked(true);
-                setButton("fas fa-heart")
-                firebase.LikePost(selectedImg);
-           } else {
-               setLiked(false);
-               setButton("far fa-heart")
-               firebase.UnlikePost(selectedImg);
+    const likepost = async (postref) => {
+        const alreadyLiked =  await firebase.AlreadyLiked(postref);
+
+        if(liked === false) {
+            setLiked(true);
+            setButton("fas fa-heart")
+        
+            if(alreadyLiked === false){
+                firebase.LikePost(postref);
            }
-        };
+       } else {
+           setLiked(false);
+           setButton("far fa-heart")
+           if(alreadyLiked === true){
+               firebase.UnlikePost(postref);
+          }
+       }
+    };
 
     return (
         <>
@@ -76,8 +97,8 @@ const FullPost = () => {
 
                         <div className="likesection">
                             <div className="like">
-                                <a onClick={() =>likepost()} className={button} />
-                                <label className="score">Score: {singlePost.likes}</label>
+                            <div onClick={() =>likepost(singlePost.id)} className={button} />
+                                <label className="score">Score: {postsLikes.likes}</label>
                             </div>
                         </div>
 
