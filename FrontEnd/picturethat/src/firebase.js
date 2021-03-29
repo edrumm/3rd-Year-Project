@@ -1,4 +1,4 @@
-import { firebase, storage, firestore, auth /*, analytics*/} from './Auth';
+import { firebase, storage, firestore, auth } from './Auth';
 import React, { useState, useEffect, useContext } from 'react';
 import { number } from 'joi';
 
@@ -104,7 +104,6 @@ const getUser = () => {
   let user = auth.currentUser;
 
   if (user != null) {
-    console.log(`user = ${user.displayName}`);
     return user;
   } else {
     return null;
@@ -239,7 +238,9 @@ const reportPost = async (post, reportReason) => {
 const UploadPost = async (caption, loc, channel, image) => {
   const username = auth.currentUser.displayName;
   const user = getUserID();
-
+  console.log(caption);
+  console.log(loc);
+  console.log(channel);
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
   });
@@ -556,7 +557,17 @@ const AlreadyFollowed = async (channel) => {
   return found;
 }
 
-
+const getScore = async() =>{
+  const user = getUserID();
+  const score = firestore.collection('users').doc(user)
+  let total = 0;
+  await score.get()
+  .then(doc =>{
+    total = doc.data().score;
+  })
+  console.log(total);
+  return total;
+}
 const FollowChannel = async (channel) => {
   //gets the specific user document and adds the channel path to their array
   //of followed channels
@@ -690,6 +701,28 @@ const GetLikes = (post) => {
   return docs;
 }
 
+const GetUserStats = () => {
+  let user = getUserID();
+  var docRef = firestore.collection("users").doc(user);
+  const [docs, setDocs] = useState([]);
+  let isMounted = true;
+
+  docRef.get().then((doc) => {
+    if (doc.exists) {
+      if (isMounted === true ) {
+        //for (let doc of querySnapshot.docs) {
+        setDocs(doc.data())
+        isMounted = false;
+      }
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+  });
+  return docs;
+}
 
 const GetChannelInfo = (channel) => {
   var docRef = firestore.collection("channels").doc(channel);
@@ -827,7 +860,8 @@ export default {
   GetSingleChannel,
   GetLikes,
   GetChannelInfo,
-  TotalScore
+  TotalScore,
+  GetUserStats
 };
 
 export { Auth, Login, Signup, Logout, AchievementUnlock };
