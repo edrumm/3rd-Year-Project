@@ -351,6 +351,24 @@ const DeletePost = async (id) => {
 };
 
 
+const TotalScore = async () =>{
+  const user = auth.currentUser.displayName;
+  let score = 0;
+
+  const postrefs = await firestore.collection('posts')
+  .where("UserName", "==", user)
+  .get()
+  .then(snapshot=>{
+    snapshot.forEach(doc =>{
+      score = score + doc.data().likes;
+    })
+  })
+
+  console.log(score);
+  return score;
+}
+
+
 const AddComment = async (text, post) => {
   const username = auth.currentUser.displayName;
   const refcom = firestore.collection('comments').doc();
@@ -463,7 +481,18 @@ const LikePost = async (post) => {
   postref.update({
     likes: increment
   })
-
+  let total = (await postref.get()).data();
+  await firestore.collection('users')
+  .where("username", "==", total.UserName)
+  .get()
+  .then(snapshot =>{
+    snapshot.forEach(doc =>{
+      const test = firestore.collection("users").doc(doc.id);
+      test.update({
+        score: increment
+      })
+    })
+  })
   //on user side, add the post reference to the array within the specific user document
   const user = getUserID();
   let userref = firestore.collection("users").doc(user);
@@ -481,6 +510,18 @@ const UnlikePost = async (post) => {
     likes: decrement
   })
 
+  let total = (await postref.get()).data();
+  await firestore.collection('users')
+  .where("username", "==", total.UserName)
+  .get()
+  .then(snapshot =>{
+    snapshot.forEach(doc =>{
+      const test = firestore.collection("users").doc(doc.id);
+      test.update({
+        score: decrement
+      })
+    })
+  })
   const user = getUserID();
   //user end uses opposite array method from UNION to remove the specific post from the array
   let userref = firestore.collection("users").doc(user);
@@ -785,7 +826,8 @@ export default {
   GetTopPosts,
   GetSingleChannel,
   GetLikes,
-  GetChannelInfo
+  GetChannelInfo,
+  TotalScore
 };
 
 export { Auth, Login, Signup, Logout, AchievementUnlock };

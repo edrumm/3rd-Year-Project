@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
 import './profilePage.css';
@@ -11,7 +11,6 @@ const ProfilePage  = () => {
 
     const dataDoc = firebase.getUser().displayName;
     console.log(dataDoc);
-
     return (
         <>
         <Navbar></Navbar>
@@ -24,7 +23,7 @@ const ProfilePage  = () => {
             
             <div className="column1 leftPersonalSide">
                 <div className="content">No. of Posts</div>
-                <div className="content">Total Score</div>
+                <div className="content">Total Score:</div>
             </div>
 
             <div className= "column1 rightPersonalSide">
