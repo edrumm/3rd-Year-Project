@@ -3,44 +3,43 @@ import './ImageFeed.css';
 import { Link } from 'react-router-dom';
 import firebase from "../firebase.js";
 import { setSelectedChannel } from '../components/Channel';
+import {motion} from 'framer-motion';
 
 let sSelectedImgId;
 
 
 const ImageFeed = () => {
     let currentChannel = setSelectedChannel;
-    const channelInfo = firebase.GetSingleChannel(currentChannel);
+    const channelInfo = firebase.GetChannelInfo(currentChannel);
     const { docs } = firebase.GetPostofChannels(currentChannel);
-    const [liked, setLiked] = useState(false);
-    const [button, setButton] = useState("far fa-heart");
-
-    const likepost = (postref) => {
-      
-        if (liked === false) {
-            setLiked(true);
-            setButton("fas fa-heart")
-            console.log("not liked, lets add!")
-            firebase.LikePost(postref);
-        } else {
-            setLiked(false);
-            setButton("far fa-heart")
-            firebase.UnlikePost(postref);
-        }
-    };
-
+   
     const [follow, setFollow] = useState(false);
-    const [fbutton, setFButton] = useState("Follow Channel");
+    const [fbutton, setFButton] = useState();
+
+    const [loaded, setLoaded] = useState(false);
+
+    const followstate = async () => {
+        const alreadyF =  await firebase.AlreadyFollowed(currentChannel);
+        if(alreadyF === false){
+            setFButton("UnFollow Channel")
+       } else {
+            setFButton("Follow Channel")
+       }
+    }
+    if(loaded===false){
+    followstate();
+    setLoaded(true);
+    }
 
     const FollowChannel = async (channel) => {
-        //const follow = firebase.FollowChannel(user, currchannel);
         const following = await firebase.AlreadyFollowed(channel);
+
         if (follow === false) {
             setFollow(true);
             setFButton("UnFollow Channel")
             if (following === false) {
                 firebase.FollowChannel(channel);
             }
-
         } else {
             setFollow(false);
             setFButton("Follow Channel")
@@ -48,16 +47,15 @@ const ImageFeed = () => {
                 firebase.UnFollowChannel(channel);
             }
         }
-    }
+    };
 
     return (
         <>
-            <div className="backbuttonC">
+        <div className="backbuttonC">
                 <Link to="/PictureThat/ChannelsPage" className="fas fa-arrow-left" />
             </div>
-
-            <div className="imageFeed">
-                <div class="card">
+        <motion.div className= "imageFeed" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
+        <div class="card">
                     <div className="channelInfo">
                         <label className="labelHeader">Channel Name: {channelInfo.id}</label>
                         <br />
@@ -69,57 +67,55 @@ const ImageFeed = () => {
                     </div>
 
                 </div>
-                <div className="whitespace" />
-                {docs && docs.map(doc => (
-                    <div class="post" key={doc.id}>
-                        <div className="postDetailsContainer">
-                            <div className="topinfo">
-                                <div className="user">
-                                    <br></br>
-                                    <div className="profilecard">
-                                        <label className="profileN">{doc.UserName}</label>
-                                        <br></br>
-                                        <label className="location">{doc.location} </label>
-                                    </div>
-                                </div>
-                                <br></br>
-                                <Link to="/PictureThat/ReportC"><div className="reportb" onClick={() => { sSelectedImgId = doc.id }}>Report</div></Link>
-
+            { docs && docs.map(doc => (
+                <div className="post" key={doc.id}>
+                    <div className="postDetailsContainer">
+                    <div className="topinfo">
+                    <div className="user">  
+                            <br></br>
+                            <div className="profilecard">                           
+                                <label className="profileName">{doc.UserName}</label>
+                            <br></br>
+                            <label className="location">{doc.location} </label>
                             </div>
-                        </div>
-
-                        <div>
-                            <img src={doc.url} alt="" className="image" />
-                        </div>
-
-                        <div className="bottominfo">
-                            <div className="postDetailsContainer">
-                                <div className="buttonfield">
-                                    <a onClick={() => likepost(doc.id)} className={button} />
-                                    <Link to="/PictureThat/FullPostChannel"><a className="far fa-comment" onClick={() => { sSelectedImgId = doc.id }} /></Link>
-                                </div>
-                                <div className="">
-                                    <label className="">Score: {doc.likes}</label>
-                                    <br></br>
-                                    <label>Caption: {doc.caption} </label>
-                                    <br></br>
-                                    <label>Channel: {doc.channelName} </label>
-                                    <br></br>
-                                    <label>{new Date(doc.uploaddate.seconds * 1000).toLocaleDateString()}</label>
-                                </div>
                             </div>
-                        </div>
+                            <br></br>
+                            <Link to="/PictureThat/ReportC"><div className="reportb" onClick={() => { sSelectedImgId = doc.id }}>Report</div></Link>
                     </div>
-                ))}
+                    </div>
+
+                    <div>
+                        <img src={doc.url} alt="" className="image"/>
+                    </div>
+
+                    <div className="bottominfo">
+                    <div className="postDetailsContainer">
+
+                    <div className="buttonfield">
+                        <Link to="/PictureThat/FullPostChannel"><div className="buttonP" onClick={() => {setSelectedImgId = doc.id}}>View Post</div></Link>
+                    </div>
+
+                    <div className="">
+                        <label className="bottomText">Score: {doc.likes}</label>
+                        <br></br>
+                        <label className="bottomText">Caption: {doc.caption} </label>
+                        <br></br>
+                        <label className="bottomText">Channel: {doc.channelName} </label>
+                        <br></br>
+                        <label className="bottomText">{new Date(doc.uploaddate.seconds * 1000).toLocaleDateString()}</label>
+                    </div>
+                </div>
             </div>
-        </>
+        </div>
+        ))}
+    </motion.div>
+    </>
     )
 }
 
 export default ImageFeed;
-export { sSelectedImgId };
+export {setSelectedImgId};
 
-
-//the source below was used to help set up how to send and get data from database
-//https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia 
+//the source bellow was used to help set up how to send and get data from database
+//https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia
 //https://www.youtube.com/watch?v=vUe91uOx7R0

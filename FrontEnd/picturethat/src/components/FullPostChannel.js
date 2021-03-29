@@ -9,42 +9,55 @@ import {sSelectedImgId} from "./ChannelPhotos";
 
 
 
-
 const FullPost = () => {
-    const selectedImg = sSelectedImgId;
+    const selectedImg = setSelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
     const getcomments = firebase.GetComments(selectedImg);
+    const postsLikes = firebase.GetLikes(selectedImg);
 
     let currentPost = sSelectedImgId;    
     const[comment, setComment] = useState('');
+    const [cbutton, setcButton] = useState();
+    const [cloaded, setLoaded] = useState(false);
+
+    const likedstate = async () => {
+        const calreadyLiked =  await firebase.AlreadyLiked(currentPost);
+        if(calreadyLiked === false){
+            setcButton("far fa-heart")
+       } else {
+            setcButton("fas fa-heart")
+       }
+    }
+    if(cloaded===false){
+    likedstate();
+    setLoaded(true);
+    }
 
     const handleUpload = () => {
         firebase.AddComment(comment, currentPost);
         setComment("");
     };
 
-    const [liked, setLiked] = useState(false);
-    const [button, setButton] = useState("far fa-heart");
+    const [liked, setcLiked] = useState(false);
 
-    const likepost = () => {
-       
-            if(liked === false) {
-                setLiked(true);
-                setButton("fas fa-heart")
-               //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-                //console.log(alreadyLiked);
-                //if(alreadyLiked == false){
-                    firebase.LikePost(selectedImg);
-              // }
-           } else {
-               setLiked(false);
-               setButton("far fa-heart")
-                //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-              // if(alreadyLiked){
-                   firebase.UnlikePost(selectedImg);
-              //}
+    const likepost = async (postref) => {
+        const calreadyLiked =  await firebase.AlreadyLiked(postref);
+
+        if(liked === false) {
+            setcLiked(true);
+            setcButton("fas fa-heart")
+        
+            if(calreadyLiked === false){
+                firebase.LikePost(postref);
            }
-        };
+       } else {
+           setcLiked(false);
+           setcButton("far fa-heart")
+           if(calreadyLiked === true){
+               firebase.UnlikePost(postref);
+          }
+       }
+    };
 
     return (
         <>
@@ -53,14 +66,11 @@ const FullPost = () => {
         </div>
         <div className= "FullPost">
                 <div class="card">
-                    
                     <div>
                         <img src={singlePost.url} alt="" className="imagestyle"/>
                     </div>
-                    
                     <div className="fullpostinfo">
                         <div className="headpart">
-                        
                             <div className="profilecard">
                                 <label className="profileN">{singlePost.UserName}</label>
                                 <br></br>
@@ -75,7 +85,7 @@ const FullPost = () => {
                                 <br></br>
                                 <label className="channel">Channel: {singlePost.channelName}</label>
                                 <br></br>
-                                <label className="date">Date: </label>
+                                <label className="date">Date:</label>
                                 <br></br>
                             </div>
                         </div>  
@@ -92,8 +102,8 @@ const FullPost = () => {
 
                         <div className="likesection">
                             <div className="like">
-                                <a onClick={() =>likepost()} className={button} />
-                                <label className="score">Score: {singlePost.likes}</label>
+                            <div onClick={() =>likepost(singlePost.id)} className={cbutton} />
+                                <label className="score">Score: {postsLikes.likes}</label>
                             </div>
                         </div>
 
@@ -103,7 +113,6 @@ const FullPost = () => {
                         </div>
                 </div>
         </div>
-        
     </div>
     </>
     )
