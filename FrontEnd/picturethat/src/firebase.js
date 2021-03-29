@@ -489,9 +489,9 @@ const AlreadyFollowed = async (channel) => {
   let found = false;
   let channelref = "/channels/" + channel;
   const user = getUserID();
-  //goes through all users and finds ones where this specific post has been liked
+  //goes through all users and finds ones where this specific channel has been followed
   //if any of these users match the one we are currently interested in, return true
-  //and if not, return false. WHEN USED IN FRONT END, ONLY CALL LIKEPOST IF THIS RETURNS FALSE
+  //and if not, return false. WHEN USED IN FRONT END, ONLY CALL FOLLOWCHANNEL IF THIS RETURNS FALSE
 
   const allike = await firestore.collection('users')
     .where("followed_channels", 'array-contains', channelref)
@@ -512,13 +512,18 @@ const AlreadyFollowed = async (channel) => {
 
 
 const FollowChannel = async (channel) => {
+  //gets the specific user document and adds the channel path to their array
+  //of followed channels
   const user = getUserID();
   const userref = firestore.collection('users').doc(user);
   userref.update({
     followed_channels: firebase.firestore.FieldValue.arrayUnion("/channels/" + channel)
   });
+  
+  //built in firebase increment function
   const increment = firebase.firestore.FieldValue.increment(1);
 
+  //updates the number_of_followers by one
   const channelref = firestore.collection('channels').doc(channel);
   channelref.update({
     number_of_followers: increment
@@ -537,13 +542,18 @@ const FollowChannel = async (channel) => {
 }
 
 const UnFollowChannel = async (channel) => {
+  //oppoisite of Follow, finds specific user, and removes channel path from their
+  //followed channel array
   const user = getUserID();
   const userref = firestore.collection('users').doc(user);
   userref.update({
     followed_channels: firebase.firestore.FieldValue.arrayRemove("/channels/" + channel)
   });
+  
+  //built in firebase increment function, increments by parameter so negative fine
   const increment = firebase.firestore.FieldValue.increment(-1);
 
+  //update the number of followers a channel has
   const channelref = firestore.collection('channels').doc(channel);
   channelref.update({
     number_of_followers: increment
