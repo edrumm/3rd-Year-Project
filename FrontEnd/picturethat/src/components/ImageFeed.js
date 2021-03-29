@@ -24,9 +24,9 @@ const ImageFeed = () => {
                                 <label className="profileName">{doc.UserName}</label>
                             <br></br>
                             <label className="location">{doc.location} </label>
+                            <br/>
                             </div>
                             </div>
-                            <br></br>
                             <Link to="/PictureThat/Report"><div className="reportb" onClick={() => { setSelectedImgId = doc.id }}>Report</div></Link>
                     </div>
                     </div>
