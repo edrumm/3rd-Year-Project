@@ -1,6 +1,7 @@
 import { firebase, storage, firestore, auth /*, analytics*/} from './Auth';
 import React, { useState, useEffect, useContext } from 'react';
 import { number } from 'joi';
+import Swal from 'sweetalert2';
 
 const context = React.createContext();
 const Auth = () => {
@@ -79,7 +80,13 @@ const AchievementUnlock = async (id) => {
     achv.push(id);
     await firestore.collection('users').doc(user.id).update({ achievements: achv, score: score });
 
-    return `Earned achievement: ${description}! ${score} score gained!`;
+    Swal.fire({
+      icon: 'info',
+      title: 'Achievement Unlocked!',
+      text: `${description} - ${score} score gained!`
+    });
+
+    return true;
   }
 
   return false;
@@ -380,7 +387,7 @@ const AddComment = async (text, post) => {
   }
   await refcom.set(Data);
 
- 
+
   AchievementUnlock('comment')
   .then(message => {
     if (message) {
@@ -565,7 +572,7 @@ const FollowChannel = async (channel) => {
   userref.update({
     followed_channels: firebase.firestore.FieldValue.arrayUnion("/channels/" + channel)
   });
-  
+
   //built in firebase increment function
   const increment = firebase.firestore.FieldValue.increment(1);
 
@@ -595,7 +602,7 @@ const UnFollowChannel = async (channel) => {
   userref.update({
     followed_channels: firebase.firestore.FieldValue.arrayRemove("/channels/" + channel)
   });
-  
+
   //built in firebase increment function, increments by parameter so negative fine
   const increment = firebase.firestore.FieldValue.increment(-1);
 
@@ -830,7 +837,7 @@ export default {
   TotalScore
 };
 
-export { Auth, Login, Signup, Logout, AchievementUnlock };
+export { Auth, Login, Signup, Logout, AchievementUnlock, AchievementNumPosts };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M

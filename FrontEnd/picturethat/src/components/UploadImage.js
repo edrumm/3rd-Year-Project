@@ -43,13 +43,13 @@ const ImageUpload = () => {
                 icon: 'error',
                 title: 'Post has not been finished',
                 text: "location is not a requirament"
-              });  
+              });
         } if(channel === null){
             Swal.fire({
                 icon: 'error',
                 title: 'Post has not been finished',
                 text: "location is not a requirament"
-              }); 
+              });
         } else {
         const channelLC = channel.toLowerCase();
         firebase.UploadPost(caption, location, channelLC, image);
@@ -69,7 +69,7 @@ const ImageUpload = () => {
             <div className="button-wrapper">
                 <button className="buttonUpload width"><input type="file" onChange={imgChange} />Add Photo</button>
             </div>
-        
+
             <div className="textFields">
                 <a className="text" >Details</a>
                 <input type="text" className="inputboxT" placeholder="Title" value= {caption} onChange= {(e) => {setTitle(e.target.value)}}/>
@@ -85,36 +85,3 @@ const ImageUpload = () => {
 
 export default ImageUpload;
 //https://www.youtube.com/watch?v=8r1Pb6Ja90o
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -5,7 +5,7 @@ import logo from './logo.png';
 import {useState} from 'react';
 import Footer from '../components/footer';
 import {useHistory} from 'react-router-dom';
-import {Login} from '../firebase';
+import {Login, AchievementUnlock} from '../firebase';
 import validate from '../validate';
 
 const SignIn  = () => {
@@ -14,7 +14,7 @@ const SignIn  = () => {
 
     const[email, setEmail] = useState('');
     const[password, setPassword] = useState('');
-  
+
     const[emailError, setEmailError] = useState({});
     const[passwordError, setPasswordError] = useState({});
 
@@ -26,8 +26,8 @@ const SignIn  = () => {
       //https://stackoverflow.com/questions/16200965/regular-expression-validate-gmail-addresses
 
       const emailRequirements = new RegExp (/([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@gmail([\.])com/g);
-      return emailRequirements.test(userEmailInput);
-  }
+        return emailRequirements.test(userEmailInput);
+      }
 
     const checkPassword = (userPasswordInput) => {
 
@@ -35,8 +35,8 @@ const SignIn  = () => {
       //https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
 
       const passwordRequirements = new RegExp (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/);
-      return passwordRequirements.test(userPasswordInput);
-  }
+        return passwordRequirements.test(userPasswordInput);
+      }
 
     const validateForm = () => {
 
@@ -44,9 +44,9 @@ const SignIn  = () => {
 
         const emailError = {};
         const passwordError = {};
-         
 
-         if (!checkEmail(email)) {
+
+         /*if (!checkEmail(email)) {
                  emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
                  Swal.fire({
                      icon: 'error',
@@ -54,7 +54,7 @@ const SignIn  = () => {
                      text: emailError.InvalidCharacters,
                    });
          }
- 
+
          if(!checkPassword(password)){
              passwordError.InvalidCharacters = "Your Password entered is incorrect. Try again.";
              Swal.fire({
@@ -72,11 +72,12 @@ const SignIn  = () => {
          else{
              isValid = false;
          }
- 
+
          setEmailError(emailError);
          setPasswordError(passwordError);
-         console.log(isValid);
+         console.log(isValid);*/
 
+        // use joi validation
         try {
           let credentials = {
             email: email,
@@ -87,6 +88,12 @@ const SignIn  = () => {
           isValid = true;
 
         } catch (err) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err
+          });
+
           isValid = false;
         }
 
