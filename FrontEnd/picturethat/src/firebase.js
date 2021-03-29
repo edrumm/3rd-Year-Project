@@ -36,7 +36,8 @@ const Signup = async (email, password, username) => {
     posts: [],
     // not yet implemented, will store ID's of unlocked achievements
     achievements: [],
-    score: 0
+    score: 0,
+    num_posts: 0
   });
 
   await auth.currentUser.updateProfile({
@@ -237,6 +238,7 @@ const reportPost = async (post, reportReason) => {
 
 const UploadPost = async (caption, loc, channel, image) => {
   const username = auth.currentUser.displayName;
+  const user = getUserID();
 
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
@@ -322,7 +324,10 @@ const UploadPost = async (caption, loc, channel, image) => {
       });
     });
   });
-
+  const usernumpost = firestore.collection('users').doc(user);
+  usernumpost.update({
+    num_posts: increment
+  })
 }
 
 const DeletePost = async (id) => {
