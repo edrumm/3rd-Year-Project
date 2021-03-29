@@ -10,7 +10,7 @@ import {sSelectedImgId} from "./ChannelPhotos";
 
 
 const FullPost = () => {
-    const selectedImg = setSelectedImgId;
+    const selectedImg = sSelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
     const getcomments = firebase.GetComments(selectedImg);
     const postsLikes = firebase.GetLikes(selectedImg);

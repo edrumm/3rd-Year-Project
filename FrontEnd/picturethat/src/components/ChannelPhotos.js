@@ -92,7 +92,7 @@ const ImageFeed = () => {
                     <div className="postDetailsContainer">
 
                     <div className="buttonfield">
-                        <Link to="/PictureThat/FullPostChannel"><div className="buttonP" onClick={() => {setSelectedImgId = doc.id}}>View Post</div></Link>
+                        <Link to="/PictureThat/FullPostChannel"><div className="buttonP" onClick={() => {sSelectedImgId = doc.id}}>View Post</div></Link>
                     </div>
 
                     <div className="">
@@ -114,7 +114,8 @@ const ImageFeed = () => {
 }
 
 export default ImageFeed;
-export {setSelectedImgId};
+export {sSelectedImgId};
+
 
 //the source bellow was used to help set up how to send and get data from database
 //https://www.youtube.com/watch?v=vUe91uOx7R0&ab_channel=TraversyMedia
