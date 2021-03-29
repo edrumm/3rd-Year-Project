@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import './ImageFeed.css';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase";
@@ -6,15 +6,45 @@ import {motion} from 'framer-motion';
 
 let setSelectedImgId;
 
-const ImageFeed = () => {
+class ImageFeed extends React.Component { 
     
-    const { docs } = firebase.GetImg('posts');
 
+    constructor() {
+        super();
+        this.state = { data: [] };
+      }
     
+      async componentDidMount() {
+        const posts = await firebase.GetAllUserChannelPosts();
+        this.setState({ data: posts });
+      }
+    //var loaded = false;
+    //console.log(loaded);
+    
+    // componentDidMount(){
+    // this.docs = firebase.GetAllUserChannelPosts();
+    // //loaded = true;
+    // //console.log(loaded);
+    // console.log(this.docs);
+    // }
+    
+    
+    // if(docs.length === 0){
+    // return (
+    //     <>
+    //     <div>No data</div>
+    //     </>
+    // )
+
+
+    // } else {
+    render() {
+        // var posts = this.docs;
+        // console.log(posts);
     return (
         <>
         <motion.div className= "imageFeed" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
-            { docs && docs.map(doc => (
+            { (this.state.data.map(doc => (
                 <div className="post" key={doc.id}>
                     <div className="postDetailsContainer">
                     <div className="topinfo">
@@ -54,13 +84,12 @@ const ImageFeed = () => {
                 </div>
             </div>
         </div>
-        ))}
+        )))}
         
     </motion.div>
     </>
     )
-
-
+    }
 }
 
 export default ImageFeed;
