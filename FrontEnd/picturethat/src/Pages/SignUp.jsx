@@ -47,7 +47,7 @@ const SignUp  = () => {
         return passwordRequirements.test(userPasswordInput);
     }
     const validateForm = (e) => {
-        
+
         let isValid = true;
 
          //arrays to hold errors set to empty array
@@ -55,13 +55,13 @@ const SignUp  = () => {
          const passwordError = {};
          const usernameError = {};
 
-        if(!checkUsername(username)){
+        /*if(!checkUsername(username)){
             usernameError.InvalidCharacters = "Username must be longer than 5 characters";
             Swal.fire({
                icon: 'error',
                title: 'Oops...',
                text: usernameError.InvalidCharacters,
-             });     
+             });
         }
 
          if (!checkEmail(email)) {
@@ -72,7 +72,7 @@ const SignUp  = () => {
                      text: emailError.InvalidCharacters,
                    });
          }
- 
+
          if(!(email === confirmEmail)){
              emailError.EmailMismatch = "Re-entered email MUST be the same as email";
              Swal.fire({
@@ -81,7 +81,7 @@ const SignUp  = () => {
                  text: emailError.EmailMismatch,
                });
          }
- 
+
          if((checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail)){
              console.log("Valid email address");
          }
@@ -94,7 +94,7 @@ const SignUp  = () => {
                  text: passwordError.InvalidCharacters,
                });
          }
- 
+
          if(!(password === confirmPassword)){
              passwordError.PasswordMismatch = "Re-entered password MUST be the same as password";
              Swal.fire({
@@ -103,11 +103,11 @@ const SignUp  = () => {
                  text: passwordError.PasswordMismatch,
                });
          }
- 
+
          if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword)){
              console.log("Valid password");
          }
- 
+
          if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword) && (checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail) && checkUsername(username)){
              isValid = true;
              console.log(email);
@@ -116,12 +116,13 @@ const SignUp  = () => {
          else{
              isValid = false;
          }
- 
+
          setEmailError(emailError);
          setPasswordError(passwordError);
          setUsernameError(usernameError);
-         console.log(isValid);
+         console.log(isValid);*/
 
+        // use joi validation
         try {
           let credentials = {
               username: username,
@@ -135,6 +136,12 @@ const SignUp  = () => {
           isValid = true;
 
         } catch (err) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: err,
+          });
+
           isValid = false;
         }
 
@@ -150,7 +157,12 @@ const SignUp  = () => {
                 history.push("/PictureThat");
               })
               .catch(err => {
-                console.error(err);
+                Swal.fire({
+                  icon: 'error',
+                  title: 'Oops...',
+                  text: err,
+                });
+
                 history.push('/');
               });
 

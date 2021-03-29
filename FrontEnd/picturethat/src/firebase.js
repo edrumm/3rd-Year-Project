@@ -1,6 +1,7 @@
 import { firebase, storage, firestore, auth } from './Auth';
 import React, { useState, useEffect, useContext } from 'react';
 import { number } from 'joi';
+import Swal from 'sweetalert2';
 
 const context = React.createContext();
 const Auth = () => {
@@ -12,6 +13,19 @@ const Login = async (email, password) => {
 
   await auth.signInWithEmailAndPassword(email, password);
 
+  let uid = auth.currentUser.uid;
+  let user = await firestore.collection('users').doc(uid).get();
+  let doc = user.data();
+
+  if (doc.score >= 100 && doc.score < 500) {
+    AchievementUnlock('100-score').catch(err => console.error(err));
+
+  } else if (doc.score >= 500 && doc.score < 1000) {
+    AchievementUnlock('500-score').catch(err => console.error(err));
+
+  } else if (doc.score > 1000) {
+    AchievementUnlock('1000-score').catch(err => console.error(err));
+  }
 };
 
 const Signup = async (email, password, username) => {
@@ -19,12 +33,16 @@ const Signup = async (email, password, username) => {
   // errors caught on top level
   await auth.createUserWithEmailAndPassword(email, password);
 
-
   let user = await firestore.collection('users').doc(email);
   let doc = await user.get();
 
   if (doc.exists) {
-    // redirect to login
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops',
+      text: 'That account already exists. Did you mean to login instead?'
+    });
+
     throw new Error('An account with these details exists already');
   }
   let userID = auth.currentUser.uid;
@@ -79,7 +97,13 @@ const AchievementUnlock = async (id) => {
     achv.push(id);
     await firestore.collection('users').doc(user.id).update({ achievements: achv, score: score });
 
-    return `Earned achievement: ${description}! ${score} score gained!`;
+    Swal.fire({
+      icon: 'info',
+      title: 'Achievement Unlocked!',
+      text: `${description} - ${achvScore} score gained!`
+    });
+
+    return true;
   }
 
   return false;
@@ -268,11 +292,6 @@ const UploadPost = async (caption, loc, channel, image) => {
 
   if (np == 1 || np == 10 || np == 50) {
     AchievementUnlock(`${np}-photos`)
-    .then(message => {
-      if (message) {
-        alert(message);
-      }
-    })
     .catch(err => {
       throw err;
     });
@@ -381,13 +400,8 @@ const AddComment = async (text, post) => {
   }
   await refcom.set(Data);
 
- 
+
   AchievementUnlock('comment')
-  .then(message => {
-    if (message) {
-      alert(message);
-    }
-  })
   .catch(err => {
     throw err;
   });
@@ -499,7 +513,10 @@ const LikePost = async (post) => {
   let userref = firestore.collection("users").doc(user);
   userref.update({
     likedPosts: firebase.firestore.FieldValue.arrayUnion("/posts/" + post)
-  })
+  });
+
+  AchievementUnlock('liked-post')
+  .catch(err => console.error(err));
 }
 
 const UnlikePost = async (post) => {
@@ -576,7 +593,7 @@ const FollowChannel = async (channel) => {
   userref.update({
     followed_channels: firebase.firestore.FieldValue.arrayUnion("/channels/" + channel)
   });
-  
+
   //built in firebase increment function
   const increment = firebase.firestore.FieldValue.increment(1);
 
@@ -587,15 +604,9 @@ const FollowChannel = async (channel) => {
   });
 
   AchievementUnlock('followed-channel')
-  .then(message => {
-    if (message) {
-      alert(message);
-    }
-  })
   .catch(err => {
     throw err;
   });
-
 }
 
 const UnFollowChannel = async (channel) => {
@@ -606,7 +617,7 @@ const UnFollowChannel = async (channel) => {
   userref.update({
     followed_channels: firebase.firestore.FieldValue.arrayRemove("/channels/" + channel)
   });
-  
+
   //built in firebase increment function, increments by parameter so negative fine
   const increment = firebase.firestore.FieldValue.increment(-1);
 
@@ -827,7 +838,7 @@ const GetAllUserChannelPosts = async () => {
         posts.push({ ...post.data(), id: post.id })
     });
   });
-  
+
   return posts;
 }
 
@@ -864,7 +875,7 @@ export default {
   GetUserStats
 };
 
-export { Auth, Login, Signup, Logout, AchievementUnlock };
+export { Auth, Login, Signup, Logout, AchievementUnlock, AchievementNumPosts };
 
 
 //https://www.youtube.com/watch?v=cFgoSrOui2M
