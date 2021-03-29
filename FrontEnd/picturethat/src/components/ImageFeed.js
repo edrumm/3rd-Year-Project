@@ -13,36 +13,18 @@ class ImageFeed extends React.Component {
         super();
         this.state = { data: [] };
       }
-    
+      
       async componentDidMount() {
         const posts = await firebase.GetAllUserChannelPosts();
         this.setState({ data: posts });
       }
-    //var loaded = false;
-    //console.log(loaded);
-    
-    // componentDidMount(){
-    // this.docs = firebase.GetAllUserChannelPosts();
-    // //loaded = true;
-    // //console.log(loaded);
-    // console.log(this.docs);
-    // }
-    
-    
-    // if(docs.length === 0){
-    // return (
-    //     <>
-    //     <div>No data</div>
-    //     </>
-    // )
 
-
-    // } else {
+      
+  
     render() {
-        // var posts = this.docs;
-        // console.log(posts);
     return (
         <>
+        
         <motion.div className= "imageFeed" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
             { (this.state.data.map(doc => (
                 <div className="post" key={doc.id}>

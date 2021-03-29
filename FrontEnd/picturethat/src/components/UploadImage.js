@@ -59,10 +59,10 @@ const ImageUpload = () => {
         const channelLC = channel.toLowerCase();
         firebase.UploadPost(caption, location, channelLC, image);
         setLocalimg(null);
-        setLoc(null);
-        setTitle(null);
+        setLoc("");
+        setTitle("");
         setImage(null);
-        setChannel(null);
+        setChannel("");
         }
     };
 
