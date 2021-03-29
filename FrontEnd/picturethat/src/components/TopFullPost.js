@@ -8,29 +8,51 @@ const FullPost = () => {
     const selectedImg = SelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
     const getcomments = firebase.GetComments(selectedImg);
+    const postsLikes = firebase.GetLikes(selectedImg);
 
     let currentPost = SelectedImgId;    
     const[comment, setComment] = useState('');
+    const [button, setButton] = useState();
+    const [loaded, setLoaded] = useState(false);
+
+    const likedstate = async () => {
+        const alreadyLiked =  await firebase.AlreadyLiked(currentPost);
+        if(alreadyLiked === false){
+            setButton("far fa-heart")
+       } else {
+            setButton("fas fa-heart")
+       }
+    }
+    if(loaded===false){
+    likedstate();
+    setLoaded(true);
+    }
 
     const handleUpload = () => {
         firebase.AddComment(comment, currentPost);
+        setComment("");
     };
 
     const [liked, setLiked] = useState(false);
-    const [button, setButton] = useState("far fa-heart");
 
-    const likepost = () => {
+    const likepost = async (postref) => {
+        const alreadyLiked =  await firebase.AlreadyLiked(postref);
+
+        if(liked === false) {
+            setLiked(true);
+            setButton("fas fa-heart")
         
-            if(liked === false) {
-                setLiked(true);
-                setButton("fas fa-heart")
-                firebase.LikePost(selectedImg);
-           } else {
-               setLiked(false);
-               setButton("far fa-heart")
-               firebase.UnlikePost(selectedImg);
+            if(alreadyLiked === false){
+                firebase.LikePost(postref);
            }
-        };
+       } else {
+           setLiked(false);
+           setButton("far fa-heart")
+           if(alreadyLiked === true){
+               firebase.UnlikePost(postref);
+          }
+       }
+    };
 
     return (
         <>
@@ -39,14 +61,11 @@ const FullPost = () => {
         </div>
         <div className= "FullPost">
                 <div class="card">
-                    
                     <div>
                         <img src={singlePost.url} alt="" className="imagestyle"/>
                     </div>
-                    
                     <div className="fullpostinfo">
                         <div className="headpart">
-                        
                             <div className="profilecard">
                                 <label className="profileN">{singlePost.UserName}</label>
                                 <br></br>
@@ -57,11 +76,11 @@ const FullPost = () => {
                             </div>
                         <div>
                             <div className="imginfo">
-                                <label className="caption">Caption: {singlePost.caption}</label>
+                                <label className="caption">{singlePost.caption}</label>
                                 <br></br>
                                 <label className="channel">Channel: {singlePost.channelName}</label>
                                 <br></br>
-                                <label className="date">Date:</label>
+                                
                                 <br></br>
                             </div>
                         </div>  
@@ -78,8 +97,8 @@ const FullPost = () => {
 
                         <div className="likesection">
                             <div className="like">
-                                <a onClick={() =>likepost()} className={button} />
-                                <label className="score">Score: {singlePost.likes}</label>
+                            <div onClick={() =>likepost(singlePost.id)} className={button} />
+                                <label className="score">Score: {postsLikes.likes}</label>
                             </div>
                         </div>
 

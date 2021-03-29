@@ -3,7 +3,9 @@ import {Link} from 'react-router-dom';
 import "../Pages/Settings.css";
 import firebase from "../firebase.js";
 
+
 const deleteAcount = () => {
+
     firebase.deleteUser();
 }
 

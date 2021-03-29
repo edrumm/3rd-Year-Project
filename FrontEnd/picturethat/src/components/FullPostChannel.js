@@ -81,11 +81,10 @@ const FullPost = () => {
                             </div>
                         <div>
                             <div className="imginfo">
-                                <label className="caption">Caption: {singlePost.caption}</label>
+                                <label className="caption">{singlePost.caption}</label>
                                 <br></br>
                                 <label className="channel">Channel: {singlePost.channelName}</label>
                                 <br></br>
-                                <label className="date">Date:</label>
                                 <br></br>
                             </div>
                         </div>  

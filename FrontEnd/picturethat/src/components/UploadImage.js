@@ -10,9 +10,10 @@ const ImageUpload = () => {
     const [url, setUrl] = useState("");
     const [error, setError] = useState(null);
     const[caption, setTitle] = useState('');
-    const[channel, setDescription] = useState('');
-    const[loc, setLoc] = useState('');
+    const[channel, setChannel] = useState('');
+    const[loc, setLoc] = useState(null);
     const[localimg, setLocalimg] = useState(null);
+    const Swal = require('sweetalert2');
 
     const imgTypes = ['image/png', 'image/jpeg'];
 
@@ -33,8 +34,31 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
+        var location;
+        if(loc === null){
+            location = "[No location]";
+        }
+        if(image === null){
+            Swal.fire({
+                icon: 'error',
+                title: 'Post has not been finished',
+                text: "location is not a requirament"
+              });  
+        } if(channel === null){
+            Swal.fire({
+                icon: 'error',
+                title: 'Post has not been finished',
+                text: "location is not a requirament"
+              }); 
+        } else {
         const channelLC = channel.toLowerCase();
-        firebase.UploadPost(caption, loc, channelLC, image);
+        firebase.UploadPost(caption, location, channelLC, image);
+        setLocalimg(null);
+        setLoc(null);
+        setTitle(null);
+        setImage(null);
+        setChannel(null);
+        }
     };
 
     return (
@@ -50,9 +74,9 @@ const ImageUpload = () => {
                 <a className="text" >Details</a>
                 <input type="text" className="inputboxT" placeholder="Title" value= {caption} onChange= {(e) => {setTitle(e.target.value)}}/>
                 <input type="text" className="inputboxT" placeholder="Location" value= {loc} onChange= {(e) => {setLoc(e.target.value)}}/>
-                <input type="text" className="inputboxT" placeholder="Channel" value= {channel} onChange= {(e) => {setDescription(e.target.value)}}/>
+                <input type="text" className="inputboxT" placeholder="Channel" value= {channel} onChange= {(e) => {setChannel(e.target.value)}}/>
                 <div>Post must follow the Terms and Conditions,<br/> They must not include people in them</div>
-                <Link to="/PictureThat" onClick={handleUpload}><button className="buttonUpload">Post</button></Link>
+                <button onClick={handleUpload} className="buttonUpload">Post</button>
             </div>
         </motion.div>
         </>

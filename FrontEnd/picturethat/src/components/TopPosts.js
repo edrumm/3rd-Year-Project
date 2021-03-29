@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './ImageFeed.css';
 import {Link} from 'react-router-dom';
 import firebase from "../firebase";
@@ -8,50 +8,27 @@ let SelectedImgId;
 
 const ImageFeed = () => {
     
-    const [liked, setLiked] = useState(false);
-    const [button, setButton] = useState("far fa-heart");
-    
-    const likepost = async (postref) => {
-        const alreadyLiked =  await firebase.AlreadyLiked(postref);
-
-        if(liked === false) {
-            setLiked(true);
-            setButton("fas fa-heart")
-           
-            console.log(alreadyLiked);
-            if(alreadyLiked == false){
-                firebase.LikePost(postref);
-           }
-       } else {
-           setLiked(false);
-           setButton("far fa-heart")
-           if(alreadyLiked == true){
-               firebase.UnlikePost(postref);
-          }
-       }
-    };
     const { docs } = firebase.GetTopPosts('posts');
-  
+
+    
     return (
         <>
         <motion.div className= "imageFeed" initial={{opacity: 0.2}} animate= {{opacity: 1}} transition={{delay: 0.1}}>
-            <div className="Title">Top 10 posts</div>
+        <div className="Title">Top 10 posts</div>
             { docs && docs.map(doc => (
-                <div class="post" key={doc.id}>
+                <div className="post" key={doc.id}>
                     <div className="postDetailsContainer">
                     <div className="topinfo">
-                    <div className="user">
-                            
+                    <div className="user">  
                             <br></br>
                             <div className="profilecard">                           
                                 <label className="profileName">{doc.UserName}</label>
                             <br></br>
                             <label className="location">{doc.location} </label>
+                            <br/>
                             </div>
                             </div>
-                            <br></br>
                             <Link to="/PictureThat/ReportT"><div className="reportb" onClick={() => { SelectedImgId = doc.id }}>Report</div></Link>
-
                     </div>
                     </div>
 
@@ -61,10 +38,11 @@ const ImageFeed = () => {
 
                     <div className="bottominfo">
                     <div className="postDetailsContainer">
+
                     <div className="buttonfield">
-                    <a onClick={() =>likepost(doc.id)} className={button} />
-                    <Link to="/PictureThat/TopFullPost"><a className="far fa-comment" onClick={() => {SelectedImgId = doc.id}}/></Link>
+                         <Link to="/PictureThat/TopFullPost"><div className="buttonP" onClick={() => {SelectedImgId = doc.id}}>View Post</div></Link>
                     </div>
+
                     <div className="">
                         <label className="bottomText">Score: {doc.likes}</label>
                         <br></br>
@@ -78,12 +56,15 @@ const ImageFeed = () => {
             </div>
         </div>
         ))}
+        
     </motion.div>
     </>
     )
+
+
 }
 
-export default ImageFeed ;
+export default ImageFeed;
 export {SelectedImgId};
 
 //the source bellow was used to help set up how to send and get data from database

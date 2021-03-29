@@ -20,7 +20,7 @@ const ChangeEmail = () => {
         //link for the regex used
         //https://sigparser.com/developers/email-parsing/regex-validate-email-address/
 
-        const emailRequirements = new RegExp (/^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/);
+        const emailRequirements = new RegExp (/([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@gmail([\.])com/g);
         return emailRequirements.test(userEmailInput);
     }
 

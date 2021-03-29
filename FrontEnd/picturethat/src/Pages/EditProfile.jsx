@@ -9,13 +9,21 @@ import firebase from "../firebase.js";
 const EditProfile  = () => {
     const Swal = require('sweetalert2');
 
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(null);
     const UpdateData = () => {
+        if(username === null){
+            Swal.fire({
+                icon: 'error',
+                title: 'Please enter a new username',
+              });
+        } else {
         firebase.changeUserName(username);
         Swal.fire({
             icon: 'success',
             title: 'Username changed',
           });
+        setUsername("");
+        }
     }
 
     return (
