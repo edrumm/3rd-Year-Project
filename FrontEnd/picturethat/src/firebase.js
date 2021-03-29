@@ -13,6 +13,19 @@ const Login = async (email, password) => {
 
   await auth.signInWithEmailAndPassword(email, password);
 
+  let uid = auth.currentUser.uid;
+  let user = await firestore.collection('users').doc(uid).get();
+  let doc = user.data();
+
+  if (doc.score >= 100 && doc.score < 500) {
+    AchievementUnlock('100-score').catch(err => console.error(err));
+
+  } else if (doc.score >= 500 && doc.score < 1000) {
+    AchievementUnlock('500-score').catch(err => console.error(err));
+
+  } else if (doc.score > 1000) {
+    AchievementUnlock('1000-score').catch(err => console.error(err));
+  }
 };
 
 const Signup = async (email, password, username) => {
@@ -20,12 +33,16 @@ const Signup = async (email, password, username) => {
   // errors caught on top level
   await auth.createUserWithEmailAndPassword(email, password);
 
-
   let user = await firestore.collection('users').doc(email);
   let doc = await user.get();
 
   if (doc.exists) {
-    // redirect to login
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops',
+      text: 'That account already exists. Did you mean to login instead?'
+    });
+
     throw new Error('An account with these details exists already');
   }
   let userID = auth.currentUser.uid;
@@ -83,7 +100,7 @@ const AchievementUnlock = async (id) => {
     Swal.fire({
       icon: 'info',
       title: 'Achievement Unlocked!',
-      text: `${description} - ${score} score gained!`
+      text: `${description} - ${achvScore} score gained!`
     });
 
     return true;
@@ -587,15 +604,9 @@ const FollowChannel = async (channel) => {
   });
 
   AchievementUnlock('followed-channel')
-  .then(message => {
-    if (message) {
-      alert(message);
-    }
-  })
   .catch(err => {
     throw err;
   });
-
 }
 
 const UnFollowChannel = async (channel) => {
