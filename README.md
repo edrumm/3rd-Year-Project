@@ -5,9 +5,9 @@
 
 ## Description
 
-3rd year group project for F29SIO Software Engineering.
+3rd year group project for F29SO Software Engineering.
 
-PictureThat is a social media platform for photographers
+PictureThat is a social media platform for photographers which focuses on the photos rather than the people
 
 **Created by:**
 - Lucas Arena-Terry
@@ -21,11 +21,18 @@ PictureThat is a social media platform for photographers
 ## Dependencies
 
 **PictureThat was created using**:
+- Babel / JSX
 - React
 - React-dom
 - Firebase
 - Joi
+- Chai / Mocha
 
 ## Installation
 
-Coming soon
+- Download .zip archive of source and extract
+- Install npm [here](https://www.npmjs.com/)
+- Navigate to `/FrontEnd/picturethat`
+- Install dependencies with `npm install`
+- Run with `npm start`
+- Navigate to `localhost:3000`

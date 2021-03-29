@@ -1,7 +1,6 @@
 import { Login, AchievementUnlock, Logout } from '../src/firebase';
 import { assert } from 'chai';
 
-
 describe('Login Test', () => {
   it('tests login', () => {
 

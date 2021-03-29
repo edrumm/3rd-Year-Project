@@ -1,4 +1,4 @@
-import { firebase, storage, firestore, auth /*, analytics*/} from './Auth';
+import { firebase, storage, firestore, auth } from './Auth';
 import React, { useState, useEffect, useContext } from 'react';
 import { number } from 'joi';
 
@@ -36,7 +36,8 @@ const Signup = async (email, password, username) => {
     posts: [],
     // not yet implemented, will store ID's of unlocked achievements
     achievements: [],
-    score: 0
+    score: 0,
+    num_posts: 0
   });
 
   await auth.currentUser.updateProfile({
@@ -103,7 +104,6 @@ const getUser = () => {
   let user = auth.currentUser;
 
   if (user != null) {
-    console.log(`user = ${user.displayName}`);
     return user;
   } else {
     return null;
@@ -237,7 +237,10 @@ const reportPost = async (post, reportReason) => {
 
 const UploadPost = async (caption, loc, channel, image) => {
   const username = auth.currentUser.displayName;
-
+  const user = getUserID();
+  console.log(caption);
+  console.log(loc);
+  console.log(channel);
   const url = await storage.ref(`images/${image.name}`).put(image).then((snapshot) => {
     return snapshot.ref.getDownloadURL();
   });
@@ -322,7 +325,10 @@ const UploadPost = async (caption, loc, channel, image) => {
       });
     });
   });
-
+  const usernumpost = firestore.collection('users').doc(user);
+  usernumpost.update({
+    num_posts: increment
+  })
 }
 
 const DeletePost = async (id) => {
@@ -344,6 +350,24 @@ const DeletePost = async (id) => {
     await firestore.collection('comments').doc(comm.id).delete();
   });
 };
+
+
+const TotalScore = async () =>{
+  const user = auth.currentUser.displayName;
+  let score = 0;
+
+  const postrefs = await firestore.collection('posts')
+  .where("UserName", "==", user)
+  .get()
+  .then(snapshot=>{
+    snapshot.forEach(doc =>{
+      score = score + doc.data().likes;
+    })
+  })
+
+  console.log(score);
+  return score;
+}
 
 
 const AddComment = async (text, post) => {
@@ -458,7 +482,18 @@ const LikePost = async (post) => {
   postref.update({
     likes: increment
   })
-
+  let total = (await postref.get()).data();
+  await firestore.collection('users')
+  .where("username", "==", total.UserName)
+  .get()
+  .then(snapshot =>{
+    snapshot.forEach(doc =>{
+      const test = firestore.collection("users").doc(doc.id);
+      test.update({
+        score: increment
+      })
+    })
+  })
   //on user side, add the post reference to the array within the specific user document
   const user = getUserID();
   let userref = firestore.collection("users").doc(user);
@@ -476,6 +511,18 @@ const UnlikePost = async (post) => {
     likes: decrement
   })
 
+  let total = (await postref.get()).data();
+  await firestore.collection('users')
+  .where("username", "==", total.UserName)
+  .get()
+  .then(snapshot =>{
+    snapshot.forEach(doc =>{
+      const test = firestore.collection("users").doc(doc.id);
+      test.update({
+        score: decrement
+      })
+    })
+  })
   const user = getUserID();
   //user end uses opposite array method from UNION to remove the specific post from the array
   let userref = firestore.collection("users").doc(user);
@@ -510,7 +557,17 @@ const AlreadyFollowed = async (channel) => {
   return found;
 }
 
-
+const getScore = async() =>{
+  const user = getUserID();
+  const score = firestore.collection('users').doc(user)
+  let total = 0;
+  await score.get()
+  .then(doc =>{
+    total = doc.data().score;
+  })
+  console.log(total);
+  return total;
+}
 const FollowChannel = async (channel) => {
   //gets the specific user document and adds the channel path to their array
   //of followed channels
@@ -644,6 +701,28 @@ const GetLikes = (post) => {
   return docs;
 }
 
+const GetUserStats = () => {
+  let user = getUserID();
+  var docRef = firestore.collection("users").doc(user);
+  const [docs, setDocs] = useState([]);
+  let isMounted = true;
+
+  docRef.get().then((doc) => {
+    if (doc.exists) {
+      if (isMounted === true ) {
+        //for (let doc of querySnapshot.docs) {
+        setDocs(doc.data())
+        isMounted = false;
+      }
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+  }).catch((error) => {
+    console.log("Error getting document:", error);
+  });
+  return docs;
+}
 
 const GetChannelInfo = (channel) => {
   var docRef = firestore.collection("channels").doc(channel);
@@ -780,7 +859,9 @@ export default {
   GetTopPosts,
   GetSingleChannel,
   GetLikes,
-  GetChannelInfo
+  GetChannelInfo,
+  TotalScore,
+  GetUserStats
 };
 
 export { Auth, Login, Signup, Logout, AchievementUnlock };

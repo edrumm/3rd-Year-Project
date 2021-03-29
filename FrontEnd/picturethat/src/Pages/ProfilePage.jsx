@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import {Link} from 'react-router-dom';
 import './profilePage.css';
@@ -7,11 +7,12 @@ import ImageGrid from '../components/ImageGrid';
 import Footer from '../components/footer';
 import firebase from '../firebase';
 
+
+
 const ProfilePage  = () => {
 
     const dataDoc = firebase.getUser().displayName;
-    console.log(dataDoc);
-
+    const userstats = firebase.GetUserStats();
     return (
         <>
         <Navbar></Navbar>
@@ -23,8 +24,8 @@ const ProfilePage  = () => {
         <div class="column personalsectionRight">
             
             <div className="column1 leftPersonalSide">
-                <div className="content">No. of Posts</div>
-                <div className="content">Total Score</div>
+                <div className="content">No. of Posts: {userstats.num_posts}</div>
+                <div className="content">User Total Score: {userstats.score}</div>
             </div>
 
             <div className= "column1 rightPersonalSide">
