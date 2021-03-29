@@ -240,7 +240,7 @@ const SignUp  = () => {
                         required
                     />
 
-                    <label className="termsAndConditions"> By sining up, you agree to our <br></br> <Link to="/PictureThat/TermsAndConditions">Terms of Services and Privacy Policy</Link></label><br></br>
+                    <label className="termsAndConditions"> By signing up, you agree to our <br></br> <Link to="/PictureThat/TermsAndConditions">Terms of Services and Privacy Policy</Link></label><br></br>
 
                         <button
                             id="signInButton"
