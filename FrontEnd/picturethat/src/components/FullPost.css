@@ -73,13 +73,13 @@
 }
 
 .imagestyle {
-    border-bottom-left-radius: 20px;
-    border-top-left-radius: 20px;
+    border-radius: 20px;
     box-shadow: -2px 0px 4px 3px lightgray;
     min-height: 25rem;
     min-width: 50%;
     max-height: 31.75rem;
     max-width: 30rem;
+    margin-right: 2rem;
     overflow: hidden;
 }
 
@@ -150,8 +150,7 @@
     max-height: 31rem;
     max-width: 30rem;
     border: solid 1px lightgray;
-    border-bottom-right-radius: 20px;
-    border-top-right-radius: 20px;
+    border-radius: 20px;
     box-shadow: 2px 0px 4px 3px lightgray;
     padding-top: 10px;
     padding-left: 10px;

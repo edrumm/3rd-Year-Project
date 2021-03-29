@@ -5,42 +5,54 @@ import firebase from "../firebase.js";
 import {setSelectedImgId} from "./ChannelPhotos";
 
 const FullPost = () => {
-
     const selectedImg = setSelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
     const getcomments = firebase.GetComments(selectedImg);
+    const postsLikes = firebase.GetLikes(selectedImg);
 
     let currentPost = setSelectedImgId;    
     const[comment, setComment] = useState('');
+    const [cbutton, setcButton] = useState();
+    const [cloaded, setLoaded] = useState(false);
+
+    const likedstate = async () => {
+        const calreadyLiked =  await firebase.AlreadyLiked(currentPost);
+        if(calreadyLiked === false){
+            setcButton("far fa-heart")
+       } else {
+            setcButton("fas fa-heart")
+       }
+    }
+    if(cloaded===false){
+    likedstate();
+    setLoaded(true);
+    }
 
     const handleUpload = () => {
         firebase.AddComment(comment, currentPost);
+        setComment('');
     };
 
-    const [liked, setLiked] = useState(false);
-    const [button, setButton] = useState("far fa-heart");
+    const [liked, setcLiked] = useState(false);
 
-    const likepost = () => {
-       
-            if(liked === false) {
-                setLiked(true);
-                setButton("fas fa-heart")
-               //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-                //console.log(alreadyLiked);
-                //if(alreadyLiked == false){
-                    
-                    firebase.LikePost(selectedImg);
-              // }
-           } else {
-               setLiked(false);
-               setButton("far fa-heart")
-                //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-              // if(alreadyLiked){
-                   firebase.UnlikePost(selectedImg);
-              //}
+    const likepost = async (postref) => {
+        const calreadyLiked =  await firebase.AlreadyLiked(postref);
+
+        if(liked === false) {
+            setcLiked(true);
+            setcButton("fas fa-heart")
+        
+            if(calreadyLiked === false){
+                firebase.LikePost(postref);
            }
-        };
-    
+       } else {
+           setcLiked(false);
+           setcButton("far fa-heart")
+           if(calreadyLiked === true){
+               firebase.UnlikePost(postref);
+          }
+       }
+    };
 
     return (
         <>
@@ -49,49 +61,44 @@ const FullPost = () => {
         </div>
         <div className= "FullPost">
                 <div class="card">
-                    
                     <div>
                         <img src={singlePost.url} alt="" className="imagestyle"/>
                     </div>
-                    
                     <div className="fullpostinfo">
-                    
-
-                    <div className="headpart">
-                    
-                         
-                            <br></br>
+                        <div className="headpart">
                             <div className="profilecard">
-                            <label className="profileN">{singlePost.UserName}</label>
-                            <br></br>
-                            <label className="location">{singlePost.location}</label>
+                                <label className="profileN">{singlePost.UserName}</label>
+                                <br></br>
+                                <label className="location">{singlePost.location}</label>
+                                </div>
+                                <br></br>
+                                <label className="report">Report</label>
                             </div>
-                            <br></br>
-                            <lable className="report">Report</lable>
-                    </div>
-                    <div>
-                        <div className="imginfo">
-                        <label className="caption">{singlePost.caption}</label>
-                        <br></br>
-                        <label className="channel">{singlePost.channelName}</label>
-                        </div>
-                        
-                        <label className="date">Date</label>
-                    </div>  
+                        <div>
+                            <div className="imginfo">
+                                <label className="caption">Caption: {singlePost.caption}</label>
+                                <br></br>
+                                <label className="channel">Channel: {singlePost.channelName}</label>
+                                <br></br>
+                                <label className="date">Date:</label>
+                                <br></br>
+                            </div>
+                        </div>  
                         <div className="commentfield">
-                        { getcomments && getcomments.map(doc => (
-                            <div className="singlecomment" key={doc.id}>
-                            <div>{doc.username}</div>
-                            <div>Date</div>
-                            <div>{doc.text}</div>
-                            </div>
+                            { getcomments && getcomments.map(doc => (
+                                <div className="singlecomment" key={doc.id}>
+                                    <label className="commentFormat">{doc.username}: </label>
+                                    <label className="commentFormat">{doc.text}</label>
+                                    <br></br>
+                                    <label className="commentFormat">Date:</label>   
+                        </div>
                         ))}
                         </div>
 
                         <div className="likesection">
                             <div className="like">
-                                <a onClick={likepost} className={button} />
-                                <label className="score">Score: {singlePost.likes}</label>
+                            <div onClick={() =>likepost(singlePost.id)} className={cbutton} />
+                                <label className="score">Score: {postsLikes.likes}</label>
                             </div>
                         </div>
 
@@ -99,13 +106,11 @@ const FullPost = () => {
                         <input type="text" className="inputText" placeholder="Add a comment" value= {comment} onChange= {(e) => {setComment(e.target.value)}} />
                         <button onClick={handleUpload} className="postbutton">Post</button>
                         </div>
-            </div>
+                </div>
         </div>
-        
     </div>
     </>
     )
 }
 
 export default FullPost;
-
