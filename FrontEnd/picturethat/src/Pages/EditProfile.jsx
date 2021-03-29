@@ -13,7 +13,7 @@ const EditProfile  = () => {
     const UpdateData = () => {
         firebase.changeUserName(username);
         Swal.fire({
-            icon: 'error',
+            icon: 'success',
             title: 'Username changed',
           });
     }
