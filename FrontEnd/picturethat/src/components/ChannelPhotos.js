@@ -21,9 +21,9 @@ const ImageFeed = () => {
     const followstate = async () => {
         const alreadyF =  await firebase.AlreadyFollowed(currentChannel);
         if(alreadyF === false){
-            setFButton("UnFollow Channel")
-       } else {
             setFButton("Follow Channel")
+       } else {
+            setFButton("UnFollow Channel")
        }
     }
     if(loaded===false){
