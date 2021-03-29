@@ -34,7 +34,7 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
-        var location;
+        var location = loc;
         if(loc === null){
             location = "[No location]";
         }
@@ -42,15 +42,20 @@ const ImageUpload = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Post has not been finished',
-                text: "location is not a requirament"
+                text: "Cannot upload a post with no image!"
               });
         } if(channel === null){
             Swal.fire({
                 icon: 'error',
                 title: 'Post has not been finished',
-                text: "location is not a requirament"
+                text: "You Need to choose a channel for your post!"
               });
         } else {
+            Swal.fire({
+                icon: 'success',
+                title: 'Post has been Uploaded!',
+                text: ""
+              });
         const channelLC = channel.toLowerCase();
         firebase.UploadPost(caption, location, channelLC, image);
         setLocalimg(null);
