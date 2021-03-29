@@ -14,10 +14,10 @@ const AchievementsPage = () => {
         <div className="AchivementsPage">
 
             {docs && docs.map(doc => (
-            
+
             <div className= "achievementBlock">
-                <label> {doc.achievement} </label>
-                <label className={doc.class}/>
+                <label> {doc.description} </label>
+                <label className={doc.class}> {doc.score} </label>
                 <div className="divider"></div>
             </div>
         ))}

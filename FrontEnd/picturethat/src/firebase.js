@@ -76,7 +76,7 @@ const AchievementNumPosts = async () => {
   let uid = auth.currentUser.uid;
   let user = await firestore.collection('users').doc(uid).get();
 
-  return user.data().posts.length;
+  return user.data().num_posts;
 };
 
 const AchievementUnlock = async (id) => {
