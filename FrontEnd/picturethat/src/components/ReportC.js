@@ -11,13 +11,28 @@ const FullPost = () => {
 
     const singlePost = firebase.GetSinglePost(selectedImg);
 
-    const [reason, setReason] = useState('');
+    const Swal = require('sweetalert2');
 
+    const [reason, setReason] = useState(null);
 
+    var reported = "";
     const RPost = () => {
+        if(reason === null){
+            Swal.fire({
+               icon: 'error',
+               title: 'Need to add Reason',
+             });  
+        } else {
         firebase.reportPost(selectedImg, reason);
         setReason("");
-
+        reported = "The case has been passed onto the admin team";
+            Swal.fire({
+               icon: 'success',
+               title: 'Post Reported',
+               text: reported,
+             });  
+        }
+        
     }
 
 
