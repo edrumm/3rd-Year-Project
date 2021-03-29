@@ -11,7 +11,7 @@ const ImageUpload = () => {
     const [error, setError] = useState(null);
     const[caption, setTitle] = useState('');
     const[channel, setDescription] = useState('');
-    const[loc, setLoc] = useState('');
+    const[loc, setLoc] = useState(null);
     const[localimg, setLocalimg] = useState(null);
 
     const imgTypes = ['image/png', 'image/jpeg'];
@@ -33,8 +33,12 @@ const ImageUpload = () => {
     };
 
     const handleUpload = () => {
+        var location;
+        if(loc === null){
+            location = "[No location]";
+        }
         const channelLC = channel.toLowerCase();
-        firebase.UploadPost(caption, loc, channelLC, image);
+        firebase.UploadPost(caption, location, channelLC, image);
     };
 
     return (
