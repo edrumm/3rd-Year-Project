@@ -275,11 +275,6 @@ const UploadPost = async (caption, loc, channel, image) => {
 
   if (np == 1 || np == 10 || np == 50) {
     AchievementUnlock(`${np}-photos`)
-    .then(message => {
-      if (message) {
-        alert(message);
-      }
-    })
     .catch(err => {
       throw err;
     });
@@ -390,11 +385,6 @@ const AddComment = async (text, post) => {
 
 
   AchievementUnlock('comment')
-  .then(message => {
-    if (message) {
-      alert(message);
-    }
-  })
   .catch(err => {
     throw err;
   });
@@ -506,7 +496,10 @@ const LikePost = async (post) => {
   let userref = firestore.collection("users").doc(user);
   userref.update({
     likedPosts: firebase.firestore.FieldValue.arrayUnion("/posts/" + post)
-  })
+  });
+
+  AchievementUnlock('liked-post')
+  .catch(err => console.error(err));
 }
 
 const UnlikePost = async (post) => {
@@ -834,7 +827,7 @@ const GetAllUserChannelPosts = async () => {
         posts.push({ ...post.data(), id: post.id })
     });
   });
-  
+
   return posts;
 }
 
