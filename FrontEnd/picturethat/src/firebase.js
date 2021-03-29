@@ -601,7 +601,7 @@ const GetImg = (collection) => {
 
     return () => unsub();
   }, [collection])
-  return { docs };
+  return docs;
 
 }
 
@@ -748,8 +748,8 @@ const GetAllUserChannelPosts = async () => {
         posts.push({ ...post.data(), id: post.id })
     });
   });
-
-  return { posts };
+  
+  return posts;
 }
 
 export default {
