@@ -257,7 +257,7 @@ const SignUp  = () => {
                         <button
                             id="signInButton"
                             onClick= {validateForm}
-                            className="button">Sign Up
+                            className="buttonsu">Sign Up
                         </button>
 
                     <p>Have an Account? <Link to="/SignIn"> Sign In</Link></p>
