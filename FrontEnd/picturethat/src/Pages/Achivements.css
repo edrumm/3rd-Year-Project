@@ -13,7 +13,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    border: solid 2px #efefef;
+    border: solid 2px black;
 }
 
 .achievementBlock{
@@ -24,7 +24,7 @@
 }
 
 .divider{
-    background-color: #efefef;;
+    background-color: black;;
     margin-top: 10px;
     margin-bottom: 10px;
     height: 2px;
