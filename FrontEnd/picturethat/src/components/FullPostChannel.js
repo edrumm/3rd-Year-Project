@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './FullPost.css';
 import firebase from "../firebase.js";
-//import ImageFeed from "./ImageFeed";
 import {sSelectedImgId} from "./ChannelPhotos";
 
 
