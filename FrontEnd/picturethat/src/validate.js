@@ -26,8 +26,6 @@ const signupSchema = joi.object({
   confirmEmail: joi.ref('email'),
   confirmPassword: joi.ref('password')
 });
-//.with('email', 'confirmEmail')
-//.with('password', 'confirmPassword');
 
 // Check signup, throws error if invalid
 const signup = (credentials) => {

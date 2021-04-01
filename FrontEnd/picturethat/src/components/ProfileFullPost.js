@@ -4,66 +4,33 @@ import './FullPost.css';
 import firebase from "../firebase.js";
 import {setSelectedImgId} from "./ImageGrid";
 
-
-
-
-
-
 const PFullPost = () => {
     const selectedImg = setSelectedImgId;
     const singlePost = firebase.GetSinglePost(selectedImg);
     const getcomments = firebase.GetComments(selectedImg);
-    //console.log(getcomments);
-    //console.log(singlePost);
 
-    let currentPost = setSelectedImgId;    
+    let currentPost = setSelectedImgId;
     const[comment, setComment] = useState('');
-    // const Imgid = require("./ImageFeed");
-    //console.log(currentPost);
 
     const handleUpload = () => {
         firebase.AddComment(comment, currentPost);
         setComment("");
     };
 
-   
+
     const [liked, setLiked] = useState(false);
     const [button, setButton] = useState("far fa-heart");
 
     const likepost = () => {
-        //    const postreference = postref;
-        //    console.log(postreference);
-        //     if(liked === false) {
-        //         setLiked(true);
-        //         setButton("fas fa-heart")
-        //         const alreadyLiked = firebase.AlreadyLiked(user);
-        //         if(!alreadyLiked){
-        //             firebase.LikePost(user);
-        //         }
-        //    } else {
-        //        setLiked(false);
-        //        setButton("far fa-heart")
-        //        const alreadyLiked = firebase.AlreadyLiked(user);
-        //        if(alreadyLiked){
-        //            firebase.UnlikePost(user);
-        //        }
-        //    }
-           //console.log(postreference);
+
             if(liked === false) {
                 setLiked(true);
-                setButton("fas fa-heart")
-               //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-                //console.log(alreadyLiked);
-                //if(alreadyLiked == false){
-                    firebase.LikePost(selectedImg);
-              // }
+                setButton("fas fa-heart");
+                  firebase.LikePost(selectedImg);
            } else {
                setLiked(false);
-               setButton("far fa-heart")
-                //let alreadyLiked = firebase.AlreadyLiked(postref, user);
-              // if(alreadyLiked){
-                   firebase.UnlikePost(selectedImg);
-              //}
+               setButton("far fa-heart");
+               firebase.UnlikePost(selectedImg);
            }
         };
 
@@ -74,21 +41,21 @@ const PFullPost = () => {
         </div>
         <div className= "FullPost">
                 <div class="card">
-                    
+
                     <div>
                         <img src={singlePost.url} alt="" className="imagestyle"/>
                     </div>
-                    
+
                     <div className="fullpostinfo">
                         <div className="headpart">
-                        
+
                             <div className="profilecard">
                                 <label className="profileN">{singlePost.UserName}</label>
                                 <br></br>
                                 <label className="location">{singlePost.location}</label>
                                 </div>
                                 <br></br>
-                                
+
                             </div>
                         <div>
                             <div className="imginfo">
@@ -98,14 +65,14 @@ const PFullPost = () => {
                                 <br></br>
                                 <br></br>
                             </div>
-                        </div>  
+                        </div>
                         <div className="commentfield">
                             { getcomments && getcomments.map(doc => (
                                 <div className="singlecomment" key={doc.id}>
                                     <label className="commentFormat">{doc.username}: </label>
                                     <label className="commentFormat">{doc.text}</label>
                                     <br></br>
-                                    <label className="commentFormat">{new Date(doc.uploaddate.seconds * 1000).toLocaleDateString()}</label>   
+                                    <label className="commentFormat">{new Date(doc.uploaddate.seconds * 1000).toLocaleDateString()}</label>
                         </div>
                         ))}
                         </div>
@@ -123,7 +90,7 @@ const PFullPost = () => {
                         </div>
                 </div>
         </div>
-        
+
     </div>
     </>
     )

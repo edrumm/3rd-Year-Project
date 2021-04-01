@@ -3,6 +3,7 @@ import 'firebase/storage';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+// Main configuraiton, not visible to user
 const firebaseConfig = {
   apiKey: "AIzaSyCBVN9q8Dyb-jkn-tTBE6roFpImLrf3wyo",
   authDomain: "picture-that-y3.firebaseapp.com",
@@ -19,9 +20,6 @@ firebase.initializeApp(firebaseConfig);
 const storage = firebase.storage();
 const firestore = firebase.firestore();
 const auth = firebase.auth();
-/*const analytics = firebase.analytics();
-const testvalue = () =>{
-firebase.analytics().logEvent("test");
-}
-testvalue();*/
-export { firebase, firestore, storage, auth /*, analytics*/ };
+
+// Export Firebase modules
+export { firebase, firestore, storage, auth };

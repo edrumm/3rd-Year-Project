@@ -24,6 +24,9 @@ PictureThat is a social media platform for photographers which focuses on the ph
 - Babel / JSX
 - React
 - React-dom
+- Framer
+- Ant Design
+- Material UI
 - Firebase
 - Joi
 - Chai / Mocha

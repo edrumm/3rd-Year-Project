@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
+// MAIN App page
 
 //Import the pages
 import SignIn from "./Pages/SignIn";
@@ -27,6 +28,7 @@ import ReportT from './Pages/ReportT';
 import ProfileFullPost from './Pages/ProfileFullPost';
 import ContactPage from './Pages/ContactPage';
 
+// app entry point
 function App() {
 
   return (
@@ -71,4 +73,3 @@ function App() {
 export default App;
 
 // used this tutorial to set up a navigation bar: https://www.youtube.com/watch?v=fL8cFqhTHwA&t=378s
-//https://www.youtube.com/watch?v=hjR-ZveXBpQ

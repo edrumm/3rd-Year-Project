@@ -18,109 +18,11 @@ const SignUp  = () => {
     const[confirmEmail, setConfirmEmail] = useState('');
     const[confirmPassword, setConfirmPassword] = useState('');
 
-    const[emailError, setEmailError] = useState({});
-    const[passwordError, setPasswordError] = useState({});
-    const[usernameError, setUsernameError] = useState({});
-
     const history = useHistory();
 
-    const checkUsername = (userNameInput) => {
-        const usernameRequirements = new RegExp (/^[a-z\d]{5,20}$/i);
-        return usernameRequirements.test(userNameInput);
-    }
-
-    const checkEmail = (userEmailInput) => {
-
-        //link for the regex used
-        //https://stackoverflow.com/questions/16200965/regular-expression-validate-gmail-addresses
-
-        const emailRequirements = new RegExp (/([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@gmail([\.])com/g);
-        return emailRequirements.test(userEmailInput);
-    }
-
-    const checkPassword = (userPasswordInput) => {
-
-        //link for regex used
-        //https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
-
-        const passwordRequirements = new RegExp (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$/);
-        return passwordRequirements.test(userPasswordInput);
-    }
     const validateForm = (e) => {
 
         let isValid = true;
-
-         //arrays to hold errors set to empty array
-         const emailError = {};
-         const passwordError = {};
-         const usernameError = {};
-
-        /*if(!checkUsername(username)){
-            usernameError.InvalidCharacters = "Username must be longer than 5 characters";
-            Swal.fire({
-               icon: 'error',
-               title: 'Oops...',
-               text: usernameError.InvalidCharacters,
-             });
-        }
-
-         if (!checkEmail(email)) {
-                 emailError.InvalidCharacters = "Your Email address is incorrect. Try again.";
-                 Swal.fire({
-                     icon: 'error',
-                     title: 'Oops...',
-                     text: emailError.InvalidCharacters,
-                   });
-         }
-
-         if(!(email === confirmEmail)){
-             emailError.EmailMismatch = "Re-entered email MUST be the same as email";
-             Swal.fire({
-                 icon: 'error',
-                 title: 'Oops...',
-                 text: emailError.EmailMismatch,
-               });
-         }
-
-         if((checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail)){
-             console.log("Valid email address");
-         }
-
-         if(!checkPassword(password)){
-             passwordError.InvalidCharacters = "Password MUST contain at least one number/lowercase/uppercase letter and be at least 6 characaters in length";
-             Swal.fire({
-                 icon: 'error',
-                 title: 'Oops...',
-                 text: passwordError.InvalidCharacters,
-               });
-         }
-
-         if(!(password === confirmPassword)){
-             passwordError.PasswordMismatch = "Re-entered password MUST be the same as password";
-             Swal.fire({
-                 icon: 'error',
-                 title: 'Oops...',
-                 text: passwordError.PasswordMismatch,
-               });
-         }
-
-         if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword)){
-             console.log("Valid password");
-         }
-
-         if((checkPassword(password) && checkPassword(confirmPassword)) && (password === confirmPassword) && (checkEmail(email) && checkEmail(confirmEmail)) && (email === confirmEmail) && checkUsername(username)){
-             isValid = true;
-             console.log(email);
-             console.log(password);
-         }
-         else{
-             isValid = false;
-         }
-
-         setEmailError(emailError);
-         setPasswordError(passwordError);
-         setUsernameError(usernameError);
-         console.log(isValid);*/
 
         // use joi validation
         try {
@@ -139,7 +41,7 @@ const SignUp  = () => {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: err,
+            text: err
           });
 
           isValid = false;
@@ -160,7 +62,7 @@ const SignUp  = () => {
                 Swal.fire({
                   icon: 'error',
                   title: 'Oops...',
-                  text: err,
+                  text: err
                 });
 
                 history.push('/');
@@ -169,8 +71,11 @@ const SignUp  = () => {
             })
             .catch(err => {
               // unsucessful
-              console.error(`Signup error: ${err}`);
-              alert('There was a problem signing up, please try again');
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: `Signup error: ${err}`
+              });
 
               history.push('/');
             });

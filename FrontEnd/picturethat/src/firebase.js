@@ -3,12 +3,13 @@ import React, { useState, useEffect, useContext } from 'react';
 import { number } from 'joi';
 import Swal from 'sweetalert2';
 
+// React function, not currently used
 const context = React.createContext();
 const Auth = () => {
   return useContext(context);
 };
 
-
+// Login, slogout sign up
 const Login = async (email, password) => {
 
   await auth.signInWithEmailAndPassword(email, password);
@@ -17,6 +18,7 @@ const Login = async (email, password) => {
   let user = await firestore.collection('users').doc(uid).get();
   let doc = user.data();
 
+  // update achievements
   if (doc.score >= 100 && doc.score < 500) {
     AchievementUnlock('100-score').catch(err => console.error(err));
 
@@ -30,7 +32,6 @@ const Login = async (email, password) => {
 
 const Signup = async (email, password, username) => {
 
-  // errors caught on top level
   await auth.createUserWithEmailAndPassword(email, password);
 
   let user = await firestore.collection('users').doc(email);
@@ -47,12 +48,12 @@ const Signup = async (email, password, username) => {
   }
   let userID = auth.currentUser.uid;
 
+  // create new user
   await firestore.collection('users').doc(userID).set({
     username: username,
     followed_channels: [],
     liked_posts: [],
     posts: [],
-    // not yet implemented, will store ID's of unlocked achievements
     achievements: [],
     score: 0,
     num_posts: 0
@@ -71,7 +72,7 @@ const Logout = async () => {
 
 };
 
-// Needs implemented in front end
+// Achievement system
 const AchievementNumPosts = async () => {
   let uid = auth.currentUser.uid;
   let user = await firestore.collection('users').doc(uid).get();
@@ -79,6 +80,7 @@ const AchievementNumPosts = async () => {
   return user.data().num_posts;
 };
 
+// Awards achievement if not unlocked
 const AchievementUnlock = async (id) => {
   let username = auth.currentUser.displayName;
   let user = await firestore.collection('users').doc(auth.currentUser.uid).get();
@@ -121,9 +123,10 @@ const forgotPass = (email) => {
 
 // Detects change in login state
 auth.onAuthStateChanged(u => {
-
+  // for testing purposes
 });
 
+// Returns username, UID
 const getUser = () => {
   let user = auth.currentUser;
 
@@ -154,6 +157,7 @@ const changeUserPass = (newPass) => {
   });
 }
 
+// Change user info
 const changeUserEmail = (newEmail) => {
   var user = auth.currentUser;
   var newemail = newEmail;
@@ -241,9 +245,6 @@ const deleteUser = () => {
     //console.log("Error deleting user:", error);
   });
 
-
-
-  //need to delete db user info and posts
 }
 
 const reportPost = async (post, reportReason) => {
@@ -407,6 +408,7 @@ const AddComment = async (text, post) => {
   });
 }
 
+// Functions with JSX syntax to send data to front end
 const GetComments = (postid) => {
   const [docs, setDocs] = useState([]);
   let postref = postid;
@@ -489,7 +491,7 @@ const AlreadyLiked = async (post) => {
 }
 
 const LikePost = async (post) => {
-  //Uses built in FireBase method for incrementing
+  //Uses built in Firebase method for incrementing
   const increment = firebase.firestore.FieldValue.increment(1);
   let postref = firestore.collection("posts").doc(post);
   //on the post side, simply increment the number of likes by one
@@ -761,7 +763,6 @@ const GetSinglePost = (id) => {
       .get()
       .then((doc) => {
         if (isMounted) {
-          //for (let doc of querySnapshot.docs) {
           setDocs({ ...doc.data(), id: doc.id })
         }
       });
@@ -784,7 +785,6 @@ const GetSingleChannel = (channel) => {
       .get()
       .then((doc) => {
         if (isMounted) {
-          //for (let doc of querySnapshot.docs) {
           setDocs({ ...doc.data(), id: doc.id })
         }
       });
@@ -818,7 +818,7 @@ const GetPostofChannels = (channel) => {
   return { docs };
 }
 
-
+// Returns all posts data for channels this user follows
 const GetAllUserChannelPosts = async () => {
   const user = getUserID();
 
@@ -842,6 +842,13 @@ const GetAllUserChannelPosts = async () => {
   return posts;
 }
 
+/*
+  default named exports
+  eg:
+    import UploadPost from './firebase';
+  or all:
+    import firebase from './firebase';
+*/
 export default {
   UploadPost,
   GetData,
@@ -875,8 +882,11 @@ export default {
   GetUserStats
 };
 
+/*
+  standard exports to avoid reloading of file and accidental sign out
+  these must be imported seperately
+
+  eg:
+    import { Login, Logout } from './firebase';
+*/
 export { Auth, Login, Signup, Logout, AchievementUnlock, AchievementNumPosts };
-
-
-//https://www.youtube.com/watch?v=cFgoSrOui2M
-//https://stackoverflow.com/questions/53949393/cant-perform-a-react-state-update-on-an-unmounted-component

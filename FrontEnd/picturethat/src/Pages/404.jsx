@@ -12,10 +12,8 @@ const NotFound  = () => {
                 <h2>Sorry this page you are trying to access doesn't exist</h2>
 
             </div>
-        </div> 
+        </div>
     );
 };
 
 export default NotFound;
-
-//https://www.youtube.com/watch?v=hjR-ZveXBpQ
